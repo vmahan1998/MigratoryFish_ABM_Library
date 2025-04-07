@@ -15,7 +15,7 @@
 -   Dependency table showing variable flow between submodels.
 
 | Function | Required Inputs | Output Variables | Dependent On |
-|------------------|------------------|------------------|------------------|
+|----|----|----|----|
 | `osmoregulation` | `S_patch`, `S_agent`, `C` | `I_stress`, `C_new`, `E_osmo` | `environmental-sensing` |
 | `staging` | `E_agent`, `I_stress` | `E_agent`, `patch records` | `osmoregulation` |
 | `migration` | `E_agent`, `V_patch` | `Y_t`, `E_agent` | `staging`, `STST` |

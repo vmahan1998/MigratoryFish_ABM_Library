@@ -71,14 +71,14 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={Staging},
+  pdftitle={Agent-Based Modeling Function Library for Simulating Diadromous Fish Migration},
   pdfauthor={Vanessa Quintana},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
-\title{Staging}
+\title{Agent-Based Modeling Function Library for Simulating Diadromous Fish Migration}
 \author{Vanessa Quintana}
-\date{2025-04-06}
+\date{2025-04-07}
 
 \begin{document}
 \maketitle
@@ -87,11 +87,8 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\chapter*{Agent-Based Model Function Library for Modeling Migratory Fish}\label{agent-based-model-function-library-for-modeling-migratory-fish}
-\addcontentsline{toc}{chapter}{Agent-Based Model Function Library for Modeling Migratory Fish}
-
-\section*{Preface}\label{preface}
-\addcontentsline{toc}{section}{Preface}
+\chapter*{Preface}\label{preface}
+\addcontentsline{toc}{chapter}{Preface}
 
 This library provides a comprehensive, modular framework for developing and documenting agent-based models (ABMs) that simulate the movement, behavior, and environmental interactions of migratory fish in coastal aquatic systems. It is designed to support the standardization and implementation of ABMs in fisheries management, enabling researchers and practitioners to address complex environmental questions and evaluate remediation or restoration scenarios.
 
@@ -172,8 +169,7 @@ Each function or behavior in this library can be combined with others to build a
 
 \section{Overview}\label{overview-1}
 
-Osmoregulation allows migratory fish to maintain homeostasis by regulating internal ion concentrations in response to varying environmental salinities.
-This function simulates osmotic or ion-regulatory stress, chloride cell expression, and the metabolic energy cost of osmoregulation in a spatially explicit context.
+Osmoregulation allows migratory fish to maintain homeostasis by regulating internal ion concentrations in response to varying environmental salinities. This function simulates osmotic or ion-regulatory stress, chloride cell expression, and the metabolic energy cost of osmoregulation in a spatially explicit context.
 
 \section{Purpose}\label{purpose}
 
@@ -247,20 +243,15 @@ Definition
 
 \section{Design Concepts}\label{design-concepts}
 
-\textbf{Basic Principles:} The model is based on principles of physiological ecology and osmoregulatory energetics in teleost and apterygian species.
-It draws from empirical findings (e.g., Allen et al., 2009; Little et al., 2023) and includes size scaling, stress buffering, and energy constraints.
-These principles are implemented at the submodel level (e.g., chloride proliferation, stress calculation) to simulate realistic physiological feedbacks to changes in environmental salinity.
+\textbf{Basic Principles:} The model is based on principles of physiological ecology and osmoregulatory energetics in teleost and apterygian species. It draws from empirical findings (e.g., Allen et al., 2009; Little et al., 2023) and includes size scaling, stress buffering, and energy constraints. These principles are implemented at the submodel level (e.g., chloride proliferation, stress calculation) to simulate realistic physiological feedbacks to changes in environmental salinity.
 
-\textbf{Emergence:} Ion-regulatory stress, chloride cell expression, and energy expenditure emerge from an agent's interaction with temporally and spatially variable salinity environments.
-These patterns are not pre-specified but arise dynamically through adaptive physiological responses.
+\textbf{Emergence:} Ion-regulatory stress, chloride cell expression, and energy expenditure emerge from an agent's interaction with temporally and spatially variable salinity environments. These patterns are not pre-specified but arise dynamically through adaptive physiological responses.
 
-\textbf{Adaptation}: Agents respond to osmotic stress by adjusting chloride cell density, a trait that buffers stress.
-This process allows individuals to reduce internal-external salinity gradients and maintain ion homeostasis.
+\textbf{Adaptation}: Agents respond to osmotic stress by adjusting chloride cell density, a trait that buffers stress. This process allows individuals to reduce internal-external salinity gradients and maintain ion homeostasis.
 
 \textbf{Objectives:} Agents seek to support survival by reducing stress and avoiding excessive energy loss through regulating chloride cell expression.
 
-\textbf{Sensing}: Agents sense local salinity (\(S_{patch}\)) and compare it with their acclimated salinity (\(S_{agent}\)).
-They also track their own energy state and time since last osmoregulation.
+\textbf{Sensing}: Agents sense local salinity (\(S_{patch}\)) and compare it with their acclimated salinity (\(S_{agent}\)). They also track their own energy state and time since last osmoregulation.
 
 \textbf{Stochasticity}: Acclimation may vary with \(\alpha\), which can be drawn from a defined range per individual to reflect physiological variation across the population.
 
@@ -340,10 +331,7 @@ Where:
 
 \subsection{Chloride Cell Density}\label{chloride-cell-density}
 
-Chloride cell proliferation is driven by the level of ion-regulatory stress the agent experiences when encountering a difference in salinity.
-The greater the stress, the higher the target chloride density the agent attempts to reach, up to a maximum threshold.
-Agents adjust their chloride cell density based on their current ion-regulatory stress and acclimation status.
-Chloride cells are not adjusted unless the agent's energy exceeds 25\%.
+Chloride cell proliferation is driven by the level of ion-regulatory stress the agent experiences when encountering a difference in salinity. The greater the stress, the higher the target chloride density the agent attempts to reach, up to a maximum threshold. Agents adjust their chloride cell density based on their current ion-regulatory stress and acclimation status. Chloride cells are not adjusted unless the agent's energy exceeds 25\%.
 
 The chloride cell density is based on stress:
 
@@ -1396,9 +1384,9 @@ Definition
 \section{Initialization}\label{initialization-5}
 
 \begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2361}}
-  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2361}}
-  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5278}}@{}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 Variable
@@ -1528,8 +1516,8 @@ To simulate the biologically necessary pause in migratory activity used for ener
 \subsection{Patch Variables}\label{patch-variables-6}
 
 \begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.1562}}
-  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.8438}}@{}}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 Variable Name
@@ -1547,8 +1535,8 @@ Definition
 \subsection{Agent Variables}\label{agent-variables-6}
 
 \begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3465}}
-  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6535}}@{}}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 Variable Name
@@ -1601,9 +1589,9 @@ Definition
 \section{Initialization}\label{initialization-6}
 
 \begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2202}}
-  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2143}}
-  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5595}}@{}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1603}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2308}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.6026}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 Variable
@@ -2102,7 +2090,7 @@ Variable & Initialized Value & Justification \\
 
 \section{Submodels}\label{submodels-10}
 
-\chapter{Model Simulation Tutorial: Staging \& Schooling}\label{model-simulation-tutorial-staging-schooling}
+\chapter{Model Building Tutorial: Staging \& Schooling}\label{model-building-tutorial-staging-schooling}
 
 \subsection{Module Integration}\label{module-integration}
 
@@ -2116,7 +2104,7 @@ Variable & Initialized Value & Justification \\
   Describe coupling logic
 \end{itemize}
 
-\subsection{\texorpdfstring{\textbf{Function Dependencies}}{Function Dependencies}}\label{function-dependencies}
+\subsection{Function Dependencies}\label{function-dependencies}
 
 \begin{itemize}
 \item
@@ -2128,10 +2116,10 @@ Variable & Initialized Value & Justification \\
 \end{itemize}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1375}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2875}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2250}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Function
@@ -2162,7 +2150,7 @@ Programming details
 
 example code
 
-\chapter{Model Simulation Tutorial: Landward Migration \& Selective Tidal Stream Transport}\label{model-simulation-tutorial-landward-migration-selective-tidal-stream-transport}
+\chapter{Model Building Tutorial: Landward Migration \& Selective Tidal Stream Transport}\label{model-building-tutorial-landward-migration-selective-tidal-stream-transport}
 
 \subsection{Module Integration}\label{module-integration-1}
 
@@ -2176,7 +2164,7 @@ example code
   Describe coupling logic
 \end{itemize}
 
-\subsection{\texorpdfstring{\textbf{Function Dependencies}}{Function Dependencies}}\label{function-dependencies-1}
+\subsection{Function Dependencies}\label{function-dependencies-1}
 
 \begin{itemize}
 \item
@@ -2224,7 +2212,7 @@ Programming details
 
 example code
 
-\chapter{Complex Model Simulation Tutorial: One-Way Migration}\label{complex-model-simulation-tutorial-one-way-migration}
+\chapter{Complex Model Building Tutorial: One-Way Migration}\label{complex-model-building-tutorial-one-way-migration}
 
 \subsection{Module Integration}\label{module-integration-2}
 
@@ -2238,7 +2226,7 @@ example code
   Describe coupling logic
 \end{itemize}
 
-\subsection{\texorpdfstring{\textbf{Function Dependencies}}{Function Dependencies}}\label{function-dependencies-2}
+\subsection{Function Dependencies}\label{function-dependencies-2}
 
 \begin{itemize}
 \item
@@ -2269,28 +2257,12 @@ example code
 \tightlist
 \item
   \textbf{NetLogo Library}: Brief note on structure (e.g., model categories), how you used it (e.g., behavior ideas, calibration).
-\end{itemize}
-
-\begin{itemize}
-\tightlist
 \item
   \textbf{NetLogo User Manual}: Link to official documentation.
-\end{itemize}
-
-\begin{itemize}
-\tightlist
 \item
   \textbf{NetLogo Modeling Commons}: Peer-contributed models, code sharing, and idea sourcing.
-\end{itemize}
-
-\begin{itemize}
-\tightlist
 \item
   \textbf{NetLogo Forum}: Where to get help or search issues.
-\end{itemize}
-
-\begin{itemize}
-\tightlist
 \item
   \textbf{Book References}:
 \end{itemize}
@@ -2316,6 +2288,8 @@ example code
   \textbf{Naming Conventions}: Use clear, consistent names (e.g., \texttt{V\_agent}, \texttt{E\_osmo}, \texttt{stage?}) to reduce error and improve interpretability.
 \item
   \textbf{Documentation in Code}: Annotate key procedures, thresholds, and formulas directly in NetLogo and R scripts.
+\item
+  \textbf{Journal References}:
 \end{itemize}
 
 \section{Code Repositories \& Examples}\label{code-repositories-examples}
@@ -2336,104 +2310,14 @@ Description
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\textbf{Migration Dynamics Model} & GitHub link & Simulates agent-based landward \& seaward migration using STST. \\
-\textbf{Osmoregulation Function} & GitHub link & Chloride cell regulation and stress-energy tradeoffs. \\
-\textbf{Staging Behavior Model} & GitHub link & Implements estuary resting behavior based on stress and energy. \\
-\textbf{Visualization Utilities} & GitHub link & Code for plotting NetLogo outputs in R. \\
+\textbf{Penobscot River} & GitHub link & Simulates agent-based landward \& seaward migration using STST. \\
+\textbf{Martha's Vineyard} & GitHub link & Chloride cell regulation and stress-energy tradeoffs. \\
+\textbf{other} & GitHub link & Implements estuary resting behavior based on stress and energy. \\
+\textbf{other} & GitHub link & Code for plotting NetLogo outputs in R. \\
 \end{longtable}
 
-\chapter{Thermoregulation Function}\label{thermoregulation-function}
-
-\section{Overview}\label{overview-12}
-
-\section{Purpose}\label{purpose-11}
-
-\section{Entities, State Variables, and Scales}\label{entities-state-variables-and-scales-11}
-
-\subsection{Patch Variables}\label{patch-variables-11}
-
-\begin{longtable}[]{@{}ll@{}}
-\toprule\noalign{}
-Variable Name & Definition \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-& \\
-\end{longtable}
-
-\subsection{Agent Variables}\label{agent-variables-11}
-
-\begin{longtable}[]{@{}ll@{}}
-\toprule\noalign{}
-Variable Name & Definition \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-& \\
-& \\
-& \\
-& \\
-& \\
-& \\
-& \\
-& \\
-& \\
-\end{longtable}
-
-\section{Process Overview and Scheduling}\label{process-overview-and-scheduling-11}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-\item
-\item
-\item
-\end{enumerate}
-
-\section{Design Concepts}\label{design-concepts-11}
-
-\textbf{Basic Principles:}
-
-\textbf{Emergence:}
-
-\textbf{Adaptation}:
-
-\textbf{Objectives:}
-
-\textbf{Learning:}
-
-\textbf{Prediction:}
-
-\textbf{Sensing}:
-
-\textbf{Interaction}:
-
-\textbf{Stochasticity}:
-
-\textbf{Collectives:}
-
-\textbf{Observation:}
-
-\section{Initialization}\label{initialization-11}
-
-\begin{longtable}[]{@{}ccc@{}}
-\toprule\noalign{}
-Variable & Initialized Value & Justification \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-& & \\
-& & \\
-& & \\
-& & \\
-& & \\
-\end{longtable}
-
-\section{Submodels}\label{submodels-11}
+\chapter*{References}\label{references}
+\addcontentsline{toc}{chapter}{References}
 
 \bibliography{book.bib,packages.bib}
 

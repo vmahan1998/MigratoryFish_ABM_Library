@@ -15,7 +15,7 @@
 -   Dependency table showing variable flow between submodels.
 
 | Function  | Required Inputs       | Output Variables           | Dependent On     |
-|----------------|------------------|-----------------------|----------------|
+|-----------|-----------------------|----------------------------|------------------|
 | `staging` | `E_agent`, `I_stress` | `E_agent`, `patch records` | `osmoregulation` |
 | schooling |                       |                            |                  |
 
