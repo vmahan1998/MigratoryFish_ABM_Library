@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Mercury Contamination Bioaccumulation Function | Agent-Based Modeling Function Library for Simulating Diadromous Fish Migration</title>
+  <meta name="description" content="This document contains a libvrary of model functions for agent-basewd modeling simulations of diadromous fish" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Mercury Contamination Bioaccumulation Function | Agent-Based Modeling Function Library for Simulating Diadromous Fish Migration" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This document contains a libvrary of model functions for agent-basewd modeling simulations of diadromous fish" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Mercury Contamination Bioaccumulation Function | Agent-Based Modeling Function Library for Simulating Diadromous Fish Migration" />
+  
+  <meta name="twitter:description" content="This document contains a libvrary of model functions for agent-basewd modeling simulations of diadromous fish" />
+  
+
+<meta name="author" content="Vanessa Quintana" />
+
+
+<meta name="date" content="2025-04-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="osmoregulation-function.html"/>
+<link rel="next" href="landward-migration-behavior.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i>Motivation</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="overview.html"><a href="overview.html#background"><i class="fa fa-check"></i><b>1.1</b> Background</a></li>
+<li class="chapter" data-level="1.2" data-path="overview.html"><a href="overview.html#introduction-to-agent-based-models"><i class="fa fa-check"></i><b>1.2</b> Introduction to Agent-Based Models</a></li>
+<li class="chapter" data-level="1.3" data-path="overview.html"><a href="overview.html#structure"><i class="fa fa-check"></i><b>1.3</b> Structure</a></li>
+<li class="chapter" data-level="1.4" data-path="overview.html"><a href="overview.html#application-context"><i class="fa fa-check"></i><b>1.4</b> Application Context</a></li>
+<li class="chapter" data-level="1.5" data-path="overview.html"><a href="overview.html#how-to-use-this-library"><i class="fa fa-check"></i><b>1.5</b> How to Use This Library</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html"><i class="fa fa-check"></i><b>2</b> Osmoregulation Function</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#overview-1"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
+<li class="chapter" data-level="2.2" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#purpose"><i class="fa fa-check"></i><b>2.2</b> Purpose</a></li>
+<li class="chapter" data-level="2.3" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#entities-state-variables-and-scales"><i class="fa fa-check"></i><b>2.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#patch-variables"><i class="fa fa-check"></i><b>2.3.1</b> Patch Variables</a></li>
+<li class="chapter" data-level="2.3.2" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#agent-variables"><i class="fa fa-check"></i><b>2.3.2</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#process-overview-and-scheduling"><i class="fa fa-check"></i><b>2.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="2.5" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#design-concepts"><i class="fa fa-check"></i><b>2.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="2.6" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#initialization"><i class="fa fa-check"></i><b>2.6</b> Initialization</a></li>
+<li class="chapter" data-level="2.7" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#submodels"><i class="fa fa-check"></i><b>2.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#osmotic-stress"><i class="fa fa-check"></i><b>2.7.1</b> Osmotic Stress</a></li>
+<li class="chapter" data-level="2.7.2" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#chloride-cell-density"><i class="fa fa-check"></i><b>2.7.2</b> Chloride Cell Density</a></li>
+<li class="chapter" data-level="" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#osmoregulation-energy"><i class="fa fa-check"></i>Osmoregulation Energy</a></li>
+<li class="chapter" data-level="2.7.3" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#energy-balance"><i class="fa fa-check"></i><b>2.7.3</b> Energy Balance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html"><i class="fa fa-check"></i><b>3</b> Mercury Contamination Bioaccumulation Function</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#overview-2"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#purpose-1"><i class="fa fa-check"></i><b>3.2</b> Purpose</a></li>
+<li class="chapter" data-level="3.3" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#entities-state-variables-and-scales-1"><i class="fa fa-check"></i><b>3.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#global-variables"><i class="fa fa-check"></i><b>3.3.1</b> Global Variables</a></li>
+<li class="chapter" data-level="3.3.2" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#patch-variables-1"><i class="fa fa-check"></i><b>3.3.2</b> Patch Variables</a></li>
+<li class="chapter" data-level="3.3.3" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#agent-variables-1"><i class="fa fa-check"></i><b>3.3.3</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#process-overview-and-scheduling-1"><i class="fa fa-check"></i><b>3.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="3.5" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#design-concepts-1"><i class="fa fa-check"></i><b>3.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="3.6" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#initialization-1"><i class="fa fa-check"></i><b>3.6</b> Initialization</a></li>
+<li class="chapter" data-level="3.7" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#submodels-1"><i class="fa fa-check"></i><b>3.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#exposure-duration"><i class="fa fa-check"></i><b>3.7.1</b> Exposure Duration</a></li>
+<li class="chapter" data-level="3.7.2" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#bioaccumulation-risk"><i class="fa fa-check"></i><b>3.7.2</b> Bioaccumulation Risk</a></li>
+<li class="chapter" data-level="3.7.3" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#exposure-to-contamination"><i class="fa fa-check"></i><b>3.7.3</b> Exposure to Contamination</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html"><i class="fa fa-check"></i><b>4</b> Landward Migration Behavior</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#overview-3"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#purpose-2"><i class="fa fa-check"></i><b>4.2</b> Purpose</a></li>
+<li class="chapter" data-level="4.3" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#entities-state-variables-and-scales-2"><i class="fa fa-check"></i><b>4.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#global-variables-1"><i class="fa fa-check"></i><b>4.3.1</b> Global Variables</a></li>
+<li class="chapter" data-level="4.3.2" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#patch-variables-2"><i class="fa fa-check"></i><b>4.3.2</b> Patch Variables</a></li>
+<li class="chapter" data-level="4.3.3" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#agent-variables-2"><i class="fa fa-check"></i><b>4.3.3</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#process-overview-and-scheduling-2"><i class="fa fa-check"></i><b>4.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="4.5" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#design-concepts-2"><i class="fa fa-check"></i><b>4.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="4.6" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#initialization-2"><i class="fa fa-check"></i><b>4.6</b> Initialization</a></li>
+<li class="chapter" data-level="4.7" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#submodels-2"><i class="fa fa-check"></i><b>4.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#swimming-speed"><i class="fa fa-check"></i><b>4.7.1</b> Swimming Speed</a></li>
+<li class="chapter" data-level="4.7.2" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#swimming-difficulty"><i class="fa fa-check"></i><b>4.7.2</b> <strong>Swimming Difficulty</strong></a></li>
+<li class="chapter" data-level="4.7.3" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#swimming-movement"><i class="fa fa-check"></i><b>4.7.3</b> Swimming Movement</a></li>
+<li class="chapter" data-level="4.7.4" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#swimming-energy"><i class="fa fa-check"></i><b>4.7.4</b> Swimming Energy</a></li>
+<li class="chapter" data-level="4.7.5" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#energy-balance-1"><i class="fa fa-check"></i><b>4.7.5</b> Energy Balance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html"><i class="fa fa-check"></i><b>5</b> Seaward Migration Behavior</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#overview-4"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#purpose-3"><i class="fa fa-check"></i><b>5.2</b> Purpose</a></li>
+<li class="chapter" data-level="5.3" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#entities-state-variables-and-scales-3"><i class="fa fa-check"></i><b>5.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#global-variables-2"><i class="fa fa-check"></i><b>5.3.1</b> Global Variables</a></li>
+<li class="chapter" data-level="5.3.2" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#patch-variables-3"><i class="fa fa-check"></i><b>5.3.2</b> Patch Variables</a></li>
+<li class="chapter" data-level="5.3.3" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#agent-variables-3"><i class="fa fa-check"></i><b>5.3.3</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#process-overview-and-scheduling-3"><i class="fa fa-check"></i><b>5.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="5.5" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#design-concepts-3"><i class="fa fa-check"></i><b>5.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="5.6" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#initialization-3"><i class="fa fa-check"></i><b>5.6</b> Initialization</a></li>
+<li class="chapter" data-level="5.7" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#submodels-3"><i class="fa fa-check"></i><b>5.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#swimming-speed-1"><i class="fa fa-check"></i><b>5.7.1</b> Swimming Speed</a></li>
+<li class="chapter" data-level="5.7.2" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#swimming-difficulty-1"><i class="fa fa-check"></i><b>5.7.2</b> <strong>Swimming Difficulty</strong></a></li>
+<li class="chapter" data-level="5.7.3" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#swimming-movement-1"><i class="fa fa-check"></i><b>5.7.3</b> Swimming Movement</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#swimming-energy-1"><i class="fa fa-check"></i><b>5.8</b> Swimming Energy</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#energy-balance-2"><i class="fa fa-check"></i><b>5.8.1</b> Energy Balance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="schooling-behavior.html"><a href="schooling-behavior.html"><i class="fa fa-check"></i><b>6</b> Schooling Behavior</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="schooling-behavior.html"><a href="schooling-behavior.html#overview-5"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="schooling-behavior.html"><a href="schooling-behavior.html#purpose-4"><i class="fa fa-check"></i><b>6.2</b> Purpose</a></li>
+<li class="chapter" data-level="6.3" data-path="schooling-behavior.html"><a href="schooling-behavior.html#entities-state-variables-and-scales-4"><i class="fa fa-check"></i><b>6.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="schooling-behavior.html"><a href="schooling-behavior.html#patch-variables-4"><i class="fa fa-check"></i><b>6.3.1</b> Patch Variables</a></li>
+<li class="chapter" data-level="6.3.2" data-path="schooling-behavior.html"><a href="schooling-behavior.html#agent-variables-4"><i class="fa fa-check"></i><b>6.3.2</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="schooling-behavior.html"><a href="schooling-behavior.html#process-overview-and-scheduling-4"><i class="fa fa-check"></i><b>6.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="6.5" data-path="schooling-behavior.html"><a href="schooling-behavior.html#design-concepts-4"><i class="fa fa-check"></i><b>6.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="6.6" data-path="schooling-behavior.html"><a href="schooling-behavior.html#initialization-4"><i class="fa fa-check"></i><b>6.6</b> Initialization</a></li>
+<li class="chapter" data-level="6.7" data-path="schooling-behavior.html"><a href="schooling-behavior.html#submodels-4"><i class="fa fa-check"></i><b>6.7</b> Submodels</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html"><i class="fa fa-check"></i><b>7</b> Selective Tidal Stream Transport</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#overview-6"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#purpose-5"><i class="fa fa-check"></i><b>7.2</b> Purpose</a></li>
+<li class="chapter" data-level="7.3" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#entities-state-variables-and-scales-5"><i class="fa fa-check"></i><b>7.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#patch-variables-5"><i class="fa fa-check"></i><b>7.3.1</b> Patch Variables</a></li>
+<li class="chapter" data-level="7.3.2" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#agent-variables-5"><i class="fa fa-check"></i><b>7.3.2</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#process-overview-and-scheduling-5"><i class="fa fa-check"></i><b>7.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="7.5" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#design-concepts-5"><i class="fa fa-check"></i><b>7.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="7.6" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#initialization-5"><i class="fa fa-check"></i><b>7.6</b> Initialization</a></li>
+<li class="chapter" data-level="7.7" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#submodels-5"><i class="fa fa-check"></i><b>7.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#trigger-conditions-for-stst"><i class="fa fa-check"></i><b>7.7.1</b> Trigger Conditions for STST</a></li>
+<li class="chapter" data-level="7.7.2" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#behavior-during-stst"><i class="fa fa-check"></i><b>7.7.2</b> Behavior During STST</a></li>
+<li class="chapter" data-level="7.7.3" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#stop-conditions-for-stst"><i class="fa fa-check"></i><b>7.7.3</b> Stop Conditions for STST</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="staging-behavior.html"><a href="staging-behavior.html"><i class="fa fa-check"></i><b>8</b> Staging Behavior</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="staging-behavior.html"><a href="staging-behavior.html#overview-7"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="staging-behavior.html"><a href="staging-behavior.html#purpose-6"><i class="fa fa-check"></i><b>8.2</b> Purpose</a></li>
+<li class="chapter" data-level="8.3" data-path="staging-behavior.html"><a href="staging-behavior.html#entities-state-variables-and-scales-6"><i class="fa fa-check"></i><b>8.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="staging-behavior.html"><a href="staging-behavior.html#patch-variables-6"><i class="fa fa-check"></i><b>8.3.1</b> Patch Variables</a></li>
+<li class="chapter" data-level="8.3.2" data-path="staging-behavior.html"><a href="staging-behavior.html#agent-variables-6"><i class="fa fa-check"></i><b>8.3.2</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="staging-behavior.html"><a href="staging-behavior.html#process-overview-and-scheduling-6"><i class="fa fa-check"></i><b>8.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="8.5" data-path="staging-behavior.html"><a href="staging-behavior.html#design-concepts-6"><i class="fa fa-check"></i><b>8.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="8.6" data-path="staging-behavior.html"><a href="staging-behavior.html#initialization-6"><i class="fa fa-check"></i><b>8.6</b> Initialization</a></li>
+<li class="chapter" data-level="8.7" data-path="staging-behavior.html"><a href="staging-behavior.html#submodels-6"><i class="fa fa-check"></i><b>8.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="staging-behavior.html"><a href="staging-behavior.html#trigger-conditions-for-staging"><i class="fa fa-check"></i><b>8.7.1</b> Trigger Conditions for Staging</a></li>
+<li class="chapter" data-level="8.7.2" data-path="staging-behavior.html"><a href="staging-behavior.html#behavior-during-staging"><i class="fa fa-check"></i><b>8.7.2</b> Behavior During Staging</a></li>
+<li class="chapter" data-level="8.7.3" data-path="staging-behavior.html"><a href="staging-behavior.html#stop-conditions-for-staging"><i class="fa fa-check"></i><b>8.7.3</b> Stop Conditions for Staging</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="homing-behavior.html"><a href="homing-behavior.html"><i class="fa fa-check"></i><b>9</b> Homing Behavior</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="homing-behavior.html"><a href="homing-behavior.html#overview-8"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
+<li class="chapter" data-level="9.2" data-path="homing-behavior.html"><a href="homing-behavior.html#purpose-7"><i class="fa fa-check"></i><b>9.2</b> Purpose</a></li>
+<li class="chapter" data-level="9.3" data-path="homing-behavior.html"><a href="homing-behavior.html#entities-state-variables-and-scales-7"><i class="fa fa-check"></i><b>9.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="homing-behavior.html"><a href="homing-behavior.html#patch-variables-7"><i class="fa fa-check"></i><b>9.3.1</b> Patch Variables</a></li>
+<li class="chapter" data-level="9.3.2" data-path="homing-behavior.html"><a href="homing-behavior.html#agent-variables-7"><i class="fa fa-check"></i><b>9.3.2</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="homing-behavior.html"><a href="homing-behavior.html#process-overview-and-scheduling-7"><i class="fa fa-check"></i><b>9.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="9.5" data-path="homing-behavior.html"><a href="homing-behavior.html#design-concepts-7"><i class="fa fa-check"></i><b>9.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="9.6" data-path="homing-behavior.html"><a href="homing-behavior.html#initialization-7"><i class="fa fa-check"></i><b>9.6</b> Initialization</a></li>
+<li class="chapter" data-level="9.7" data-path="homing-behavior.html"><a href="homing-behavior.html#submodels-7"><i class="fa fa-check"></i><b>9.7</b> Submodels</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="foraging-behavior.html"><a href="foraging-behavior.html"><i class="fa fa-check"></i><b>10</b> Foraging Behavior</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="foraging-behavior.html"><a href="foraging-behavior.html#overview-9"><i class="fa fa-check"></i><b>10.1</b> Overview</a></li>
+<li class="chapter" data-level="10.2" data-path="foraging-behavior.html"><a href="foraging-behavior.html#purpose-8"><i class="fa fa-check"></i><b>10.2</b> Purpose</a></li>
+<li class="chapter" data-level="10.3" data-path="foraging-behavior.html"><a href="foraging-behavior.html#entities-state-variables-and-scales-8"><i class="fa fa-check"></i><b>10.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="foraging-behavior.html"><a href="foraging-behavior.html#patch-variables-8"><i class="fa fa-check"></i><b>10.3.1</b> Patch Variables</a></li>
+<li class="chapter" data-level="10.3.2" data-path="foraging-behavior.html"><a href="foraging-behavior.html#agent-variables-8"><i class="fa fa-check"></i><b>10.3.2</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="foraging-behavior.html"><a href="foraging-behavior.html#process-overview-and-scheduling-8"><i class="fa fa-check"></i><b>10.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="10.5" data-path="foraging-behavior.html"><a href="foraging-behavior.html#design-concepts-8"><i class="fa fa-check"></i><b>10.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="10.6" data-path="foraging-behavior.html"><a href="foraging-behavior.html#initialization-8"><i class="fa fa-check"></i><b>10.6</b> Initialization</a></li>
+<li class="chapter" data-level="10.7" data-path="foraging-behavior.html"><a href="foraging-behavior.html#submodels-8"><i class="fa fa-check"></i><b>10.7</b> Submodels</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html"><i class="fa fa-check"></i><b>11</b> Predation and Fleeing Behavior</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#overview-10"><i class="fa fa-check"></i><b>11.1</b> Overview</a></li>
+<li class="chapter" data-level="11.2" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#purpose-9"><i class="fa fa-check"></i><b>11.2</b> Purpose</a></li>
+<li class="chapter" data-level="11.3" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#entities-state-variables-and-scales-9"><i class="fa fa-check"></i><b>11.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#patch-variables-9"><i class="fa fa-check"></i><b>11.3.1</b> Patch Variables</a></li>
+<li class="chapter" data-level="11.3.2" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#agent-variables-9"><i class="fa fa-check"></i><b>11.3.2</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#process-overview-and-scheduling-9"><i class="fa fa-check"></i><b>11.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="11.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#design-concepts-9"><i class="fa fa-check"></i><b>11.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="11.6" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#initialization-9"><i class="fa fa-check"></i><b>11.6</b> Initialization</a></li>
+<li class="chapter" data-level="11.7" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#submodels-9"><i class="fa fa-check"></i><b>11.7</b> Submodels</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="spawning-behavior.html"><a href="spawning-behavior.html"><i class="fa fa-check"></i><b>12</b> Spawning Behavior</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="spawning-behavior.html"><a href="spawning-behavior.html#overview-11"><i class="fa fa-check"></i><b>12.1</b> Overview</a></li>
+<li class="chapter" data-level="12.2" data-path="spawning-behavior.html"><a href="spawning-behavior.html#purpose-10"><i class="fa fa-check"></i><b>12.2</b> Purpose</a></li>
+<li class="chapter" data-level="12.3" data-path="spawning-behavior.html"><a href="spawning-behavior.html#entities-state-variables-and-scales-10"><i class="fa fa-check"></i><b>12.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="spawning-behavior.html"><a href="spawning-behavior.html#patch-variables-10"><i class="fa fa-check"></i><b>12.3.1</b> Patch Variables</a></li>
+<li class="chapter" data-level="12.3.2" data-path="spawning-behavior.html"><a href="spawning-behavior.html#agent-variables-10"><i class="fa fa-check"></i><b>12.3.2</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="spawning-behavior.html"><a href="spawning-behavior.html#process-overview-and-scheduling-10"><i class="fa fa-check"></i><b>12.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="12.5" data-path="spawning-behavior.html"><a href="spawning-behavior.html#design-concepts-10"><i class="fa fa-check"></i><b>12.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="12.6" data-path="spawning-behavior.html"><a href="spawning-behavior.html#initialization-10"><i class="fa fa-check"></i><b>12.6</b> Initialization</a></li>
+<li class="chapter" data-level="12.7" data-path="spawning-behavior.html"><a href="spawning-behavior.html#submodels-10"><i class="fa fa-check"></i><b>12.7</b> Submodels</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="model-building-tutorial-staging-schooling.html"><a href="model-building-tutorial-staging-schooling.html"><i class="fa fa-check"></i><b>13</b> Model Building Tutorial: Staging &amp; Schooling</a>
+<ul>
+<li class="chapter" data-level="13.0.1" data-path="model-building-tutorial-staging-schooling.html"><a href="model-building-tutorial-staging-schooling.html#module-integration"><i class="fa fa-check"></i><b>13.0.1</b> Module Integration</a></li>
+<li class="chapter" data-level="13.0.2" data-path="model-building-tutorial-staging-schooling.html"><a href="model-building-tutorial-staging-schooling.html#function-dependencies"><i class="fa fa-check"></i><b>13.0.2</b> <strong>Function Dependencies</strong></a></li>
+<li class="chapter" data-level="13.1" data-path="model-building-tutorial-staging-schooling.html"><a href="model-building-tutorial-staging-schooling.html#implementation-in-netlogo"><i class="fa fa-check"></i><b>13.1</b> Implementation in NetLogo:</a></li>
+<li class="chapter" data-level="13.2" data-path="model-building-tutorial-staging-schooling.html"><a href="model-building-tutorial-staging-schooling.html#implementation-in-r"><i class="fa fa-check"></i><b>13.2</b> Implementation in R:</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html"><a href="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html"><i class="fa fa-check"></i><b>14</b> Model Building Tutorial: Landward Migration &amp; Selective Tidal Stream Transport</a>
+<ul>
+<li class="chapter" data-level="14.0.1" data-path="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html"><a href="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html#module-integration-1"><i class="fa fa-check"></i><b>14.0.1</b> Module Integration</a></li>
+<li class="chapter" data-level="14.0.2" data-path="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html"><a href="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html#function-dependencies-1"><i class="fa fa-check"></i><b>14.0.2</b> <strong>Function Dependencies</strong></a></li>
+<li class="chapter" data-level="14.1" data-path="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html"><a href="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html#implementation-in-netlogo-1"><i class="fa fa-check"></i><b>14.1</b> Implementation in NetLogo:</a></li>
+<li class="chapter" data-level="14.2" data-path="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html"><a href="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html#implementation-in-r-1"><i class="fa fa-check"></i><b>14.2</b> Implementation in R:</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="complex-model-building-tutorial-one-way-migration.html"><a href="complex-model-building-tutorial-one-way-migration.html"><i class="fa fa-check"></i><b>15</b> Complex Model Building Tutorial: One-Way Migration</a>
+<ul>
+<li class="chapter" data-level="15.0.1" data-path="complex-model-building-tutorial-one-way-migration.html"><a href="complex-model-building-tutorial-one-way-migration.html#module-integration-2"><i class="fa fa-check"></i><b>15.0.1</b> Module Integration</a></li>
+<li class="chapter" data-level="15.0.2" data-path="complex-model-building-tutorial-one-way-migration.html"><a href="complex-model-building-tutorial-one-way-migration.html#function-dependencies-2"><i class="fa fa-check"></i><b>15.0.2</b> <strong>Function Dependencies</strong></a></li>
+<li class="chapter" data-level="15.1" data-path="complex-model-building-tutorial-one-way-migration.html"><a href="complex-model-building-tutorial-one-way-migration.html#implementation-in-netlogo-2"><i class="fa fa-check"></i><b>15.1</b> Implementation in NetLogo:</a></li>
+<li class="chapter" data-level="15.2" data-path="complex-model-building-tutorial-one-way-migration.html"><a href="complex-model-building-tutorial-one-way-migration.html#implementation-in-r-2"><i class="fa fa-check"></i><b>15.2</b> Implementation in R:</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="modeling-toolkit.html"><a href="modeling-toolkit.html"><i class="fa fa-check"></i><b>16</b> Modeling Toolkit</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="modeling-toolkit.html"><a href="modeling-toolkit.html#learning-resources"><i class="fa fa-check"></i><b>16.1</b> Learning Resources</a></li>
+<li class="chapter" data-level="16.2" data-path="modeling-toolkit.html"><a href="modeling-toolkit.html#best-practices"><i class="fa fa-check"></i><b>16.2</b> Best Practices</a></li>
+<li class="chapter" data-level="16.3" data-path="modeling-toolkit.html"><a href="modeling-toolkit.html#code-repositories-examples"><i class="fa fa-check"></i><b>16.3</b> Code Repositories &amp; Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Agent-Based Modeling Function Library for Simulating Diadromous Fish Migration</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="mercury-contamination-bioaccumulation-function" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Mercury Contamination Bioaccumulation Function<a href="mercury-contamination-bioaccumulation-function.html#mercury-contamination-bioaccumulation-function" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="overview-2" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Overview<a href="mercury-contamination-bioaccumulation-function.html#overview-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This function simulates exposure and uptake risk of mercury (Hg) and methylmercury (MeHg) for migratory fish navigating contaminated aquatic environments. The model accounts for spatial and temporal variation in contaminant concentrations and includes physiological modulation based on ion-regulatory stress and suspended particulate matter (SPM).</p>
+</div>
+<div id="purpose-1" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Purpose<a href="mercury-contamination-bioaccumulation-function.html#purpose-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To evaluate contaminant exposure and bioaccumulation risk in migratory fish due to mercury and methylmercury during migration through estuarine or coastal systems using stress.</p>
+</div>
+<div id="entities-state-variables-and-scales-1" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Entities, State Variables, and Scales<a href="mercury-contamination-bioaccumulation-function.html#entities-state-variables-and-scales-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="global-variables" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Global Variables<a href="mercury-contamination-bioaccumulation-function.html#global-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr>
+<th align="center">Variable</th>
+<th align="center">Initialized Value</th>
+<th align="center">Justification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong>MeHg-Threshold</strong> <span class="math inline">\(MeHg_{threshold}\)</span></td>
+<td align="center">15 ug/kg</td>
+<td align="center">10% of mercury concentration (Gaudet et al., 1995)</td>
+</tr>
+<tr>
+<td align="center"><strong>Hg-Threshold</strong> <span class="math inline">\(Hg_{threshold}\)</span></td>
+<td align="center">150 ug/kg</td>
+<td align="center">(Gaudet et al., 1995) ((NOAA) National Oceanic and Atmospheric Administration, 1990)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="patch-variables-1" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Patch Variables<a href="mercury-contamination-bioaccumulation-function.html#patch-variables-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Variable Name</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mercury</strong> <span class="math inline">\(Hg_{patch}\)</span></td>
+<td>The mercury concentration of a patch.</td>
+</tr>
+<tr>
+<td><strong>Methylmercury</strong> <span class="math inline">\(MeHg_{patch}\)</span></td>
+<td>The methylmercury concentration of a patch.</td>
+</tr>
+<tr>
+<td><strong>Suspended-particulate-matter</strong> <span class="math inline">\(SPM_{t}\)</span></td>
+<td>The concentration of suspended particulate matter (SPM) for a given patch, derived from hydrodynamic model inputs, which change temporally.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="agent-variables-1" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Agent Variables<a href="mercury-contamination-bioaccumulation-function.html#agent-variables-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Variable Name</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>stress</strong> <span class="math inline">\(S\)</span></td>
+<td>The level of stress an agent experiences when moving.</td>
+</tr>
+<tr>
+<td><strong>Hg-exposure-duration</strong> <span class="math inline">\(Hg_{exp_t}\)</span></td>
+<td>The amount of time an agent is exposed to mercury above healthy levels.</td>
+</tr>
+<tr>
+<td><strong>MeHg-exposure-duration</strong> <span class="math inline">\(MeHg_{exp_t}\)</span></td>
+<td>The amount of time an agent is exposed to methylmercury above healthy levels.</td>
+</tr>
+<tr>
+<td><strong>Hg-uptake-risk</strong> <span class="math inline">\(Hg_{risk}\)</span></td>
+<td>The risk associated for uptake of mercury.</td>
+</tr>
+<tr>
+<td><strong>MeHg-uptake-risk</strong> <span class="math inline">\(MeHg_{risk}\)</span></td>
+<td>The risk associated for uptake of methylmercury.</td>
+</tr>
+<tr>
+<td><strong>Hg-exposure</strong> <span class="math inline">\(Hg_{t}\)</span></td>
+<td>The amount of mercury exposed during current time step.</td>
+</tr>
+<tr>
+<td><strong>MeHg-exposure</strong> <span class="math inline">\(MeHg_{t}\)</span></td>
+<td>The amount of methlymercury exposed during current time step.</td>
+</tr>
+<tr>
+<td><strong>Hg-exposure-total</strong> <span class="math inline">\(Hg_{net}\)</span></td>
+<td>The net sum of mercury exposed to during migration.</td>
+</tr>
+<tr>
+<td><strong>MeHg-exposure-total</strong> <span class="math inline">\(MeHg_{net}\)</span></td>
+<td>The net sum of methylmercury exposed to during migration.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="process-overview-and-scheduling-1" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Process Overview and Scheduling<a href="mercury-contamination-bioaccumulation-function.html#process-overview-and-scheduling-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Evaluate current patch concentrations of mercury and methylmercury.</p></li>
+<li><p>Determine whether these exceed defined toxicity thresholds.</p></li>
+<li><p>Calculate exposure duration (if thresholds exceeded).</p></li>
+<li><p>Compute bioaccumulation risk based on contaminant levels, stress, and SPM.</p></li>
+<li><p>Update cumulative exposure totals.</p></li>
+</ol>
+</div>
+<div id="design-concepts-1" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Design Concepts<a href="mercury-contamination-bioaccumulation-function.html#design-concepts-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Basic Principles:</strong> this model is grounded in toxicokinetics and ecological exposure theory. It draws on empirical literature (e.g., Gaudet et al. 1995, NOAA 1990) and integrates physiological stress responses with contaminant risk, reflecting a mechanistic understanding of exposure and bioaccumulation dynamics.</p>
+<p><strong>Emergence:</strong> While exposure durations and patch-level concentrations are direct inputs, the exposure patterns (<span class="math inline">\(Hg_{t}\)</span>, <span class="math inline">\(MeHg_{t}\)</span>), cumulative exposure totals (<span class="math inline">\(Hg_{net}\)</span>, <span class="math inline">\(MeHg_{net}\)</span>), and risk profiles (<span class="math inline">\(Hg_{risk}\)</span>, <span class="math inline">\(MeHg_{risk}\)</span>) emerge from agent movement across spatially and temporally variable environments and their physiological state, which arise from behavioral-environmental interactions over time.</p>
+<p><strong>Adaptation</strong>: Agents adaptively accumulate risk based on their movement decisions, stress state, and encountered contaminant levels, simulating a physiological feedback process.</p>
+<p><strong>Objectives:</strong> Agents do not explicitly seek to minimize risk, but their cumulative exposure and risk profiles can be used to evaluate environmental quality and cumulative toxicity risk for migratory fish.</p>
+<p><strong>Sensing</strong>: Agents sense the local contaminant levels (<span class="math inline">\(Hg_{patch}\)</span>, <span class="math inline">\(MeHg_{patch}\)</span>), suspended particulate matter (<span class="math inline">\(SPM_{t}\)</span>), and their own stress state (<span class="math inline">\(S\)</span>).</p>
+<p><strong>Stochasticity</strong>: Randomized initial conditions (e.g., Hg and MeHg levels) may introduce variability in exposure patterns.</p>
+<p><strong>Observation:</strong> Exposure variables (<span class="math inline">\(Hg_t\)</span>, <span class="math inline">\(MeHg_{t}\)</span>), cumulative exposure (<span class="math inline">\(Hg_{net}\)</span>, <span class="math inline">\(MeHg_{net}\)</span>), and risk scores (<span class="math inline">\(Hg_{risk}\)</span>, <span class="math inline">\(MeHg_{risk}\)</span>) are collected per agent and can be exported for analysis.</p>
+</div>
+<div id="initialization-1" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Initialization<a href="mercury-contamination-bioaccumulation-function.html#initialization-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr>
+<th align="center">Variable</th>
+<th align="center">Initialized Value</th>
+<th align="center">Justification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math inline">\(S\)</span></td>
+<td align="center">user-defined stress function</td>
+<td align="center">Changes in an agent’s environment can induce a stress response, and can be induced by the user or environmental response.</td>
+</tr>
+<tr>
+<td align="center"><span class="math inline">\(Hg_{patch}\)</span></td>
+<td align="center">user-defined or data input</td>
+<td align="center">This input can be user-defined realistic data values or known spatial data.</td>
+</tr>
+<tr>
+<td align="center"><span class="math inline">\(MeHg_{patch}\)</span></td>
+<td align="center">user-defined for data input</td>
+<td align="center">This input can be user-defined realistic data values or known spatial data.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="submodels-1" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Submodels<a href="mercury-contamination-bioaccumulation-function.html#submodels-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exposure-duration" class="section level3 hasAnchor" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> Exposure Duration<a href="mercury-contamination-bioaccumulation-function.html#exposure-duration" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The cumulative number of time steps an agent is exposed to mercury and methylmercury above specified environmental thresholds:</p>
+<p><span class="math display">\[
+Hg_{exp_t} = Hg_{exp_t} + 1 \quad \text{if } Hg_{patch} &gt; Hg_{threshold}
+\]</span></p>
+<p><span class="math display">\[
+MeHg_{exp_t} = MeHg_{exp_t} + 1 \quad \text{if } MeHg_{patch} &gt; MeHg_{threshold}
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(Hg_{exp_t}\)</span> is the total number of time steps exposed to mercury above threshold.<br />
+</li>
+<li><span class="math inline">\(Hg_{patch}\)</span> is the mercury concentration at the current patch location.<br />
+</li>
+<li><span class="math inline">\(Hg_{threshold}\)</span> is the defined mercury toxicity threshold.<br />
+</li>
+<li><span class="math inline">\(MeHg_{exp_t}\)</span> is the total number of time steps exposed to methylmercury above threshold.<br />
+</li>
+<li><span class="math inline">\(MeHg_{patch}\)</span> is the methylmercury concentration at the current patch location.<br />
+</li>
+<li><span class="math inline">\(MeHg_{threshold}\)</span> is the defined methylmercury toxicity threshold.</li>
+</ul>
+</div>
+<div id="bioaccumulation-risk" class="section level3 hasAnchor" number="3.7.2">
+<h3><span class="header-section-number">3.7.2</span> Bioaccumulation Risk<a href="mercury-contamination-bioaccumulation-function.html#bioaccumulation-risk" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Estimate the bioaccumulation risk associated with mercury and methylmercury, where risk increases with contaminant concentration, ion-regulatory stress, and suspended particulate matter (SPM):</p>
+<p><span class="math display">\[
+Hg_{risk} = \sum_{t=1}^T Hg_{risk} * (1+S) * (1+SPM_{t})
+\]</span></p>
+<p><span class="math display">\[
+MeHg_{risk} = \sum_{t=1}^T MeHg_{risk} * (1+S) * (1+SPM_{t})
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(Hg_{risk}\)</span> is the instantaneous mercury uptake risk.<br />
+</li>
+<li><span class="math inline">\(MeHg_{risk}\)</span> is the instantaneous methylmercury uptake risk.<br />
+</li>
+<li><span class="math inline">\(Hg_{normalized}\)</span> is the normalized Hg concentration (scaled 0–1) at each time step.<br />
+</li>
+<li><span class="math inline">\(MeHg_{normalized}\)</span> is the normalized MeHg concentration (scaled 0–1).<br />
+</li>
+<li><span class="math inline">\(S\)</span> is the stress level of the agent.<br />
+</li>
+<li><span class="math inline">\(SPM_{t}\)</span> is the suspended particulate matter concentration at the patch for that time step.</li>
+</ul>
+</div>
+<div id="exposure-to-contamination" class="section level3 hasAnchor" number="3.7.3">
+<h3><span class="header-section-number">3.7.3</span> Exposure to Contamination<a href="mercury-contamination-bioaccumulation-function.html#exposure-to-contamination" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Agents record exposure to mercury and methylmercury only when concentrations exceed threshold values. These values are stored per time step and accumulated over time to assess total contaminant burden.</p>
+<div id="mercury" class="section level4 unnumbered hasAnchor">
+<h4>Mercury:<a href="mercury-contamination-bioaccumulation-function.html#mercury" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><span class="math display">\[
+Hg_{t} = \begin{cases}Hg_{patch}, &amp; \text{if } Hg_{patch} &gt; Hg_{threshold} \\0, &amp; \text{otherwise}\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+Hg_{net} = \sum_{t=1}^{T} Hg_{t}
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(Hg_{t}\)</span> is the mercury exposure in ng/g for current time step</li>
+<li><span class="math inline">\(Hg_{net}\)</span> is the cumulative mercury exposure in ng/g</li>
+<li><span class="math inline">\(Hg_{patch}\)</span> is the mercury concentration for the agent’s current patch</li>
+</ul>
+</div>
+<div id="methylmercury" class="section level4 unnumbered hasAnchor">
+<h4>Methylmercury:<a href="mercury-contamination-bioaccumulation-function.html#methylmercury" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><span class="math display">\[
+MeHg_{t} = \begin{cases}MeHg_{patch}, &amp; \text{if } MeHg_{patch} &gt; MeHg_{threshold} \\0, &amp; \text{otherwise}\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+MeHg_{net} = \sum_{t=1}^{T} MeHg_{t}
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(MeHg_{t}\)</span> is the level of methylmercury exposure in ng/g for current time step</li>
+<li><span class="math inline">\(MeHg_{net}\)</span> is the cumulative methylmercury exposure in ng/g</li>
+<li><span class="math inline">\(MeHg_{patch}\)</span> is the methylmercury concentration for the agent’s current patch</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="osmoregulation-function.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="landward-migration-behavior.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-Bioaccumulation_Function.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+---
+title: "Agent-Based Modeling Function Library for Simulating Diadromous Fish Migration"
+author: "Vanessa Quintana"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  This document contains a libvrary of model functions for agent-basewd modeling simulations of diadromous fish
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+---
+
+# Preface {.unnumbered}
+
+This library provides a comprehensive, modular framework for developing and documenting agent-based models (ABMs) that simulate the movement, behavior, and environmental interactions of migratory fish in coastal aquatic systems. It is designed to support the standardization and implementation of ABMs in fisheries management, enabling researchers and practitioners to address complex environmental questions and evaluate remediation or restoration scenarios.
+
+## Motivation {.unnumbered}
+
+The goal of this resource is to support students, researchers, and decision-makers by making agent-based modeling of migratory fish more accessible, reproducible, and applicable to real-world fisheries and habitat management challenges. By providing a standardized framework for key behavioral processes, this library promotes consistency, transparency, and credibility in ecological forecasting and decision support tools. It also establishes a foundation for critical conversations about the behaviors and functions represented in migratory fish models, while supporting the empirical quantification of ecological relationships that influence movement, survival, and habitat use.

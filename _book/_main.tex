@@ -1,0 +1,2440 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{book}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+\usepackage{booktabs}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Staging},
+  pdfauthor={Vanessa Quintana},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Staging}
+\author{Vanessa Quintana}
+\date{2025-04-06}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\chapter*{Agent-Based Model Function Library for Modeling Migratory Fish}\label{agent-based-model-function-library-for-modeling-migratory-fish}
+\addcontentsline{toc}{chapter}{Agent-Based Model Function Library for Modeling Migratory Fish}
+
+\section*{Preface}\label{preface}
+\addcontentsline{toc}{section}{Preface}
+
+This library provides a comprehensive, modular framework for developing and documenting agent-based models (ABMs) that simulate the movement, behavior, and environmental interactions of migratory fish in coastal aquatic systems. It is designed to support the standardization and implementation of ABMs in fisheries management, enabling researchers and practitioners to address complex environmental questions and evaluate remediation or restoration scenarios.
+
+\section*{Motivation}\label{motivation}
+\addcontentsline{toc}{section}{Motivation}
+
+The goal of this resource is to support students, researchers, and decision-makers by making agent-based modeling of migratory fish more accessible, reproducible, and applicable to real-world fisheries and habitat management challenges. By providing a standardized framework for key behavioral processes, this library promotes consistency, transparency, and credibility in ecological forecasting and decision support tools. It also establishes a foundation for critical conversations about the behaviors and functions represented in migratory fish models, while supporting the empirical quantification of ecological relationships that influence movement, survival, and habitat use.
+
+\chapter{Overview}\label{overview}
+
+\section{Background}\label{background}
+
+Diadromous fish species such as river herring, striped bass, and sturgeon navigate coastal and estuarine systems that are increasingly affected by human activity, climate change, and legacy contaminants. Modeling their movement and behavior at fine spatial and temporal scales requires tools that can integrate physiological stressors, environmental variability, and behavior-based decision-making.
+
+Agent-based models are among the most powerful tools available for ecological forecasting and fisheries management, but they are also among the most complex. Their structure and computational demands can make them difficult to apply in practical management settings. Many biologists and ecologists who hold deep, species-specific expertise often have limited training in advanced programming or systems modeling. This is partly due to gaps in secondary and post-secondary education, where exposure to high-level mathematics and coding is often minimal, despite the fact that many ecological processes are governed by nonlinear systems and feedbacks.
+
+As a result, traditional approaches to modeling marine and diadromous fish frequently oversimplify or exclude key biological functions such as osmoregulation, thermoregulation, schooling behavior, and contaminant exposure. Many existing models also lack standardized representations of these behaviors, limiting the interpretability of results and reducing their usefulness for applied management. This function library was developed to address these limitations by offering modular, empirically grounded components designed for use in agent-based models. Each function is clearly documented and can be applied independently, allowing for transparent testing, modification, and reuse across a wide range of ecological modeling scenarios.
+
+\section{Introduction to Agent-Based Models}\label{introduction-to-agent-based-models}
+
+provide basics of ABM
+
+\section{Structure}\label{structure}
+
+Each chapter in this library corresponds to a major behavior or physiological function relevant to migratory fish, including:
+
+\begin{itemize}
+\item
+  \textbf{Osmoregulation}
+\item
+  \textbf{Bioaccumulation of contaminants}
+\item
+  \textbf{Thermoregulation}
+\item
+  \textbf{Directional migration (landward and seaward)}
+\item
+  \textbf{Schooling and Staging}
+\item
+  \textbf{Selective Tidal Stream Transport}
+\item
+  \textbf{Homing behavior}
+\item
+  \textbf{Foraging}
+\item
+  \textbf{Predator-prey interactions}
+\item
+  \textbf{Spawning}
+\end{itemize}
+
+The final chapter provides guidance on how to integrate multiple functions into a complete agent-based model, demonstrating how these components work together to simulate fish behavior in dynamic coastal and estuarine systems.
+
+Within each chapter, each function or behavior is documented using the ODD protocol (Grimm et al., 2006; 2010; 2020). The ODD (Overview, Design concepts, Details) protocol is a standardized framework for describing agent-based models. It promotes transparency in model development and ensures consistency across implementations, especially when integrating multiple behavioral or ecological functions.
+
+\begin{itemize}
+\item
+  \textbf{Overview} provides the purpose of the model component, identifies the entities involved (e.g., fish agents, environmental patches), and outlines the general processes.
+\item
+  \textbf{Design} concepts describe the key theoretical underpinnings such as emergence, adaptation, objectives, sensing, stochasticity, and interaction.
+\item
+  \textbf{Details} specify initialization steps, input data requirements, and the rules or submodels that govern behavior.
+\end{itemize}
+
+By following the ODD protocol, this library ensures that each function is self-contained, interpretable, and ready for adaptation to a wide range of species, sites, or management scenarios.
+
+\section{Application Context}\label{application-context}
+
+This library was originally developed in support of research on the influence of tidal behavior and contaminant exposure on anadromous fish in the Penobscot River Estuary. However, its modular design allows for application to other estuarine and coastal systems where fish respond to gradients in salinity, temperature, velocity, and pollutants.
+
+\emph{Can include addition project or model links here*}
+
+\section{How to Use This Library}\label{how-to-use-this-library}
+
+Each function or behavior in this library can be combined with others to build a complete agent-based model for migratory fish. These functions are designed to be modular, adaptable, and easily configured for different species, life stages, or site-specific conditions.
+
+\emph{For questions, feedback, guidance on implementation, or \textbf{interest in adding to the library}, please contact \textbf{Vanessa Quintana} at \textbf{mahan.vanessa98@gmail.com.}}
+
+\chapter{Osmoregulation Function}\label{osmoregulation-function}
+
+\section{Overview}\label{overview-1}
+
+Osmoregulation allows migratory fish to maintain homeostasis by regulating internal ion concentrations in response to varying environmental salinities.
+This function simulates osmotic or ion-regulatory stress, chloride cell expression, and the metabolic energy cost of osmoregulation in a spatially explicit context.
+
+\section{Purpose}\label{purpose}
+
+To simulate stress response to salinity changes for migratory fish in coastal systems by regulating chloride cell density and allocating energy toward ion-regulatory processes.
+
+\section{Entities, State Variables, and Scales}\label{entities-state-variables-and-scales}
+
+\subsection{Patch Variables}\label{patch-variables}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Definition
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Salinity} \(S_{patch}\) & The salt concentration of a given patch, derived from hydrodynamic model inputs. \\
+\end{longtable}
+
+\subsection{Agent Variables}\label{agent-variables}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Definition
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{acclimated-salinity} \(S_{agent}\) & The salinity level the agent is currently acclimated to. \\
+\textbf{ionregulatory-stress} \(I_{stress}\) & The level of stress an agent experiences when regulating ion balance due to osmotic difference. \\
+\textbf{chloride-density-min} \(C_{min}\) & Minimum level of chloride cells, present even in low-stress conditions. \\
+\textbf{chloride-density-max} \(C_{max}\) & Maximum level of chloride cells at high stress. \\
+\textbf{chloride-cell-density} \(C\) & The current number of chloride cells expressed by the agent. \\
+\textbf{chloride-max-proliferation} \(R_{proliferation}\) & The max number of chloride cells that can be expressed per time step. \\
+\textbf{chloride-cells-this-tick} \(C_{tick}\) & The number of chloride cells created (or destroyed) in the current time step. \\
+\textbf{acclimation-rate} \(\alpha\) & The rate at which chloride cell density increases over time. \\
+\textbf{C-mid} \(C_{mid}\) & The chloride cell density at which stress buffering is 50\% effective. \\
+\textbf{time-since-last-osmoregulation} \(t_{osmo}\) & The time elapsed since the last chloride cell regulation event. \\
+\textbf{Energy} \(E_{agent}\) & The agent's total available energy for physiological functions. \\
+\textbf{E-osmo} \(E_{osmo}\) & Total energy used for ion regulation (osmoregulation). \\
+\textbf{E-base} \(E_{base}\) & The base energy cost per chloride cell. \\
+\textbf{E-creation} \(E_{creation}\) & The energy cost for producing new chloride cells. \\
+\textbf{metabolic-max} \(Met_{max}\) & Maximum metabolic cost for chloride cell creation. \\
+\end{longtable}
+
+\section{Process Overview and Scheduling}\label{process-overview-and-scheduling}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Compute osmotic stress based on difference between \(S_{patch}\) and \(S_{agent}\).
+\item
+  Adjust chloride cell density depending on time since last osmoregulation.
+\item
+  Compute energy cost of osmoregulation.
+\item
+  Deduct energy expenditure from agent's energy pool.
+\end{enumerate}
+
+\section{Design Concepts}\label{design-concepts}
+
+\textbf{Basic Principles:} The model is based on principles of physiological ecology and osmoregulatory energetics in teleost and apterygian species.
+It draws from empirical findings (e.g., Allen et al., 2009; Little et al., 2023) and includes size scaling, stress buffering, and energy constraints.
+These principles are implemented at the submodel level (e.g., chloride proliferation, stress calculation) to simulate realistic physiological feedbacks to changes in environmental salinity.
+
+\textbf{Emergence:} Ion-regulatory stress, chloride cell expression, and energy expenditure emerge from an agent's interaction with temporally and spatially variable salinity environments.
+These patterns are not pre-specified but arise dynamically through adaptive physiological responses.
+
+\textbf{Adaptation}: Agents respond to osmotic stress by adjusting chloride cell density, a trait that buffers stress.
+This process allows individuals to reduce internal-external salinity gradients and maintain ion homeostasis.
+
+\textbf{Objectives:} Agents seek to support survival by reducing stress and avoiding excessive energy loss through regulating chloride cell expression.
+
+\textbf{Sensing}: Agents sense local salinity (\(S_{patch}\)) and compare it with their acclimated salinity (\(S_{agent}\)).
+They also track their own energy state and time since last osmoregulation.
+
+\textbf{Stochasticity}: Acclimation may vary with \(\alpha\), which can be drawn from a defined range per individual to reflect physiological variation across the population.
+
+\textbf{Observation:} Outputs include \(I_{stress}\), \(C\), \(E_{osmo}\), and \(E_{agent}\), all tracked per individual and exportable for analysis or visualization.
+
+\section{Initialization}\label{initialization}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1034}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2069}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.6828}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Initialized Value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Justification
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(S_{patch}\) & user-defined for data input & This input can be user-defined realistic data values or known spatial data. \\
+\(S_{agent}\) & 35 (psu) & Assumes agents start acclimated to marine environment. \\
+\(I_{stress}\) & 1 & Acclimated agents have minimal stress levels. \\
+\(C\) & 50\% & Starts with partial cell density, allowing for regulation depending on environmental conditions. \\
+\(C_{min}\) & 10\% & A baseline level of chloride cells is necessary for basic osmoregulatory functions. \\
+\(C_{max}\) & 100\% & Agents can't express more than 100\% of cells. \\
+\(\alpha\) & 0.0017 - 0.002 & Osmolarity stabilization from Figure 3. in (Allen et al., 2009). \\
+\(C_{mid}\) & 50\% & When cells are 50\% density, stress buffering is 50\% effective (Allen et al., 2009). \\
+\(E_{agent}\) & 100\% & Agent starts with limited energy before migration. \\
+\(E_{base}\) & Teleost (4\%)
+
+Aptoerygian () & Based on the \textbf{branchial cost} (Little et al., 2023; Kirschner, 1993). \\
+\(Met_{max}\) & Teleost (3.5\%) & Based on the intestinal and renal cost \& size of agent (Little et al., 2023; Kirschner, 1993). \\
+\(k\) & -0.75 & Scaling component for body mass is negative (Kirschner, 1993) and follows Kleiber's Law. \\
+\end{longtable}
+
+\section{Submodels}\label{submodels}
+
+\subsection{Osmotic Stress}\label{osmotic-stress}
+
+Ion-regulatory stress (\(I_{stress}\)) is calculated based on the difference between an agent's acclimated salinity and the ambient patch salinity, adjusted by the chloride cell buffering effect:
+
+\[
+I_{stress} = \frac{\log_{10}(1 + |S_{agent} - S_{patch}|) \cdot 10}{1 + e^{-2 \cdot (C / C_{mid})}}
+\]
+
+Stress is capped within the range {[}1, 10{]}, and may be reduced slightly over time if salinity remains stable and chloride density is sufficient:
+
+\[
+I_{stress} = I_{stress} \cdot 0.98 \quad \text{if conditions are stable and } C > C_{min}
+\]
+
+Agents also slowly shift their acclimated salinity toward ambient salinity when conditions have been stable for several time steps:
+
+\[
+S_{agent} = S_{agent} + (S_{patch} - S_{agent}) \cdot 0.02
+\]
+
+Where:
+
+\begin{itemize}
+\tightlist
+\item
+  \(I_{stress}\) is ion-regulatory (osmotic) stress, scaled between 1 and 10.
+\item
+  \(S_{agent}\) is the agent's acclimated salinity.
+\item
+  \(S_{patch}\) is the environmental salinity at the current patch.
+\item
+  \(C\) is the chloride cell density (percent of maximum).
+\item
+  \(C_{mid}\) is the density at which buffering is 50\% effective.
+\end{itemize}
+
+\subsection{Chloride Cell Density}\label{chloride-cell-density}
+
+Chloride cell proliferation is driven by the level of ion-regulatory stress the agent experiences when encountering a difference in salinity.
+The greater the stress, the higher the target chloride density the agent attempts to reach, up to a maximum threshold.
+Agents adjust their chloride cell density based on their current ion-regulatory stress and acclimation status.
+Chloride cells are not adjusted unless the agent's energy exceeds 25\%.
+
+The chloride cell density is based on stress:
+
+\[
+C_{target} = C_{min} + (C_{max} - C_{min}) \cdot \left(\frac{I_{stress}}{10}\right)
+\]
+
+If salinity conditions have remained stable for an extended period (e.g., 288 ticks), \textbackslash(C\_\{target\}\textbackslash) is slightly reduced to reflect partial downregulation of chloride cells due to long-term acclimation:
+
+\[
+C_{target} = C_{target} \cdot 0.99 \quad \text{if stable}
+\]
+
+Chloride cell density then approaches the target using a double-rate adjustment and capped maximum rate of change:
+
+\[
+\Delta C = \left(C_{target} - C_{current}\right) \cdot \left(2 \cdot R_{proliferation}\right)
+\]
+
+\[
+\Delta C = \max\left(-R_{max}, \min(R_{max}, \Delta C)\right)
+\]
+
+If the agent has low energy (\(\leq 50\%\)), the adjustment rate is halved:
+
+\[
+\Delta C = \Delta C \cdot 0.5 \quad \text{if energy is low}
+\]
+
+Finally, the chloride cell density is updated and constrained between \(C_{min}\) and \(C_{max}\):
+
+\[
+C_{new} = \max(C_{min}, \min(C_{max}, C_{current} + \Delta C))
+\]
+
+This ensures that the agent does not overshoot the physiologically realistic limit of chloride cell density, while still responding to osmotic stress.
+
+Chloride density is only recalculated after a given acclimation interval:
+
+\[
+t_{osmo} \geq \alpha^{-1}
+\]
+
+After updating, the acclimation timer is reset:
+
+\[
+t_{osmo} = 0
+\]
+
+This prevents agents from recalculating chloride density every time step and allows for controlled, realistic responses to prolonged stress and salinity changes.
+
+\subsubsection*{Where:}\label{where}
+\addcontentsline{toc}{subsubsection}{Where:}
+
+\begin{itemize}
+\tightlist
+\item
+  \(I_{stress}\) is the ion-regulatory stress, scaled from 1 to 10.
+\item
+  \(C_{target}\) is the desired chloride cell density based on stress level.
+\item
+  \(C_{min}\) and \(C_{max}\) are the bounds for chloride cell density.
+\item
+  \(R_{proliferation}\) determines the \textbf{maximum allowable increase} per time step.
+\item
+  \(\Delta C\) is the rate of change in chloride cell expression.
+\item
+  \(R_{max} = (C_{max} - C_{min}) \cdot R_{proliferation}\)
+\item
+  \(C_{new}\) is the percent of new chloride cell expression.
+\item
+  \(\alpha\) is the acclimation rate constant.
+\item
+  \(t_{osmo}\) represents time since the last osmoregulation event.
+\end{itemize}
+
+\subsection*{Osmoregulation Energy}\label{osmoregulation-energy}
+\addcontentsline{toc}{subsection}{Osmoregulation Energy}
+
+Metabolic cost related to size:
+
+\[
+E_{creation} = Met_{max} * (\frac{M}{M_{max}})^k
+\]
+
+Where:
+
+\begin{itemize}
+\item
+  \(E_{creation}\) is the energy cost of chloride cell creation
+\item
+  \(Met_{max}\) is the maximum metabolic cost of the agent
+\item
+  \(M\) is equal to the agent's size, where smaller fish spend proportionally more energy on osmoregulation (Little et al., 2023)
+\item
+  \(M_{max}\) is the maximum mass of an agent within the population
+\item
+  \(k\) follows size-dependent variation in energy allocation, consistent with a negative scaling exponent.
+\end{itemize}
+
+Energy required for ion regulation:
+
+\[
+E_{osmo} = (E_{base} \cdot C) + (E_{creation} \cdot C_{tick})
+\]
+
+Where:
+
+\begin{itemize}
+\item
+  \(E_{base}\) represents the energy cost per chloride cell for maintenance.
+\item
+  \(C\) is the current chloride density.
+\item
+  \(E_{creation}\) represents the cost of producing new chloride cells.
+\item
+  \(C_{tick}\) is the number of newly created chloride cells in the current time step.
+\end{itemize}
+
+\subsection{Energy Balance}\label{energy-balance}
+
+Agents balance energy to osmoregulate with total energy allowance:
+
+\[
+E_{agent} = E_{agent} - E_{osmo}
+\]
+
+Where:
+
+\begin{itemize}
+\item
+  \(E_{agent}\) is the total energy of the agent.
+\item
+  \(E_{osmo}\) is the energy consumed during osmoregulation.
+\end{itemize}
+
+\chapter{Mercury Contamination Bioaccumulation Function}\label{mercury-contamination-bioaccumulation-function}
+
+\section{Overview}\label{overview-2}
+
+This function simulates exposure and uptake risk of mercury (Hg) and methylmercury (MeHg) for migratory fish navigating contaminated aquatic environments. The model accounts for spatial and temporal variation in contaminant concentrations and includes physiological modulation based on ion-regulatory stress and suspended particulate matter (SPM).
+
+\section{Purpose}\label{purpose-1}
+
+To evaluate contaminant exposure and bioaccumulation risk in migratory fish due to mercury and methylmercury during migration through estuarine or coastal systems using stress.
+
+\section{Entities, State Variables, and Scales}\label{entities-state-variables-and-scales-1}
+
+\subsection{Global Variables}\label{global-variables}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Initialized Value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Justification
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{MeHg-Threshold} \(MeHg_{threshold}\) & 15 ug/kg & 10\% of mercury concentration (Gaudet et al., 1995) \\
+\textbf{Hg-Threshold} \(Hg_{threshold}\) & 150 ug/kg & (Gaudet et al., 1995) ((NOAA) National Oceanic and Atmospheric Administration, 1990) \\
+\end{longtable}
+
+\subsection{Patch Variables}\label{patch-variables-1}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Definition
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Mercury} \(Hg_{patch}\) & The mercury concentration of a patch. \\
+\textbf{Methylmercury} \(MeHg_{patch}\) & The methylmercury concentration of a patch. \\
+\textbf{Suspended-particulate-matter} \(SPM_{t}\) & The concentration of suspended particulate matter (SPM) for a given patch, derived from hydrodynamic model inputs, which change temporally. \\
+\end{longtable}
+
+\subsection{Agent Variables}\label{agent-variables-1}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Definition
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{stress} \(S\) & The level of stress an agent experiences when moving. \\
+\textbf{Hg-exposure-duration} \(Hg_{exp_t}\) & The amount of time an agent is exposed to mercury above healthy levels. \\
+\textbf{MeHg-exposure-duration} \(MeHg_{exp_t}\) & The amount of time an agent is exposed to methylmercury above healthy levels. \\
+\textbf{Hg-uptake-risk} \(Hg_{risk}\) & The risk associated for uptake of mercury. \\
+\textbf{MeHg-uptake-risk} \(MeHg_{risk}\) & The risk associated for uptake of methylmercury. \\
+\textbf{Hg-exposure} \(Hg_{t}\) & The amount of mercury exposed during current time step. \\
+\textbf{MeHg-exposure} \(MeHg_{t}\) & The amount of methlymercury exposed during current time step. \\
+\textbf{Hg-exposure-total} \(Hg_{net}\) & The net sum of mercury exposed to during migration. \\
+\textbf{MeHg-exposure-total} \(MeHg_{net}\) & The net sum of methylmercury exposed to during migration. \\
+\end{longtable}
+
+\section{Process Overview and Scheduling}\label{process-overview-and-scheduling-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Evaluate current patch concentrations of mercury and methylmercury.
+\item
+  Determine whether these exceed defined toxicity thresholds.
+\item
+  Calculate exposure duration (if thresholds exceeded).
+\item
+  Compute bioaccumulation risk based on contaminant levels, stress, and SPM.
+\item
+  Update cumulative exposure totals.
+\end{enumerate}
+
+\section{Design Concepts}\label{design-concepts-1}
+
+\textbf{Basic Principles:} this model is grounded in toxicokinetics and ecological exposure theory. It draws on empirical literature (e.g., Gaudet et al.~1995, NOAA 1990) and integrates physiological stress responses with contaminant risk, reflecting a mechanistic understanding of exposure and bioaccumulation dynamics.
+
+\textbf{Emergence:} While exposure durations and patch-level concentrations are direct inputs, the exposure patterns (\(Hg_{t}\), \(MeHg_{t}\)), cumulative exposure totals (\(Hg_{net}\), \(MeHg_{net}\)), and risk profiles (\(Hg_{risk}\), \(MeHg_{risk}\)) emerge from agent movement across spatially and temporally variable environments and their physiological state, which arise from behavioral-environmental interactions over time.
+
+\textbf{Adaptation}: Agents adaptively accumulate risk based on their movement decisions, stress state, and encountered contaminant levels, simulating a physiological feedback process.
+
+\textbf{Objectives:} Agents do not explicitly seek to minimize risk, but their cumulative exposure and risk profiles can be used to evaluate environmental quality and cumulative toxicity risk for migratory fish.
+
+\textbf{Sensing}: Agents sense the local contaminant levels (\(Hg_{patch}\), \(MeHg_{patch}\)), suspended particulate matter (\(SPM_{t}\)), and their own stress state (\(S\)).
+
+\textbf{Stochasticity}: Randomized initial conditions (e.g., Hg and MeHg levels) may introduce variability in exposure patterns.
+
+\textbf{Observation:} Exposure variables (\(Hg_t\), \(MeHg_{t}\)), cumulative exposure (\(Hg_{net}\), \(MeHg_{net}\)), and risk scores (\(Hg_{risk}\), \(MeHg_{risk}\)) are collected per agent and can be exported for analysis.
+
+\section{Initialization}\label{initialization-1}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Initialized Value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Justification
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(S\) & user-defined stress function & Changes in an agent's environment can induce a stress response, and can be induced by the user or environmental response. \\
+\(Hg_{patch}\) & user-defined or data input & This input can be user-defined realistic data values or known spatial data. \\
+\(MeHg_{patch}\) & user-defined for data input & This input can be user-defined realistic data values or known spatial data. \\
+\end{longtable}
+
+\section{Submodels}\label{submodels-1}
+
+\subsection{Exposure Duration}\label{exposure-duration}
+
+The cumulative number of time steps an agent is exposed to mercury and methylmercury above specified environmental thresholds:
+
+\[
+Hg_{exp_t} = Hg_{exp_t} + 1 \quad \text{if } Hg_{patch} > Hg_{threshold}
+\]
+
+\[
+MeHg_{exp_t} = MeHg_{exp_t} + 1 \quad \text{if } MeHg_{patch} > MeHg_{threshold}
+\]
+
+Where:
+
+\begin{itemize}
+\tightlist
+\item
+  \(Hg_{exp_t}\) is the total number of time steps exposed to mercury above threshold.\\
+\item
+  \(Hg_{patch}\) is the mercury concentration at the current patch location.\\
+\item
+  \(Hg_{threshold}\) is the defined mercury toxicity threshold.\\
+\item
+  \(MeHg_{exp_t}\) is the total number of time steps exposed to methylmercury above threshold.\\
+\item
+  \(MeHg_{patch}\) is the methylmercury concentration at the current patch location.\\
+\item
+  \(MeHg_{threshold}\) is the defined methylmercury toxicity threshold.
+\end{itemize}
+
+\subsection{Bioaccumulation Risk}\label{bioaccumulation-risk}
+
+Estimate the bioaccumulation risk associated with mercury and methylmercury, where risk increases with contaminant concentration, ion-regulatory stress, and suspended particulate matter (SPM):
+
+\[
+Hg_{risk} = \sum_{t=1}^T Hg_{risk} * (1+S) * (1+SPM_{t})
+\]
+
+\[
+MeHg_{risk} = \sum_{t=1}^T MeHg_{risk} * (1+S) * (1+SPM_{t})
+\]
+
+Where:
+
+\begin{itemize}
+\tightlist
+\item
+  \(Hg_{risk}\) is the instantaneous mercury uptake risk.\\
+\item
+  \(MeHg_{risk}\) is the instantaneous methylmercury uptake risk.\\
+\item
+  \(Hg_{normalized}\) is the normalized Hg concentration (scaled 0--1) at each time step.\\
+\item
+  \(MeHg_{normalized}\) is the normalized MeHg concentration (scaled 0--1).\\
+\item
+  \(S\) is the stress level of the agent.\\
+\item
+  \(SPM_{t}\) is the suspended particulate matter concentration at the patch for that time step.
+\end{itemize}
+
+\subsection{Exposure to Contamination}\label{exposure-to-contamination}
+
+Agents record exposure to mercury and methylmercury only when concentrations exceed threshold values. These values are stored per time step and accumulated over time to assess total contaminant burden.
+
+\subsubsection*{Mercury:}\label{mercury}
+\addcontentsline{toc}{subsubsection}{Mercury:}
+
+\[
+Hg_{t} = \begin{cases}Hg_{patch}, & \text{if } Hg_{patch} > Hg_{threshold} \\0, & \text{otherwise}\end{cases} 
+\]
+
+\[
+Hg_{net} = \sum_{t=1}^{T} Hg_{t} 
+\]
+
+Where:
+
+\begin{itemize}
+\tightlist
+\item
+  \(Hg_{t}\) is the mercury exposure in ng/g for current time step
+\item
+  \(Hg_{net}\) is the cumulative mercury exposure in ng/g
+\item
+  \(Hg_{patch}\) is the mercury concentration for the agent's current patch
+\end{itemize}
+
+\subsubsection*{Methylmercury:}\label{methylmercury}
+\addcontentsline{toc}{subsubsection}{Methylmercury:}
+
+\[
+MeHg_{t} = \begin{cases}MeHg_{patch}, & \text{if } MeHg_{patch} > MeHg_{threshold} \\0, & \text{otherwise}\end{cases}
+\]
+
+\[
+MeHg_{net} = \sum_{t=1}^{T} MeHg_{t}
+\]
+
+Where:
+
+\begin{itemize}
+\tightlist
+\item
+  \(MeHg_{t}\) is the level of methylmercury exposure in ng/g for current time step
+\item
+  \(MeHg_{net}\) is the cumulative methylmercury exposure in ng/g
+\item
+  \(MeHg_{patch}\) is the methylmercury concentration for the agent's current patch
+\end{itemize}
+
+\chapter{Landward Migration Behavior}\label{landward-migration-behavior}
+
+\section{Overview}\label{overview-3}
+
+This function simulates landward (upstream) migratory behavior of fish navigating riverine and estuarine systems. Agents face resistance from environmental water velocity and incur energetic costs that scale with flow conditions and their size.
+
+\section{Purpose}\label{purpose-2}
+
+To model how migratory fish respond to varying riverine and tidal velocities by calculating effective swimming speed, difficulty of movement, and the energetic cost associated with upstream migration.
+
+\section{Entities, State Variables, and Scales}\label{entities-state-variables-and-scales-2}
+
+\subsection{Global Variables}\label{global-variables-1}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Initialized Value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Justification
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{minimum-velocity} \(V_{min}\) & Calculated from \(V_{patch}\) over the simulation period. & Minimum river velocity based on hydrodynamic observations. \\
+\textbf{maximum-velocity} \(V_{max}\) & Calculated from \(V_{patch}\) over the simulation period. & Maximum river velocity based on hydrodynamic observations. \\
+\end{longtable}
+
+\subsection{Patch Variables}\label{patch-variables-2}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Variable Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Definition
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Velocity} \(V_{patch}\) & The along-channel velocity of a given patch, derived from hydrodynamic model inputs, where positive values are in the landward direction and negative values are in the seaward direction. \\
+\end{longtable}
+
+\subsection{Agent Variables}\label{agent-variables-2}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Variable Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Definition
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{size} \(M_{agent}\) & The size of an agent. \\
+\textbf{M-max} \(M_{max}\) & Maximum size found within the agent's population. \\
+\textbf{swimming-speed} \(V_{agent}\) & The current swimming speed of the agent. \\
+\textbf{maximum-speed} \(swim_{max}\) & The maximum sustained speed of the agent. \\
+\textbf{difficulty-factor} \(D_{f}\) & The level of difficulty an agent experiences when swimming. \\
+\textbf{energy} \(E_{agent}\) & The total energy an agent has. \\
+\textbf{swimming-energy-cost} \(Swim_{base}\) & The base energy cost of swimming. \\
+\textbf{net-swimming-cost} \(E_{swim}\) & The total energy expenditure for swimming. \\
+\textbf{heading} \(\hat{u}\) & The direction agent is facing or ``headed towards'' \\
+\textbf{Y-position} \(\vec{Y}_t\) & This is the agent's position in the Y plane \\
+\end{longtable}
+
+\section{Process Overview and Scheduling}\label{process-overview-and-scheduling-2}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Determine effective swimming speed based on flow velocity and agent energy.
+\item
+  Compute swimming difficulty factor using normalized velocity.
+\item
+  Calculate movement direction and update position.
+\item
+  Deduct swimming energy cost from agent's energy pool.
+\end{enumerate}
+
+\section{Design Concepts}\label{design-concepts-2}
+
+\textbf{Basic Principles:} This model builds on hydrodynamic constraints and energetic theory. It assumes that swimming against current imposes increased metabolic demands and that movement is energetically limited by individual traits.
+
+\textbf{Emergence:} Movement trajectories (\(\hat{u}\)) and energy (\(E_{agent}\)) depletion emerge from the interaction between local flow conditions, fish traits, and directional behavior.
+
+\textbf{Objectives:} Agents aim to migrate upstream. While they do not explicitly optimize, their movement is shaped by their capacity to overcome current velocity \(V_{patch}\)).
+
+\textbf{Sensing:} Agents detect the local water velocity (\(V_{patch}\)) and use it to update their speed (\(V_{agent}\)) and effort (\(D_{f}\)).
+
+\textbf{Observation:} Agent positions (\(\vec{Y}_t\) )and energy states can be tracked per time step to analyze migration success and efficiency.
+
+\section{Initialization}\label{initialization-2}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Initialized Value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Justification
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(V_{patch}\) & user-defined for data input & This input can be user-defined realistic data values or known spatial data. \\
+\(M_{agent}\) & user-defined and species-specific & Representative body length of a migrating agent. \\
+\(M_{max}\) & user-defined and species-specific & Based on the maximum body length in the agent's population. \\
+\(V_{agent}\) & \(\frac{V_{max}}{2}\) & Fish begin migration with a moderate swimming speed relative to their maximum capacity. \\
+\(swim_{max}\) & \(1.5 \frac{body lengths}{sec}\) & Typical value for sustained swimming speed in small pelagic fish (refer to Videler, 1993). \\
+\(E_{agent}\) & 100\% & Agent starts migration at 100\% relative energy capacity. \\
+\(swim_{base}\) & \(0.02 \cdot \frac{M_{agent}}{M_{max}}^{k}\) & Scales locomotion cost nonlinearly with size; can be calibrated. \\
+\(k\) & 0.75 & Energetic scaling component that follows Kleiber's Law. \\
+\(\hat{u}\) & \(0^\circ\) & Unit vector in the upstream direction \\
+\end{longtable}
+
+\section{Submodels}\label{submodels-2}
+
+\subsection{Swimming Speed}\label{swimming-speed}
+
+Agents calculate swimming speed based on their available energy and hydrodynamic resistance:
+
+\[ V_{agent} = \frac{swim_{max} * E_{agent}}{100} - (-k \cdot |V_{patch}|) \]
+
+\textbf{Where:}
+
+\begin{itemize}
+\item
+  \(swim_{max}\) is the maximum sustained swimming speed of the agent.
+\item
+  \(V_{patch}\) is the environmental velocity at the agent's current patch.
+\item
+  \(V_{agent}\) is the effective swimming speed of the agent.
+\item
+  \(E_{agent}\) is the agent's available energy percentage (0-100\%).
+\item
+  \(k\) is a scaling factor that determines how velocity influences swimming effort.
+\end{itemize}
+
+\subsection{\texorpdfstring{\textbf{Swimming Difficulty}}{Swimming Difficulty}}\label{swimming-difficulty}
+
+The difficulty factor quantifies the additional energetic burden of swimming against different velocity conditions. In this case, difficulty is calculated using a normalized velocity-based proxy that scales difficulty from 1-10 between observed flow extremes.
+
+\[D_{f} = 1 + 9 \cdot \left(\frac{\left( \frac{|V_{patch}|}{swim_{max} \cdot \left(\frac{M_{agent}}{M_{max}}\right)} \right)^k - V_{min}}{V_{max} - V_{min}}\right)\]
+
+Where:
+
+\begin{itemize}
+\tightlist
+\item
+  \(M_{agent}\) is the size of the agent.
+\item
+  \(M_{max}\) is the maximum size within the agent's population.
+\item
+  \(swim_{max}\) is the maximum swimming speed capability of the agent.
+\item
+  \(V_{max}\) is the maximum depth-averaged water velocity observed within the simulation.
+\item
+  \(V_{min}\) is the minimum depth-averaged water velocity observed within the simulation.
+\item
+  \(V_{patch}\) is the depth-averaged water velocity for the agent's current patch.
+\item
+  \(D_{f}\) is the swimming difficulty factor.
+\end{itemize}
+
+\textbf{Biological Justification:}
+
+When \(V_{patch} \approx 0\), difficulty is moderate.
+
+When \(V_{patch} < 0\), difficulty increases because the fish is actively swimming against the current.
+
+When \(V_{patch} > 0\), difficulty is minimal as fish drift with the current.
+
+\subsection{Swimming Movement}\label{swimming-movement}
+
+During landward migration, agents orient upstream and move forward based on their calculated swimming speed:
+
+\[ \vec{Y}_{t+1} = \vec{Y}_t + V_{agent} \cdot \hat{u} \]
+
+Where:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\vec{Y}_t\) is the agent's current spatial position.
+\item
+  \(\vec{Y}_{t+1}\) is the agent's updated spatial position after one time step.
+\item
+  \(V_{agent}\) is the swimming speed calculated from energy and difficulty.
+\item
+  \(\hat{u}\) is the unit vector in the landward direction.
+\end{itemize}
+
+\subsection{Swimming Energy}\label{swimming-energy}
+
+Swimming energy cost is determined by the base cost of locomotion scaled by a difficulty factor raised to a scaling factor. This allows energy expenditure to increase non-linearly as flow resistance increases.
+
+\[ E_{swim} = Swim_{base} \cdot D_f^{k} \]
+
+Where:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E_{swim}\) is the energy cost of swimming.
+\item
+  \(Swim_{base}\) is the base swimming cost based on agent size.
+\item
+  \(D_f\) is the swimming difficulty factor.
+\item
+  \(k\) is the scaling factor, reflecting nonlinear energy demand.
+\end{itemize}
+
+\subsection{Energy Balance}\label{energy-balance-1}
+
+Agents balance energy to swim with total energy allowance:
+
+\[ E_{agent} = E_{agent} - E_{swim} \]
+
+Where:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E_{agent}\) is the current energy available to the agent.
+\item
+  \(E_{swim}\) is the energy cost of swimming in this time step.
+\end{itemize}
+
+\chapter{Seaward Migration Behavior}\label{seaward-migration-behavior}
+
+\section{Overview}\label{overview-4}
+
+This function simulates seaward (downstream) migratory behavior of fish navigating riverine and estuarine systems. Agents face resistance from tidal flows and benefit from downstream riverine flows. The function models effective swimming speed, the difficulty of movement, and energetic costs during seaward migration.
+
+\section{Purpose}\label{purpose-3}
+
+To model how migratory fish respond to along-channel velocity when traveling seaward by determining swimming speed, hydrodynamic difficulty, and the energetic cost of downstream migration.
+
+\section{Entities, State Variables, and Scales}\label{entities-state-variables-and-scales-3}
+
+\subsection{Global Variables}\label{global-variables-2}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Initialized Value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Justification
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{minimum-velocity} \(V_{min}\) & Calculated from \(V_{patch}\) over the simulation period. & Minimum river velocity based on hydrodynamic observations. \\
+\textbf{maximum-velocity} \(V_{max}\) & Calculated from \(V_{patch}\) over the simulation period. & Maximum river velocity based on hydrodynamic observations. \\
+\end{longtable}
+
+\subsection{Patch Variables}\label{patch-variables-3}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Variable Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Definition
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Velocity} \(V_{patch}\) & The along-channel velocity of a given patch, derived from hydrodynamic model inputs, where positive values are in the landward direction and negative values are in the seaward direction. \\
+\end{longtable}
+
+\subsection{Agent Variables}\label{agent-variables-3}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Variable Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Definition
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{size} \(M_{agent}\) & The size of an agent. \\
+\textbf{M-max} \(M_{max}\) & Maximum size found within the agent's population. \\
+\textbf{swimming-speed} \(V_{agent}\) & The current swimming speed of the agent. \\
+\textbf{maximum-speed} \(swim_{max}\) & The maximum sustained speed of the agent. \\
+\textbf{difficulty-factor} \(D_{f}\) & The level of difficulty an agent experiences when swimming. \\
+\textbf{energy} \(E_{agent}\) & The total energy an agent has. \\
+\textbf{swimming-energy-cost} \(Swim_{base}\) & The base energy cost of swimming. \\
+\textbf{net-swimming-cost} \(E_{swim}\) & The total energy expenditure for swimming. \\
+\textbf{heading} \(\hat{u}\) & The direction agent is facing or ``headed towards'' \\
+\textbf{Y-position} \(\vec{Y}_t\) & This is the agent's position in the Y plane \\
+\end{longtable}
+
+\section{Process Overview and Scheduling}\label{process-overview-and-scheduling-3}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Determine effective swimming speed based on flow velocity and agent energy.
+\item
+  Compute swimming difficulty factor using normalized velocity.
+\item
+  Calculate movement direction and update position.
+\item
+  Deduct swimming energy cost from agent's energy pool.
+\end{enumerate}
+
+\section{Design Concepts}\label{design-concepts-3}
+
+\textbf{Basic Principles:} This model builds on hydrodynamic constraints and energetic theory. It assumes that swimming against current imposes increased metabolic demands and that movement is energetically limited by individual traits.
+
+\textbf{Emergence:} Movement trajectories (\(\hat{u}\)) and energy (\(E_{agent}\)) depletion emerge from the interaction between local flow conditions, fish traits, and directional behavior.
+
+\textbf{Objectives:} Agents aim to migrate downstream. While they do not explicitly optimize, their movement is shaped by their capacity to overcome current velocity \(V_{patch}\)).
+
+\textbf{Sensing:} Agents detect the local water velocity (\(V_{patch}\)) and use it to update their speed (\(V_{agent}\)) and effort (\(D_{f}\)).
+
+\textbf{Observation:} Agent positions (\(\vec{Y}_t\) )and energy states can be tracked per time step to analyze migration success and efficiency.
+
+\section{Initialization}\label{initialization-3}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Initialized Value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Justification
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(V_{patch}\) & user-defined for data input & This input can be user-defined realistic data values or known spatial data. \\
+\(M_{agent}\) & user-defined and species-specific & Representative body length of a migrating agent. \\
+\(M_{max}\) & user-defined and species-specific & Based on the maximum body length in the agent's population. \\
+\(V_{agent}\) & \(\frac{V_{max}}{2}\) & Fish begin migration with a moderate swimming speed relative to their maximum capacity. \\
+\(swim_{max}\) & \(1.5 \frac{body lengths}{sec}\) & Typical value for sustained swimming speed in small pelagic fish (refer to Videler, 1993). \\
+\(E_{agent}\) & 100\% & Agent starts migration at 100\% relative energy capacity. \\
+\(swim_{base}\) & \(0.02 \cdot \frac{M_{agent}}{M_{max}}^{k}\) & Scales locomotion cost nonlinearly with size; can be calibrated. \\
+\(k\) & 0.75 & Energetic scaling component that follows Kleiber's Law. \\
+\(\hat{u}\) & \(180^\circ\) & Unit vector in the downstream direction \\
+\end{longtable}
+
+\section{Submodels}\label{submodels-3}
+
+\subsection{Swimming Speed}\label{swimming-speed-1}
+
+\[ V_{agent} = \frac{V_{max} * E_{agent}}{100} - (k \cdot |V_{patch}|) \]
+
+Where:
+
+\begin{itemize}
+\item
+  \(V_{max}\) is the maximum sustained swimming speed of the agent.
+\item
+  \(V_{patch}\) is the environmental velocity at the agent's current patch.
+\item
+  \(V_{agent}\) is the effective swimming speed of the agent.
+\item
+  \(E_{agent}\) is the agent's available energy percentage (0-100\%).
+\item
+  \(k\) is a scaling factor that determines how velocity influences swimming effort.
+\end{itemize}
+
+\subsection{\texorpdfstring{\textbf{Swimming Difficulty}}{Swimming Difficulty}}\label{swimming-difficulty-1}
+
+The difficulty factor quantifies the additional energetic burden of swimming against different velocity conditions. In this case, difficulty is calculated using a normalized velocity-based proxy that linearly scales difficulty from 1-10 between observed flow extremes.
+
+\[D_{f} = 1 + 9 \cdot \left(\frac{\left( \frac{|V_{patch}|}{V_{max} \cdot \left(\frac{M_{agent}}{M_{max}}\right)} \right)^k - V_{min}}{V_{max} - V_{min}}\right)\]
+
+Where:
+
+\begin{itemize}
+\tightlist
+\item
+  \(M_{agent}\) is the size of the agent.
+\item
+  \(M_{max}\) is the maximum size within the agent's population.
+\item
+  \(V_{max}\) is the maximum swimming speed capability of the agent.
+\item
+  \(V_{max}\) is the maximum depth-averaged water velocity observed within the simulation.
+\item
+  \(V_{min}\) is the minimum depth-averaged water velocity observed within the simulation.
+\item
+  \(V_{patch}\) is the depth-averaged water velocity for the agent's current patch.
+\item
+  \(D_{f}\) is the swimming difficulty factor.
+\end{itemize}
+
+\textbf{Biological Justification}
+
+\begin{itemize}
+\item
+  When \(V_{patch} \approx 0\), difficulty is moderate.
+\item
+  When \(V_{patch} < 0\), difficulty increases because the fish is actively swimming against the current.
+\item
+  When \(V_{patch} > 0\), difficulty is minimal as fish drift with the current.
+\end{itemize}
+
+\subsection{Swimming Movement}\label{swimming-movement-1}
+
+During landward migration, agents orient upstream and move forward based on their calculated swimming speed:
+
+\[ \vec{Y}_{t+1} = \vec{Y}_t + V_{agent} \cdot \hat{u} \]
+
+Where:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\vec{Y}_t\) is the agent's current spatial position.
+\item
+  \(\vec{Y}_{t+1}\) is the agent's updated spatial position after one time step.
+\item
+  \(V_{agent}\) is the swimming speed calculated from energy and difficulty.
+\item
+  \(\hat{u}\) is the unit vector in the seaward direction (180° heading, downstream).
+\end{itemize}
+
+\section{Swimming Energy}\label{swimming-energy-1}
+
+Swimming energy cost is determined by the base cost of locomotion scaled by a difficulty factor raised to a power. This allows energy expenditure to increase non-linearly as flow resistance increases.
+
+\[ E_{swim} = Swim_{base} \cdot D_f^{k} \]
+
+Where:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E_{swim}\) is the energy cost of swimming.
+\item
+  \(Swim_{base}\) is the base swimming cost based on agent size.
+\item
+  \(D_f\) is the swimming difficulty factor.
+\item
+  \(k\) is the scaling exponent, reflecting nonlinear energy demand.
+\end{itemize}
+
+\subsection{Energy Balance}\label{energy-balance-2}
+
+Fish allocate energy efficiently, balancing osmoregulation with other survival functions.
+
+\[ E_{agent} = E_{agent} - E_{swim} \]
+
+Where:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E_{agent}\) is the current energy available to the agent.
+\item
+  \(E_{swim}\) is the energy cost of swimming in this time step.
+\end{itemize}
+
+\chapter{Schooling Behavior}\label{schooling-behavior}
+
+\section{Overview}\label{overview-5}
+
+\section{Purpose}\label{purpose-4}
+
+\section{Entities, State Variables, and Scales}\label{entities-state-variables-and-scales-4}
+
+\subsection{Patch Variables}\label{patch-variables-4}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Variable Name & Definition \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \\
+\end{longtable}
+
+\subsection{Agent Variables}\label{agent-variables-4}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Variable Name & Definition \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+\end{longtable}
+
+\section{Process Overview and Scheduling}\label{process-overview-and-scheduling-4}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+\item
+\item
+\item
+\end{enumerate}
+
+\section{Design Concepts}\label{design-concepts-4}
+
+\textbf{Basic Principles:}
+
+\textbf{Emergence:}
+
+\textbf{Adaptation}:
+
+\textbf{Objectives:}
+
+\textbf{Learning:}
+
+\textbf{Prediction:}
+
+\textbf{Sensing}:
+
+\textbf{Interaction}:
+
+\textbf{Stochasticity}:
+
+\textbf{Collectives:}
+
+\textbf{Observation:}
+
+\section{Initialization}\label{initialization-4}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule\noalign{}
+Variable & Initialized Value & Justification \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& & \\
+& & \\
+& & \\
+& & \\
+& & \\
+\end{longtable}
+
+\section{Submodels}\label{submodels-4}
+
+\chapter{Selective Tidal Stream Transport}\label{selective-tidal-stream-transport}
+
+\section{Overview}\label{overview-6}
+
+Selective Tidal Stream Transport (STST) is a behavioral strategy that enables agents to conserve energy by passively drifting with the current. It is triggered when the along-channel velocity of the patch exceeds the agent's effective swimming speed, and that speed is below a species-specific minimum threshold. Once engaged, agents align with the tidal current and are carried downstream or upstream, depending on flow velocity. STST reduces the metabolic cost of movement by substituting active swimming with passive transport. This behavior persists for a limited duration or until swimming ability improves, after which agents resume directional migration.
+
+\section{Purpose}\label{purpose-5}
+
+To simulate a passive energy-conserving behavior in migratory fish that allows them to use tidal currents to move when swimming capacity is insufficient to overcome flow velocities.
+
+\section{Entities, State Variables, and Scales}\label{entities-state-variables-and-scales-5}
+
+\subsection{Patch Variables}\label{patch-variables-5}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Variable Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Definition
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Velocity} \(V_{patch}\) & The along-channel velocity of a given patch, derived from hydrodynamic model inputs, where positive values are in the landward direction and negative values are in the seaward direction. \\
+\textbf{tidal-transport-in-patch} & Count of agents exhibiting tidal stream transport within a patch (for habitat quality analysis). \\
+\end{longtable}
+
+\subsection{Agent Variables}\label{agent-variables-5}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Variable Name} & \textbf{Definition} \\
+\textbf{energy} \(E_{agent}\) & Total energy available to the agent. \\
+\textbf{swimming energy} \(E_{swim}\) & Energy expenditure from movement per time step. \\
+\textbf{base swim energy} \(swim_{base}\) & Baseline energy cost of movement. \\
+\textbf{swimming difficulty} \(D_f\) & Velocity-based proxy representing hydrodynamic resistance. \\
+\textbf{in-STST?} \(STST_{?}\) & Boolean value indicating if the agent is actively in STST. \\
+\textbf{swimming speed} \(V_{agent}\) & The effective swimming speed of the agent. \\
+\textbf{minimum threshold speed} \(Speed_{min}\) & The minimum speed at which an agent will move. \\
+\end{longtable}
+
+\section{Process Overview and Scheduling}\label{process-overview-and-scheduling-5}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Compare swimming speed (\(V_{agent}\)) with flow speed (\(V_{patch}\)).
+\item
+  If \(|V_{patch}| > V_{agent}\) and \(V_{agent} \leq Speed_{min}\), enter STST.
+\item
+  In STST: align with current, update position via drift, apply reduced energy cost.
+\item
+  If \(V_{agent} > Speed_{min}\), exit STST and resume active swimming.
+\end{enumerate}
+
+\section{Design Concepts}\label{design-concepts-5}
+
+\textbf{Basic Principles:} Selective tidal stream transport is based on behavioral ecology and energetics, simulating the tradeoff between active swimming and energy conservation through passive transport.
+
+\textbf{Emergence:} Passive drift behavior and resulting migration paths emerge from agent-flow interactions and individual swimming limitations.
+
+\textbf{Adaptation:} Agents adapt their mode of movement based on their swimming ability relative to environmental flow, dynamically choosing energy-efficient strategies.
+
+\textbf{Objectives:} Agents seek to minimizing energy loss in strong flows.
+
+\textbf{Sensing:} Agents sense their own \(V_{agent}\) and the \(V_{patch}\) to determine whether passive drift is needed.
+
+\textbf{Observation:} Records STST patch events , energy expenditure (\(E_{agent}\)), and displacement are logged to analyze behavior across flow regimes.
+
+\section{Initialization}\label{initialization-5}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2361}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2361}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5278}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Initialized Value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Justification
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(V_{agent}\) & Based on size, energy, and difficulty factor & Reflects agent's swimming capability based on metabolic limits. \\
+\(swim_{min}\) & Species-specific parameter & Represents the minimum sustained swimming velocity of the agent. \\
+\(swim_{max}\) & Species-specific parameter & Represents the maximum sustained swimming velocity of the agent. \\
+\(E_{agent}\) & 100 & Assumes full energy at the start of simulation or at spawning. \\
+\(swim_{base}\) & \(0.02 \cdot \frac{M_{agent}}{M_{max}}^{k}\) & Scales locomotion cost nonlinearly with size; can be calibrated. \\
+\end{longtable}
+
+\section{Submodels}\label{submodels-5}
+
+\subsection{Trigger Conditions for STST}\label{trigger-conditions-for-stst}
+
+Agents compare their swimming ability to the flow conditions. If local flow exceeds their capability and their effort is below a defined threshold, they enter STST:
+
+\[
+|V_{patch}| > V_{agent} \quad \text{and} \quad V_{agent} \leq Speed_{min}
+\]
+
+While in STST:
+
+Heading aligns with the current (drift vector) \& swimming speed is set to:
+
+\[
+V_{agent} = |V_{patch}|
+\]
+
+Energy is set as:
+
+\[
+E_{swim} = swim_{base}
+\]
+
+Where:
+
+\begin{itemize}
+\item
+  \(V_{agent}\) is the current swimming speed of the agent.
+\item
+  \(V_{patch}\) is the along-channel velocity at the agent's current patch.
+\item
+  \(Speed_{min}\) is the minimum sustainable swimming speed of the agent.
+\item
+  \(swim_{base}\) is the base swimming cost based on agent size.
+\item
+  \(E_{swim}\) is the total energy cost during passive movement.
+\end{itemize}
+
+\subsection{Behavior During STST}\label{behavior-during-stst}
+
+While in STST, agents align with the current (either landward or seaward) and are passively transported:
+
+\[
+\vec{Y}_{t+1} = \vec{Y}_t + |V_{patch}| \cdot \hat{u}
+\]
+
+Swimming speed is overwritten:
+
+\[
+V_{agent} = |V_{patch}|
+\]
+
+Energy cost is minimized:
+
+\[
+E_{swim} = swim_{base}
+\]
+
+Where:
+
+\begin{itemize}
+\item
+  \(\vec{Y}_t\) is the agent's current spatial position.
+\item
+  \(\vec{Y}_{t+1}\) is the position after drifting.
+\item
+  \(V_{patch}\) is the along-channel velocity at the agent's current patch.
+\item
+  \(\hat{u}_{patch}\) is the direction of the patch velocity (unit vector).
+\item
+  \(swim_{base}\) is the base swimming cost based on agent size.
+\item
+  \(E_{swim}\) is the total energy cost during passive movement.
+\end{itemize}
+
+\subsection{Stop Conditions for STST}\label{stop-conditions-for-stst}
+
+Agents exit STST when they regain sufficient swimming capacity to exceed threshold:
+
+\[
+V_{agent} > Speed_{min}
+\]
+
+Where:
+
+\begin{itemize}
+\item
+  \(V_{agent}\) is the current swimming speed of the agent.
+\item
+  \(Speed_{min}\) is the minimum sustainable swimming speed of the agent.
+\end{itemize}
+
+This triggers a return to active migratory movement and deactivates \(STST_{?}\).
+
+\chapter{Staging Behavior}\label{staging-behavior}
+
+\section{Overview}\label{overview-7}
+
+Staging is a behavioral state that allows agents to temporarily halt migration and recover energy or acclimate to dynamic estuary conditions (i.e., temperature, salinity) before continuing upstream (landward) or downstream (seaward) movement. It is triggered when agents experience low energy or high physiological stress and is resolved when recovery thresholds are met.
+
+\section{Purpose}\label{purpose-6}
+
+To simulate the biologically necessary pause in migratory activity used for energy recovery and physiological acclimation, particularly under stressful conditions.
+
+\section{Entities, State Variables, and Scales}\label{entities-state-variables-and-scales-6}
+
+\subsection{Patch Variables}\label{patch-variables-6}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.1562}}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.8438}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Variable Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Definition
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Velocity} \(V_{patch}\) & The along-channel velocity of a given patch, derived from hydrodynamic model inputs, where positive values are in the landward direction and negative values are in the seaward direction. \\
+\textbf{staging-in-patch} & Count of staging agents within a patch (for habitat quality analysis). \\
+\end{longtable}
+
+\subsection{Agent Variables}\label{agent-variables-6}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3465}}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6535}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Variable Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Definition
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{size} \(M_{agent}\) & The size of an agent. \\
+\textbf{M-max} \(M_{max}\) & Maximum size found within the agent's population. \\
+\textbf{age} \(A_{agent}\) & The age of an agent. \\
+\textbf{A-max} \(A_{max}\) & Maximum age found within the agent's population. \\
+\textbf{energy} \(E_{agent}\) & The total energy the agent currently possesses. \\
+\textbf{stress} \(S\) & Stress level based on environmental mismatch. \\
+\textbf{staging?} \(stage_{?}\) & Boolean flag indicating whether the agent is currently staging. \\
+\end{longtable}
+
+\section{Process Overview and Scheduling}\label{process-overview-and-scheduling-6}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Evaluate energy and stress levels.
+\item
+  If energy is ≤ 25\% or stress \textgreater{} 5, agent enters staging behavior.
+\item
+  During staging, agents stop migrating, form schools, seek calm water, and regain energy.
+\item
+  If energy ≥ 75\% and stress = 1, staging ends and active migration resumes.
+\end{enumerate}
+
+\section{Design Concepts}\label{design-concepts-6}
+
+\textbf{Basic Principles:} Staging is based on physiological ecology principles recognizing the need for energetic and osmoregulatory recovery before continued migration.
+
+\textbf{Emergence:} Collective staging areas and patterns emerge from local environmental conditions and individual agent needs.
+
+\textbf{Adaptation:} Agents adaptively stop migrating when unable to continue due to exhaustion or stress, shifting to a recovery behavior.
+
+\textbf{Sensing:} Agents assess their internal energy and stress state.
+
+\textbf{Stochasticity:} Recovery rate includes random variation to simulate individual differences.
+
+\textbf{Collectives:} Agents may cluster spatially during staging but do not form persistent groups.
+
+\textbf{Observation:} Number of staging agents and energy dynamics can be recorded for habitat analysis.
+
+\section{Initialization}\label{initialization-6}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2202}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2143}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5595}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Initialized Value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Justification
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{size} \(M_{agent}\) & user-defined and species-specific & Representative body length of a migrating agent. \\
+\textbf{M-max} \(M_{max}\) & user-defined and species-specific & Based on the maximum body length in the agent's population. \\
+\textbf{age} \(A_{agent}\) & user-defined and species-specific & Representative age length of a migrating agent. \\
+\textbf{A-max} \(A_{max}\) & user-defined and species-specific & Based on the maximum age in the agent's population. \\
+\textbf{energy} \(E_{agent}\) & \(100 \%\) & Agent starts migration at 100\% relative energy capacity. \\
+\textbf{Stress} \(S\) & 1 & Acclimated agents have minimal stress levels. \\
+\(k\) & 0.75 & Energetic scaling component that follows Kleiber's Law. \\
+\(\alpha\) & -0.3 to 0.5 (user-defined) & \begin{minipage}[t]{\linewidth}\centering
+This value can be calibrated based on your biological assumptions:\\
+• \(\alpha < 0\): Younger fish recover faster (higher turnover, rapid metabolism)\\
+• \(\alpha > 0\): Older fish recover faster (more energy reserves, lower stress sensitivity)\\
+• \(\alpha = 0\): Age has no effect on recovery (neutral assumption)\strut
+\end{minipage} \\
+\end{longtable}
+
+\section{Submodels}\label{submodels-6}
+
+\subsection{Trigger Conditions for Staging}\label{trigger-conditions-for-staging}
+
+Agents will enter the staging state under either of the following conditions:
+
+\[
+E_{agent} \leq 25 \%
+\]
+
+\[
+S > 5
+\]
+
+Where:
+
+\begin{itemize}
+\item
+  \(E_{agent}\) is the current energy available to the agent.
+\item
+  \(S\) is the current stress level of the agent.
+\end{itemize}
+
+These thresholds are designed to prevent migration collapse due to exhaustion or high osmotic stress.
+
+\subsection{Behavior During Staging}\label{behavior-during-staging}
+
+During staging, agents move to the nearest water patch with the lowest absolute velocity to reduce energetic costs. If no such patch is found, a random neighboring water patch is selected.
+
+Position is updated as:
+
+\[
+\vec{Y}_{t+1} = \vec{Y}_{target}
+\]
+
+Energy recovery occurs at a variable rate:
+
+\[
+E_{agent} = E_{agent} + \left((1 + \epsilon) \cdot \left( \frac{M_{agent}}{M_{max}} \right)^k \cdot \left( \frac{A_{agent}}{A_{max}} \right)^\alpha \right) \quad \text{where } \epsilon \sim U(0,1),\ k \leq 1
+\]
+
+Patch records presence of staging agents:
+
+\[
+\text{staging-in-patch} = \text{staging-in-patch} + 1
+\]
+
+Where:
+
+\begin{itemize}
+\item
+  \(\vec{Y}_{t+1}\) is the position after drifting.
+\item
+  \(\vec{Y}_{target}\) is the agent's target spatial position.
+\item
+  \(V_{patch}\) is the along-channel velocity at the agent's current patch.
+\item
+  \(M_{agent}\) is the size of the agent.
+\item
+  \(M_{max}\) is the maximum size within the agent's population.
+\item
+  \(A_{agent}\): the age of the agent.
+\item
+  \(A_{max}\): the maximum age within the population.
+\item
+  \(E_{swim}\) is the total energy cost during passive movement.
+\item
+  \(k\) is the scaling exponent, reflecting nonlinear energy recovery.
+\item
+  \(\alpha\): an age-scaling exponent
+\end{itemize}
+
+\textbf{Suggestion}:\\
+
+• \(\alpha = -0.25\) if modeling faster recovery in younger fish.\\
+
+• \(\alpha = 0.25\) if modeling increased efficiency in older/larger individuals.
+
+\subsection{Stop Conditions for Staging}\label{stop-conditions-for-staging}
+
+Agent will remain in the staging state until both of the following conditions are met:
+
+\[
+E_{agent} \geq 75 \%
+\]
+
+\[
+S = 1
+\]
+
+Where:
+
+\begin{itemize}
+\item
+  \(E_{agent}\) is the current energy available to the agent.
+\item
+  \(S\) is the current stress level of the agent.
+\end{itemize}
+
+\chapter{Homing Behavior}\label{homing-behavior}
+
+\section{Overview}\label{overview-8}
+
+\section{Purpose}\label{purpose-7}
+
+\section{Entities, State Variables, and Scales}\label{entities-state-variables-and-scales-7}
+
+\subsection{Patch Variables}\label{patch-variables-7}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Variable Name & Definition \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \\
+\end{longtable}
+
+\subsection{Agent Variables}\label{agent-variables-7}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Variable Name & Definition \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+\end{longtable}
+
+\section{Process Overview and Scheduling}\label{process-overview-and-scheduling-7}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+\item
+\item
+\item
+\end{enumerate}
+
+\section{Design Concepts}\label{design-concepts-7}
+
+\textbf{Basic Principles:}
+
+\textbf{Emergence:}
+
+\textbf{Adaptation}:
+
+\textbf{Objectives:}
+
+\textbf{Learning:}
+
+\textbf{Prediction:}
+
+\textbf{Sensing}:
+
+\textbf{Interaction}:
+
+\textbf{Stochasticity}:
+
+\textbf{Collectives:}
+
+\textbf{Observation:}
+
+\section{Initialization}\label{initialization-7}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule\noalign{}
+Variable & Initialized Value & Justification \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& & \\
+& & \\
+& & \\
+& & \\
+& & \\
+\end{longtable}
+
+\section{Submodels}\label{submodels-7}
+
+\chapter{Foraging Behavior}\label{foraging-behavior}
+
+\section{Overview}\label{overview-9}
+
+\section{Purpose}\label{purpose-8}
+
+\section{Entities, State Variables, and Scales}\label{entities-state-variables-and-scales-8}
+
+\subsection{Patch Variables}\label{patch-variables-8}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Variable Name & Definition \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \\
+\end{longtable}
+
+\subsection{Agent Variables}\label{agent-variables-8}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Variable Name & Definition \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+\end{longtable}
+
+\section{Process Overview and Scheduling}\label{process-overview-and-scheduling-8}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+\item
+\item
+\item
+\end{enumerate}
+
+\section{Design Concepts}\label{design-concepts-8}
+
+\textbf{Basic Principles:}
+
+\textbf{Emergence:}
+
+\textbf{Adaptation}:
+
+\textbf{Objectives:}
+
+\textbf{Learning:}
+
+\textbf{Prediction:}
+
+\textbf{Sensing}:
+
+\textbf{Interaction}:
+
+\textbf{Stochasticity}:
+
+\textbf{Collectives:}
+
+\textbf{Observation:}
+
+\section{Initialization}\label{initialization-8}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule\noalign{}
+Variable & Initialized Value & Justification \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& & \\
+& & \\
+& & \\
+& & \\
+& & \\
+\end{longtable}
+
+\section{Submodels}\label{submodels-8}
+
+\chapter{Predation and Fleeing Behavior}\label{predation-and-fleeing-behavior}
+
+\section{Overview}\label{overview-10}
+
+\section{Purpose}\label{purpose-9}
+
+\section{Entities, State Variables, and Scales}\label{entities-state-variables-and-scales-9}
+
+\subsection{Patch Variables}\label{patch-variables-9}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Variable Name & Definition \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \\
+\end{longtable}
+
+\subsection{Agent Variables}\label{agent-variables-9}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Variable Name & Definition \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+\end{longtable}
+
+\section{Process Overview and Scheduling}\label{process-overview-and-scheduling-9}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+\item
+\item
+\item
+\end{enumerate}
+
+\section{Design Concepts}\label{design-concepts-9}
+
+\textbf{Basic Principles:}
+
+\textbf{Emergence:}
+
+\textbf{Adaptation}:
+
+\textbf{Objectives:}
+
+\textbf{Learning:}
+
+\textbf{Prediction:}
+
+\textbf{Sensing}:
+
+\textbf{Interaction}:
+
+\textbf{Stochasticity}:
+
+\textbf{Collectives:}
+
+\textbf{Observation:}
+
+\section{Initialization}\label{initialization-9}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule\noalign{}
+Variable & Initialized Value & Justification \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& & \\
+& & \\
+& & \\
+& & \\
+& & \\
+\end{longtable}
+
+\section{Submodels}\label{submodels-9}
+
+\chapter{Spawning Behavior}\label{spawning-behavior}
+
+\section{Overview}\label{overview-11}
+
+\section{Purpose}\label{purpose-10}
+
+\section{Entities, State Variables, and Scales}\label{entities-state-variables-and-scales-10}
+
+\subsection{Patch Variables}\label{patch-variables-10}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Variable Name & Definition \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \\
+\end{longtable}
+
+\subsection{Agent Variables}\label{agent-variables-10}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Variable Name & Definition \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+\end{longtable}
+
+\section{Process Overview and Scheduling}\label{process-overview-and-scheduling-10}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+\item
+\item
+\item
+\end{enumerate}
+
+\section{Design Concepts}\label{design-concepts-10}
+
+\textbf{Basic Principles:}
+
+\textbf{Emergence:}
+
+\textbf{Adaptation}:
+
+\textbf{Objectives:}
+
+\textbf{Learning:}
+
+\textbf{Prediction:}
+
+\textbf{Sensing}:
+
+\textbf{Interaction}:
+
+\textbf{Stochasticity}:
+
+\textbf{Collectives:}
+
+\textbf{Observation:}
+
+\section{Initialization}\label{initialization-10}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule\noalign{}
+Variable & Initialized Value & Justification \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& & \\
+& & \\
+& & \\
+& & \\
+& & \\
+\end{longtable}
+
+\section{Submodels}\label{submodels-10}
+
+\chapter{Model Simulation Tutorial: Staging \& Schooling}\label{model-simulation-tutorial-staging-schooling}
+
+\subsection{Module Integration}\label{module-integration}
+
+\begin{itemize}
+\tightlist
+\item
+  Brief explanation of how functions (e.g., staging, schooling) interact.
+\item
+  Clarify temporal structure (e.g., tick-based sequence) and spatial scale.
+\item
+  Describe coupling logic
+\end{itemize}
+
+\subsection{\texorpdfstring{\textbf{Function Dependencies}}{Function Dependencies}}\label{function-dependencies}
+
+\begin{itemize}
+\item
+  What variables are required as inputs for each function?
+\item
+  What functions must be called before/after? (e.g., must calculate stress before checking staging triggers)
+\item
+  Dependency table showing variable flow between submodels.
+\end{itemize}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Function
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Required Inputs
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Output Variables
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Dependent On
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{staging} & \texttt{E\_agent}, \texttt{I\_stress} & \texttt{E\_agent}, \texttt{patch\ records} & \texttt{osmoregulation} \\
+schooling & & & \\
+\end{longtable}
+
+\section{Implementation in NetLogo:}\label{implementation-in-netlogo}
+
+Programming details
+
+example code
+
+\section{Implementation in R:}\label{implementation-in-r}
+
+Programming details
+
+example code
+
+\chapter{Model Simulation Tutorial: Landward Migration \& Selective Tidal Stream Transport}\label{model-simulation-tutorial-landward-migration-selective-tidal-stream-transport}
+
+\subsection{Module Integration}\label{module-integration-1}
+
+\begin{itemize}
+\tightlist
+\item
+  Brief explanation of how functions (e.g., staging, schooling) interact.
+\item
+  Clarify temporal structure (e.g., tick-based sequence) and spatial scale.
+\item
+  Describe coupling logic
+\end{itemize}
+
+\subsection{\texorpdfstring{\textbf{Function Dependencies}}{Function Dependencies}}\label{function-dependencies-1}
+
+\begin{itemize}
+\item
+  What variables are required as inputs for each function?
+\item
+  What functions must be called before/after? (e.g., must calculate stress before checking staging triggers)
+\item
+  Dependency table showing variable flow between submodels.
+\end{itemize}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Function
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Required Inputs
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Output Variables
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Dependent On
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{osmoregulation} & \texttt{S\_patch}, \texttt{S\_agent}, \texttt{C} & \texttt{I\_stress}, \texttt{C\_new}, \texttt{E\_osmo} & \texttt{environmental-sensing} \\
+\texttt{staging} & \texttt{E\_agent}, \texttt{I\_stress} & \texttt{E\_agent}, \texttt{patch\ records} & \texttt{osmoregulation} \\
+\texttt{migration} & \texttt{E\_agent}, \texttt{V\_patch} & \texttt{Y\_t}, \texttt{E\_agent} & \texttt{staging}, \texttt{STST} \\
+\texttt{STST} & \texttt{V\_patch}, \texttt{V\_agent} & \texttt{Y\_t+1}, \texttt{E\_agent} & \texttt{migration\ logic} \\
+\end{longtable}
+
+\section{Implementation in NetLogo:}\label{implementation-in-netlogo-1}
+
+Programming details
+
+example code
+
+\section{Implementation in R:}\label{implementation-in-r-1}
+
+Programming details
+
+example code
+
+\chapter{Complex Model Simulation Tutorial: One-Way Migration}\label{complex-model-simulation-tutorial-one-way-migration}
+
+\subsection{Module Integration}\label{module-integration-2}
+
+\begin{itemize}
+\tightlist
+\item
+  Brief explanation of how functions (e.g., staging, schooling) interact.
+\item
+  Clarify temporal structure (e.g., tick-based sequence) and spatial scale.
+\item
+  Describe coupling logic
+\end{itemize}
+
+\subsection{\texorpdfstring{\textbf{Function Dependencies}}{Function Dependencies}}\label{function-dependencies-2}
+
+\begin{itemize}
+\item
+  What variables are required as inputs for each function?
+\item
+  What functions must be called before/after? (e.g., must calculate stress before checking staging triggers)
+\item
+  Dependency table showing variable flow between submodels.
+\end{itemize}
+
+\section{Implementation in NetLogo:}\label{implementation-in-netlogo-2}
+
+Programming details
+
+example code
+
+\section{Implementation in R:}\label{implementation-in-r-2}
+
+Programming details
+
+example code
+
+\chapter{Modeling Toolkit}\label{modeling-toolkit}
+
+\section{Learning Resources}\label{learning-resources}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{NetLogo Library}: Brief note on structure (e.g., model categories), how you used it (e.g., behavior ideas, calibration).
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{NetLogo User Manual}: Link to official documentation.
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{NetLogo Modeling Commons}: Peer-contributed models, code sharing, and idea sourcing.
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{NetLogo Forum}: Where to get help or search issues.
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Book References}:
+\end{itemize}
+
+\begin{verbatim}
+-    Railsback & Grimm (2019) *Agent-Based and Individual-Based Modeling*
+
+-    Grimm & Railsback (2005) *Individual-Based Modeling and Ecology*
+
+-    Add others specific to behavior/physiology like Kirschner, Allen, or Little.
+\end{verbatim}
+
+\section{Best Practices}\label{best-practices}
+
+\begin{itemize}
+\item
+  \textbf{ODD Protocol (Overview, Design concepts, Details)}: Follow for transparent and structured documentation of agent-based models. Ensures clarity across entities, processes, and assumptions.
+\item
+  \textbf{Modular Design}: Structure behavioral functions into separate procedures (e.g., swimming, osmoregulation, staging) to support testing, integration, and reuse.
+\item
+  \textbf{Version Control}: Use GitHub or other tools to track changes and link code to associated research outputs.
+\item
+  \textbf{Naming Conventions}: Use clear, consistent names (e.g., \texttt{V\_agent}, \texttt{E\_osmo}, \texttt{stage?}) to reduce error and improve interpretability.
+\item
+  \textbf{Documentation in Code}: Annotate key procedures, thresholds, and formulas directly in NetLogo and R scripts.
+\end{itemize}
+
+\section{Code Repositories \& Examples}\label{code-repositories-examples}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Project
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Repository
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Migration Dynamics Model} & GitHub link & Simulates agent-based landward \& seaward migration using STST. \\
+\textbf{Osmoregulation Function} & GitHub link & Chloride cell regulation and stress-energy tradeoffs. \\
+\textbf{Staging Behavior Model} & GitHub link & Implements estuary resting behavior based on stress and energy. \\
+\textbf{Visualization Utilities} & GitHub link & Code for plotting NetLogo outputs in R. \\
+\end{longtable}
+
+\chapter{Thermoregulation Function}\label{thermoregulation-function}
+
+\section{Overview}\label{overview-12}
+
+\section{Purpose}\label{purpose-11}
+
+\section{Entities, State Variables, and Scales}\label{entities-state-variables-and-scales-11}
+
+\subsection{Patch Variables}\label{patch-variables-11}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Variable Name & Definition \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \\
+\end{longtable}
+
+\subsection{Agent Variables}\label{agent-variables-11}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Variable Name & Definition \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+& \\
+\end{longtable}
+
+\section{Process Overview and Scheduling}\label{process-overview-and-scheduling-11}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+\item
+\item
+\item
+\end{enumerate}
+
+\section{Design Concepts}\label{design-concepts-11}
+
+\textbf{Basic Principles:}
+
+\textbf{Emergence:}
+
+\textbf{Adaptation}:
+
+\textbf{Objectives:}
+
+\textbf{Learning:}
+
+\textbf{Prediction:}
+
+\textbf{Sensing}:
+
+\textbf{Interaction}:
+
+\textbf{Stochasticity}:
+
+\textbf{Collectives:}
+
+\textbf{Observation:}
+
+\section{Initialization}\label{initialization-11}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule\noalign{}
+Variable & Initialized Value & Justification \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& & \\
+& & \\
+& & \\
+& & \\
+& & \\
+\end{longtable}
+
+\section{Submodels}\label{submodels-11}
+
+\bibliography{book.bib,packages.bib}
+
+\end{document}

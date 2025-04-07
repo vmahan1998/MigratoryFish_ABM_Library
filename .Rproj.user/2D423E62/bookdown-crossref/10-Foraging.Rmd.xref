@@ -1,0 +1,11 @@
+h1:foraging-behavior Foraging Behavior
+h2:overview Overview
+h2:purpose Purpose
+h2:entities-state-variables-and-scales Entities, State Variables, and Scales
+h3:patch-variables Patch Variables
+h3:agent-variables Agent Variables
+h2:process-overview-and-scheduling Process Overview and Scheduling
+h2:design-concepts Design Concepts
+h2:initialization Initialization
+h2:submodels Submodels
+

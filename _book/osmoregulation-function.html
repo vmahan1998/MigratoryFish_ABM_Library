@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Osmoregulation Function | Agent-Based Modeling Function Library for Simulating Diadromous Fish Migration</title>
+  <meta name="description" content="This document contains a libvrary of model functions for agent-basewd modeling simulations of diadromous fish" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Osmoregulation Function | Agent-Based Modeling Function Library for Simulating Diadromous Fish Migration" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This document contains a libvrary of model functions for agent-basewd modeling simulations of diadromous fish" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Osmoregulation Function | Agent-Based Modeling Function Library for Simulating Diadromous Fish Migration" />
+  
+  <meta name="twitter:description" content="This document contains a libvrary of model functions for agent-basewd modeling simulations of diadromous fish" />
+  
+
+<meta name="author" content="Vanessa Quintana" />
+
+
+<meta name="date" content="2025-04-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="overview.html"/>
+<link rel="next" href="mercury-contamination-bioaccumulation-function.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i>Motivation</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="overview.html"><a href="overview.html#background"><i class="fa fa-check"></i><b>1.1</b> Background</a></li>
+<li class="chapter" data-level="1.2" data-path="overview.html"><a href="overview.html#introduction-to-agent-based-models"><i class="fa fa-check"></i><b>1.2</b> Introduction to Agent-Based Models</a></li>
+<li class="chapter" data-level="1.3" data-path="overview.html"><a href="overview.html#structure"><i class="fa fa-check"></i><b>1.3</b> Structure</a></li>
+<li class="chapter" data-level="1.4" data-path="overview.html"><a href="overview.html#application-context"><i class="fa fa-check"></i><b>1.4</b> Application Context</a></li>
+<li class="chapter" data-level="1.5" data-path="overview.html"><a href="overview.html#how-to-use-this-library"><i class="fa fa-check"></i><b>1.5</b> How to Use This Library</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html"><i class="fa fa-check"></i><b>2</b> Osmoregulation Function</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#overview-1"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
+<li class="chapter" data-level="2.2" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#purpose"><i class="fa fa-check"></i><b>2.2</b> Purpose</a></li>
+<li class="chapter" data-level="2.3" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#entities-state-variables-and-scales"><i class="fa fa-check"></i><b>2.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#patch-variables"><i class="fa fa-check"></i><b>2.3.1</b> Patch Variables</a></li>
+<li class="chapter" data-level="2.3.2" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#agent-variables"><i class="fa fa-check"></i><b>2.3.2</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#process-overview-and-scheduling"><i class="fa fa-check"></i><b>2.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="2.5" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#design-concepts"><i class="fa fa-check"></i><b>2.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="2.6" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#initialization"><i class="fa fa-check"></i><b>2.6</b> Initialization</a></li>
+<li class="chapter" data-level="2.7" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#submodels"><i class="fa fa-check"></i><b>2.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#osmotic-stress"><i class="fa fa-check"></i><b>2.7.1</b> Osmotic Stress</a></li>
+<li class="chapter" data-level="2.7.2" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#chloride-cell-density"><i class="fa fa-check"></i><b>2.7.2</b> Chloride Cell Density</a></li>
+<li class="chapter" data-level="" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#osmoregulation-energy"><i class="fa fa-check"></i>Osmoregulation Energy</a></li>
+<li class="chapter" data-level="2.7.3" data-path="osmoregulation-function.html"><a href="osmoregulation-function.html#energy-balance"><i class="fa fa-check"></i><b>2.7.3</b> Energy Balance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html"><i class="fa fa-check"></i><b>3</b> Mercury Contamination Bioaccumulation Function</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#overview-2"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#purpose-1"><i class="fa fa-check"></i><b>3.2</b> Purpose</a></li>
+<li class="chapter" data-level="3.3" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#entities-state-variables-and-scales-1"><i class="fa fa-check"></i><b>3.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#global-variables"><i class="fa fa-check"></i><b>3.3.1</b> Global Variables</a></li>
+<li class="chapter" data-level="3.3.2" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#patch-variables-1"><i class="fa fa-check"></i><b>3.3.2</b> Patch Variables</a></li>
+<li class="chapter" data-level="3.3.3" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#agent-variables-1"><i class="fa fa-check"></i><b>3.3.3</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#process-overview-and-scheduling-1"><i class="fa fa-check"></i><b>3.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="3.5" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#design-concepts-1"><i class="fa fa-check"></i><b>3.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="3.6" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#initialization-1"><i class="fa fa-check"></i><b>3.6</b> Initialization</a></li>
+<li class="chapter" data-level="3.7" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#submodels-1"><i class="fa fa-check"></i><b>3.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#exposure-duration"><i class="fa fa-check"></i><b>3.7.1</b> Exposure Duration</a></li>
+<li class="chapter" data-level="3.7.2" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#bioaccumulation-risk"><i class="fa fa-check"></i><b>3.7.2</b> Bioaccumulation Risk</a></li>
+<li class="chapter" data-level="3.7.3" data-path="mercury-contamination-bioaccumulation-function.html"><a href="mercury-contamination-bioaccumulation-function.html#exposure-to-contamination"><i class="fa fa-check"></i><b>3.7.3</b> Exposure to Contamination</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html"><i class="fa fa-check"></i><b>4</b> Landward Migration Behavior</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#overview-3"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#purpose-2"><i class="fa fa-check"></i><b>4.2</b> Purpose</a></li>
+<li class="chapter" data-level="4.3" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#entities-state-variables-and-scales-2"><i class="fa fa-check"></i><b>4.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#global-variables-1"><i class="fa fa-check"></i><b>4.3.1</b> Global Variables</a></li>
+<li class="chapter" data-level="4.3.2" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#patch-variables-2"><i class="fa fa-check"></i><b>4.3.2</b> Patch Variables</a></li>
+<li class="chapter" data-level="4.3.3" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#agent-variables-2"><i class="fa fa-check"></i><b>4.3.3</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#process-overview-and-scheduling-2"><i class="fa fa-check"></i><b>4.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="4.5" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#design-concepts-2"><i class="fa fa-check"></i><b>4.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="4.6" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#initialization-2"><i class="fa fa-check"></i><b>4.6</b> Initialization</a></li>
+<li class="chapter" data-level="4.7" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#submodels-2"><i class="fa fa-check"></i><b>4.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#swimming-speed"><i class="fa fa-check"></i><b>4.7.1</b> Swimming Speed</a></li>
+<li class="chapter" data-level="4.7.2" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#swimming-difficulty"><i class="fa fa-check"></i><b>4.7.2</b> <strong>Swimming Difficulty</strong></a></li>
+<li class="chapter" data-level="4.7.3" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#swimming-movement"><i class="fa fa-check"></i><b>4.7.3</b> Swimming Movement</a></li>
+<li class="chapter" data-level="4.7.4" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#swimming-energy"><i class="fa fa-check"></i><b>4.7.4</b> Swimming Energy</a></li>
+<li class="chapter" data-level="4.7.5" data-path="landward-migration-behavior.html"><a href="landward-migration-behavior.html#energy-balance-1"><i class="fa fa-check"></i><b>4.7.5</b> Energy Balance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html"><i class="fa fa-check"></i><b>5</b> Seaward Migration Behavior</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#overview-4"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#purpose-3"><i class="fa fa-check"></i><b>5.2</b> Purpose</a></li>
+<li class="chapter" data-level="5.3" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#entities-state-variables-and-scales-3"><i class="fa fa-check"></i><b>5.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#global-variables-2"><i class="fa fa-check"></i><b>5.3.1</b> Global Variables</a></li>
+<li class="chapter" data-level="5.3.2" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#patch-variables-3"><i class="fa fa-check"></i><b>5.3.2</b> Patch Variables</a></li>
+<li class="chapter" data-level="5.3.3" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#agent-variables-3"><i class="fa fa-check"></i><b>5.3.3</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#process-overview-and-scheduling-3"><i class="fa fa-check"></i><b>5.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="5.5" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#design-concepts-3"><i class="fa fa-check"></i><b>5.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="5.6" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#initialization-3"><i class="fa fa-check"></i><b>5.6</b> Initialization</a></li>
+<li class="chapter" data-level="5.7" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#submodels-3"><i class="fa fa-check"></i><b>5.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#swimming-speed-1"><i class="fa fa-check"></i><b>5.7.1</b> Swimming Speed</a></li>
+<li class="chapter" data-level="5.7.2" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#swimming-difficulty-1"><i class="fa fa-check"></i><b>5.7.2</b> <strong>Swimming Difficulty</strong></a></li>
+<li class="chapter" data-level="5.7.3" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#swimming-movement-1"><i class="fa fa-check"></i><b>5.7.3</b> Swimming Movement</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#swimming-energy-1"><i class="fa fa-check"></i><b>5.8</b> Swimming Energy</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="seaward-migration-behavior.html"><a href="seaward-migration-behavior.html#energy-balance-2"><i class="fa fa-check"></i><b>5.8.1</b> Energy Balance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="schooling-behavior.html"><a href="schooling-behavior.html"><i class="fa fa-check"></i><b>6</b> Schooling Behavior</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="schooling-behavior.html"><a href="schooling-behavior.html#overview-5"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="schooling-behavior.html"><a href="schooling-behavior.html#purpose-4"><i class="fa fa-check"></i><b>6.2</b> Purpose</a></li>
+<li class="chapter" data-level="6.3" data-path="schooling-behavior.html"><a href="schooling-behavior.html#entities-state-variables-and-scales-4"><i class="fa fa-check"></i><b>6.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="schooling-behavior.html"><a href="schooling-behavior.html#patch-variables-4"><i class="fa fa-check"></i><b>6.3.1</b> Patch Variables</a></li>
+<li class="chapter" data-level="6.3.2" data-path="schooling-behavior.html"><a href="schooling-behavior.html#agent-variables-4"><i class="fa fa-check"></i><b>6.3.2</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="schooling-behavior.html"><a href="schooling-behavior.html#process-overview-and-scheduling-4"><i class="fa fa-check"></i><b>6.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="6.5" data-path="schooling-behavior.html"><a href="schooling-behavior.html#design-concepts-4"><i class="fa fa-check"></i><b>6.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="6.6" data-path="schooling-behavior.html"><a href="schooling-behavior.html#initialization-4"><i class="fa fa-check"></i><b>6.6</b> Initialization</a></li>
+<li class="chapter" data-level="6.7" data-path="schooling-behavior.html"><a href="schooling-behavior.html#submodels-4"><i class="fa fa-check"></i><b>6.7</b> Submodels</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html"><i class="fa fa-check"></i><b>7</b> Selective Tidal Stream Transport</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#overview-6"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#purpose-5"><i class="fa fa-check"></i><b>7.2</b> Purpose</a></li>
+<li class="chapter" data-level="7.3" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#entities-state-variables-and-scales-5"><i class="fa fa-check"></i><b>7.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#patch-variables-5"><i class="fa fa-check"></i><b>7.3.1</b> Patch Variables</a></li>
+<li class="chapter" data-level="7.3.2" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#agent-variables-5"><i class="fa fa-check"></i><b>7.3.2</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#process-overview-and-scheduling-5"><i class="fa fa-check"></i><b>7.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="7.5" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#design-concepts-5"><i class="fa fa-check"></i><b>7.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="7.6" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#initialization-5"><i class="fa fa-check"></i><b>7.6</b> Initialization</a></li>
+<li class="chapter" data-level="7.7" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#submodels-5"><i class="fa fa-check"></i><b>7.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#trigger-conditions-for-stst"><i class="fa fa-check"></i><b>7.7.1</b> Trigger Conditions for STST</a></li>
+<li class="chapter" data-level="7.7.2" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#behavior-during-stst"><i class="fa fa-check"></i><b>7.7.2</b> Behavior During STST</a></li>
+<li class="chapter" data-level="7.7.3" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#stop-conditions-for-stst"><i class="fa fa-check"></i><b>7.7.3</b> Stop Conditions for STST</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="staging-behavior.html"><a href="staging-behavior.html"><i class="fa fa-check"></i><b>8</b> Staging Behavior</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="staging-behavior.html"><a href="staging-behavior.html#overview-7"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="staging-behavior.html"><a href="staging-behavior.html#purpose-6"><i class="fa fa-check"></i><b>8.2</b> Purpose</a></li>
+<li class="chapter" data-level="8.3" data-path="staging-behavior.html"><a href="staging-behavior.html#entities-state-variables-and-scales-6"><i class="fa fa-check"></i><b>8.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="staging-behavior.html"><a href="staging-behavior.html#patch-variables-6"><i class="fa fa-check"></i><b>8.3.1</b> Patch Variables</a></li>
+<li class="chapter" data-level="8.3.2" data-path="staging-behavior.html"><a href="staging-behavior.html#agent-variables-6"><i class="fa fa-check"></i><b>8.3.2</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="staging-behavior.html"><a href="staging-behavior.html#process-overview-and-scheduling-6"><i class="fa fa-check"></i><b>8.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="8.5" data-path="staging-behavior.html"><a href="staging-behavior.html#design-concepts-6"><i class="fa fa-check"></i><b>8.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="8.6" data-path="staging-behavior.html"><a href="staging-behavior.html#initialization-6"><i class="fa fa-check"></i><b>8.6</b> Initialization</a></li>
+<li class="chapter" data-level="8.7" data-path="staging-behavior.html"><a href="staging-behavior.html#submodels-6"><i class="fa fa-check"></i><b>8.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="staging-behavior.html"><a href="staging-behavior.html#trigger-conditions-for-staging"><i class="fa fa-check"></i><b>8.7.1</b> Trigger Conditions for Staging</a></li>
+<li class="chapter" data-level="8.7.2" data-path="staging-behavior.html"><a href="staging-behavior.html#behavior-during-staging"><i class="fa fa-check"></i><b>8.7.2</b> Behavior During Staging</a></li>
+<li class="chapter" data-level="8.7.3" data-path="staging-behavior.html"><a href="staging-behavior.html#stop-conditions-for-staging"><i class="fa fa-check"></i><b>8.7.3</b> Stop Conditions for Staging</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="homing-behavior.html"><a href="homing-behavior.html"><i class="fa fa-check"></i><b>9</b> Homing Behavior</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="homing-behavior.html"><a href="homing-behavior.html#overview-8"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
+<li class="chapter" data-level="9.2" data-path="homing-behavior.html"><a href="homing-behavior.html#purpose-7"><i class="fa fa-check"></i><b>9.2</b> Purpose</a></li>
+<li class="chapter" data-level="9.3" data-path="homing-behavior.html"><a href="homing-behavior.html#entities-state-variables-and-scales-7"><i class="fa fa-check"></i><b>9.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="homing-behavior.html"><a href="homing-behavior.html#patch-variables-7"><i class="fa fa-check"></i><b>9.3.1</b> Patch Variables</a></li>
+<li class="chapter" data-level="9.3.2" data-path="homing-behavior.html"><a href="homing-behavior.html#agent-variables-7"><i class="fa fa-check"></i><b>9.3.2</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="homing-behavior.html"><a href="homing-behavior.html#process-overview-and-scheduling-7"><i class="fa fa-check"></i><b>9.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="9.5" data-path="homing-behavior.html"><a href="homing-behavior.html#design-concepts-7"><i class="fa fa-check"></i><b>9.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="9.6" data-path="homing-behavior.html"><a href="homing-behavior.html#initialization-7"><i class="fa fa-check"></i><b>9.6</b> Initialization</a></li>
+<li class="chapter" data-level="9.7" data-path="homing-behavior.html"><a href="homing-behavior.html#submodels-7"><i class="fa fa-check"></i><b>9.7</b> Submodels</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="foraging-behavior.html"><a href="foraging-behavior.html"><i class="fa fa-check"></i><b>10</b> Foraging Behavior</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="foraging-behavior.html"><a href="foraging-behavior.html#overview-9"><i class="fa fa-check"></i><b>10.1</b> Overview</a></li>
+<li class="chapter" data-level="10.2" data-path="foraging-behavior.html"><a href="foraging-behavior.html#purpose-8"><i class="fa fa-check"></i><b>10.2</b> Purpose</a></li>
+<li class="chapter" data-level="10.3" data-path="foraging-behavior.html"><a href="foraging-behavior.html#entities-state-variables-and-scales-8"><i class="fa fa-check"></i><b>10.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="foraging-behavior.html"><a href="foraging-behavior.html#patch-variables-8"><i class="fa fa-check"></i><b>10.3.1</b> Patch Variables</a></li>
+<li class="chapter" data-level="10.3.2" data-path="foraging-behavior.html"><a href="foraging-behavior.html#agent-variables-8"><i class="fa fa-check"></i><b>10.3.2</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="foraging-behavior.html"><a href="foraging-behavior.html#process-overview-and-scheduling-8"><i class="fa fa-check"></i><b>10.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="10.5" data-path="foraging-behavior.html"><a href="foraging-behavior.html#design-concepts-8"><i class="fa fa-check"></i><b>10.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="10.6" data-path="foraging-behavior.html"><a href="foraging-behavior.html#initialization-8"><i class="fa fa-check"></i><b>10.6</b> Initialization</a></li>
+<li class="chapter" data-level="10.7" data-path="foraging-behavior.html"><a href="foraging-behavior.html#submodels-8"><i class="fa fa-check"></i><b>10.7</b> Submodels</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html"><i class="fa fa-check"></i><b>11</b> Predation and Fleeing Behavior</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#overview-10"><i class="fa fa-check"></i><b>11.1</b> Overview</a></li>
+<li class="chapter" data-level="11.2" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#purpose-9"><i class="fa fa-check"></i><b>11.2</b> Purpose</a></li>
+<li class="chapter" data-level="11.3" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#entities-state-variables-and-scales-9"><i class="fa fa-check"></i><b>11.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#patch-variables-9"><i class="fa fa-check"></i><b>11.3.1</b> Patch Variables</a></li>
+<li class="chapter" data-level="11.3.2" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#agent-variables-9"><i class="fa fa-check"></i><b>11.3.2</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#process-overview-and-scheduling-9"><i class="fa fa-check"></i><b>11.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="11.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#design-concepts-9"><i class="fa fa-check"></i><b>11.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="11.6" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#initialization-9"><i class="fa fa-check"></i><b>11.6</b> Initialization</a></li>
+<li class="chapter" data-level="11.7" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#submodels-9"><i class="fa fa-check"></i><b>11.7</b> Submodels</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="spawning-behavior.html"><a href="spawning-behavior.html"><i class="fa fa-check"></i><b>12</b> Spawning Behavior</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="spawning-behavior.html"><a href="spawning-behavior.html#overview-11"><i class="fa fa-check"></i><b>12.1</b> Overview</a></li>
+<li class="chapter" data-level="12.2" data-path="spawning-behavior.html"><a href="spawning-behavior.html#purpose-10"><i class="fa fa-check"></i><b>12.2</b> Purpose</a></li>
+<li class="chapter" data-level="12.3" data-path="spawning-behavior.html"><a href="spawning-behavior.html#entities-state-variables-and-scales-10"><i class="fa fa-check"></i><b>12.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="spawning-behavior.html"><a href="spawning-behavior.html#patch-variables-10"><i class="fa fa-check"></i><b>12.3.1</b> Patch Variables</a></li>
+<li class="chapter" data-level="12.3.2" data-path="spawning-behavior.html"><a href="spawning-behavior.html#agent-variables-10"><i class="fa fa-check"></i><b>12.3.2</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="spawning-behavior.html"><a href="spawning-behavior.html#process-overview-and-scheduling-10"><i class="fa fa-check"></i><b>12.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="12.5" data-path="spawning-behavior.html"><a href="spawning-behavior.html#design-concepts-10"><i class="fa fa-check"></i><b>12.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="12.6" data-path="spawning-behavior.html"><a href="spawning-behavior.html#initialization-10"><i class="fa fa-check"></i><b>12.6</b> Initialization</a></li>
+<li class="chapter" data-level="12.7" data-path="spawning-behavior.html"><a href="spawning-behavior.html#submodels-10"><i class="fa fa-check"></i><b>12.7</b> Submodels</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="model-building-tutorial-staging-schooling.html"><a href="model-building-tutorial-staging-schooling.html"><i class="fa fa-check"></i><b>13</b> Model Building Tutorial: Staging &amp; Schooling</a>
+<ul>
+<li class="chapter" data-level="13.0.1" data-path="model-building-tutorial-staging-schooling.html"><a href="model-building-tutorial-staging-schooling.html#module-integration"><i class="fa fa-check"></i><b>13.0.1</b> Module Integration</a></li>
+<li class="chapter" data-level="13.0.2" data-path="model-building-tutorial-staging-schooling.html"><a href="model-building-tutorial-staging-schooling.html#function-dependencies"><i class="fa fa-check"></i><b>13.0.2</b> <strong>Function Dependencies</strong></a></li>
+<li class="chapter" data-level="13.1" data-path="model-building-tutorial-staging-schooling.html"><a href="model-building-tutorial-staging-schooling.html#implementation-in-netlogo"><i class="fa fa-check"></i><b>13.1</b> Implementation in NetLogo:</a></li>
+<li class="chapter" data-level="13.2" data-path="model-building-tutorial-staging-schooling.html"><a href="model-building-tutorial-staging-schooling.html#implementation-in-r"><i class="fa fa-check"></i><b>13.2</b> Implementation in R:</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html"><a href="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html"><i class="fa fa-check"></i><b>14</b> Model Building Tutorial: Landward Migration &amp; Selective Tidal Stream Transport</a>
+<ul>
+<li class="chapter" data-level="14.0.1" data-path="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html"><a href="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html#module-integration-1"><i class="fa fa-check"></i><b>14.0.1</b> Module Integration</a></li>
+<li class="chapter" data-level="14.0.2" data-path="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html"><a href="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html#function-dependencies-1"><i class="fa fa-check"></i><b>14.0.2</b> <strong>Function Dependencies</strong></a></li>
+<li class="chapter" data-level="14.1" data-path="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html"><a href="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html#implementation-in-netlogo-1"><i class="fa fa-check"></i><b>14.1</b> Implementation in NetLogo:</a></li>
+<li class="chapter" data-level="14.2" data-path="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html"><a href="model-building-tutorial-landward-migration-selective-tidal-stream-transport.html#implementation-in-r-1"><i class="fa fa-check"></i><b>14.2</b> Implementation in R:</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="complex-model-building-tutorial-one-way-migration.html"><a href="complex-model-building-tutorial-one-way-migration.html"><i class="fa fa-check"></i><b>15</b> Complex Model Building Tutorial: One-Way Migration</a>
+<ul>
+<li class="chapter" data-level="15.0.1" data-path="complex-model-building-tutorial-one-way-migration.html"><a href="complex-model-building-tutorial-one-way-migration.html#module-integration-2"><i class="fa fa-check"></i><b>15.0.1</b> Module Integration</a></li>
+<li class="chapter" data-level="15.0.2" data-path="complex-model-building-tutorial-one-way-migration.html"><a href="complex-model-building-tutorial-one-way-migration.html#function-dependencies-2"><i class="fa fa-check"></i><b>15.0.2</b> <strong>Function Dependencies</strong></a></li>
+<li class="chapter" data-level="15.1" data-path="complex-model-building-tutorial-one-way-migration.html"><a href="complex-model-building-tutorial-one-way-migration.html#implementation-in-netlogo-2"><i class="fa fa-check"></i><b>15.1</b> Implementation in NetLogo:</a></li>
+<li class="chapter" data-level="15.2" data-path="complex-model-building-tutorial-one-way-migration.html"><a href="complex-model-building-tutorial-one-way-migration.html#implementation-in-r-2"><i class="fa fa-check"></i><b>15.2</b> Implementation in R:</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="modeling-toolkit.html"><a href="modeling-toolkit.html"><i class="fa fa-check"></i><b>16</b> Modeling Toolkit</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="modeling-toolkit.html"><a href="modeling-toolkit.html#learning-resources"><i class="fa fa-check"></i><b>16.1</b> Learning Resources</a></li>
+<li class="chapter" data-level="16.2" data-path="modeling-toolkit.html"><a href="modeling-toolkit.html#best-practices"><i class="fa fa-check"></i><b>16.2</b> Best Practices</a></li>
+<li class="chapter" data-level="16.3" data-path="modeling-toolkit.html"><a href="modeling-toolkit.html#code-repositories-examples"><i class="fa fa-check"></i><b>16.3</b> Code Repositories &amp; Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Agent-Based Modeling Function Library for Simulating Diadromous Fish Migration</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="osmoregulation-function" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Osmoregulation Function<a href="osmoregulation-function.html#osmoregulation-function" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="overview-1" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Overview<a href="osmoregulation-function.html#overview-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Osmoregulation allows migratory fish to maintain homeostasis by regulating internal ion concentrations in response to varying environmental salinities. This function simulates osmotic or ion-regulatory stress, chloride cell expression, and the metabolic energy cost of osmoregulation in a spatially explicit context.</p>
+</div>
+<div id="purpose" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Purpose<a href="osmoregulation-function.html#purpose" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To simulate stress response to salinity changes for migratory fish in coastal systems by regulating chloride cell density and allocating energy toward ion-regulatory processes.</p>
+</div>
+<div id="entities-state-variables-and-scales" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Entities, State Variables, and Scales<a href="osmoregulation-function.html#entities-state-variables-and-scales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="patch-variables" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Patch Variables<a href="osmoregulation-function.html#patch-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Variable Name</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Salinity</strong> <span class="math inline">\(S_{patch}\)</span></td>
+<td>The salt concentration of a given patch, derived from hydrodynamic model inputs.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="agent-variables" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Agent Variables<a href="osmoregulation-function.html#agent-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Variable Name</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>acclimated-salinity</strong> <span class="math inline">\(S_{agent}\)</span></td>
+<td>The salinity level the agent is currently acclimated to.</td>
+</tr>
+<tr>
+<td><strong>ionregulatory-stress</strong> <span class="math inline">\(I_{stress}\)</span></td>
+<td>The level of stress an agent experiences when regulating ion balance due to osmotic difference.</td>
+</tr>
+<tr>
+<td><strong>chloride-density-min</strong> <span class="math inline">\(C_{min}\)</span></td>
+<td>Minimum level of chloride cells, present even in low-stress conditions.</td>
+</tr>
+<tr>
+<td><strong>chloride-density-max</strong> <span class="math inline">\(C_{max}\)</span></td>
+<td>Maximum level of chloride cells at high stress.</td>
+</tr>
+<tr>
+<td><strong>chloride-cell-density</strong> <span class="math inline">\(C\)</span></td>
+<td>The current number of chloride cells expressed by the agent.</td>
+</tr>
+<tr>
+<td><strong>chloride-max-proliferation</strong> <span class="math inline">\(R_{proliferation}\)</span></td>
+<td>The max number of chloride cells that can be expressed per time step.</td>
+</tr>
+<tr>
+<td><strong>chloride-cells-this-tick</strong> <span class="math inline">\(C_{tick}\)</span></td>
+<td>The number of chloride cells created (or destroyed) in the current time step.</td>
+</tr>
+<tr>
+<td><strong>acclimation-rate</strong> <span class="math inline">\(\alpha\)</span></td>
+<td>The rate at which chloride cell density increases over time.</td>
+</tr>
+<tr>
+<td><strong>C-mid</strong> <span class="math inline">\(C_{mid}\)</span></td>
+<td>The chloride cell density at which stress buffering is 50% effective.</td>
+</tr>
+<tr>
+<td><strong>time-since-last-osmoregulation</strong> <span class="math inline">\(t_{osmo}\)</span></td>
+<td>The time elapsed since the last chloride cell regulation event.</td>
+</tr>
+<tr>
+<td><strong>Energy</strong> <span class="math inline">\(E_{agent}\)</span></td>
+<td>The agent’s total available energy for physiological functions.</td>
+</tr>
+<tr>
+<td><strong>E-osmo</strong> <span class="math inline">\(E_{osmo}\)</span></td>
+<td>Total energy used for ion regulation (osmoregulation).</td>
+</tr>
+<tr>
+<td><strong>E-base</strong> <span class="math inline">\(E_{base}\)</span></td>
+<td>The base energy cost per chloride cell.</td>
+</tr>
+<tr>
+<td><strong>E-creation</strong> <span class="math inline">\(E_{creation}\)</span></td>
+<td>The energy cost for producing new chloride cells.</td>
+</tr>
+<tr>
+<td><strong>metabolic-max</strong> <span class="math inline">\(Met_{max}\)</span></td>
+<td>Maximum metabolic cost for chloride cell creation.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="process-overview-and-scheduling" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Process Overview and Scheduling<a href="osmoregulation-function.html#process-overview-and-scheduling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Compute osmotic stress based on difference between <span class="math inline">\(S_{patch}\)</span> and <span class="math inline">\(S_{agent}\)</span>.</p></li>
+<li><p>Adjust chloride cell density depending on time since last osmoregulation.</p></li>
+<li><p>Compute energy cost of osmoregulation.</p></li>
+<li><p>Deduct energy expenditure from agent’s energy pool.</p></li>
+</ol>
+</div>
+<div id="design-concepts" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Design Concepts<a href="osmoregulation-function.html#design-concepts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Basic Principles:</strong> The model is based on principles of physiological ecology and osmoregulatory energetics in teleost and apterygian species. It draws from empirical findings (e.g., Allen et al., 2009; Little et al., 2023) and includes size scaling, stress buffering, and energy constraints. These principles are implemented at the submodel level (e.g., chloride proliferation, stress calculation) to simulate realistic physiological feedbacks to changes in environmental salinity.</p>
+<p><strong>Emergence:</strong> Ion-regulatory stress, chloride cell expression, and energy expenditure emerge from an agent’s interaction with temporally and spatially variable salinity environments. These patterns are not pre-specified but arise dynamically through adaptive physiological responses.</p>
+<p><strong>Adaptation</strong>: Agents respond to osmotic stress by adjusting chloride cell density, a trait that buffers stress. This process allows individuals to reduce internal-external salinity gradients and maintain ion homeostasis.</p>
+<p><strong>Objectives:</strong> Agents seek to support survival by reducing stress and avoiding excessive energy loss through regulating chloride cell expression.</p>
+<p><strong>Sensing</strong>: Agents sense local salinity (<span class="math inline">\(S_{patch}\)</span>) and compare it with their acclimated salinity (<span class="math inline">\(S_{agent}\)</span>). They also track their own energy state and time since last osmoregulation.</p>
+<p><strong>Stochasticity</strong>: Acclimation may vary with <span class="math inline">\(\alpha\)</span>, which can be drawn from a defined range per individual to reflect physiological variation across the population.</p>
+<p><strong>Observation:</strong> Outputs include <span class="math inline">\(I_{stress}\)</span>, <span class="math inline">\(C\)</span>, <span class="math inline">\(E_{osmo}\)</span>, and <span class="math inline">\(E_{agent}\)</span>, all tracked per individual and exportable for analysis or visualization.</p>
+</div>
+<div id="initialization" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Initialization<a href="osmoregulation-function.html#initialization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table style="width:99%;">
+<colgroup>
+<col width="10%" />
+<col width="20%" />
+<col width="68%" />
+</colgroup>
+<thead>
+<tr>
+<th align="center">Variable</th>
+<th align="center">Initialized Value</th>
+<th align="center">Justification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math inline">\(S_{patch}\)</span></td>
+<td align="center">user-defined for data input</td>
+<td align="center">This input can be user-defined realistic data values or known spatial data.</td>
+</tr>
+<tr>
+<td align="center"><span class="math inline">\(S_{agent}\)</span></td>
+<td align="center">35 (psu)</td>
+<td align="center">Assumes agents start acclimated to marine environment.</td>
+</tr>
+<tr>
+<td align="center"><span class="math inline">\(I_{stress}\)</span></td>
+<td align="center">1</td>
+<td align="center">Acclimated agents have minimal stress levels.</td>
+</tr>
+<tr>
+<td align="center"><span class="math inline">\(C\)</span></td>
+<td align="center">50%</td>
+<td align="center">Starts with partial cell density, allowing for regulation depending on environmental conditions.</td>
+</tr>
+<tr>
+<td align="center"><span class="math inline">\(C_{min}\)</span></td>
+<td align="center">10%</td>
+<td align="center">A baseline level of chloride cells is necessary for basic osmoregulatory functions.</td>
+</tr>
+<tr>
+<td align="center"><span class="math inline">\(C_{max}\)</span></td>
+<td align="center">100%</td>
+<td align="center">Agents can’t express more than 100% of cells.</td>
+</tr>
+<tr>
+<td align="center"><span class="math inline">\(\alpha\)</span></td>
+<td align="center">0.0017 - 0.002</td>
+<td align="center">Osmolarity stabilization from Figure 3. in (Allen et al., 2009).</td>
+</tr>
+<tr>
+<td align="center"><span class="math inline">\(C_{mid}\)</span></td>
+<td align="center">50%</td>
+<td align="center">When cells are 50% density, stress buffering is 50% effective (Allen et al., 2009).</td>
+</tr>
+<tr>
+<td align="center"><span class="math inline">\(E_{agent}\)</span></td>
+<td align="center">100%</td>
+<td align="center">Agent starts with limited energy before migration.</td>
+</tr>
+<tr>
+<td align="center"><span class="math inline">\(E_{base}\)</span></td>
+<td align="center"><p>Teleost (4%)</p>
+<p>Aptoerygian ()</p></td>
+<td align="center">Based on the <strong>branchial cost</strong> (Little et al., 2023; Kirschner, 1993).</td>
+</tr>
+<tr>
+<td align="center"><span class="math inline">\(Met_{max}\)</span></td>
+<td align="center">Teleost (3.5%)</td>
+<td align="center">Based on the intestinal and renal cost &amp; size of agent (Little et al., 2023; Kirschner, 1993).</td>
+</tr>
+<tr>
+<td align="center"><span class="math inline">\(k\)</span></td>
+<td align="center">-0.75</td>
+<td align="center">Scaling component for body mass is negative (Kirschner, 1993) and follows Kleiber’s Law.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="submodels" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Submodels<a href="osmoregulation-function.html#submodels" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="osmotic-stress" class="section level3 hasAnchor" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> Osmotic Stress<a href="osmoregulation-function.html#osmotic-stress" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ion-regulatory stress (<span class="math inline">\(I_{stress}\)</span>) is calculated based on the difference between an agent’s acclimated salinity and the ambient patch salinity, adjusted by the chloride cell buffering effect:</p>
+<p><span class="math display">\[
+I_{stress} = \frac{\log_{10}(1 + |S_{agent} - S_{patch}|) \cdot 10}{1 + e^{-2 \cdot (C / C_{mid})}}
+\]</span></p>
+<p>Stress is capped within the range [1, 10], and may be reduced slightly over time if salinity remains stable and chloride density is sufficient:</p>
+<p><span class="math display">\[
+I_{stress} = I_{stress} \cdot 0.98 \quad \text{if conditions are stable and } C &gt; C_{min}
+\]</span></p>
+<p>Agents also slowly shift their acclimated salinity toward ambient salinity when conditions have been stable for several time steps:</p>
+<p><span class="math display">\[
+S_{agent} = S_{agent} + (S_{patch} - S_{agent}) \cdot 0.02
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(I_{stress}\)</span> is ion-regulatory (osmotic) stress, scaled between 1 and 10.</li>
+<li><span class="math inline">\(S_{agent}\)</span> is the agent’s acclimated salinity.</li>
+<li><span class="math inline">\(S_{patch}\)</span> is the environmental salinity at the current patch.</li>
+<li><span class="math inline">\(C\)</span> is the chloride cell density (percent of maximum).</li>
+<li><span class="math inline">\(C_{mid}\)</span> is the density at which buffering is 50% effective.</li>
+</ul>
+</div>
+<div id="chloride-cell-density" class="section level3 hasAnchor" number="2.7.2">
+<h3><span class="header-section-number">2.7.2</span> Chloride Cell Density<a href="osmoregulation-function.html#chloride-cell-density" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Chloride cell proliferation is driven by the level of ion-regulatory stress the agent experiences when encountering a difference in salinity. The greater the stress, the higher the target chloride density the agent attempts to reach, up to a maximum threshold. Agents adjust their chloride cell density based on their current ion-regulatory stress and acclimation status. Chloride cells are not adjusted unless the agent’s energy exceeds 25%.</p>
+<p>The chloride cell density is based on stress:</p>
+<p><span class="math display">\[
+C_{target} = C_{min} + (C_{max} - C_{min}) \cdot \left(\frac{I_{stress}}{10}\right)
+\]</span></p>
+<p>If salinity conditions have remained stable for an extended period (e.g., 288 ticks), \(C_{target}\) is slightly reduced to reflect partial downregulation of chloride cells due to long-term acclimation:</p>
+<p><span class="math display">\[
+C_{target} = C_{target} \cdot 0.99 \quad \text{if stable}
+\]</span></p>
+<p>Chloride cell density then approaches the target using a double-rate adjustment and capped maximum rate of change:</p>
+<p><span class="math display">\[
+\Delta C = \left(C_{target} - C_{current}\right) \cdot \left(2 \cdot R_{proliferation}\right)
+\]</span></p>
+<p><span class="math display">\[
+\Delta C = \max\left(-R_{max}, \min(R_{max}, \Delta C)\right)
+\]</span></p>
+<p>If the agent has low energy (<span class="math inline">\(\leq 50\%\)</span>), the adjustment rate is halved:</p>
+<p><span class="math display">\[
+\Delta C = \Delta C \cdot 0.5 \quad \text{if energy is low}
+\]</span></p>
+<p>Finally, the chloride cell density is updated and constrained between <span class="math inline">\(C_{min}\)</span> and <span class="math inline">\(C_{max}\)</span>:</p>
+<p><span class="math display">\[
+C_{new} = \max(C_{min}, \min(C_{max}, C_{current} + \Delta C))
+\]</span></p>
+<p>This ensures that the agent does not overshoot the physiologically realistic limit of chloride cell density, while still responding to osmotic stress.</p>
+<p>Chloride density is only recalculated after a given acclimation interval:</p>
+<p><span class="math display">\[
+t_{osmo} \geq \alpha^{-1}
+\]</span></p>
+<p>After updating, the acclimation timer is reset:</p>
+<p><span class="math display">\[
+t_{osmo} = 0
+\]</span></p>
+<p>This prevents agents from recalculating chloride density every time step and allows for controlled, realistic responses to prolonged stress and salinity changes.</p>
+<div id="where" class="section level4 unnumbered hasAnchor">
+<h4>Where:<a href="osmoregulation-function.html#where" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><span class="math inline">\(I_{stress}\)</span> is the ion-regulatory stress, scaled from 1 to 10.</li>
+<li><span class="math inline">\(C_{target}\)</span> is the desired chloride cell density based on stress level.</li>
+<li><span class="math inline">\(C_{min}\)</span> and <span class="math inline">\(C_{max}\)</span> are the bounds for chloride cell density.</li>
+<li><span class="math inline">\(R_{proliferation}\)</span> determines the <strong>maximum allowable increase</strong> per time step.</li>
+<li><span class="math inline">\(\Delta C\)</span> is the rate of change in chloride cell expression.</li>
+<li><span class="math inline">\(R_{max} = (C_{max} - C_{min}) \cdot R_{proliferation}\)</span></li>
+<li><span class="math inline">\(C_{new}\)</span> is the percent of new chloride cell expression.</li>
+<li><span class="math inline">\(\alpha\)</span> is the acclimation rate constant.</li>
+<li><span class="math inline">\(t_{osmo}\)</span> represents time since the last osmoregulation event.</li>
+</ul>
+</div>
+</div>
+<div id="osmoregulation-energy" class="section level3 unnumbered hasAnchor">
+<h3>Osmoregulation Energy<a href="osmoregulation-function.html#osmoregulation-energy" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Metabolic cost related to size:</p>
+<p><span class="math display">\[
+E_{creation} = Met_{max} * (\frac{M}{M_{max}})^k
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><p><span class="math inline">\(E_{creation}\)</span> is the energy cost of chloride cell creation</p></li>
+<li><p><span class="math inline">\(Met_{max}\)</span> is the maximum metabolic cost of the agent</p></li>
+<li><p><span class="math inline">\(M\)</span> is equal to the agent’s size, where smaller fish spend proportionally more energy on osmoregulation (Little et al., 2023)</p></li>
+<li><p><span class="math inline">\(M_{max}\)</span> is the maximum mass of an agent within the population</p></li>
+<li><p><span class="math inline">\(k\)</span> follows size-dependent variation in energy allocation, consistent with a negative scaling exponent.</p></li>
+</ul>
+<p>Energy required for ion regulation:</p>
+<p><span class="math display">\[
+E_{osmo} = (E_{base} \cdot C) + (E_{creation} \cdot C_{tick})
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><p><span class="math inline">\(E_{base}\)</span> represents the energy cost per chloride cell for maintenance.</p></li>
+<li><p><span class="math inline">\(C\)</span> is the current chloride density.</p></li>
+<li><p><span class="math inline">\(E_{creation}\)</span> represents the cost of producing new chloride cells.</p></li>
+<li><p><span class="math inline">\(C_{tick}\)</span> is the number of newly created chloride cells in the current time step.</p></li>
+</ul>
+</div>
+<div id="energy-balance" class="section level3 hasAnchor" number="2.7.3">
+<h3><span class="header-section-number">2.7.3</span> Energy Balance<a href="osmoregulation-function.html#energy-balance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Agents balance energy to osmoregulate with total energy allowance:</p>
+<p><span class="math display">\[
+E_{agent} = E_{agent} - E_{osmo}
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><p><span class="math inline">\(E_{agent}\)</span> is the total energy of the agent.</p></li>
+<li><p><span class="math inline">\(E_{osmo}\)</span> is the energy consumed during osmoregulation.</p></li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="overview.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mercury-contamination-bioaccumulation-function.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-Osmoregulation_Function.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
