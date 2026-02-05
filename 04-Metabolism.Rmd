@@ -33,7 +33,7 @@ across physiological processes.
 ### Global Variables
 
 | Global Variable | Definition |
-|-----------------|------------|
+|------------------------------------------|------------------------------|
 | **Q10** | Temperature coefficient used for metabolic scaling. |
 | **base-constant** | Global constant for baseline metabolic scaling (0.1). |
 | **age-sensitivity** | Scalar controlling how metabolism changes with age (0.5). |
@@ -144,7 +144,8 @@ Where:
 
 ### Energy Partitions
 
-Baseline energy partitions are computed from the initialized metabolic base:
+Baseline energy partitions are computed from the initialized metabolic
+base:
 
 $$
 \text{swim-base} = \text{Met-base} \cdot \text{motion-ratio}
@@ -158,10 +159,10 @@ $$
 E_{\text{creation}} = \text{Met-base} \cdot 0.05
 $$
 
-
 ### Metabolic Rate Calculation
 
-At each tick, metabolism is recalculated using allometric, temperature, and age scaling:
+At each tick, metabolism is recalculated using allometric, temperature,
+and age scaling:
 
 $$
 \text{size-factor} = \left(\frac{\text{weight}}{\text{M-max}}\right)^{0.75}
@@ -190,14 +191,13 @@ $$
 \text{total-metabolism} = \text{total-metabolism} + M_{\text{total}}
 $$
 
-
 ### Efficiency Multipliers
 
 A baseline metabolic reference is defined using:
 
-- baseline size-factor = 1  
-- baseline age-factor = 1.5  
-- baseline temp-factor = 1  
+-   baseline size-factor = 1\
+-   baseline age-factor = 1.5\
+-   baseline temp-factor = 1
 
 Thus:
 
@@ -215,11 +215,12 @@ $$
 
 This value is applied to:
 
-- **swim-efficiency**  
-- **osmoregulation-efficiency**  
-- **lipid-catabolism-efficiency**
+-   **swim-efficiency**\
+-   **osmoregulation-efficiency**\
+-   **lipid-catabolism-efficiency**
 
-Efficiency dynamically scales the cost of movement, ion regulation, and lipid catabolism.
+Efficiency dynamically scales the cost of movement, ion regulation, and
+lipid catabolism.
 
 ## Netlogo Implementation
 
@@ -358,4 +359,3 @@ to calculate-metabolism
 end
 
 ```
-

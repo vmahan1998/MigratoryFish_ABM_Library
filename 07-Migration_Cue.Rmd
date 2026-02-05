@@ -147,7 +147,7 @@ Key outputs: cue day activation, probability trajectories, proportion of migrant
 ## Initialization
 
 | Variable | Initial Value | Justification |
-|-------------------|----------------------------|--------------------------|
+|-------------------|---------------------------|--------------------------|
 | **cue-days** | Extracted from CSV | Based on empirical environmental data |
 | **migration-probability** | 0 | Ensures probability is accumulated only within cue window |
 | **migration-trigger?** | false | No cue until ΔT and ΔL decline |
@@ -168,17 +168,39 @@ The preprocessing script:
 2.  Applies smoothing
 3.  Flags coincident declines
 
-## 2. Alewife Migration Probability
+## 2. Activation of Migration Cue
 
-$$
-migration\_probability_{t+1}
-= migration\_probability_t +
-\left(0.00001 + U(0, 0.00004)\right)
-$$
+At each simulation day, the model checks whether the current day-of-year corresponds to a predefined cue day. If true, the migration cue is activated:
 
-$$
-migration\_probability \le 1
-$$
+$$ cue\text{-}active? = \text{true} $$
+
+$$ migration\text{-}trigger? = \text{true} $$
+
+This marks the onset of migration preparedness for all agents.
+
+## 3. Accumulation of Migration Probability
+
+For each agent with an active migration trigger, migration probability increases stochastically each tick:
+
+$$ migration\_probability_{t+1} = migration\_probability_t + \left(0.00001 + U(0, 0.00004)\right) $$
+
+Migration probability is capped at:
+
+$$ migration\_probability \le 1 $$
+
+This formulation produces gradual increase into migration and individual variation in migration timing.
+
+## 4. Initiate Migration
+
+An agent initiates migration when its migration probability exceeds a stochastic threshold:
+
+$$ random\text{-}float(1) < migration\_probability $$
+
+When this condition is met:
+
+$$ start\text{-}migration? = \text{true} $$
+
+The agent transitions from staging behavior to directed migratory movem
 
 ## Netlogo Implementation
 

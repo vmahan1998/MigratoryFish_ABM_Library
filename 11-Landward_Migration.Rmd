@@ -175,7 +175,7 @@ Movement follows:
 2.  generate a path using decreasing cost\
 3.  move through the first $\lceil \text{travel_distance} \rceil$ patches\
 4.  record patch visits and time spent\
-5.  append patch-here to the trail if new
+5.  append patch-here to the trail if new location
 
 ### Travel Cost
 

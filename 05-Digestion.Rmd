@@ -18,19 +18,19 @@ To simulate how migratory fish process ingested prey into energy and contaminant
 ### Global Variables
 
 | Global Variable | Definition |
-|-----------------|------------|
+|----|----|
 | **none required** | Digestion uses internal agent state + metabolism-rate from metabolism submodel. |
 
 ### Patch Variables
 
 | Variable Name | Definition |
-|----------------------------------------|--------------------------------|
+|----|----|
 | None required | Digestion is an internal physiological process and does not depend on patch attributes. |
 
 ### Agent Variables
 
 | Variable Name | Definition |
-|----------------------------------------|--------------------------------|
+|----|----|
 | **stomach-contents** | Total mass of prey currently held in the stomach. |
 | **stomach-contents-Hg** | Inorganic mercury contained within the stomach contents. |
 | **stomach-contents-MeHg** | Methylmercury contained within the stomach contents. |
@@ -86,7 +86,7 @@ Outputs of interest include digested mass per tick, gained energy, contaminant u
 ## Initialization
 
 | Variable | Initialized Value | Justification |
-|:----------------:|:----------------------------:|:----------------------:|
+|:--:|:--:|:--:|
 | stomach-contents | 0 | Agents begin without prey unless defined by scenario. |
 | stomach-contents-Hg | 0 | No initial inorganic mercury from digestion. |
 | stomach-contents-MeHg | 0 | No initial methylmercury from digestion. |
@@ -283,4 +283,3 @@ to digest
   ]
 end
 ```
-
