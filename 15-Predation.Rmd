@@ -1,32 +1,22 @@
 # Predation and Fleeing Behavior
 
-```{=html}
-<div style="color: red; font-style: italic; font-size: 1.1em; margin-bottom: 1.5em;">
-This document is under active development.
-</div
-```
-
 ## Overview
 
-This module simulates predator–prey interactions between migratory fish species, specifically predators (i.e., striped bass) and prey (i.e., alewife), during key migratory and staging periods. Predators detect, pursue, and consume prey based on visibility conditions and prey size constraints. Prey detect approaching predators through visual and social cues and respond with directional fleeing behaviors, which vary based on their size, age, energy level, and water clarity. These behaviors reflect biologically observed trade-offs between escape speed, reaction time, and group-based vigilance. The model also tracks predator energy gain and prey energy depletion and recovery, allowing for analysis of individual fitness and risk exposure under different environmental and behavioral conditions.
+This module simulates predator–prey interactions between striped bass (predators) and alewife (prey) during migratory and staging periods. Predators visually detect nearby prey, initiate chase behavior when energetically feasible, and consume prey when within capture range. Prey respond to nearby predators with directional fleeing behavior, and fleeing can propagate across nearby prey through a patch level alarm mechanism. The model tracks energetic costs of pursuit and escape, prey consumption events, and resulting spatial patterns of predation risk.
 
 ## Purpose and Patterns
 
-This submodel captures ecologically grounded predator–prey dynamics by simulating behaviorally realistic rules of pursuit and evasion observed in estuarine fishes.
+This submodel captures behaviorally realistic predator–prey dynamics relevant to estuarine migration and staging.
 
--   Prey initiate fleeing based on predator proximity, visual detection, and turbidity-adjusted reaction time, reflecting sensory limitations in murky estuarine water.
+-   Prey initiate fleeing when striped bass are within a defined visual neighborhood and prey have sufficient energy to respond.
 
--   Predators only pursue prey that are within their gape limit and provide a favorable energy return, consistent with optimal foraging theory and size-selective predation.
+-   Predators initiate pursuit when prey are visible and the predator is not constrained by energetic state or stomach capacity.
 
--   Fleeing speed is scaled by energy and body size, capturing the biologically observed trade-off between fatigue and escape performance.
+-   Fleeing behavior changes prey movement mode and overrides normal migration movement.
 
--   Directional fleeing (left, right, up, or down) is based on the predator's relative position, aligning with empirical studies on spatial escape responses.
+-   Predation events occur when predators and prey co locate within a capture neighborhood and prey meet gape constraints.
 
--   Patch-level alarm cues propagate fleeing behavior across prey groups, mimicking the benefits of schooling and collective vigilance in fish.
-
--   Energetic constraints influence both predator foraging frequency and prey escape success, contributing to variability in encounter outcomes.
-
--   Spatial tracking of predation events allows identification of high-risk zones, offering insight into how environmental conditions shape survival landscapes.
+-   Predation risk hotspots emerge from the overlap of predator movement, prey distribution, and hydrodynamic movement constraints.
 
 ## Entities, State Variables, and Scales
 
@@ -38,116 +28,97 @@ This submodel captures ecologically grounded predator–prey dynamics by simulat
 ### Patch Variables
 
 | Variable Name | Definition |
-|------------------------------------|------------------------------------|
-| **Suspended-particulate-matter** $SPM_{t}$ | Level of suspended material in patch (exponential difficulty increase between min and max observed in system) worse vision at max, best vision at min |
-| **Prey-Eaten-in-Patch** | Counts how much prey are consumed in a patch |
-| **Prey-in-Patch** $prey-in-patch_{t}$ | The amount of prey currently in the patch |
-| **prey-alarmed?** | Boolean variable set to true if any prey in the patch initiates fleeing behavior, triggering collective escape. |
+|----|----|
+| `patch-terrain` | Patch classification used to restrict movement to water patches. |
+| `prey-eaten-in-patch` | Count of prey consumed in a patch. |
+| `visits-by-alewife` | Cumulative count of prey patch visits, used for exposure and space use summaries. |
+| `ticks-spent-alewife` | Cumulative time spent by prey on a patch. |
 
 ### Prey: Agent Variables
 
 | Variable Name | Definition |
-|------------------------------------|------------------------------------|
-| vision | Radius (in patches) within which the prey can detect predators. Decreases with high SPM. |
-| fleeing? | Boolean indicator of whether the prey is actively escaping from a predator. |
-| energy | Energy levels of an agent |
-| swimming speed | The speed at which a prey agent is moving |
-| max-speed | Maximum normal swim speed (not in a flee state). |
-| max-flee | Maximum achievable fleeing speed, calculated as a function of max-speed, swimming-speed, size, and max-rate-of-speed-change. |
-| reaction-time | Time delay in response to predator presence. Increases with smaller size, higher SPM, larger/faster predators, and lower flee-ability. |
-| size | Body length (size) of the prey; influences visibility and escape ability. |
-| age | Agent's age class; mid-range age groups tend to have better escape success (a normal distribution across age classes). |
-| flee-ability | Learning metric based on age; moderate-aged fish have best reflexes and performance. |
+|----|----|
+| `fleeing?` | Boolean indicator of whether the prey is actively fleeing. |
+| `energy` | Energetic state used to determine whether prey can flee and to regulate behavior switching. |
+| `speed` | Current movement speed used in the swim procedure. |
+| `max-speed` | Maximum sustained swim speed. |
+| `vision-distance` | Detection or interaction distance used in predator encounter checks. |
+| `planned-path` | Stored movement path used during fleeing movement. |
+| `trail` | List of visited patches retained for optional visualization. |
+| `previous-patch`, `previous-x`, `previous-y` | Tracking variables supporting movement diagnostics and behavior switching. |
 
 ### Predator: Agent Variables
 
 | Variable Name | Definition |
-|------------------------------------|------------------------------------|
-| vision | Radius (in patches) within which predator can visually detect prey. Decreases with high SPM or low prey size. |
-| swimming-speed | The speed at which a predator agent is moving |
-| max-speed | Maximum normal swim speed (not in a burst state). |
-| bursting? | Boolean indicating whether the predator is currently in a high-speed chase or attack behavior. |
-| prey-in-vision | Agentset of prey within vision range |
-| daytime-prey-eaten | Count of prey eaten that day |
-| time-since-full | Time since last feeding (when will predator be hungry again?) |
-| reaction-time | Delay between prey detection and initiation of chase. Influenced by predator size/age, prey density, prey speed, water clarity (SPM), and predation ability. |
-| limit-daily-prey-allowance | Max prey allowed per day (predator becomes full) |
-| gape-limit | Maximum size of prey the predator can successfully capture and ingest. |
-| handling-effort | Time and energy cost required to subdue and consume a prey item. Depends on distance, prey size, and prey density. Used in patch and prey selection decisions. |
-| size | Body length (size) of the prey; influences visibility and escape ability. |
-| age | Age class of the predator agent. Predation success follows a normal distribution across age classes. |
-| predation-ability | Agent's age class; mid-range age groups tend to have better predation success (a normal distribution across age classes). |
-| prey-species-eaten | Species identifiers of consumed prey; enables diet tracking and multispecies modeling. |
-| total-prey-eaten | Cumulative prey consumed across all days or scenarios. |
-| digestion-time | Time it takes to digest prey |
+|----|----|
+| `vision-distance` | Radius within which prey are considered visible to the predator. |
+| `prey-in-vision` | Agentset of visible prey within the predator’s vision radius. |
+| `hunting?` | Boolean indicator of whether the predator is actively pursuing prey. |
+| `bursting?` | Boolean indicator of whether the predator is in burst speed mode. |
+| `speed` | Predator movement speed, which can increase during bursting. |
+| `max-speed` | Maximum predator speed used during chase. |
+| `stomach-contents` | Current stomach contents used to limit feeding and trigger foraging and lipid use when empty. |
+| `stomach-capacity` | Maximum stomach capacity. |
+| `gape-size` | Predator gape size used as a constraint on edible prey. |
+| `daytime-prey-eaten` | Daily counter of prey eaten. |
+| `total-prey-eaten` | Cumulative prey eaten (tracked via counters). |
+| `prey-eaten-in-patch` | Patch level counter incremented during predation. |
+| `E-swim` | Swimming energy cost computed during movement. |
+| `difficulty-factor` | Hydrodynamic movement difficulty used to scale energetic cost of movement. |
+| `swim-efficiency` | Efficiency factor used to scale energetic cost of movement. |
 
 ## Process Overview and Scheduling
 
 ### Prey Behavior (per agent)
 
-1.  **Fleeing Trigger**\
-    Each prey evaluates whether a predator is in its visual cone or whether `prey-alarmed? = true` in the patch. If so, the prey calculates reaction time based on its own size, age, flee-ability, local SPM, and the predator’s size and speed.
+1.  During `swim`, if `fleeing?` is false, prey execute normal migration movement and pay swimming energetic costs.
 
-2.  **Directional Escape**\
-    If the reaction time threshold is met, the prey executes a directional fleeing behavior (`scare-left`, `scare-right`, `scare-down`, or `scare-up`), and sets the patch to `prey-alarmed? = true`.
+2.  If `fleeing?` is true, prey execute `flee-stripedbass`, which overrides normal migration movement and moves prey through a short random evasive path over water patches.
 
-3.  **Schooling Response**\
-    All other prey in the same patch automatically begin fleeing when `prey-alarmed? = true`, simulating social alarm propagation.
-
-4.  **Speed and Energy Update**\
-    If the agent is fleeing, its speed increases toward `max-flee`, and energy is reduced based on movement cost. If not fleeing, the agent moves normally and may recover energy depending on its resting status.
+3.  Prey stop fleeing when no striped bass are detected within the configured encounter range or when prey energy is depleted.
 
 ### Predator Behavior (per agent)
 
-1.  **Visual Detection**\
-    The predator identifies prey within its in-cone vision, adjusted based on local SPM concentration, prey size, and predator size.
+1.  During active movement periods, predators define `prey-in-vision` as prey within `vision-distance`.
 
-2.  **Prey Filtering**\
-    Prey that exceed the predator’s gape limit or whose handling effort exceeds the predator’s available energy are excluded.
+2.  If stomach contents are empty, predators enter foraging mode and may activate lipid loss depending on the broader energy logic.
 
-3.  **Prey Selection**\
-    Among remaining prey, the predator evaluates candidates using an optimal foraging approach that considers size, handling effort, and net energy gain. One prey is selected.
+3.  If any prey are in vision, predators set `hunting?` to true, chase prey, and attempt capture.
 
-4.  **Pursuit Decision**\
-    If a prey is selected, the predator enters a bursting state, increasing its speed toward max-speed. Reaction time is computed based on predator age, size, SPM, and prey proximity.
+4.  Predators adjust speed during pursuit, trigger prey fleeing behaviors, and consume prey when capture criteria are met.
 
-5.  **Scare Prey**\
-    The predator triggers fleeing in visible prey by calling the `scare-prey` procedure. If any prey flees, the patch is flagged as `prey-alarmed? = true`.
-
-6.  **Consume Prey**\
-    If within striking range, the predator consumes the prey and updates variables: `daytime-prey-eaten`, `prey-species-eaten`, `total-prey-eaten`, and `Prey-Eaten-in-Patch`.
-
-7.  **Digestion**\
-    If no prey are eaten, `time-since-eaten` increases. If the predator has reached its daily feeding limit, it enters a digestive phase. Digestion ends when both `time-since-eaten` and `time-since-full` exceed the digestion time
+5.  Predation updates predator stomach contents, prey counters, and patch level consumption counters.
 
 ## Design Concepts
 
-**Basic Principles:** Simulates predator and prey interactions in a spatial estuarine system. Behaviors such as chasing, fleeing, and feeding are determined by individual traits, patch conditions, and environmental clarity due to suspended particulate matter.
+**Basic Principles:**\
+Predator–prey interactions are modeled through local visual proximity rules, directional chase and escape behaviors, and energetic constraints mediated through stomach fullness and swimming costs.
 
-**Emergence:** Predation hotspots develop in areas with higher prey density and better visibility. Prey movement and group alarm responses create shifting patterns of refuge and risk across the landscape.
+**Emergence:**\
+Spatial predation patterns emerge from coupled movement processes, including prey migration routes, predator search behavior, and the temporary displacement of prey caused by fleeing responses.
 
-**Adaptation**: Prey modify their direction and intensity of escape based on the predator’s location and their own size, age, and escape ability. Predators filter out prey that are too large to consume and shift to resting behavior after reaching their feeding limit.
+**Adaptation:**\
+Prey adaptively switch from migration movement to fleeing movement when predators are nearby. Predators adaptively switch between hunting and wandering depending on prey availability and stomach state.
 
-**Objectives:** Predators aim to select prey that provide the highest net energy gain while minimizing pursuit and handling costs. Prey aim to avoid detection or flee successfully using both individual detection and social alarm cues.
+**Objectives:**\
+Predators maximize energetic intake by capturing prey when available while managing energetic costs of pursuit. Prey minimize predation risk by fleeing when threatened, balanced against energetic limitations.
 
-**Learning:** Learning is represented through Mid-aged agents generally perform better than very young or very old individuals.
+**Sensing:**\
+Predators and prey sense one another through neighborhood or cone based proximity checks using `vision-distance`. Prey fleeing is triggered by local predator presence.
 
-**Prediction:**
+**Stochasticity:**\
+Stochasticity arises through random turning and patch selection during fleeing movement and through prey selection during capture attempts.
 
-**Sensing**: Agents rely on in-radius and in-cone vision to detect others. Detection range is influenced by water clarity, body size, and prey movement. Predators exclude prey that are too large to handle even if they fall within the visible field.
+**Collectives:**\
+Collective dynamics are represented indirectly through the simultaneous triggering of fleeing across multiple prey within the predator’s encounter neighborhood.
 
-**Interaction**: Predators and prey interact through visual detection, spatial proximity, and energy transfer through feeding. Social interactions occur through alarm cue propagation at the patch level and school level.
-
-**Stochasticity**: Prey selection, fleeing direction, and reaction timing include probabilistic variation. Randomness is used to reflect natural variability in movement and perception.
-
-**Collectives:** When one prey detects a predator and flees, all prey in the same patch respond. This collective behavior improves predator detection and increases the likelihood of survival through schooling.
-
-**Observation:** Key outputs include prey consumption, alarm responses, spatial predation distribution, and energy use of individual agents.
+**Observation:**\
+Key outputs include prey consumption rates, prey and predator energetic trajectories, and the spatial distribution of predation events (`prey-eaten-in-patch`).
 
 ## Initialization
 
 | Variable | Initialized Value | Justification |
-|:----------------------:|:----------------------:|:----------------------:|
+|:--:|:--:|:--:|
 | **energy** | 100 | Prey begin fully energized to allow immediate fleeing or normal movement |
 | **fleeing?** | false | Prey are not actively escaping at the start |
 | **prey-alarmed?** | false | Alarm cue inactive at start of simulation |
@@ -162,156 +133,283 @@ This submodel captures ecologically grounded predator–prey dynamics by simulat
 
 ## Submodels
 
-### Prey Detection Probability
+### Prey Fleeing Trigger and Directional Response
 
-Visual detection of prey by predators is scaled by local water clarity, prey size, and prey movement. The effective detection radius decreases as SPM increases and increases as prey size increases.
-
-$$
-P_{detect} = \left( \frac{S_{prey}}{S_{max}} \right) \cdot e^{-SPM_t / \tau}
-$$
-
-Where:
-
--   $P_{detect}$ is the probability of detecting a prey agent.
-
--   $S_{prey}$ is the size of the prey agent.
-
--   $S_{max}$ is the maximum size of any prey in the system.
-
--   $SPM_t$ is the suspended particulate matter concentration in the current patch.
-
--   $\tau$ is a turbidity scaling constant.
-
-Biological Justification: Larger prey are more visible, but high turbidity (SPM) reduces contrast and visual range. The exponential function reflects rapid degradation of visibility with increased turbidity.
-
-### Reaction Time
-
-Reaction time determines how quickly an agent initiates a behavior in response to a threat (for prey) or opportunity (for predators). It is influenced by SPM, size, age, and ability.
+Prey enter a fleeing state when a striped bass is detected within a cone-based encounter neighborhood and prey energy is positive:
 
 $$
-RT_{agent} = \left( \frac{1}{F_{ability}} \cdot \frac{S_{opp}}{S_{agent}} \right) \cdot (1 + \alpha \cdot SPM_t)
+\exists \; predator \in \mathcal{C}_{prey}(r,\theta)\;\; \land \;\; energy > 0 \;\;\Rightarrow\;\; fleeing? = \text{true}
+$$
+
+Prey exit fleeing when no striped bass are detected within the encounter neighborhood or when energy is depleted:
+
+$$
+\neg \exists \; predator \in \mathcal{C}_{prey}(r,\theta)\;\; \lor \;\; energy \le 0 \;\;\Rightarrow\;\; fleeing? = \text{false}
+$$
+
+Directional escape is implemented by assigning heading based on predator relative position, corresponding to the `scare-prey` control flow:
+
+$$
+\psi_{t+1} =
+\begin{cases}
+\psi_t + 90^\circ  & \text{(scare-right)}\\
+\psi_t - 90^\circ  & \text{(scare-left)}\\
+\psi_t + 180^\circ & \text{(scare-down)}\\
+\psi_t + 0^\circ   & \text{(scare-up)}
+\end{cases}
 $$
 
 Where:
 
--   $RT_{agent}$ is the reaction time of the prey or predator.
+-   $\mathcal{C}_{prey}(r,\theta)$ is the prey encounter cone with radius $r = vision\text{-}distance$ and cone angle $\theta$ (implemented as `in-cone vision-distance 180`).
+-   $energy$ is prey energetic state.
+-   $fleeing?$ is the prey flee state.
+-   $\psi$ is prey heading in degrees.
 
--   $F_{ability}$ is flee-ability (for prey) or predation-ability (for predators).
+### Prey Fleeing Movement and Energetic Cost
 
--   $S_{opp}$ is the size of the opposing agent (predator or prey).
-
--   $S_{agent}$ is the size of the focal agent.
-
--   $SPM_t$ is the suspended particulate matter in the patch.
-
--   $\alpha$ is the turbidity penalty factor.
-
-Biological Justification: Smaller or younger fish tend to react slower. High turbidity delays response time. Age-related ability improves reaction time in middle-aged agents.
-
-### Alarm Response Propagation
+When fleeing, prey move at maximum speed:
 
 $$
-P_{alarm} = 1 - e^{\frac{-n_{flex}}{k}}
+speed_t = max\text{-}speed
 $$
 
-Where:
-
--   $P_{alarm}$ is the probability that non-detecting prey will flee.
-
--   $n_{flee}$ is the number of fleeing fish in the patch.
-
--   $\kappa$ is a sensitivity constant governing social responsiveness.
-
-**Biological Justification:** Prey benefit from collective vigilance. The more individuals that flee in a patch, the more likely others will follow.
-
-### Fleeing Speed
-
-The maximum speed a prey agent can reach when fleeing is scaled by body size, energy, and physical acceleration limits.
+Travel distance per tick is computed from current speed (with the model’s internal conversion):
 
 $$
-V_{flee} = V_{max} \cdot \left( \frac{E_{agent}}{100} \right) + \delta \cdot S_{agent}
+d_t = \frac{speed_t}{3}
 $$
 
-Where:
-
--   $V_{flee}$ is the maximum fleeing speed.
-
--   $V_{max}$ is the prey’s maximum speed.
-
--   $E_{agent}$ is the energy level of the prey agent.
-
--   $S_{agent}$ is the size of the prey.
-
--   $\delta$ is a scaling factor for size-based speed increase.
-
-Biological Justification: Larger prey generally swim faster, but energy limits how much of that speed can be used. Exhausted fish flee more slowly.
-
-### Catch Effort
-
-Predators calculate the cost of pursuing and consuming prey using the prey’s size and density, and the distance to the target.
+A small random turn is applied:
 
 $$
-H_{effort} = \gamma \cdot S_{prey} \cdot D_{patch} \cdot \left(1 + \frac{1}{\rho_{patch}} \right)
+\psi_{t+1} = \psi_t + \varepsilon,\;\;\; \varepsilon \sim U(-15^\circ, 15^\circ)
 $$
 
-Where:
-
--   $H_{effort}$ is the handling effort for the predator.
-
--   $S_{prey}$ is the size of the prey.
-
--   $D_{patch}$ is the distance between predator and prey.
-
--   $\rho_{patch}$ is the prey density in the patch.
-
--   $\gamma$ is a handling cost coefficient.
-
-Biological Justification: Prey that are farther away or more dispersed are harder to catch. Denser prey clusters reduce handling time by enabling rapid repeat captures.
-
-### Gape Filtering
-
-Predators apply a binary filter before pursuit, excluding prey that exceed their maximum ingestible size.
+A target patch is selected from reachable water patches within distance $d_t$:
 
 $$
-P_{pursue} =\begin{cases}1 & \text{if } S_{prey} \leq G_{pred} \\0 & \text{otherwise}\end{cases}
+p^\* \sim \text{Uniform}\left(\{p \in \mathcal{N}(d_t) : patch\text{-}terrain(p)=\text{"water"}\}\right)
+$$
+
+Prey traverse a path from the current patch $p_t$ to $p^\*$ (implementation uses `build-path-to-prey`) and move along up to
+
+$$
+n_t = \lceil d_t \rceil
+$$
+
+patch steps within the tick. Patch visitation and time spent are accumulated:
+
+$$
+visits\text{-}by\text{-}alewife(p) \leftarrow visits\text{-}by\text{-}alewife(p) + 1
+$$
+
+$$
+ticks\text{-}spent\text{-}alewife(p) \leftarrow ticks\text{-}spent\text{-}alewife(p) + 1
+$$
+
+Swimming energetic cost is applied through the shared swimming energy routine. First compute an energy multiplier from hydrodynamic difficulty and swimming efficiency:
+
+$$
+m_t = difficulty\text{-}factor \cdot \left(\frac{1}{swim\text{-}efficiency}\right)
+$$
+
+Then compute swimming energy cost (exponential scaling):
+
+$$
+E_{swim,t} = swim_{base} \cdot m_t^{\beta}
+$$
+
+with $\beta = 0.75$. Energy is updated and constrained to remain non-negative:
+
+$$
+energy_{t+1} = \max(0,\; energy_t - E_{swim,t})
 $$
 
 Where:
 
--   $P_{pursue}$ is the pursuit decision (1 = pursue, 0 = ignore).
+-   $speed$ is current prey swimming speed.
+-   $max\text{-}speed$ is prey maximum speed.
+-   $d_t$ is travel distance per tick.
+-   $\mathcal{N}(d_t)$ is the set of patches within radius $d_t$.
+-   $difficulty\text{-}factor$ is movement difficulty from hydrodynamics.
+-   $swim\text{-}efficiency$ is agent efficiency modifier.
+-   $swim_{base}$ is baseline swimming cost by size.
+-   $\beta$ is the scaling exponent (0.75).
+-   $E_{swim}$ is swimming energy cost.
 
--   $S_{prey}$ is the size of the prey.
+### Predator Prey Detection and Chase
 
--   $G_{pred}$ is the predator’s gape limit.
-
-Biological Justification: Predators cannot capture or ingest prey that are too large, so these individuals are ignored even if they are detected.
-
-### Energy Gain by Predators
+Predators define visible prey as prey within a radius equal to `vision-distance`:
 
 $$
-E_{agent} = E_{agent} - E_{burst}
+\mathcal{P}_{vision} = \{i \in \text{Alewife} : \|x_i - x_{pred}\| \le vision\text{-}distance \;\land\; patchtype(i) \ne \text{"sea"}\}
+$$
+
+Predators enter hunting mode when any prey are visible:
+
+$$
+|\mathcal{P}_{vision}| > 0 \Rightarrow hunting? = \text{true}
+$$
+
+If hunting, the predator targets the nearest visible prey:
+
+$$
+i^\* = \arg\min_{i \in \mathcal{P}_{vision}} \; \|x_i - x_{pred}\|
+$$
+
+Predator movement toward prey is computed using a step length limited by travel distance per tick and prey distance:
+
+$$
+d_t = \frac{speed_t}{3}
+$$
+
+$$
+step_t = \min(d_t,\; \|x_{i^\*} - x_{pred}\|)
+$$
+
+$$
+x_{pred,t+1} = x_{pred,t} + step_t \cdot \hat{u}(x_{i^\*} - x_{pred,t})
+$$
+
+Swimming energetic cost during chase is applied using the same shared routine:
+
+$$
+E_{swim,t} = swim_{base} \cdot \left(difficulty\text{-}factor \cdot \frac{1}{swim\text{-}efficiency}\right)^{\beta}
+$$
+
+$$
+energy_{t+1} = \max(0,\; energy_t - E_{swim,t})
 $$
 
 Where:
 
--   $E_{agent}$ is the current energy of the predator.
+-   $\mathcal{P}_{vision}$ is the set of visible prey.
+-   $x$ is spatial position (patch coordinates).
+-   $\hat{u}$ is the unit direction vector toward prey.
+-   $step_t$ is the clamped movement step.
+-   Other terms are as defined above.
 
--   $E_{burst}$ is the energy cost per unit of bursting behavior.
+### Predator Burst Speed Adjustment
 
-**Biological Justification:** Bursting reduces available energy. Energy cost is a limiting factor for predation.
-
-### Energy Depletion by Prey
+Predators enter burst mode when prey are present and predator energy is positive:
 
 $$
-E_{agent} = E_{agent} - E_{flee}
+(|\mathcal{P}_{vision}| > 0) \;\land\; (energy > 0) \Rightarrow bursting? = \text{true}
+$$
+
+If bursting, predator speed increases by 30% per tick up to `max-speed`:
+
+$$
+speed_{t+1} = \min\left(max\text{-}speed,\; speed_t + 0.3\cdot speed_t\right)
+$$
+
+Bursting imposes an additional energetic penalty proportional to the swimming energy cost:
+
+$$
+E_{burst,t} = 0.3 \cdot E_{swim,t}
+$$
+
+$$
+energy_{t+1} = energy_t - E_{burst,t}
+$$
+
+If not bursting, predator speed is reduced to a cruising speed:
+
+$$
+speed_{t+1} = \frac{max\text{-}speed}{4}
 $$
 
 Where:
 
--   $E_{agent}$ is the current energy of the prey.
+-   $bursting?$ is predator burst state.
+-   $max\text{-}speed$ is predator maximum chase speed.
+-   $E_{burst}$ is additional burst cost.
 
--   $E_{flee}$ is the energy cost per unit of fleeing behavior.
+### Predation and Consumption
 
-**Biological Justification:** Fleeing reduces available energy and increases recovery time. Energy loss is a limiting factor for repeated escape attempts.
+Predators attempt capture only if stomach contents are below capacity:
 
-(no need to account for swimming energy in addition if you are using the migration functions)
+$$
+stomach\text{-}contents < stomach\text{-}capacity
+$$
+
+Candidate prey include prey on the same patch and neighboring patches (local capture neighborhood):
+
+$$
+\mathcal{P}_{near} = \{i \in \text{Alewife} : i \in \{here\} \cup \{neighbors\}\}
+$$
+
+Edible prey satisfy the gape constraint:
+
+$$
+\mathcal{P}_{edible} = \{i \in \mathcal{P}_{near} : body\text{-}depth_i \le gape\text{-}size_{pred}\}
+$$
+
+If any edible prey exist, one prey is selected:
+
+$$
+i^* \sim \text{Uniform}(\mathcal{P}_{edible})
+$$
+
+Digestible meal mass is assumed to be 75% of prey wet weight:
+
+$$
+meal\text{-}weight = 0.75 \cdot weight_{i^*}
+$$
+
+Available stomach space is:
+
+$$
+space = stomach\text{-}capacity - stomach\text{-}contents
+$$
+
+Intake is limited by available space:
+
+$$
+intake = \min(meal\text{-}weight,\; space)
+$$
+
+Stomach contents are updated:
+
+$$
+stomach\text{-}contents_{t+1} = stomach\text{-}contents_t + intake
+$$
+
+Prey-derived contaminant loads are added to stomach contaminant pools:
+
+$$
+stomach\text{-}contents\text{-}MeHg_{t+1} = stomach\text{-}contents\text{-}MeHg_t + MeHg_{i^*}
+$$
+
+Consumption counters are incremented:
+
+$$
+daytime\text{-}prey\text{-}eaten_{t+1} = daytime\text{-}prey\text{-}eaten_t + 1
+$$
+
+$$
+prey\text{-}eaten\text{-}in\text{-}patch_{t+1} = prey\text{-}eaten\text{-}in\text{-}patch_t + 1
+$$
+
+Selected prey is removed from the simulation:
+
+$$
+alive(i^*) \leftarrow 0
+$$
+
+Where:
+
+-   $\mathcal{P}_{near}$ is the local capture neighborhood.
+-   $body\text{-}depth$ is prey body depth.
+-   $gape\text{-}size$ is predator gape size.
+-   $weight$ is prey weight.
+-   $MeHg$ are prey mercury and methylmercury burdens used for transfer into predator stomach pools.
+
+### Interaction With Migration Movement and Swimming Energy
+
+Movement and swimming energetic cost are handled within the shared movement controller `swim`. If prey are not fleeing, migration movement is executed through STST procedures and swimming energy is charged. If prey are fleeing, fleeing movement is executed and swimming energy is charged. Therefore, no additional movement energy term is added within predation or fleeing procedures:
+
+$$
+E_{move} \equiv E_{swim} \quad \text{applied once per tick via } calculate\text{-}swim\text{-}energy
+$$
