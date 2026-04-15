@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Digestion | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</title>
+  <title>Chapter 5 Digestion | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</title>
   <meta name="description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Digestion | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta property="og:title" content="Chapter 5 Digestion | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
   <meta property="og:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="github-repo" content="vmahan1998/GoFish" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Digestion | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta name="twitter:title" content="Chapter 5 Digestion | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   
   <meta name="twitter:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="twitter:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
@@ -550,7 +550,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</a>
           </h1>
         </div>
 
@@ -790,7 +790,7 @@ gained energy, contaminant uptake, and cumulative contaminant burdens.</p>
 <h3><span class="header-section-number">5.7.1</span> Digestion Rate and Breakdown<a href="digestion.html#digestion-rate-and-breakdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Digestive throughput is driven by metabolic rate:</p>
 <p><span class="math display">\[
-\begin{equation} R_{digest} = Met_{tick}  \hspace{2cm} \text{(C.11)} \end{equation}
+  R_{digest} = Met_{tick}  \hspace{2cm} \text{(C.11)}   
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -801,7 +801,7 @@ for all energetic scaling ((energy units) tick⁻¹).</p></li>
 </ul>
 <p>Digested mass per tick:</p>
 <p><span class="math display">\[
-\begin{equation} M_{digested} = M_{stomach} \cdot R_{digest} \cdot Eff_{digest}  \hspace{2cm} \text{(C.12)} \end{equation}
+  M_{digested} = M_{stomach} \cdot R_{digest} \cdot Eff_{digest}  \hspace{2cm} \text{(C.12)}   
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -814,7 +814,7 @@ filtration (%).</p></li>
 </ul>
 <p>Proportional mercury assimilation:</p>
 <p><span class="math display">\[
-\begin{equation} MeHg_{digested} = \left( \frac{M_{digested}}{M_{stomach}} \right) \cdot MeHg_{stomach}  \hspace{2cm} \text{(C.13)} \end{equation}
+  MeHg_{digested} = \left( \frac{M_{digested}}{M_{stomach}} \right) \cdot MeHg_{stomach}  \hspace{2cm} \text{(C.13)}   
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -827,7 +827,7 @@ stomach (ng).</p></li>
 </ul>
 <p>Updated stomach contents:</p>
 <p><span class="math display">\[
-\begin{equation} M_{stomach} = M_{stomach} - M_{digested}  \hspace{2cm} \text{(C.14)} \end{equation}
+  M_{stomach} = M_{stomach} - M_{digested}  \hspace{2cm} \text{(C.14)}   
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -839,7 +839,7 @@ stomach (ng).</p></li>
 <h3><span class="header-section-number">5.7.2</span> Energy Conversion<a href="digestion.html#energy-conversion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Energy gained from digestion:</p>
 <p><span class="math display">\[
-\begin{equation} E_{gain} = M_{digested} \cdot 100  \hspace{2cm} \text{(C.15)} \end{equation}
+  E_{gain} = M_{digested} \cdot 100  \hspace{2cm} \text{(C.15)}   
 \]</span> Where:</p>
 <ul>
 <li><p><span class="math inline">\(E_{gain}\)</span> is the energy gained from digested biomass (energy
@@ -848,7 +848,7 @@ units).</p></li>
 </ul>
 <p>Updated energy pool:</p>
 <p><span class="math display">\[
-\begin{equation} E_{agent} = E_{agent} + E_{gain}  \hspace{2cm} \text{(C.16)} \end{equation}
+  E_{agent} = E_{agent} + E_{gain}  \hspace{2cm} \text{(C.16)}   
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -862,7 +862,7 @@ units).</p></li>
 <h3><span class="header-section-number">5.7.3</span> Contaminant Assimilation<a href="digestion.html#contaminant-assimilation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Contaminants absorbed during digestion:</p>
 <p><span class="math display">\[
-\begin{equation} MeHg_{forage} = MeHg_{forage} + MeHg_{digested}  \hspace{2cm} \text{(C.17)} \end{equation}
+  MeHg_{forage} = MeHg_{forage} + MeHg_{digested}  \hspace{2cm} \text{(C.17)}   
 \]</span> Where:</p>
 <ul>
 <li><p><span class="math inline">\(MeHg_{forage}\)</span> is the cumulative methylmercury uptake via feeding
@@ -872,7 +872,7 @@ units).</p></li>
 </ul>
 <p>Accumulated body burden:</p>
 <p><span class="math display">\[
-\begin{equation} MeHg_{total} = MeHg_{total} + MeHg_{digested}  \hspace{2cm} \text{(C.18)} \end{equation}
+  MeHg_{total} = MeHg_{total} + MeHg_{digested}  \hspace{2cm} \text{(C.18)}  
 \]</span></p>
 <p>Where:</p>
 <ul>

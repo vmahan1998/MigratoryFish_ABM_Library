@@ -164,7 +164,7 @@ ectothermic aquatic organisms, particularly fishes
 [@norin_metabolic_2018]:
 
 $$
-\begin{equation} Filter_{base} = \left(\frac{size}{100}\right) \cdot Met_{tick} \cdot Eff_{digest} \hspace{2cm} \text{(C.46)} \end{equation}
+ Filter_{base} = \left(\frac{size}{100}\right) \cdot Met_{tick} \cdot Eff_{digest} \hspace{2cm} \text{(C.46)} 
 $$
 
 Where:
@@ -185,7 +185,7 @@ gradients, representing maximal feeding performance at intermediate SPM
 and reduced suitability at both lower and higher concentrations:
 
 $$
-\begin{equation} A_{interest} = e^{-\frac{(SPM - SPM_{optimal})^2}{2 \cdot \sigma^2}}  \hspace{2cm} \text{(C.47)} \end{equation}
+ A_{interest} = e^{-\frac{(SPM - SPM_{optimal})^2}{2 \cdot \sigma^2}}  \hspace{2cm} \text{(C.47)} 
 $$
 
 Where:
@@ -204,7 +204,7 @@ Where:
 Benefit for each neighboring patch:
 
 $$
-\begin{equation} A_{benefit} = SPM \cdot A_{interst} \cdot Filter_{base}  \hspace{2cm} \text{(C.48)} \end{equation}
+ A_{benefit} = SPM \cdot A_{interst} \cdot Filter_{base}  \hspace{2cm} \text{(C.48)} 
 $$
 
 Where:
@@ -221,7 +221,7 @@ Where:
 If con-specifics are present:
 
 $$
-\begin{equation} A_{benefit} = \frac{A_{benefit}}{N_{conspecifics}}  \hspace{2cm} \text{(C.49)} \end{equation}
+ A_{benefit} = \frac{A_{benefit}}{N_{conspecifics}}  \hspace{2cm} \text{(C.49)} 
 $$
 
 Where:
@@ -236,7 +236,7 @@ Where:
 Travel distance is reduced by swimming efficiency:
 
 $$
-\begin{equation} D_{travel} = min(D_{to-patch},\ A_{speed} \cdot swim_{Eff})  \hspace{2cm} \text{(C.50)} \end{equation}
+ D_{travel} = min(D_{to-patch},\ A_{speed} \cdot swim_{Eff})  \hspace{2cm} \text{(C.50)} 
 $$
 
 Where:
@@ -253,7 +253,7 @@ Where:
 Energy cost of swimming:
 
 $$
-\begin{equation} E_{agent} = E_{agent} - (E_{swim} \cdot D_{travel})  \hspace{2cm} \text{(C.51)} \end{equation}
+ E_{agent} = E_{agent} - (E_{swim} \cdot D_{travel})  \hspace{2cm} \text{(C.51)} 
 $$
 
 Where:
@@ -270,7 +270,7 @@ Where:
 Assimilated biomass:
 
 $$
-\begin{equation} M_{intake} = min(M_{prey},\ stomach_{max} - M_{stomach})  \hspace{2cm} \text{(C.52)} \end{equation}
+ M_{intake} = min(M_{prey},\ stomach_{max} - M_{stomach})  \hspace{2cm} \text{(C.52)} 
 $$
 
 Where:
@@ -285,7 +285,7 @@ Where:
 Biomagnification factors follow @lavoie_biomagnification_2013:
 
 $$
-\begin{equation} BMF_{MeHg} = 10^{(0.24 \cdot \Delta TP)}  \hspace{2cm} \text{(C.53)} \end{equation}
+ BMF_{MeHg} = 10^{(0.24 \cdot \Delta TP)}  \hspace{2cm} \text{(C.53)} 
 $$ Where:
 
 -   $\Delta TP = 1$ is the trophic position difference for
@@ -294,7 +294,7 @@ $$ Where:
     (dimensionless).
 
 $$
-\begin{equation} BMF_{MeHg} = 10^{0.24} \approx 1.74  \hspace{2cm} \text{(C.54)} \end{equation}
+ BMF_{MeHg} = 10^{0.24} \approx 1.74  \hspace{2cm} \text{(C.54)} 
 $$
 
 Where:
@@ -305,7 +305,7 @@ Where:
 Assimilation equations:
 
 $$
-\begin{equation} MeHg_{intake} = SPM \cdot MeHg_{patch} \cdot BMF_{MeHg} \cdot M_{intake}  \hspace{2cm} \text{(C.55)} \end{equation}
+ MeHg_{intake} = SPM \cdot MeHg_{patch} \cdot BMF_{MeHg} \cdot M_{intake}  \hspace{2cm} \text{(C.55)} 
 $$
 
 Where:
@@ -322,7 +322,7 @@ Where:
 Stomach contaminant update:
 
 $$
-\begin{equation} MeHg_{stomach} = MeHg_{stomach} + MeHg_{intake}  \hspace{2cm} \text{(C.56)} \end{equation}
+ MeHg_{stomach} = MeHg_{stomach} + MeHg_{intake}  \hspace{2cm} \text{(C.56)} 
 $$
 
 Where:

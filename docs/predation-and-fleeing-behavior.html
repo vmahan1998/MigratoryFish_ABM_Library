@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 14 Predation and Fleeing Behavior | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</title>
+  <title>Chapter 14 Predation and Fleeing Behavior | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</title>
   <meta name="description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 14 Predation and Fleeing Behavior | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta property="og:title" content="Chapter 14 Predation and Fleeing Behavior | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
   <meta property="og:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="github-repo" content="vmahan1998/GoFish" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 14 Predation and Fleeing Behavior | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta name="twitter:title" content="Chapter 14 Predation and Fleeing Behavior | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   
   <meta name="twitter:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="twitter:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
@@ -550,7 +550,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</a>
           </h1>
         </div>
 
@@ -885,7 +885,7 @@ spatial distribution of predation events (<span class="math inline">\(P_{eaten,p
 <p>Prey enter a fleeing state when a striped bass is detected within a
 cone-based encounter neighborhood and prey energy is positive:</p>
 <p><span class="math display">\[
-\begin{equation} \exists \; predator \in \mathcal{C}_{prey}(r,\theta)\;\; \land \;\; E_{agent} &gt; 0 \;\;\Rightarrow\;\; fleeing? = \text{true}  \hspace{2cm} \text{(C.101)} \end{equation}
+\exists \; predator \in \mathcal{C}_{prey}(r,\theta)\;\; \land \;\; E_{agent} &gt; 0 \;\;\Rightarrow\;\; fleeing? = \text{true}  \hspace{2cm} \text{(C.101)}
 \]</span> Where:</p>
 <ul>
 <li><span class="math inline">\(\mathcal{C}_{prey}(r,\theta)\)</span> is the prey encounter cone with
@@ -897,7 +897,7 @@ radius <span class="math inline">\(r = A_{vision}\)</span> (patch units) and con
 <p>Prey exit fleeing when no striped bass are detected within the encounter
 neighborhood or when energy is depleted:</p>
 <p><span class="math display">\[
-\begin{equation} \neg \exists \; predator \in \mathcal{C}_{prey}(r,\theta)\;\; \lor \;\; E_{agent} \le 0 \;\;\Rightarrow\;\; fleeing? = \text{false}  \hspace{2cm} \text{(C.102)} \end{equation}
+\neg \exists \; predator \in \mathcal{C}_{prey}(r,\theta)\;\; \lor \;\; E_{agent} \le 0 \;\;\Rightarrow\;\; fleeing? = \text{false}  \hspace{2cm} \text{(C.102)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -910,13 +910,13 @@ radius <span class="math inline">\(r = A_{vision}\)</span> (patch units) and con
 <p>Directional escape is implemented by assigning heading based on predator
 relative position, corresponding to the <code>scare-prey</code> control flow:</p>
 <p><span class="math display">\[
-\begin{equation} \psi_{t+1} =
+\psi_{t+1} =
 \begin{cases}
 \psi_t + 90^\circ  &amp; \text{(scare-right)}\\
 \psi_t - 90^\circ  &amp; \text{(scare-left)}\\
 \psi_t + 180^\circ &amp; \text{(scare-down)}\\
 \psi_t + 0^\circ   &amp; \text{(scare-up)}
-\end{cases}  \hspace{2cm} \text{(C.103)} \end{equation}
+\end{cases}  \hspace{2cm} \text{(C.103)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -930,7 +930,7 @@ radius <span class="math inline">\(r = A_{vision}\)</span> (patch units) and con
 <h3><span class="header-section-number">14.7.2</span> Prey Fleeing Movement and Energetic Cost<a href="predation-and-fleeing-behavior.html#prey-fleeing-movement-and-energetic-cost" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When fleeing, prey move at maximum speed:</p>
 <p><span class="math display">\[
-\begin{equation} A_{speed} = speed_{max}  \hspace{2cm} \text{(C.104)} \end{equation}
+A_{speed} = speed_{max}  \hspace{2cm} \text{(C.104)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -940,7 +940,7 @@ radius <span class="math inline">\(r = A_{vision}\)</span> (patch units) and con
 <p>Travel distance per tick is computed from current speed (with the
 model’s internal conversion):</p>
 <p><span class="math display">\[
-\begin{equation} D_{travel} = \frac{A_{speed}}{3}  \hspace{2cm} \text{(C.105)} \end{equation}
+D_{travel} = \frac{A_{speed}}{3}  \hspace{2cm} \text{(C.105)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -951,7 +951,7 @@ tick⁻¹).</li>
 </ul>
 <p>A small random turn is applied:</p>
 <p><span class="math display">\[
-\begin{equation} \psi_{t+1} = \psi_t + \varepsilon,\;\;\; \varepsilon \sim U(-15^\circ, 15^\circ)  \hspace{2cm} \text{(C.106)} \end{equation}
+\psi_{t+1} = \psi_t + \varepsilon,\;\;\; \varepsilon \sim U(-15^\circ, 15^\circ)  \hspace{2cm} \text{(C.106)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -961,7 +961,7 @@ tick⁻¹).</li>
 <p>A target patch is selected from reachable water patches within distance
 <span class="math inline">\(D_{travel}\)</span>:</p>
 <p><span class="math display">\[
-\begin{equation} p^* \sim \text{Uniform}\left(\{p \in \mathcal{N}(d_t) : patch\text{-}terrain(p)=\text{&quot;water&quot;}\}\right)  \hspace{2cm} \text{(C.107)} \end{equation}
+p^* \sim \text{Uniform}\left(\{p \in \mathcal{N}(d_t) : patch\text{-}terrain(p)=\text{&quot;water&quot;}\}\right)  \hspace{2cm} \text{(C.107)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -975,7 +975,7 @@ tick⁻¹).</li>
 <p>Prey traverse a path from the current patch <span class="math inline">\(p\)</span> to <span class="math inline">\(p^*\)</span> (implementation
 uses <code>build-path-to-prey</code>) and move along up to</p>
 <p><span class="math display">\[
-\begin{equation} n_t = \lceil D_{trave} \rceil  \hspace{2cm} \text{(C.108)} \end{equation}
+n_t = \lceil D_{trave} \rceil  \hspace{2cm} \text{(C.108)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -985,10 +985,10 @@ uses <code>build-path-to-prey</code>) and move along up to</p>
 <p>patch steps within the tick. Patch visitation and time spent are
 accumulated:</p>
 <p><span class="math display">\[
-\begin{equation} visits\text{-}by\text{-}alewife(p) \leftarrow visits\text{-}by\text{-}alewife(p) + 1  \hspace{2cm} \text{(C.109)} \end{equation}
+visits\text{-}by\text{-}alewife(p) \leftarrow visits\text{-}by\text{-}alewife(p) + 1  \hspace{2cm} \text{(C.109)}
 \]</span></p>
 <p><span class="math display">\[
-\begin{equation} ticks\text{-}spent\text{-}alewife(p) \leftarrow ticks\text{-}spent\text{-}alewife(p) + 1  \hspace{2cm} \text{(C.110)} \end{equation}
+ticks\text{-}spent\text{-}alewife(p) \leftarrow ticks\text{-}spent\text{-}alewife(p) + 1  \hspace{2cm} \text{(C.110)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1002,7 +1002,7 @@ time (ticks).</li>
 routine. First compute an energy multiplier from hydrodynamic difficulty
 and swimming efficiency:</p>
 <p><span class="math display">\[
-\begin{equation} M_{swim} = D_f \cdot \left(\frac{1}{swim_{Eff}}\right)  \hspace{2cm} \text{(C.111)} \end{equation}
+M_{swim} = D_f \cdot \left(\frac{1}{swim_{Eff}}\right)  \hspace{2cm} \text{(C.111)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1013,7 +1013,7 @@ energetics (%).</li>
 </ul>
 <p>Then compute swimming energy cost (exponential scaling):</p>
 <p><span class="math display">\[
-\begin{equation} E_{swim} = swim_{base} \cdot m_{swim}^{\beta}  \hspace{2cm} \text{(C.112)} \end{equation}
+E_{swim} = swim_{base} \cdot m_{swim}^{\beta}  \hspace{2cm} \text{(C.112)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1028,7 +1028,7 @@ units) patch⁻¹).</li>
 <p>with <span class="math inline">\(\beta = 0.75\)</span>. Energy is updated and constrained to remain
 non-negative:</p>
 <p><span class="math display">\[
-\begin{equation} energy_{t+1} = \max(0,\; energy_t - E_{swim,t})  \hspace{2cm} \text{(C.113)} \end{equation}
+energy_{t+1} = \max(0,\; energy_t - E_{swim,t})  \hspace{2cm} \text{(C.113)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1049,7 +1049,7 @@ units) patch⁻¹).</li>
 <p>Predators define visible prey as prey within a radius equal to
 <span class="math inline">\(A_{vision}\)</span>:</p>
 <p><span class="math display">\[
-\begin{equation} \mathcal{P}_{vision} = \{i \in \text{prey} : \|x_i - x_{pred}\| \le A_{vision} \;\land\; patchtype(i) \ne \text{&quot;sea&quot;}\}  \hspace{2cm} \text{(C.114)} \end{equation}
+\mathcal{P}_{vision} = \{i \in \text{prey} : \|x_i - x_{pred}\| \le A_{vision} \;\land\; patchtype(i) \ne \text{&quot;sea&quot;}\}  \hspace{2cm} \text{(C.114)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1066,7 +1066,7 @@ units).</li>
 </ul>
 <p>Predators enter hunting mode when any prey are visible:</p>
 <p><span class="math display">\[
-\begin{equation} |\mathcal{P}_{vision}| &gt; 0 \Rightarrow hunting? = \text{true}  \hspace{2cm} \text{(C.115)} \end{equation}
+|\mathcal{P}_{vision}| &gt; 0 \Rightarrow hunting? = \text{true}  \hspace{2cm} \text{(C.115)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1075,7 +1075,7 @@ units).</li>
 </ul>
 <p>If hunting, the predator targets the nearest visible prey:</p>
 <p><span class="math display">\[
-\begin{equation} i^* = \arg\min_{i \in \mathcal{P}_{vision}} \; \|x_i - x_{pred}\|  \hspace{2cm} \text{(C.116)} \end{equation}
+i^* = \arg\min_{i \in \mathcal{P}_{vision}} \; \|x_i - x_{pred}\|  \hspace{2cm} \text{(C.116)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1090,7 +1090,7 @@ coordinates).</li>
 <p>Predator movement toward prey is computed using a step length limited by
 travel distance per tick and prey distance:</p>
 <p><span class="math display">\[
-\begin{equation} D_{travel} = \frac{A_{speed}}{3}  \hspace{2cm} \text{(C.117)} \end{equation}
+D_{travel} = \frac{A_{speed}}{3}  \hspace{2cm} \text{(C.117)}
 \]</span> Where:</p>
 <ul>
 <li><span class="math inline">\(D_{travel}\)</span> is the distance traveled in the current tick (patch
@@ -1099,7 +1099,7 @@ units), where 1 patch = 3 m.</li>
 tick⁻¹).</li>
 </ul>
 <p><span class="math display">\[
-\begin{equation} step_t = \min(D_{travel},\; \|x_{i^*} - x_{pred}\|)  \hspace{2cm} \text{(C.118)} \end{equation}
+step_t = \min(D_{travel},\; \|x_{i^*} - x_{pred}\|)  \hspace{2cm} \text{(C.118)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1113,7 +1113,7 @@ coordinates).</li>
 coordinates).</li>
 </ul>
 <p><span class="math display">\[
-\begin{equation} x_{pred+1} = x_{pred} + step_t \cdot \hat{u}(x_{i^*} - x_{pred})  \hspace{2cm} \text{(C.119)} \end{equation}
+x_{pred+1} = x_{pred} + step_t \cdot \hat{u}(x_{i^*} - x_{pred})  \hspace{2cm} \text{(C.119)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1129,7 +1129,7 @@ coordinates).</li>
 <p>Swimming energetic cost during chase is applied using the same shared
 routine:</p>
 <p><span class="math display">\[
-\begin{equation} E_{swim,t} = swim_{base} \cdot \left(D_f \cdot \frac{1}{swim_{Eff}}\right)^{\beta}  \hspace{2cm} \text{(C.120)} \end{equation}
+E_{swim,t} = swim_{base} \cdot \left(D_f \cdot \frac{1}{swim_{Eff}}\right)^{\beta}  \hspace{2cm} \text{(C.120)}
 \]</span></p>
 <p>Where</p>
 <ul>
@@ -1144,7 +1144,7 @@ units) patch⁻¹).</li>
 (dimensionless).</li>
 </ul>
 <p><span class="math display">\[
-\begin{equation} E_{agent+1} = \max(0,\; E_{agent} - E_{swim,t})  \hspace{2cm} \text{(C.121)} \end{equation}
+E_{agent+1} = \max(0,\; E_{agent} - E_{swim,t})  \hspace{2cm} \text{(C.121)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1166,7 +1166,7 @@ units).</li>
 <p>Predators define visible prey as prey within a radius equal to
 <span class="math inline">\(A_{vision}\)</span>:</p>
 <p><span class="math display">\[
-\begin{equation} \mathcal{P}_{vision} = \{i \in \text{prey} : \|x_{i^*} - x_{pred}\| \le A_{vision} \;\land\; patchtype(i) \ne \text{&quot;sea&quot;}\}  \hspace{2cm} \text{(C.122)} \end{equation}
+\mathcal{P}_{vision} = \{i \in \text{prey} : \|x_{i^*} - x_{pred}\| \le A_{vision} \;\land\; patchtype(i) \ne \text{&quot;sea&quot;}\}  \hspace{2cm} \text{(C.122)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1180,7 +1180,7 @@ coordinates).</li>
 </ul>
 <p>Predators enter hunting mode when any prey are visible:</p>
 <p><span class="math display">\[
-\begin{equation} |\mathcal{P}_{vision}| &gt; 0 \Rightarrow hunting? = \text{true}  \hspace{2cm} \text{(C.123)} \end{equation}
+|\mathcal{P}_{vision}| &gt; 0 \Rightarrow hunting? = \text{true}  \hspace{2cm} \text{(C.123)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1189,7 +1189,7 @@ coordinates).</li>
 </ul>
 <p>If hunting, the predator targets the nearest visible prey:</p>
 <p><span class="math display">\[
-\begin{equation} i^* = \arg\min_{i \in \mathcal{P}_{vision}} \; \|x_{i^*} - x_{pred}\|  \hspace{2cm} \text{(C.124)} \end{equation}
+i^* = \arg\min_{i \in \mathcal{P}_{vision}} \; \|x_{i^*} - x_{pred}\|  \hspace{2cm} \text{(C.124)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1203,7 +1203,7 @@ coordinates).</li>
 <p>Predator movement toward prey is computed using a step length limited by
 travel distance per tick and prey distance:</p>
 <p><span class="math display">\[
-\begin{equation} D_{travel} = \frac{A_{speed}}{3}  \hspace{2cm} \text{(C.125)} \end{equation}
+D_{travel} = \frac{A_{speed}}{3}  \hspace{2cm} \text{(C.125)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1213,7 +1213,7 @@ units), where 1 patch = 3 m.</li>
 tick⁻¹).</li>
 </ul>
 <p><span class="math display">\[
-\begin{equation} step_t = \min(D_{travel},\; \|x_{i^*} - x_{pred}\|)  \hspace{2cm} \text{(C.126)} \end{equation}
+step_t = \min(D_{travel},\; \|x_{i^*} - x_{pred}\|)  \hspace{2cm} \text{(C.126)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1227,7 +1227,7 @@ coordinates).</li>
 coordinates).</li>
 </ul>
 <p><span class="math display">\[
-\begin{equation} x_{pred+1} = x_{pred} + step_t \cdot \hat{u}(x_{i^*} - x_{pred})  \hspace{2cm} \text{(C.127)} \end{equation}
+x_{pred+1} = x_{pred} + step_t \cdot \hat{u}(x_{i^*} - x_{pred})  \hspace{2cm} \text{(C.127)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1242,7 +1242,7 @@ coordinates).</li>
 <p>Swimming energetic cost during chase is applied using the same shared
 routine:</p>
 <p><span class="math display">\[
-\begin{equation} E_{swim} = swim_{base} \cdot \left(D_f \cdot \frac{1}{swim_{Eff}}\right)^{\beta}  \hspace{2cm} \text{(C.128)} \end{equation}
+E_{swim} = swim_{base} \cdot \left(D_f \cdot \frac{1}{swim_{Eff}}\right)^{\beta}  \hspace{2cm} \text{(C.128)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1256,7 +1256,7 @@ units) patch⁻¹).</li>
 <li><span class="math inline">\(\beta\)</span> is the exponent controlling swimming cost scaling.</li>
 </ul>
 <p><span class="math display">\[
-\begin{equation} E_{agent+1} = \max(0,\; E_{agent} - E_{swim})  \hspace{2cm} \text{(C.129)} \end{equation}
+E_{agent+1} = \max(0,\; E_{agent} - E_{swim})  \hspace{2cm} \text{(C.129)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1271,7 +1271,7 @@ units).</li>
 <p>Predators attempt capture only if stomach contents are below Predators can successfully capture only if stomach contents are below
 capacity:</p>
 <p><span class="math display">\[
-\begin{equation} M_{stomach} &lt; stomach_{max}  \hspace{2cm} \text{(C.130)} \end{equation}
+M_{stomach} &lt; stomach_{max}  \hspace{2cm} \text{(C.130)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1281,7 +1281,7 @@ capacity:</p>
 <p>Candidate prey include prey on the same patch and neighboring patches
 (local capture neighborhood):</p>
 <p><span class="math display">\[
-\begin{equation} \mathcal{P}_{near} = \{i \in \text{prey} : i \in \{here\} \cup \{neighbors\}\}  \hspace{2cm} \text{(C.131)} \end{equation}
+\mathcal{P}_{near} = \{i \in \text{prey} : i \in \{here\} \cup \{neighbors\}\}  \hspace{2cm} \text{(C.131)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1291,7 +1291,7 @@ predator’s current patch.</li>
 </ul>
 <p>Edible prey satisfy the gape constraint:</p>
 <p><span class="math display">\[
-\begin{equation} \mathcal{P}_{edible} = \{i \in \mathcal{P}_{near} : body\text{-}depth_i \le gape\text{-}size_{pred}\}  \hspace{2cm} \text{(C.132)} \end{equation}
+\mathcal{P}_{edible} = \{i \in \mathcal{P}_{near} : body\text{-}depth_i \le gape\text{-}size_{pred}\}  \hspace{2cm} \text{(C.132)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1307,7 +1307,7 @@ predator (mm).</li>
 </ul>
 <p>If any edible prey exist, one prey is selected:</p>
 <p><span class="math display">\[
-\begin{equation} i^* \sim \text{Uniform}(\mathcal{P}_{edible})  \hspace{2cm} \text{(C.133)} \end{equation}
+i^* \sim \text{Uniform}(\mathcal{P}_{edible})  \hspace{2cm} \text{(C.133)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1317,7 +1317,7 @@ predator’s gape limitation and are physically consumable.</li>
 </ul>
 <p>Digestible meal mass is assumed to be 75% of prey wet weight:</p>
 <p><span class="math display">\[
-\begin{equation} M_{meal} = 0.75 \cdot A_{mass,i^*}  \hspace{2cm} \text{(C.134)} \end{equation}
+M_{meal} = 0.75 \cdot A_{mass,i^*}  \hspace{2cm} \text{(C.134)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1327,7 +1327,7 @@ predator’s gape limitation and are physically consumable.</li>
 </ul>
 <p>Available stomach space is:</p>
 <p><span class="math display">\[
-\begin{equation} S_{stomach} = stomach_{max} - M_{stomach}  \hspace{2cm} \text{(C.135)} \end{equation}
+S_{stomach} = stomach_{max} - M_{stomach}  \hspace{2cm} \text{(C.135)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1337,7 +1337,7 @@ predator’s gape limitation and are physically consumable.</li>
 </ul>
 <p>Intake is limited by available space:</p>
 <p><span class="math display">\[
-\begin{equation} M_{intake} = \min(M_{meal},\; S_{stomach})  \hspace{2cm} \text{(C.136)} \end{equation}
+M_{intake} = \min(M_{meal},\; S_{stomach})  \hspace{2cm} \text{(C.136)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1347,7 +1347,7 @@ predator’s gape limitation and are physically consumable.</li>
 </ul>
 <p>Stomach contents are updated:</p>
 <p><span class="math display">\[
-\begin{equation} M_{stomach+1} = M_{stomach} + M_{intake}  \hspace{2cm} \text{(C.137)} \end{equation}
+M_{stomach+1} = M_{stomach} + M_{intake}  \hspace{2cm} \text{(C.137)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1356,7 +1356,7 @@ predator’s gape limitation and are physically consumable.</li>
 </ul>
 <p>Prey-derived contaminant loads are added to stomach contaminant pools:</p>
 <p><span class="math display">\[
-\begin{equation} stomach\text{-}contents\text{-}MeHg_{t+1} = stomach\text{-}contents\text{-}MeHg_t + MeHg_{i^*}  \hspace{2cm} \text{(C.138)} \end{equation}
+stomach\text{-}contents\text{-}MeHg_{t+1} = stomach\text{-}contents\text{-}MeHg_t + MeHg_{i^*}  \hspace{2cm} \text{(C.138)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1365,14 +1365,14 @@ predator’s gape limitation and are physically consumable.</li>
 </ul>
 <p>Consumption counters are incremented:</p>
 <p><span class="math display">\[
-\begin{equation} \mathcal{P}_{eaten+1} = \mathcal{P}_{eaten} + 1  \hspace{2cm} \text{(C.139)} \end{equation}
+\mathcal{P}_{eaten+1} = \mathcal{P}_{eaten} + 1  \hspace{2cm} \text{(C.139)}
 \]</span></p>
 <p>Where:</p>
 <ul>
 <li><span class="math inline">\(\mathcal{P}_{eaten}\)</span> is the total prey consumed by a predator.</li>
 </ul>
 <p><span class="math display">\[
-\begin{equation} \mathcal{P}_{eaten, patch+1} = \mathcal{P}_{eaten, patch} + 1  \hspace{2cm} \text{(C.140)} \end{equation}
+\mathcal{P}_{eaten, patch+1} = \mathcal{P}_{eaten, patch} + 1  \hspace{2cm} \text{(C.140)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1381,7 +1381,7 @@ given patch.</li>
 </ul>
 <p>Selected prey is removed from the simulation:</p>
 <p><span class="math display">\[
-\begin{equation} alive(i^*) \leftarrow 0  \hspace{2cm} \text{(C.141)} \end{equation}
+alive(i^*) \leftarrow 0  \hspace{2cm} \text{(C.141)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1398,7 +1398,7 @@ prey are fleeing, fleeing movement is executed and swimming energy is
 charged. Therefore, no additional movement energy term is added within
 predation or fleeing procedures:</p>
 <p><span class="math display">\[
-\begin{equation} E_{move} = E_{swim} \quad \text{applied once per tick via } calculate\text{-}swim\text{-}energy  \hspace{2cm} \text{(C.142)} \end{equation}
+E_{move} = E_{swim} \quad \text{applied once per tick via } calculate\text{-}swim\text{-}energy  \hspace{2cm} \text{(C.142)}
 \]</span></p>
 <p>Where:</p>
 <ul>

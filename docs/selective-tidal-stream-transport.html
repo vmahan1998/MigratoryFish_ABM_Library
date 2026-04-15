@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 13 Selective Tidal Stream Transport | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</title>
+  <title>Chapter 13 Selective Tidal Stream Transport | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</title>
   <meta name="description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 13 Selective Tidal Stream Transport | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta property="og:title" content="Chapter 13 Selective Tidal Stream Transport | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
   <meta property="og:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="github-repo" content="vmahan1998/GoFish" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 13 Selective Tidal Stream Transport | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta name="twitter:title" content="Chapter 13 Selective Tidal Stream Transport | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   
   <meta name="twitter:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="twitter:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
@@ -550,7 +550,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</a>
           </h1>
         </div>
 
@@ -751,7 +751,7 @@ flow regimes.</p>
 flow exceeds their capability and their effort is below a defined
 threshold, they enter STST:</p>
 <p><span class="math display">\[
-\begin{equation} |V_{patch}| &gt; A_{speed} \quad \text{and} \quad A_{speed} \leq Speed_{min}  \hspace{2cm} \text{(C.94)} \end{equation}
+|V_{patch}| &gt; A_{speed} \quad \text{and} \quad A_{speed} \leq Speed_{min}  \hspace{2cm} \text{(C.94)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -764,7 +764,7 @@ the patch (m s⁻¹).</li>
 <p>Heading aligns with the current (drift vector) &amp; swimming speed is set
 to:</p>
 <p><span class="math display">\[
-\begin{equation} A_{speed} = |V_{patch}|  \hspace{2cm} \text{(C.95)} \end{equation}
+A_{speed} = |V_{patch}|  \hspace{2cm} \text{(C.95)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -774,7 +774,7 @@ the patch (m s⁻¹).</li>
 </ul>
 <p>Energy is set as:</p>
 <p><span class="math display">\[
-\begin{equation} E_{swim} = swim_{base}  \hspace{2cm} \text{(C.96)} \end{equation}
+E_{swim} = swim_{base}  \hspace{2cm} \text{(C.96)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -789,7 +789,7 @@ units).</li>
 <p>While in STST, agents align with the current (either landward or
 seaward) and are passively transported:</p>
 <p><span class="math display">\[
-\begin{equation} \vec{Y}_{t+1} = \vec{Y}_t + |V_{patch}| \cdot \hat{u}  \hspace{2cm} \text{(C.97)} \end{equation}
+\vec{Y}_{t+1} = \vec{Y}_t + |V_{patch}| \cdot \hat{u}  \hspace{2cm} \text{(C.97)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -802,7 +802,7 @@ defined as <span class="math inline">\(\hat{u}_{patch} = V_{patch} / |V_{patch}|
 </ul>
 <p>Swimming speed is overwritten:</p>
 <p><span class="math display">\[
-\begin{equation} A_{speed} = |V_{patch}|  \hspace{2cm} \text{(C.98)} \end{equation}
+A_{speed} = |V_{patch}|  \hspace{2cm} \text{(C.98)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -812,7 +812,7 @@ the patch (m s⁻¹).</li>
 </ul>
 <p>Energy cost is minimized:</p>
 <p><span class="math display">\[
-\begin{equation} E_{swim} = swim_{base}  \hspace{2cm} \text{(C.99)} \end{equation}
+E_{swim} = swim_{base}  \hspace{2cm} \text{(C.99)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -827,7 +827,7 @@ units).</li>
 <p>Agents exit STST when they regain sufficient swimming capacity to exceed
 threshold:</p>
 <p><span class="math display">\[
-\begin{equation} A_{speed} &gt; speed_{min}  \hspace{2cm} \text{(C.100)} \end{equation}
+A_{speed} &gt; speed_{min}  \hspace{2cm} \text{(C.100)}
 \]</span></p>
 <p>Where:</p>
 <ul>

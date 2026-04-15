@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Migration Cues | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</title>
+  <title>Chapter 7 Migration Cues | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</title>
   <meta name="description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Migration Cues | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta property="og:title" content="Chapter 7 Migration Cues | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
   <meta property="og:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="github-repo" content="vmahan1998/GoFish" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Migration Cues | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta name="twitter:title" content="Chapter 7 Migration Cues | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   
   <meta name="twitter:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="twitter:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
@@ -550,7 +550,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</a>
           </h1>
         </div>
 
@@ -758,7 +758,7 @@ initiating migration through time.</p>
 <div id="identifying-cue-days-preprocessed-in-r" class="section level3 hasAnchor" number="7.7.1">
 <h3><span class="header-section-number">7.7.1</span> Identifying Cue Days (Preprocessed in R)<a href="migration-cues.html#identifying-cue-days-preprocessed-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="math display">\[
-\begin{equation} \Delta T &lt; 0, \;\; \Delta L &lt; 0  \hspace{2cm} \text{(C.33)} \end{equation}
+\Delta T &lt; 0, \;\; \Delta L &lt; 0  \hspace{2cm} \text{(C.33)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -778,7 +778,7 @@ initiating migration through time.</p>
 corresponds to a predefined cue day. If true, the migration cue is
 activated:</p>
 <p><span class="math display">\[
-\begin{equation} cue\text{-}active? = \text{true}  \hspace{2cm} \text{(C.34)} \end{equation}
+cue\text{-}active? = \text{true}  \hspace{2cm} \text{(C.34)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -788,7 +788,7 @@ activated:</p>
 occurred, after which agents respond by transitioning to an internal
 readiness state:</p>
 <p><span class="math display">\[
-\begin{equation} migration\text{-}trigger? = \text{true}  \hspace{2cm} \text{(C.35)} \end{equation}
+migration\text{-}trigger? = \text{true}  \hspace{2cm} \text{(C.35)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -806,9 +806,9 @@ when conditions are favorable rather than immediately upon cue detection
 <p>For each agent with an active migration trigger, migration probability
 increases stochastically each tick:</p>
 <p><span class="math display">\[
-\begin{equation} P_{t+1}
+P_{t+1}
 = P_{t} +
-\left(0.00001 + U(0, 0.00004)\right)  \hspace{2cm} \text{(C.36)} \end{equation}
+\left(0.00001 + U(0, 0.00004)\right)  \hspace{2cm} \text{(C.36)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -816,7 +816,7 @@ increases stochastically each tick:</p>
 </ul>
 <p>Migration probability is capped at:</p>
 <p><span class="math display">\[
-\begin{equation} P_{t} \le 1  \hspace{2cm} \text{(C.37)} \end{equation}
+P_{t} \le 1  \hspace{2cm} \text{(C.37)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -830,7 +830,7 @@ variation in migration timing.</p>
 <p>An agent initiates migration when its migration probability exceeds a
 stochastic threshold:</p>
 <p><span class="math display">\[
-\begin{equation} random\text{-}float(1) &lt; P_{t}  \hspace{2cm} \text{(C.38)} \end{equation}
+random\text{-}float(1) &lt; P_{t}  \hspace{2cm} \text{(C.38)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -838,7 +838,7 @@ stochastic threshold:</p>
 </ul>
 <p>When this condition is met:</p>
 <p><span class="math display">\[
-\begin{equation} start\text{-}migration? = \text{true}  \hspace{2cm} \text{(C.39)} \end{equation}
+start\text{-}migration? = \text{true}  \hspace{2cm} \text{(C.39)}
 \]</span></p>
 <p>Where:</p>
 <ul>

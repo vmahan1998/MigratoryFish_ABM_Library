@@ -116,7 +116,7 @@ catabolism, lipid used, and body mass loss over time.
 Maximum lipid available for mobilization depends on relative body mass:
 
 $$
-\begin{equation} Lipid_{refill} = 0.5 \times \left(\frac{A_{mass}}{A_{mass_{i}}}\right)  \hspace{2cm} \text{(C.57)} \end{equation}
+ Lipid_{refill} = 0.5 \times \left(\frac{A_{mass}}{A_{mass_{i}}}\right)  \hspace{2cm} \text{(C.57)} 
 $$
 
 Where:
@@ -129,7 +129,7 @@ Where:
 Energy deficit relative to full energy:
 
 $$
-\begin{equation} E_{deficit} = 100 - E_{agent}  \hspace{2cm} \text{(C.58)} \end{equation}
+ E_{deficit} = 100 - E_{agent}  \hspace{2cm} \text{(C.58)} 
 $$
 
 Where:
@@ -142,7 +142,7 @@ Where:
 Lipid required to refill the deficit:
 
 $$
-\begin{equation} Lipid_{needed} = \frac{Energy_{deficit}}{100}  \hspace{2cm} \text{(C.59)} \end{equation}
+ Lipid_{needed} = \frac{Energy_{deficit}}{100}  \hspace{2cm} \text{(C.59)} 
 $$
 
 Where:
@@ -155,7 +155,7 @@ Where:
 Actual lipid mobilized:
 
 $$
-\begin{equation} Lipid_{used} = \min(Lipid_{needed},\ Lipid_{refill}) \times Lipid_{Eff}  \hspace{2cm} \text{(C.60)} \end{equation}
+ Lipid_{used} = \min(Lipid_{needed},\ Lipid_{refill}) \times Lipid_{Eff}  \hspace{2cm} \text{(C.60)} 
 $$
 
 Where:
@@ -173,7 +173,7 @@ Where:
 Mobilized lipid is converted into energy:
 
 $$
-\begin{equation} E_{added} = Lipid_{used} \times 100  \hspace{2cm} \text{(C.61)} \end{equation}
+ E_{added} = Lipid_{used} \times 100  \hspace{2cm} \text{(C.61)} 
 $$
 
 Where:
@@ -185,7 +185,7 @@ Where:
 Energy is capped at one hundred:
 
 $$
-\begin{equation} E_{agent} = \min(100,\ E_{agent} + E_{added})  \hspace{2cm} \text{(C.62)} \end{equation}
+ E_{agent} = \min(100,\ E_{agent} + E_{added})  \hspace{2cm} \text{(C.62)} 
 $$
 
 Where:
@@ -200,7 +200,7 @@ Where:
 Weight decreases proportionally to lipid used:
 
 $$
-\begin{equation} A_{mass} = A_{mass} - Lipid_{used}  \hspace{2cm} \text{(C.63)} \end{equation}
+ A_{mass} = A_{mass} - Lipid_{used}  \hspace{2cm} \text{(C.63)} 
 $$ Where:
 
 -   $A_{mass}$ is an agent's body mass used for allometric and energetic

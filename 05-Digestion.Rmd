@@ -120,7 +120,7 @@ gained energy, contaminant uptake, and cumulative contaminant burdens.
 Digestive throughput is driven by metabolic rate:
 
 $$
-\begin{equation} R_{digest} = Met_{tick}  \hspace{2cm} \text{(C.11)} \end{equation}
+  R_{digest} = Met_{tick}  \hspace{2cm} \text{(C.11)}   
 $$
 
 Where:
@@ -134,7 +134,7 @@ Where:
 Digested mass per tick:
 
 $$
-\begin{equation} M_{digested} = M_{stomach} \cdot R_{digest} \cdot Eff_{digest}  \hspace{2cm} \text{(C.12)} \end{equation}
+  M_{digested} = M_{stomach} \cdot R_{digest} \cdot Eff_{digest}  \hspace{2cm} \text{(C.12)}   
 $$
 
 Where:
@@ -152,7 +152,7 @@ Where:
 Proportional mercury assimilation:
 
 $$
-\begin{equation} MeHg_{digested} = \left( \frac{M_{digested}}{M_{stomach}} \right) \cdot MeHg_{stomach}  \hspace{2cm} \text{(C.13)} \end{equation}
+  MeHg_{digested} = \left( \frac{M_{digested}}{M_{stomach}} \right) \cdot MeHg_{stomach}  \hspace{2cm} \text{(C.13)}   
 $$
 
 Where:
@@ -170,7 +170,7 @@ Where:
 Updated stomach contents:
 
 $$
-\begin{equation} M_{stomach} = M_{stomach} - M_{digested}  \hspace{2cm} \text{(C.14)} \end{equation}
+  M_{stomach} = M_{stomach} - M_{digested}  \hspace{2cm} \text{(C.14)}   
 $$
 
 Where:
@@ -184,7 +184,7 @@ Where:
 Energy gained from digestion:
 
 $$
-\begin{equation} E_{gain} = M_{digested} \cdot 100  \hspace{2cm} \text{(C.15)} \end{equation}
+  E_{gain} = M_{digested} \cdot 100  \hspace{2cm} \text{(C.15)}   
 $$ Where:
 
 -   $E_{gain}$ is the energy gained from digested biomass (energy
@@ -195,7 +195,7 @@ $$ Where:
 Updated energy pool:
 
 $$
-\begin{equation} E_{agent} = E_{agent} + E_{gain}  \hspace{2cm} \text{(C.16)} \end{equation}
+  E_{agent} = E_{agent} + E_{gain}  \hspace{2cm} \text{(C.16)}   
 $$
 
 Where:
@@ -211,7 +211,7 @@ Where:
 Contaminants absorbed during digestion:
 
 $$
-\begin{equation} MeHg_{forage} = MeHg_{forage} + MeHg_{digested}  \hspace{2cm} \text{(C.17)} \end{equation}
+  MeHg_{forage} = MeHg_{forage} + MeHg_{digested}  \hspace{2cm} \text{(C.17)}   
 $$ Where:
 
 -   $MeHg_{forage}$ is the cumulative methylmercury uptake via feeding
@@ -223,7 +223,7 @@ $$ Where:
 Accumulated body burden:
 
 $$
-\begin{equation} MeHg_{total} = MeHg_{total} + MeHg_{digested}  \hspace{2cm} \text{(C.18)} \end{equation}
+  MeHg_{total} = MeHg_{total} + MeHg_{digested}  \hspace{2cm} \text{(C.18)}  
 $$
 
 Where:

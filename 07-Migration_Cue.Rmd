@@ -111,7 +111,7 @@ initiating migration through time.
 ### Identifying Cue Days (Preprocessed in R)
 
 $$
-\begin{equation} \Delta T < 0, \;\; \Delta L < 0  \hspace{2cm} \text{(C.33)} \end{equation}
+ \Delta T < 0, \;\; \Delta L < 0  \hspace{2cm} \text{(C.33)} 
 $$
 
 Where:
@@ -132,7 +132,7 @@ corresponds to a predefined cue day. If true, the migration cue is
 activated:
 
 $$
-\begin{equation} cue\text{-}active? = \text{true}  \hspace{2cm} \text{(C.34)} \end{equation}
+ cue\text{-}active? = \text{true}  \hspace{2cm} \text{(C.34)} 
 $$
 
 Where:
@@ -144,7 +144,7 @@ occurred, after which agents respond by transitioning to an internal
 readiness state:
 
 $$
-\begin{equation} migration\text{-}trigger? = \text{true}  \hspace{2cm} \text{(C.35)} \end{equation}
+ migration\text{-}trigger? = \text{true}  \hspace{2cm} \text{(C.35)} 
 $$
 
 Where:
@@ -164,9 +164,9 @@ For each agent with an active migration trigger, migration probability
 increases stochastically each tick:
 
 $$
-\begin{equation} P_{t+1}
+ P_{t+1}
 = P_{t} +
-\left(0.00001 + U(0, 0.00004)\right)  \hspace{2cm} \text{(C.36)} \end{equation}
+\left(0.00001 + U(0, 0.00004)\right)  \hspace{2cm} \text{(C.36)} 
 $$
 
 Where:
@@ -176,7 +176,7 @@ Where:
 Migration probability is capped at:
 
 $$
-\begin{equation} P_{t} \le 1  \hspace{2cm} \text{(C.37)} \end{equation}
+ P_{t} \le 1  \hspace{2cm} \text{(C.37)} 
 $$
 
 Where:
@@ -192,7 +192,7 @@ An agent initiates migration when its migration probability exceeds a
 stochastic threshold:
 
 $$
-\begin{equation} random\text{-}float(1) < P_{t}  \hspace{2cm} \text{(C.38)} \end{equation}
+ random\text{-}float(1) < P_{t}  \hspace{2cm} \text{(C.38)} 
 $$
 
 Where:
@@ -202,7 +202,7 @@ Where:
 When this condition is met:
 
 $$
-\begin{equation} start\text{-}migration? = \text{true}  \hspace{2cm} \text{(C.39)} \end{equation}
+ start\text{-}migration? = \text{true}  \hspace{2cm} \text{(C.39)} 
 $$
 
 Where:

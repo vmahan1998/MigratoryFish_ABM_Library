@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 11 Seaward Migration | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</title>
+  <title>Chapter 11 Seaward Migration | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</title>
   <meta name="description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 11 Seaward Migration | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta property="og:title" content="Chapter 11 Seaward Migration | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
   <meta property="og:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="github-repo" content="vmahan1998/GoFish" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 11 Seaward Migration | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta name="twitter:title" content="Chapter 11 Seaward Migration | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   
   <meta name="twitter:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="twitter:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
@@ -550,7 +550,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</a>
           </h1>
         </div>
 
@@ -786,10 +786,10 @@ routes can be monitored.</p>
 <h3><span class="header-section-number">11.7.1</span> Swimming Difficulty<a href="seaward-migration.html#swimming-difficulty-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Velocity is normalized between minimum and maximum observed values:</p>
 <p><span class="math display">\[
-\begin{equation} V_{normalized}
+V_{normalized}
 =
 \frac{V_{\text{patch}} - V_{\min}}
-{V_{\max} - V_{\min}}  \hspace{2cm} \text{(C.79)} \end{equation}
+{V_{\max} - V_{\min}}  \hspace{2cm} \text{(C.79)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -801,12 +801,12 @@ the patch (m s⁻¹).</p></li>
 </ul>
 <p>Difficulty scales with body size <span class="citation">(<a href="#ref-brown_toward_2004">Brown et al. 2004</a>; <a href="#ref-gibson_selective_2001">Gibson, Barnes, and Atkinson 2001a</a>)</span>:</p>
 <p><span class="math display">\[
-\begin{equation} Df_{\text{raw}}
+Df_{\text{raw}}
 =
 \left(
 \frac{V_{normalized}}
 {A_{\text{mass}} / M_{\max}}
-\right)^k  \hspace{2cm} \text{(C.80)} \end{equation}
+\right)^k  \hspace{2cm} \text{(C.80)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -820,7 +820,7 @@ scaling (g).</p></li>
 </ul>
 <p>Difficulty is mapped onto the one-to-ten range:</p>
 <p><span class="math display">\[
-\begin{equation} D_f = 1 + 9 \cdot Df_{\text{raw}}  \hspace{2cm} \text{(C.81)} \end{equation}
+D_f = 1 + 9 \cdot Df_{\text{raw}}  \hspace{2cm} \text{(C.81)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -830,7 +830,7 @@ scaling (g).</p></li>
 </ul>
 <p>and constrained:</p>
 <p><span class="math display">\[
-\begin{equation} D_f \in [1, 10]  \hspace{2cm} \text{(C.82)} \end{equation}
+D_f \in [1, 10]  \hspace{2cm} \text{(C.82)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -842,7 +842,7 @@ scaling (g).</p></li>
 <h3><span class="header-section-number">11.7.2</span> Swimming Speed<a href="seaward-migration.html#swimming-speed-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Energy factor:</p>
 <p><span class="math display">\[
-\begin{equation} E_{\text{factor}} = \frac{E_{\text{agent}}}{100}  \hspace{2cm} \text{(C.83)} \end{equation}
+E_{\text{factor}} = \frac{E_{\text{agent}}}{100}  \hspace{2cm} \text{(C.83)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -852,7 +852,7 @@ scaling (g).</p></li>
 (energy units).</p></li>
 </ul>
 <p>Velocity impact from hydrodynamics is:</p>
-<p><span class="math display">\[ \begin{equation} V_{\text{impact}} = k \cdot V_{\text{patch}} \cdot 300  \hspace{2cm} \text{(C.69)} \end{equation} \]</span></p>
+<p><span class="math display">\[  V_{\text{impact}} = k \cdot V_{\text{patch}} \cdot 300  \hspace{2cm} \text{(C.69)}  \]</span></p>
 <p>Where:</p>
 <ul>
 <li><span class="math inline">\(V_{impact}\)</span> is the flow contribution to desired swimming speed (m
@@ -865,7 +865,7 @@ the patch (m s⁻¹).</li>
 e.g., 5 minutes).</li>
 </ul>
 <p>The desired swimming speed is:</p>
-<p><span class="math display">\[ \begin{equation} V_{\text{desired}} = \frac{V_{\max} \cdot E_{\text{factor}}}{D_f} + V_{\text{impact}}  \hspace{2cm} \text{(C.70)} \end{equation} \]</span></p>
+<p><span class="math display">\[  V_{\text{desired}} = \frac{V_{\max} \cdot E_{\text{factor}}}{D_f} + V_{\text{impact}}  \hspace{2cm} \text{(C.70)}  \]</span></p>
 <p>Where:</p>
 <ul>
 <li><span class="math inline">\(V_{desired}\)</span> is the desired swimming speed before constraints (m
@@ -878,7 +878,7 @@ tick⁻¹).</li>
 tick⁻¹).</li>
 </ul>
 <p>Speed is constrained between a minimum and maximum:</p>
-<p><span class="math display">\[ \begin{equation} V_{\text{desired}}  = \min(V_{\max}, \max(V_{\min}, V_{\text{desired}}))  \hspace{2cm} \text{(C.71)} \end{equation} \]</span></p>
+<p><span class="math display">\[  V_{\text{desired}}  = \min(V_{\max}, \max(V_{\min}, V_{\text{desired}}))  \hspace{2cm} \text{(C.71)}  \]</span></p>
 <p>Where:</p>
 <ul>
 <li><span class="math inline">\(V_{desired}\)</span> is the desired swimming speed before constraints (m
@@ -888,7 +888,7 @@ tick⁻¹).</li>
 </ul>
 <p>Acceleration smoothing:</p>
 <p><span class="math display">\[
-\begin{equation} \Delta V_{\max} = 0.5 \cdot swim_{Eff}  \hspace{2cm} \text{(C.87)} \end{equation}
+\Delta V_{\max} = 0.5 \cdot swim_{Eff}  \hspace{2cm} \text{(C.87)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -905,9 +905,9 @@ desired value. Otherwise speed is set directly.</p>
 <h3><span class="header-section-number">11.7.3</span> Path-Based Movement<a href="seaward-migration.html#path-based-movement-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Travel distance:</p>
 <p><span class="math display">\[
-\begin{equation} D_{travel}
+D_{travel}
 =
-\frac{A_{\text{speed}}}{3}  \hspace{2cm} \text{(C.88)} \end{equation}
+\frac{A_{\text{speed}}}{3}  \hspace{2cm} \text{(C.88)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -929,11 +929,11 @@ tick⁻¹).</li>
 <h3><span class="header-section-number">11.7.4</span> Travel Cost<a href="seaward-migration.html#travel-cost-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Raw cost:</p>
 <p><span class="math display">\[
-\begin{equation} \text{cost}_{\text{raw}}
+\text{cost}_{\text{raw}}
 =
 |V_{\text{patch}}|
 +
-0.5 \cdot \max(0, \Delta d)  \hspace{2cm} \text{(C.89)} \end{equation}
+0.5 \cdot \max(0, \Delta d)  \hspace{2cm} \text{(C.89)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -945,9 +945,9 @@ the patch (m s⁻¹).</li>
 </ul>
 <p>Difficulty scaling:</p>
 <p><span class="math display">\[
-\begin{equation} \text{cost}
+\text{cost}
 =
-\text{cost}_{\text{raw}} \cdot D_f  \hspace{2cm} \text{(C.90)} \end{equation}
+\text{cost}_{\text{raw}} \cdot D_f  \hspace{2cm} \text{(C.90)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -965,7 +965,7 @@ units).</p></li>
 <p>Let <span class="math inline">\(\beta = 0.75\)</span>.</p>
 <p>Energy multiplier:</p>
 <p><span class="math display">\[
-\begin{equation} M_{swim} = \frac{D_f}{swim_{Eff}}  \hspace{2cm} \text{(C.91)} \end{equation}
+M_{swim} = \frac{D_f}{swim_{Eff}}  \hspace{2cm} \text{(C.91)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -976,9 +976,9 @@ energetics (%).</li>
 </ul>
 <p>Energy cost:</p>
 <p><span class="math display">\[
-\begin{equation} E_{\text{swim}}
+E_{\text{swim}}
 =
-swim_{base} \cdot M_{swim}^{\beta}  \hspace{2cm} \text{(C.92)} \end{equation}
+swim_{base} \cdot M_{swim}^{\beta}  \hspace{2cm} \text{(C.92)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -992,9 +992,9 @@ units) patch⁻¹).</p></li>
 </ul>
 <p>Energy update:</p>
 <p><span class="math display">\[
-\begin{equation} E_{\text{agent}}
+E_{\text{agent}}
 =
-\max \left(0,\, E_{\text{agent}} - E_{\text{swim}} \right)  \hspace{2cm} \text{(C.93)} \end{equation}
+\max \left(0,\, E_{\text{agent}} - E_{\text{swim}} \right)  \hspace{2cm} \text{(C.93)}
 \]</span></p>
 <p>Where:</p>
 <ul>

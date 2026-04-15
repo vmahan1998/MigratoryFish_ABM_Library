@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Contaminant Exposure | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</title>
+  <title>Chapter 8 Contaminant Exposure | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</title>
   <meta name="description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Contaminant Exposure | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta property="og:title" content="Chapter 8 Contaminant Exposure | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
   <meta property="og:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="github-repo" content="vmahan1998/GoFish" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Contaminant Exposure | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta name="twitter:title" content="Chapter 8 Contaminant Exposure | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   
   <meta name="twitter:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="twitter:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
@@ -550,7 +550,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</a>
           </h1>
         </div>
 
@@ -809,7 +809,7 @@ specific contributions.</p>
 <div id="normalization" class="section level3 hasAnchor" number="8.7.1">
 <h3><span class="header-section-number">8.7.1</span> Normalization<a href="contaminant-exposure.html#normalization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="math display">\[
-\begin{equation} MeHg_{normalized} = \frac{MeHg_{patch} - MeHg_{min}}{MeHg_{max} - MeHg_{min}}  \hspace{2cm} \text{(C.40)} \end{equation}
+MeHg_{normalized} = \frac{MeHg_{patch} - MeHg_{min}}{MeHg_{max} - MeHg_{min}}  \hspace{2cm} \text{(C.40)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -829,7 +829,7 @@ g⁻¹).</p></li>
 <div id="exposure-duration" class="section level3 hasAnchor" number="8.7.2">
 <h3><span class="header-section-number">8.7.2</span> Exposure Duration<a href="contaminant-exposure.html#exposure-duration" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="math display">\[
-\begin{equation} MeHg_{exp} = MeHg_{exp} + 1 \quad \text{if } MeHg_{patch} &gt; MeHg_{threshold}  \hspace{2cm} \text{(C.41)} \end{equation}
+MeHg_{exp} = MeHg_{exp} + 1 \quad \text{if } MeHg_{patch} &gt; MeHg_{threshold}  \hspace{2cm} \text{(C.41)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -848,7 +848,7 @@ duration tracking, initalized at the Effects Range–Low for MeHg
 availability of dissolved MeHg associated with elevated SPM
 concentrations.</p>
 <p><span class="math display">\[
-\begin{equation} MeHg_{risk} = Met_{tick} \cdot MeHg_{normalized} \cdot (1 + S_{stress}) \cdot (1 + SPM)  \hspace{2cm} \text{(C.42)} \end{equation}
+MeHg_{risk} = Met_{tick} \cdot MeHg_{normalized} \cdot (1 + S_{stress}) \cdot (1 + SPM)  \hspace{2cm} \text{(C.42)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -867,7 +867,7 @@ patch (<span class="math inline">\(\frac{kg}{m^3}\)</span>).</li>
 <div id="cumulative-uptake" class="section level3 hasAnchor" number="8.7.4">
 <h3><span class="header-section-number">8.7.4</span> Cumulative Uptake<a href="contaminant-exposure.html#cumulative-uptake" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="math display">\[
-\begin{equation} MeHg_{total} = MeHg_{total} + MeHg_{risk}  \hspace{2cm} \text{(C.43)} \end{equation}
+MeHg_{total} = MeHg_{total} + MeHg_{risk}  \hspace{2cm} \text{(C.43)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -879,10 +879,10 @@ risk (dimensionless).</li>
 <p>Patch-level and individual-level storage based on species for cumulative
 duration risk experienced:</p>
 <p><span class="math display">\[
-\begin{equation} MeHg_{exp-risk} = MeHg_{exp-risk} + MeHg_{risk} \hspace{2cm} \text{(C.44)} \end{equation}
+MeHg_{exp-risk} = MeHg_{exp-risk} + MeHg_{risk} \hspace{2cm} \text{(C.44)}
 \]</span></p>
 <p><span class="math display">\[
-\begin{equation} MeHg_{exp-patch} = MeHg_{exp-patch} + MeHg_{risk} \hspace{2cm} \text{(C.45)} \end{equation}
+MeHg_{exp-patch} = MeHg_{exp-patch} + MeHg_{risk} \hspace{2cm} \text{(C.45)}
 \]</span></p>
 <p>Where:</p>
 <ul>

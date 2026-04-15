@@ -135,7 +135,7 @@ constant across simulation runs:
 Baseline metabolic constant is computed using:
 
 $$
-\begin{equation} Met_{base} = C_{base} \left(\frac{A_{mass}}{M_{max}}\right)^{0.75} \left[1 + S_{age}\left(1 - \frac{A_{age}}{Age_{max}}\right)\right] \left(\frac{T_{opt}}{T_{max}}\right) \hspace{2cm} \text{(C.1)} \end{equation}
+Met_{base} = C_{base} \left(\frac{A_{mass}}{M_{max}}\right)^{0.75} \left[1 + S_{age}\left(1 - \frac{A_{age}}{Age_{max}}\right)\right] \left(\frac{T_{opt}}{T_{max}}\right) \hspace{2cm} \text{(C.1)}
 $$
 
 Where:
@@ -169,7 +169,7 @@ Baseline energy partitions are computed from the initialized metabolic
 base:
 
 $$
-\begin{equation} swim_{base} = Met_{base} \cdot Mt_{ratio}  \hspace{2cm} \text{(C.2)} \end{equation}
+swim_{base} = Met_{base} \cdot Mt_{ratio}  \hspace{2cm} \text{(C.2)}
 $$
 
 Where:
@@ -184,7 +184,7 @@ Where:
     swimming cost (%).
 
 $$
-\begin{equation} E_{\text{base}} = Met_{base} \cdot 0.02  \hspace{2cm} \text{(C.3)} \end{equation}
+E_{\text{base}} = Met_{base} \cdot 0.02  \hspace{2cm} \text{(C.3)}
 $$
 
 Where:
@@ -196,7 +196,7 @@ Where:
     for all energetic scaling ((energy units) tick⁻¹).
 
 $$
-\begin{equation} E_{\text{creation}} = Met_{base} \cdot 0.05  \hspace{2cm} \text{(C.4)} \end{equation}
+E_{\text{creation}} = Met_{base} \cdot 0.05  \hspace{2cm} \text{(C.4)}
 $$
 
 Where:
@@ -221,7 +221,7 @@ structure, and thermal preferences).
 Size Factor:
 
 $$
-\begin{equation} Size_{f} = \left(\frac{{A_{mass}}}{M_{max}}\right)^{0.75}  \hspace{2cm} \text{(C.5)} \end{equation}
+Size_{f} = \left(\frac{{A_{mass}}}{M_{max}}\right)^{0.75}  \hspace{2cm} \text{(C.5)}
 $$
 
 Where:
@@ -241,7 +241,7 @@ sensitivity of metabolic rate in ectotherms
 The Temperature Factor is implemented as:
 
 $$
-\begin{equation} T_{f} = Q_{10}^{\left(\frac{T_{\text{patch}} - T_{\text{opt}}}{10}\right)}  \hspace{2cm} \text{(C.6)} \end{equation}
+T_{f} = Q_{10}^{\left(\frac{T_{\text{patch}} - T_{\text{opt}}}{10}\right)}  \hspace{2cm} \text{(C.6)}
 $$
 
 Where:
@@ -265,7 +265,7 @@ are incorporated using the following age-scaling factor
 The Age Factor is calculated as:
 
 $$
-\begin{equation} Age_{f} = 1 + \left(1 - \frac{A_{age}}{Age_{max}}\right)\cdot 0.5  \hspace{2cm} \text{(C.7)} \end{equation}
+Age_{f} = 1 + \left(1 - \frac{A_{age}}{Age_{max}}\right)\cdot 0.5  \hspace{2cm} \text{(C.7)}
 $$
 
 Where:
@@ -284,10 +284,10 @@ and temperature [@brown_toward_2004].
 Total metabolic rate:
 
 $$
-\begin{equation} Met_{tick} = Met_{base} \cdot 
+Met_{tick} = Met_{base} \cdot 
 Size_{f} \cdot 
 T_{f} \cdot 
-Age_{f}  \hspace{2cm} \text{(C.8)} \end{equation}
+Age_{f}  \hspace{2cm} \text{(C.8)}
 $$
 
 Where:
@@ -310,7 +310,7 @@ Where:
 Metabolic accumulation:
 
 $$
-\begin{equation} Met_{total} = Met_{total} + Met_{tick}  \hspace{2cm} \text{(C.9)} \end{equation}
+Met_{total} = Met_{total} + Met_{tick}  \hspace{2cm} \text{(C.9)}
 $$
 
 Where:
@@ -339,8 +339,8 @@ $$
 Efficiency is computed as:
 
 $$
-\begin{equation} Eff = 
-\frac{Met_{tick}}{Met_{base}}  \hspace{2cm} \text{(C.10)} \end{equation}
+Eff = 
+\frac{Met_{tick}}{Met_{base}}  \hspace{2cm} \text{(C.10)}
 $$
 
 Where:

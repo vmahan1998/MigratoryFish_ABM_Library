@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Metabolism | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</title>
+  <title>Chapter 4 Metabolism | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</title>
   <meta name="description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Metabolism | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta property="og:title" content="Chapter 4 Metabolism | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
   <meta property="og:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="github-repo" content="vmahan1998/GoFish" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Metabolism | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta name="twitter:title" content="Chapter 4 Metabolism | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   
   <meta name="twitter:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="twitter:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
@@ -550,7 +550,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</a>
           </h1>
         </div>
 
@@ -831,7 +831,7 @@ using species-specific traits and fixed parameter values and remains
 constant across simulation runs:</p>
 <p>Baseline metabolic constant is computed using:</p>
 <p><span class="math display">\[
-\begin{equation} Met_{base} = C_{base} \left(\frac{A_{mass}}{M_{max}}\right)^{0.75} \left[1 + S_{age}\left(1 - \frac{A_{age}}{Age_{max}}\right)\right] \left(\frac{T_{opt}}{T_{max}}\right) \hspace{2cm} \text{(C.1)} \end{equation}
+Met_{base} = C_{base} \left(\frac{A_{mass}}{M_{max}}\right)^{0.75} \left[1 + S_{age}\left(1 - \frac{A_{age}}{Age_{max}}\right)\right] \left(\frac{T_{opt}}{T_{max}}\right) \hspace{2cm} \text{(C.1)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -856,7 +856,7 @@ normalization (°C).</p></li>
 <p>Baseline energy partitions are computed from the initialized metabolic
 base:</p>
 <p><span class="math display">\[
-\begin{equation} swim_{base} = Met_{base} \cdot Mt_{ratio}  \hspace{2cm} \text{(C.2)} \end{equation}
+swim_{base} = Met_{base} \cdot Mt_{ratio}  \hspace{2cm} \text{(C.2)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -868,7 +868,7 @@ for all energetic scaling ((energy units) tick⁻¹).</p></li>
 swimming cost (%).</p></li>
 </ul>
 <p><span class="math display">\[
-\begin{equation} E_{\text{base}} = Met_{base} \cdot 0.02  \hspace{2cm} \text{(C.3)} \end{equation}
+E_{\text{base}} = Met_{base} \cdot 0.02  \hspace{2cm} \text{(C.3)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -878,7 +878,7 @@ swimming cost (%).</p></li>
 for all energetic scaling ((energy units) tick⁻¹).</p></li>
 </ul>
 <p><span class="math display">\[
-\begin{equation} E_{\text{creation}} = Met_{base} \cdot 0.05  \hspace{2cm} \text{(C.4)} \end{equation}
+E_{\text{creation}} = Met_{base} \cdot 0.05  \hspace{2cm} \text{(C.4)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -899,7 +899,7 @@ represented through parameter values (e.g., age, body mass, age
 structure, and thermal preferences).</p>
 <p>Size Factor:</p>
 <p><span class="math display">\[
-\begin{equation} Size_{f} = \left(\frac{{A_{mass}}}{M_{max}}\right)^{0.75}  \hspace{2cm} \text{(C.5)} \end{equation}
+Size_{f} = \left(\frac{{A_{mass}}}{M_{max}}\right)^{0.75}  \hspace{2cm} \text{(C.5)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -914,7 +914,7 @@ sensitivity of metabolic rate in ectotherms
 <span class="citation">(<a href="#ref-schmidt_nielsen_animal_1997">Schmidt-Nielsen 1997</a>; <a href="#ref-brown_toward_2004">Brown et al. 2004</a>)</span>.</p>
 <p>The Temperature Factor is implemented as:</p>
 <p><span class="math display">\[
-\begin{equation} T_{f} = Q_{10}^{\left(\frac{T_{\text{patch}} - T_{\text{opt}}}{10}\right)}  \hspace{2cm} \text{(C.6)} \end{equation}
+T_{f} = Q_{10}^{\left(\frac{T_{\text{patch}} - T_{\text{opt}}}{10}\right)}  \hspace{2cm} \text{(C.6)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -932,7 +932,7 @@ are incorporated using the following age-scaling factor
 <span class="citation">(<a href="#ref-glazier_beyond_2005">Glazier 2005</a>, <a href="#ref-glazier_relevance_2023">2023</a>)</span>:</p>
 <p>The Age Factor is calculated as:</p>
 <p><span class="math display">\[
-\begin{equation} Age_{f} = 1 + \left(1 - \frac{A_{age}}{Age_{max}}\right)\cdot 0.5  \hspace{2cm} \text{(C.7)} \end{equation}
+Age_{f} = 1 + \left(1 - \frac{A_{age}}{Age_{max}}\right)\cdot 0.5  \hspace{2cm} \text{(C.7)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -946,10 +946,10 @@ ecology models in which metabolic rate scales as a function of body mass
 and temperature <span class="citation">(<a href="#ref-brown_toward_2004">Brown et al. 2004</a>)</span>.</p>
 <p>Total metabolic rate:</p>
 <p><span class="math display">\[
-\begin{equation} Met_{tick} = Met_{base} \cdot
+Met_{tick} = Met_{base} \cdot
 Size_{f} \cdot
 T_{f} \cdot
-Age_{f}  \hspace{2cm} \text{(C.8)} \end{equation}
+Age_{f}  \hspace{2cm} \text{(C.8)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -966,7 +966,7 @@ intensity (dimensionless).</p></li>
 </ul>
 <p>Metabolic accumulation:</p>
 <p><span class="math display">\[
-\begin{equation} Met_{total} = Met_{total} + Met_{tick}  \hspace{2cm} \text{(C.9)} \end{equation}
+Met_{total} = Met_{total} + Met_{tick}  \hspace{2cm} \text{(C.9)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -993,8 +993,8 @@ M_{\text{baseline}} =
 \]</span></p>
 <p>Efficiency is computed as:</p>
 <p><span class="math display">\[
-\begin{equation} Eff =
-\frac{Met_{tick}}{Met_{base}}  \hspace{2cm} \text{(C.10)} \end{equation}
+Eff =
+\frac{Met_{tick}}{Met_{base}}  \hspace{2cm} \text{(C.10)}
 \]</span></p>
 <p>Where:</p>
 <ul>

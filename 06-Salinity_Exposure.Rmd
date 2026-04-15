@@ -174,7 +174,7 @@ mismatch and buffering capacity, rather than a direct physiological
 measure (e.g., cortisol concentration):
 
 $$
-\begin{equation} S_{stress} = \frac{\log_{10}(1 + |S_{agent} - S_{patch}|) \cdot 10}{1 + e^{-2 \cdot (C_{current} / C_{mid})}}   \hspace{2cm} \text{(C.19)} \end{equation}
+ S_{stress} = \frac{\log_{10}(1 + |S_{agent} - S_{patch}|) \cdot 10}{1 + e^{-2 \cdot (C_{current} / C_{mid})}}   \hspace{2cm} \text{(C.19)} 
 $$
 
 Where:
@@ -196,7 +196,7 @@ Stress is capped within the range [1, 10], and may be reduced slightly
 over time if salinity remains stable and chloride density is sufficient:
 
 $$
-\begin{equation} S_{stress} = S_{stress} \cdot 0.98 \quad \text{if conditions are stable and } C > C_{min}   \hspace{2cm} \text{(C.20)} \end{equation}
+ S_{stress} = S_{stress} \cdot 0.98 \quad \text{if conditions are stable and } C > C_{min}   \hspace{2cm} \text{(C.20)} 
 $$
 
 Where:
@@ -210,7 +210,7 @@ hours to days), consistent with documented time-dependent salinity
 acclimation in fishes [@evans_osmotic_2008].
 
 $$
-\begin{equation} S_{agent} = S_{agent} + (S_{patch} - S_{agent}) \cdot 0.02   \hspace{2cm} \text{(C.21)} \end{equation}
+ S_{agent} = S_{agent} + (S_{patch} - S_{agent}) \cdot 0.02   \hspace{2cm} \text{(C.21)} 
 $$
 
 Where:
@@ -240,7 +240,7 @@ adjusted unless the agent’s energy exceeds 25%.
 The chloride cell density is based on stress:
 
 $$
-\begin{equation} C_{target} = C_{min} + (C_{max} - C_{min}) \cdot \left(\frac{S_{stress}}{10}\right)   \hspace{2cm} \text{(C.22)} \end{equation}
+ C_{target} = C_{min} + (C_{max} - C_{min}) \cdot \left(\frac{S_{stress}}{10}\right)   \hspace{2cm} \text{(C.22)} 
 $$
 
 Where:
@@ -259,7 +259,7 @@ If salinity conditions have remained stable for an extended period
 down regulation of chloride cells due to long-term acclimation:
 
 $$
-\begin{equation} C_{target} = C_{target} \cdot 0.99 \quad \text{if stable}   \hspace{2cm} \text{(C.23)} \end{equation}
+ C_{target} = C_{target} \cdot 0.99 \quad \text{if stable}   \hspace{2cm} \text{(C.23)} 
 $$
 
 Where:
@@ -271,7 +271,7 @@ Chloride cell density then approaches the target using a double-rate
 adjustment and capped maximum rate of change:
 
 $$
-\begin{equation} \Delta C = \left(C_{target} - C_{current}\right) \cdot \left(2 \cdot R_{proliferation}\right)   \hspace{2cm} \text{(C.24)} \end{equation}
+ \Delta C = \left(C_{target} - C_{current}\right) \cdot \left(2 \cdot R_{proliferation}\right)   \hspace{2cm} \text{(C.24)} 
 $$
 
 Where:
@@ -286,7 +286,7 @@ Where:
     tick⁻¹, relative density per tick).
 
 $$
-\begin{equation} \Delta C = \max\left(-R_{max}, \min(R_{max}, \Delta C)\right)  \hspace{2cm} \text{(C.25)} \end{equation}
+ \Delta C = \max\left(-R_{max}, \min(R_{max}, \Delta C)\right)  \hspace{2cm} \text{(C.25)} 
 $$
 
 Where:
@@ -300,7 +300,7 @@ If the agent has low energy ($\leq 50\%$), the adjustment rate is
 halved:
 
 $$
-\begin{equation} \Delta C = \Delta C \cdot 0.5 \quad \text{if energy is low}  \hspace{2cm} \text{(C.26)} \end{equation}
+ \Delta C = \Delta C \cdot 0.5 \quad \text{if energy is low}  \hspace{2cm} \text{(C.26)} 
 $$
 
 Where:
@@ -312,7 +312,7 @@ Finally, the chloride cell density is updated and constrained between
 $C_{min}$ and $C_{max}$:
 
 $$
-\begin{equation} C_{new} = \max(C_{min}, \min(C_{max}, C_{current} + \Delta C))  \hspace{2cm} \text{(C.27)} \end{equation}
+ C_{new} = \max(C_{min}, \min(C_{max}, C_{current} + \Delta C))  \hspace{2cm} \text{(C.27)} 
 $$
 
 Where:
@@ -336,7 +336,7 @@ Chloride density is only recalculated after a given acclimation
 interval:
 
 $$
-\begin{equation} t_{osmo} \geq \alpha^{-1}  \hspace{2cm} \text{(C.28)} \end{equation}
+ t_{osmo} \geq \alpha^{-1}  \hspace{2cm} \text{(C.28)} 
 $$
 
 Where:
@@ -347,7 +347,7 @@ Where:
 After updating, the acclimation timer is reset:
 
 $$
-\begin{equation} t_{osmo} = 0  \hspace{2cm} \text{(C.29)} \end{equation}
+ t_{osmo} = 0  \hspace{2cm} \text{(C.29)} 
 $$
 
 Where:
@@ -369,7 +369,7 @@ with body mass (g) according to a power-law relationship (e.g.,
 Metabolic cost related to mass (g):
 
 $$
-\begin{equation} E_{creation} = Met_{max} * (\frac{A_{mass}}{M_{max}})^k  \hspace{2cm} \text{(C.30)} \end{equation}
+ E_{creation} = Met_{max} * (\frac{A_{mass}}{M_{max}})^k  \hspace{2cm} \text{(C.30)} 
 $$
 
 Where:
@@ -390,7 +390,7 @@ Where:
 Energy required for ion regulation:
 
 $$
-\begin{equation} E_{osmo} = (E_{base} \cdot C) + (E_{creation} \cdot C_{tick})  \hspace{2cm} \text{(C.31)} \end{equation}
+ E_{osmo} = (E_{base} \cdot C) + (E_{creation} \cdot C_{tick})  \hspace{2cm} \text{(C.31)} 
 $$
 
 Where:
@@ -412,7 +412,7 @@ Where:
 Agents balance energy to osmoregulate with total energy allowance:
 
 $$
-\begin{equation} E_{agent} = E_{agent} - E_{osmo}  \hspace{2cm} \text{(C.32)} \end{equation}
+ E_{agent} = E_{agent} - E_{osmo}  \hspace{2cm} \text{(C.32)} 
 $$
 
 Where:

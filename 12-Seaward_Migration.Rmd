@@ -105,10 +105,10 @@ routes can be monitored.
 Velocity is normalized between minimum and maximum observed values:
 
 $$
-\begin{equation} V_{normalized}
+ V_{normalized}
 = 
 \frac{V_{\text{patch}} - V_{\min}}
-{V_{\max} - V_{\min}}  \hspace{2cm} \text{(C.79)} \end{equation}
+{V_{\max} - V_{\min}}  \hspace{2cm} \text{(C.79)} 
 $$
 
 Where:
@@ -126,12 +126,12 @@ Difficulty scales with body size [@brown_toward_2004;
 @gibson_selective_2001]:
 
 $$
-\begin{equation} Df_{\text{raw}}
+ Df_{\text{raw}}
 =
 \left(
 \frac{V_{normalized}}
 {A_{\text{mass}} / M_{\max}}
-\right)^k  \hspace{2cm} \text{(C.80)} \end{equation}
+\right)^k  \hspace{2cm} \text{(C.80)} 
 $$
 
 Where:
@@ -151,7 +151,7 @@ Where:
 Difficulty is mapped onto the one-to-ten range:
 
 $$
-\begin{equation} D_f = 1 + 9 \cdot Df_{\text{raw}}  \hspace{2cm} \text{(C.81)} \end{equation}
+ D_f = 1 + 9 \cdot Df_{\text{raw}}  \hspace{2cm} \text{(C.81)} 
 $$
 
 Where:
@@ -163,7 +163,7 @@ Where:
 and constrained:
 
 $$
-\begin{equation} D_f \in [1, 10]  \hspace{2cm} \text{(C.82)} \end{equation}
+ D_f \in [1, 10]  \hspace{2cm} \text{(C.82)} 
 $$
 
 Where:
@@ -176,7 +176,7 @@ Where:
 Energy factor:
 
 $$
-\begin{equation} E_{\text{factor}} = \frac{E_{\text{agent}}}{100}  \hspace{2cm} \text{(C.83)} \end{equation}
+ E_{\text{factor}} = \frac{E_{\text{agent}}}{100}  \hspace{2cm} \text{(C.83)} 
 $$
 
 Where:
@@ -189,7 +189,7 @@ Where:
 
 Velocity impact from hydrodynamics is:
 
-$$ \begin{equation} V_{\text{impact}} = k \cdot V_{\text{patch}} \cdot 300  \hspace{2cm} \text{(C.69)} \end{equation} $$
+$$  V_{\text{impact}} = k \cdot V_{\text{patch}} \cdot 300  \hspace{2cm} \text{(C.69)}  $$
 
 Where:
 
@@ -204,7 +204,7 @@ Where:
 
 The desired swimming speed is:
 
-$$ \begin{equation} V_{\text{desired}} = \frac{V_{\max} \cdot E_{\text{factor}}}{D_f} + V_{\text{impact}}  \hspace{2cm} \text{(C.70)} \end{equation} $$
+$$  V_{\text{desired}} = \frac{V_{\max} \cdot E_{\text{factor}}}{D_f} + V_{\text{impact}}  \hspace{2cm} \text{(C.70)}  $$
 
 Where:
 
@@ -219,7 +219,7 @@ Where:
 
 Speed is constrained between a minimum and maximum:
 
-$$ \begin{equation} V_{\text{desired}}  = \min(V_{\max}, \max(V_{\min}, V_{\text{desired}}))  \hspace{2cm} \text{(C.71)} \end{equation} $$
+$$  V_{\text{desired}}  = \min(V_{\max}, \max(V_{\min}, V_{\text{desired}}))  \hspace{2cm} \text{(C.71)}  $$
 
 Where:
 
@@ -231,7 +231,7 @@ Where:
 Acceleration smoothing:
 
 $$
-\begin{equation} \Delta V_{\max} = 0.5 \cdot swim_{Eff}  \hspace{2cm} \text{(C.87)} \end{equation}
+ \Delta V_{\max} = 0.5 \cdot swim_{Eff}  \hspace{2cm} \text{(C.87)} 
 $$
 
 Where:
@@ -250,9 +250,9 @@ desired value. Otherwise speed is set directly.
 Travel distance:
 
 $$
-\begin{equation} D_{travel}
+ D_{travel}
 =
-\frac{A_{\text{speed}}}{3}  \hspace{2cm} \text{(C.88)} \end{equation}
+\frac{A_{\text{speed}}}{3}  \hspace{2cm} \text{(C.88)} 
 $$
 
 Where:
@@ -275,11 +275,11 @@ Movement follows:
 Raw cost:
 
 $$
-\begin{equation} \text{cost}_{\text{raw}}
+ \text{cost}_{\text{raw}}
 =
 |V_{\text{patch}}|
 +
-0.5 \cdot \max(0, \Delta d)  \hspace{2cm} \text{(C.89)} \end{equation}
+0.5 \cdot \max(0, \Delta d)  \hspace{2cm} \text{(C.89)} 
 $$
 
 Where:
@@ -293,9 +293,9 @@ Where:
 Difficulty scaling:
 
 $$
-\begin{equation} \text{cost}
+ \text{cost}
 =
-\text{cost}_{\text{raw}} \cdot D_f  \hspace{2cm} \text{(C.90)} \end{equation}
+\text{cost}_{\text{raw}} \cdot D_f  \hspace{2cm} \text{(C.90)} 
 $$
 
 Where:
@@ -318,7 +318,7 @@ Let $\beta = 0.75$.
 Energy multiplier:
 
 $$
-\begin{equation} M_{swim} = \frac{D_f}{swim_{Eff}}  \hspace{2cm} \text{(C.91)} \end{equation}
+ M_{swim} = \frac{D_f}{swim_{Eff}}  \hspace{2cm} \text{(C.91)} 
 $$
 
 Where:
@@ -331,9 +331,9 @@ Where:
 Energy cost:
 
 $$
-\begin{equation} E_{\text{swim}}
+ E_{\text{swim}}
 =
-swim_{base} \cdot M_{swim}^{\beta}  \hspace{2cm} \text{(C.92)} \end{equation}
+swim_{base} \cdot M_{swim}^{\beta}  \hspace{2cm} \text{(C.92)} 
 $$
 
 Where:
@@ -352,9 +352,9 @@ Where:
 Energy update:
 
 $$
-\begin{equation} E_{\text{agent}}
+ E_{\text{agent}}
 =
-\max \left(0,\, E_{\text{agent}} - E_{\text{swim}} \right)  \hspace{2cm} \text{(C.93)} \end{equation}
+\max \left(0,\, E_{\text{agent}} - E_{\text{swim}} \right)  \hspace{2cm} \text{(C.93)} 
 $$
 
 Where:

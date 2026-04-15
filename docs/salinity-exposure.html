@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Salinity Exposure | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</title>
+  <title>Chapter 6 Salinity Exposure | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</title>
   <meta name="description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Salinity Exposure | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta property="og:title" content="Chapter 6 Salinity Exposure | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
   <meta property="og:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="github-repo" content="vmahan1998/GoFish" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Salinity Exposure | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta name="twitter:title" content="Chapter 6 Salinity Exposure | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   
   <meta name="twitter:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="twitter:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
@@ -550,7 +550,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</a>
           </h1>
         </div>
 
@@ -842,7 +842,7 @@ represents a relative index of osmotic stress derived from salinity
 mismatch and buffering capacity, rather than a direct physiological
 measure (e.g., cortisol concentration):</p>
 <p><span class="math display">\[
-\begin{equation} S_{stress} = \frac{\log_{10}(1 + |S_{agent} - S_{patch}|) \cdot 10}{1 + e^{-2 \cdot (C_{current} / C_{mid})}}   \hspace{2cm} \text{(C.19)} \end{equation}
+S_{stress} = \frac{\log_{10}(1 + |S_{agent} - S_{patch}|) \cdot 10}{1 + e^{-2 \cdot (C_{current} / C_{mid})}}   \hspace{2cm} \text{(C.19)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -858,7 +858,7 @@ relative density).</p></li>
 <p>Stress is capped within the range [1, 10], and may be reduced slightly
 over time if salinity remains stable and chloride density is sufficient:</p>
 <p><span class="math display">\[
-\begin{equation} S_{stress} = S_{stress} \cdot 0.98 \quad \text{if conditions are stable and } C &gt; C_{min}   \hspace{2cm} \text{(C.20)} \end{equation}
+S_{stress} = S_{stress} \cdot 0.98 \quad \text{if conditions are stable and } C &gt; C_{min}   \hspace{2cm} \text{(C.20)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -870,7 +870,7 @@ salinity when conditions have been stable for several time steps (e.g.,
 hours to days), consistent with documented time-dependent salinity
 acclimation in fishes <span class="citation">(<a href="#ref-evans_osmotic_2008">David H. Evans and Claiborne 2008</a>)</span>.</p>
 <p><span class="math display">\[
-\begin{equation} S_{agent} = S_{agent} + (S_{patch} - S_{agent}) \cdot 0.02   \hspace{2cm} \text{(C.21)} \end{equation}
+S_{agent} = S_{agent} + (S_{patch} - S_{agent}) \cdot 0.02   \hspace{2cm} \text{(C.21)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -898,7 +898,7 @@ and the acclimation interval (<span class="math inline">\(t_{osmo}\)</span>). Ch
 adjusted unless the agent’s energy exceeds 25%.</p>
 <p>The chloride cell density is based on stress:</p>
 <p><span class="math display">\[
-\begin{equation} C_{target} = C_{min} + (C_{max} - C_{min}) \cdot \left(\frac{S_{stress}}{10}\right)   \hspace{2cm} \text{(C.22)} \end{equation}
+C_{target} = C_{min} + (C_{max} - C_{min}) \cdot \left(\frac{S_{stress}}{10}\right)   \hspace{2cm} \text{(C.22)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -915,7 +915,7 @@ density).</li>
 (e.g., 288 ticks), (<span class="math inline">\(C_{target}\)</span>) is slightly reduced to reflect partial
 down regulation of chloride cells due to long-term acclimation:</p>
 <p><span class="math display">\[
-\begin{equation} C_{target} = C_{target} \cdot 0.99 \quad \text{if stable}   \hspace{2cm} \text{(C.23)} \end{equation}
+C_{target} = C_{target} \cdot 0.99 \quad \text{if stable}   \hspace{2cm} \text{(C.23)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -925,7 +925,7 @@ relative density).</li>
 <p>Chloride cell density then approaches the target using a double-rate
 adjustment and capped maximum rate of change:</p>
 <p><span class="math display">\[
-\begin{equation} \Delta C = \left(C_{target} - C_{current}\right) \cdot \left(2 \cdot R_{proliferation}\right)   \hspace{2cm} \text{(C.24)} \end{equation}
+\Delta C = \left(C_{target} - C_{current}\right) \cdot \left(2 \cdot R_{proliferation}\right)   \hspace{2cm} \text{(C.24)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -939,7 +939,7 @@ density).</li>
 tick⁻¹, relative density per tick).</li>
 </ul>
 <p><span class="math display">\[
-\begin{equation} \Delta C = \max\left(-R_{max}, \min(R_{max}, \Delta C)\right)  \hspace{2cm} \text{(C.25)} \end{equation}
+\Delta C = \max\left(-R_{max}, \min(R_{max}, \Delta C)\right)  \hspace{2cm} \text{(C.25)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -951,7 +951,7 @@ tick⁻¹, relative density per tick).</li>
 <p>If the agent has low energy (<span class="math inline">\(\leq 50\%\)</span>), the adjustment rate is
 halved:</p>
 <p><span class="math display">\[
-\begin{equation} \Delta C = \Delta C \cdot 0.5 \quad \text{if energy is low}  \hspace{2cm} \text{(C.26)} \end{equation}
+\Delta C = \Delta C \cdot 0.5 \quad \text{if energy is low}  \hspace{2cm} \text{(C.26)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -961,7 +961,7 @@ relative density).</li>
 <p>Finally, the chloride cell density is updated and constrained between
 <span class="math inline">\(C_{min}\)</span> and <span class="math inline">\(C_{max}\)</span>:</p>
 <p><span class="math display">\[
-\begin{equation} C_{new} = \max(C_{min}, \min(C_{max}, C_{current} + \Delta C))  \hspace{2cm} \text{(C.27)} \end{equation}
+C_{new} = \max(C_{min}, \min(C_{max}, C_{current} + \Delta C))  \hspace{2cm} \text{(C.27)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -982,7 +982,7 @@ salinity stress.</p>
 <p>Chloride density is only recalculated after a given acclimation
 interval:</p>
 <p><span class="math display">\[
-\begin{equation} t_{osmo} \geq \alpha^{-1}  \hspace{2cm} \text{(C.28)} \end{equation}
+t_{osmo} \geq \alpha^{-1}  \hspace{2cm} \text{(C.28)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -991,7 +991,7 @@ interval:</p>
 </ul>
 <p>After updating, the acclimation timer is reset:</p>
 <p><span class="math display">\[
-\begin{equation} t_{osmo} = 0  \hspace{2cm} \text{(C.29)} \end{equation}
+t_{osmo} = 0  \hspace{2cm} \text{(C.29)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1010,7 +1010,7 @@ with body mass (g) according to a power-law relationship (e.g.,
 <span class="citation">Schmidt-Nielsen (<a href="#ref-schmidt_nielsen_animal_1997">1997</a>)</span>).</p>
 <p>Metabolic cost related to mass (g):</p>
 <p><span class="math display">\[
-\begin{equation} E_{creation} = Met_{max} * (\frac{A_{mass}}{M_{max}})^k  \hspace{2cm} \text{(C.30)} \end{equation}
+E_{creation} = Met_{max} * (\frac{A_{mass}}{M_{max}})^k  \hspace{2cm} \text{(C.30)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1025,7 +1025,7 @@ energetic scaling (g).</p></li>
 </ul>
 <p>Energy required for ion regulation:</p>
 <p><span class="math display">\[
-\begin{equation} E_{osmo} = (E_{base} \cdot C) + (E_{creation} \cdot C_{tick})  \hspace{2cm} \text{(C.31)} \end{equation}
+E_{osmo} = (E_{base} \cdot C) + (E_{creation} \cdot C_{tick})  \hspace{2cm} \text{(C.31)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1043,7 +1043,7 @@ a tick (%, relative density).</p></li>
 <h3><span class="header-section-number">6.7.3</span> Energy Balance<a href="salinity-exposure.html#energy-balance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Agents balance energy to osmoregulate with total energy allowance:</p>
 <p><span class="math display">\[
-\begin{equation} E_{agent} = E_{agent} - E_{osmo}  \hspace{2cm} \text{(C.32)} \end{equation}
+E_{agent} = E_{agent} - E_{osmo}  \hspace{2cm} \text{(C.32)}
 \]</span></p>
 <p>Where:</p>
 <ul>

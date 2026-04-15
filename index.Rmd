@@ -1,5 +1,5 @@
 ---
-title: "GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries"
+title: "GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries"
 author: "Vanessa Quintana"
 date: "`r Sys.Date()`"
 keywords: ["ecological modeling", "coding library", "netlogo", "agent-based", "pattern-oriented", "individual-based", "bioaccumulation", "estuary contamination", "hydrodynamics", "mercury", "anadromous fish", "GoFish", "SPM transport", "methylmercury", "GoFish Toolkit", "osmoregulation", "estuarine dynamics", "coupled models", "co-development", "fish behavior", "migratory fish"]
@@ -36,7 +36,5 @@ This library was originally developed in support of research on the influence of
 ## How to Use This Library {.unnumbered}
 
 Each function or behavior in this library can be combined with others to build a complete agent-based model for anadromous fish. These functions are designed to be adaptable, and easily configured for different species, life stages, or site-specific conditions.
-
-[Download PDF Version Here](docs/GoFish.pdf)
 
 *For questions, feedback, guidance on implementation, or **interest in adding to the library**, please contact **Vanessa Quintana** at [**mahan.vanessa98\@gmail.com**](mailto:mahan.vanessa98@gmail.com){.email}**.**

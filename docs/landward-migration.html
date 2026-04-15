@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 Landward Migration | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</title>
+  <title>Chapter 10 Landward Migration | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</title>
   <meta name="description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 10 Landward Migration | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta property="og:title" content="Chapter 10 Landward Migration | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
   <meta property="og:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="github-repo" content="vmahan1998/GoFish" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 Landward Migration | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta name="twitter:title" content="Chapter 10 Landward Migration | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   
   <meta name="twitter:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="twitter:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
@@ -550,7 +550,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</a>
           </h1>
         </div>
 
@@ -788,7 +788,7 @@ chronologically.</p>
 agent to move through its current patch. Velocity is normalized between
 the maximum observed landward and seaward velocities:</p>
 <p><span class="math display">\[
-\begin{equation} V_{\text{normalized}} = \frac{V_{\text{patch}} - V_{\min}}{V_{\max} - V_{\min}}  \hspace{2cm} \text{(C.64)} \end{equation}
+V_{\text{normalized}} = \frac{V_{\text{patch}} - V_{\min}}{V_{\max} - V_{\min}}  \hspace{2cm} \text{(C.64)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -802,10 +802,10 @@ the patch (m s⁻¹).</li>
 <span class="math inline">\(M_{\text{agent}} / M_{\max}\)</span> and raised to a scaling exponent <span class="math inline">\(k\)</span>
 <span class="citation">(<a href="#ref-brown_toward_2004">Brown et al. 2004</a>; <a href="#ref-gibson_selective_2001">Gibson, Barnes, and Atkinson 2001a</a>)</span>:</p>
 <p><span class="math display">\[
-\begin{equation} Df_{\text{raw}} =
+Df_{\text{raw}} =
 \left(
 \frac{V_{\text{normalized}}}{A_{\text{mass}} / M_{\max}}
-\right)^k  \hspace{2cm} \text{(C.65)} \end{equation}
+\right)^k  \hspace{2cm} \text{(C.65)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -819,7 +819,7 @@ scaling (g).</li>
 </ul>
 <p>Difficulty is then mapped onto the one to ten range:</p>
 <p><span class="math display">\[
-\begin{equation} D_f = 1 + 9 \cdot Df_{\text{raw}}  \hspace{2cm} \text{(C.66)} \end{equation}
+D_f = 1 + 9 \cdot Df_{\text{raw}}  \hspace{2cm} \text{(C.66)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -829,7 +829,7 @@ scaling (g).</li>
 </ul>
 <p>and constrained:</p>
 <p><span class="math display">\[
-\begin{equation} D_f \in [1, 10]  \hspace{2cm} \text{(C.67)} \end{equation}
+D_f \in [1, 10]  \hspace{2cm} \text{(C.67)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -848,7 +848,7 @@ scaling (g).</li>
 <p>Swimming speed depends on energetic condition, hydrodynamic difficulty,
 and the effect of local flow. The agent first computes an energy factor:</p>
 <p><span class="math display">\[
-\begin{equation} E_{\text{factor}} = \frac{E_{\text{agent}}}{100}  \hspace{2cm} \text{(C.68)} \end{equation}
+E_{\text{factor}} = \frac{E_{\text{agent}}}{100}  \hspace{2cm} \text{(C.68)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -859,7 +859,7 @@ and the effect of local flow. The agent first computes an energy factor:</p>
 </ul>
 <p>Velocity impact from hydrodynamics is:</p>
 <p><span class="math display">\[
-\begin{equation} V_{\text{impact}} = k \cdot V_{\text{patch}} \cdot 300  \hspace{2cm} \text{(C.69)} \end{equation}
+V_{\text{impact}} = k \cdot V_{\text{patch}} \cdot 300  \hspace{2cm} \text{(C.69)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -874,9 +874,9 @@ e.g., 5 minutes).</li>
 </ul>
 <p>The desired swimming speed is:</p>
 <p><span class="math display">\[
-\begin{equation} V_{\text{desired}} =
+V_{\text{desired}} =
 \frac{V_{\max} \cdot E_{\text{factor}}}{D_f}
-+ V_{\text{impact}}  \hspace{2cm} \text{(C.70)} \end{equation}
++ V_{\text{impact}}  \hspace{2cm} \text{(C.70)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -891,8 +891,8 @@ tick⁻¹).</li>
 </ul>
 <p>Speed is constrained between a minimum and maximum:</p>
 <p><span class="math display">\[
-\begin{equation} V_{\text{desired}}
-= \min(V_{\max}, \max(V_{\min}, V_{\text{desired}}))  \hspace{2cm} \text{(C.71)} \end{equation}
+V_{\text{desired}}
+= \min(V_{\max}, \max(V_{\min}, V_{\text{desired}}))  \hspace{2cm} \text{(C.71)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -903,7 +903,7 @@ tick⁻¹).</li>
 </ul>
 <p>Acceleration is smoothed using the previous speed:</p>
 <p><span class="math display">\[
-\begin{equation} \Delta V_{max} = 0.5 \cdot swim_{Eff}  \hspace{2cm} \text{(C.72)} \end{equation}
+\Delta V_{max} = 0.5 \cdot swim_{Eff}  \hspace{2cm} \text{(C.72)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -922,7 +922,7 @@ desired value. Otherwise speed is set directly.</p>
 vector movement. The number of patches traversed in a tick is based on
 swimming speed:</p>
 <p><span class="math display">\[
-\begin{equation} D_{travel} = \frac{A_{speed}}{3}  \hspace{2cm} \text{(C.73)} \end{equation}
+D_{travel} = \frac{A_{speed}}{3}  \hspace{2cm} \text{(C.73)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -935,7 +935,7 @@ tick⁻¹).</li>
 <ol style="list-style-type: decimal">
 <li>compute cost-to-home</li>
 <li>generate a path using decreasing cost</li>
-<li>move through the first <span class="math inline">\(\lceil \text{travel_distance} \rceil\)</span>
+<li>move through the first <span class="math inline">\(\lceil \mathrm{travel\_distance} \rceil\)</span>
 patches</li>
 <li>record patch visits and time spent</li>
 <li>append patch-here to the trail if new location</li>
@@ -946,9 +946,9 @@ patches</li>
 <p>Travel cost for a candidate patch incorporates velocity magnitude,
 slope, and difficulty:</p>
 <p><span class="math display">\[
-\begin{equation} \text{cost}_{\text{raw}}
+\text{cost}_{\text{raw}}
 = |V_{\text{patch}}|
-+ 0.5 \cdot \max(0, \Delta \text{depth})  \hspace{2cm} \text{(C.74)} \end{equation}
++ 0.5 \cdot \max(0, \Delta \text{depth})  \hspace{2cm} \text{(C.74)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -960,8 +960,8 @@ the patch (m s⁻¹).</li>
 </ul>
 <p>Difficulty multiplies the base cost:</p>
 <p><span class="math display">\[
-\begin{equation} \text{cost}
-= \text{cost}_{\text{raw}} \cdot D_f  \hspace{2cm} \text{(C.75)} \end{equation}
+\text{cost}
+= \text{cost}_{\text{raw}} \cdot D_f  \hspace{2cm} \text{(C.75)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -981,7 +981,7 @@ difficulty, and swim efficiency.</p>
 <p>Let <span class="math inline">\(\beta = 0.75\)</span>.<br />
 Let the effective multiplier be:</p>
 <p><span class="math display">\[
-\begin{equation} M_{swim} = \frac{D_f}{swim_{Eff}}  \hspace{2cm} \text{(C.76)} \end{equation}
+M_{swim} = \frac{D_f}{swim_{Eff}}  \hspace{2cm} \text{(C.76)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -993,7 +993,7 @@ energetics (dimensionless).</li>
 <p>Where lower efficiency results in higher energetic cost.</p>
 <p>Energy expenditure is:</p>
 <p><span class="math display">\[
-\begin{equation} E_{\text{swim}} = swim_{base} \cdot M_{swim}^\beta  \hspace{2cm} \text{(C.77)} \end{equation}
+E_{\text{swim}} = swim_{base} \cdot M_{swim}^\beta  \hspace{2cm} \text{(C.77)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1007,7 +1007,7 @@ units) patch⁻¹).</li>
 </ul>
 <p>Total energy is reduced accordingly:</p>
 <p><span class="math display">\[
-\begin{equation} E_{\text{agent}} = \max(0, E_{\text{agent}} - E_{\text{swim}})  \hspace{2cm} \text{(C.78)} \end{equation}
+E_{\text{agent}} = \max(0, E_{\text{agent}} - E_{\text{swim}})  \hspace{2cm} \text{(C.78)}
 \]</span></p>
 <p>Where:</p>
 <ul>

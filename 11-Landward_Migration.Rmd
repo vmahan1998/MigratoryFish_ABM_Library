@@ -103,7 +103,7 @@ agent to move through its current patch. Velocity is normalized between
 the maximum observed landward and seaward velocities:
 
 $$
-\begin{equation} V_{\text{normalized}} = \frac{V_{\text{patch}} - V_{\min}}{V_{\max} - V_{\min}}  \hspace{2cm} \text{(C.64)} \end{equation}
+ V_{\text{normalized}} = \frac{V_{\text{patch}} - V_{\min}}{V_{\max} - V_{\min}}  \hspace{2cm} \text{(C.64)} 
 $$
 
 Where:
@@ -119,10 +119,10 @@ $M_{\text{agent}} / M_{\max}$ and raised to a scaling exponent $k$
 [@brown_toward_2004; @gibson_selective_2001]:
 
 $$
-\begin{equation} Df_{\text{raw}} = 
+ Df_{\text{raw}} = 
 \left(
 \frac{V_{\text{normalized}}}{A_{\text{mass}} / M_{\max}}
-\right)^k  \hspace{2cm} \text{(C.65)} \end{equation}
+\right)^k  \hspace{2cm} \text{(C.65)} 
 $$
 
 Where:
@@ -138,7 +138,7 @@ Where:
 Difficulty is then mapped onto the one to ten range:
 
 $$
-\begin{equation} D_f = 1 + 9 \cdot Df_{\text{raw}}  \hspace{2cm} \text{(C.66)} \end{equation}
+ D_f = 1 + 9 \cdot Df_{\text{raw}}  \hspace{2cm} \text{(C.66)} 
 $$
 
 Where:
@@ -150,7 +150,7 @@ Where:
 and constrained:
 
 $$
-\begin{equation} D_f \in [1, 10]  \hspace{2cm} \text{(C.67)} \end{equation}
+ D_f \in [1, 10]  \hspace{2cm} \text{(C.67)} 
 $$
 
 Where:
@@ -170,7 +170,7 @@ Swimming speed depends on energetic condition, hydrodynamic difficulty,
 and the effect of local flow. The agent first computes an energy factor:
 
 $$
-\begin{equation} E_{\text{factor}} = \frac{E_{\text{agent}}}{100}  \hspace{2cm} \text{(C.68)} \end{equation}
+ E_{\text{factor}} = \frac{E_{\text{agent}}}{100}  \hspace{2cm} \text{(C.68)} 
 $$
 
 Where:
@@ -183,7 +183,7 @@ Where:
 Velocity impact from hydrodynamics is:
 
 $$
-\begin{equation} V_{\text{impact}} = k \cdot V_{\text{patch}} \cdot 300  \hspace{2cm} \text{(C.69)} \end{equation}
+ V_{\text{impact}} = k \cdot V_{\text{patch}} \cdot 300  \hspace{2cm} \text{(C.69)} 
 $$
 
 Where:
@@ -200,9 +200,9 @@ Where:
 The desired swimming speed is:
 
 $$
-\begin{equation} V_{\text{desired}} =
+ V_{\text{desired}} =
 \frac{V_{\max} \cdot E_{\text{factor}}}{D_f}
-+ V_{\text{impact}}  \hspace{2cm} \text{(C.70)} \end{equation}
++ V_{\text{impact}}  \hspace{2cm} \text{(C.70)} 
 $$
 
 Where:
@@ -219,8 +219,8 @@ Where:
 Speed is constrained between a minimum and maximum:
 
 $$
-\begin{equation} V_{\text{desired}} 
-= \min(V_{\max}, \max(V_{\min}, V_{\text{desired}}))  \hspace{2cm} \text{(C.71)} \end{equation}
+ V_{\text{desired}} 
+= \min(V_{\max}, \max(V_{\min}, V_{\text{desired}}))  \hspace{2cm} \text{(C.71)} 
 $$
 
 Where:
@@ -233,7 +233,7 @@ Where:
 Acceleration is smoothed using the previous speed:
 
 $$
-\begin{equation} \Delta V_{max} = 0.5 \cdot swim_{Eff}  \hspace{2cm} \text{(C.72)} \end{equation}
+ \Delta V_{max} = 0.5 \cdot swim_{Eff}  \hspace{2cm} \text{(C.72)} 
 $$
 
 Where:
@@ -254,7 +254,7 @@ vector movement. The number of patches traversed in a tick is based on
 swimming speed:
 
 $$
-\begin{equation} D_{travel} = \frac{A_{speed}}{3}  \hspace{2cm} \text{(C.73)} \end{equation}
+ D_{travel} = \frac{A_{speed}}{3}  \hspace{2cm} \text{(C.73)} 
 $$
 
 Where:
@@ -268,7 +268,7 @@ Movement follows:
 
 1.  compute cost-to-home
 2.  generate a path using decreasing cost
-3.  move through the first $\lceil \text{travel_distance} \rceil$
+3.  move through the first $\lceil \mathrm{travel\_distance} \rceil$
     patches
 4.  record patch visits and time spent
 5.  append patch-here to the trail if new location
@@ -279,9 +279,9 @@ Travel cost for a candidate patch incorporates velocity magnitude,
 slope, and difficulty:
 
 $$
-\begin{equation} \text{cost}_{\text{raw}}
+ \text{cost}_{\text{raw}}
 = |V_{\text{patch}}|
-+ 0.5 \cdot \max(0, \Delta \text{depth})  \hspace{2cm} \text{(C.74)} \end{equation}
++ 0.5 \cdot \max(0, \Delta \text{depth})  \hspace{2cm} \text{(C.74)} 
 $$
 
 Where:
@@ -295,8 +295,8 @@ Where:
 Difficulty multiplies the base cost:
 
 $$
-\begin{equation} \text{cost}
-= \text{cost}_{\text{raw}} \cdot D_f  \hspace{2cm} \text{(C.75)} \end{equation}
+ \text{cost}
+= \text{cost}_{\text{raw}} \cdot D_f  \hspace{2cm} \text{(C.75)} 
 $$
 
 Where:
@@ -319,7 +319,7 @@ Let $\beta = 0.75$.\
 Let the effective multiplier be:
 
 $$
-\begin{equation} M_{swim} = \frac{D_f}{swim_{Eff}}  \hspace{2cm} \text{(C.76)} \end{equation}
+ M_{swim} = \frac{D_f}{swim_{Eff}}  \hspace{2cm} \text{(C.76)} 
 $$
 
 Where:
@@ -334,7 +334,7 @@ Where lower efficiency results in higher energetic cost.
 Energy expenditure is:
 
 $$
-\begin{equation} E_{\text{swim}} = swim_{base} \cdot M_{swim}^\beta  \hspace{2cm} \text{(C.77)} \end{equation}
+ E_{\text{swim}} = swim_{base} \cdot M_{swim}^\beta  \hspace{2cm} \text{(C.77)} 
 $$
 
 Where:
@@ -350,7 +350,7 @@ Where:
 Total energy is reduced accordingly:
 
 $$
-\begin{equation} E_{\text{agent}} = \max(0, E_{\text{agent}} - E_{\text{swim}})  \hspace{2cm} \text{(C.78)} \end{equation}
+ E_{\text{agent}} = \max(0, E_{\text{agent}} - E_{\text{swim}})  \hspace{2cm} \text{(C.78)} 
 $$
 
 Where:

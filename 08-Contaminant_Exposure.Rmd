@@ -123,7 +123,7 @@ specific contributions.
 ### Normalization
 
 $$
-\begin{equation} MeHg_{normalized} = \frac{MeHg_{patch} - MeHg_{min}}{MeHg_{max} - MeHg_{min}}  \hspace{2cm} \text{(C.40)} \end{equation}
+ MeHg_{normalized} = \frac{MeHg_{patch} - MeHg_{min}}{MeHg_{max} - MeHg_{min}}  \hspace{2cm} \text{(C.40)} 
 $$
 
 Where:
@@ -147,7 +147,7 @@ Clamped to the range 0 to 1.
 ### Exposure Duration
 
 $$
-\begin{equation} MeHg_{exp} = MeHg_{exp} + 1 \quad \text{if } MeHg_{patch} > MeHg_{threshold}  \hspace{2cm} \text{(C.41)} \end{equation}
+ MeHg_{exp} = MeHg_{exp} + 1 \quad \text{if } MeHg_{patch} > MeHg_{threshold}  \hspace{2cm} \text{(C.41)} 
 $$
 
 Where:
@@ -167,7 +167,7 @@ availability of dissolved MeHg associated with elevated SPM
 concentrations.
 
 $$
-\begin{equation} MeHg_{risk} = Met_{tick} \cdot MeHg_{normalized} \cdot (1 + S_{stress}) \cdot (1 + SPM)  \hspace{2cm} \text{(C.42)} \end{equation}
+ MeHg_{risk} = Met_{tick} \cdot MeHg_{normalized} \cdot (1 + S_{stress}) \cdot (1 + SPM)  \hspace{2cm} \text{(C.42)} 
 $$
 
 Where:
@@ -186,7 +186,7 @@ Where:
 ### Cumulative Uptake
 
 $$
-\begin{equation} MeHg_{total} = MeHg_{total} + MeHg_{risk}  \hspace{2cm} \text{(C.43)} \end{equation}
+ MeHg_{total} = MeHg_{total} + MeHg_{risk}  \hspace{2cm} \text{(C.43)} 
 $$
 
 Where:
@@ -200,11 +200,11 @@ Patch-level and individual-level storage based on species for cumulative
 duration risk experienced:
 
 $$
-\begin{equation} MeHg_{exp-risk} = MeHg_{exp-risk} + MeHg_{risk} \hspace{2cm} \text{(C.44)} \end{equation}
+ MeHg_{exp-risk} = MeHg_{exp-risk} + MeHg_{risk} \hspace{2cm} \text{(C.44)} 
 $$
 
 $$
-\begin{equation} MeHg_{exp-patch} = MeHg_{exp-patch} + MeHg_{risk} \hspace{2cm} \text{(C.45)} \end{equation}
+ MeHg_{exp-patch} = MeHg_{exp-patch} + MeHg_{risk} \hspace{2cm} \text{(C.45)} 
 $$
 
 Where:

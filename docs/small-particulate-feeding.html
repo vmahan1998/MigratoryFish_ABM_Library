@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Small Particulate Feeding | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</title>
+  <title>Chapter 9 Small Particulate Feeding | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</title>
   <meta name="description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Small Particulate Feeding | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta property="og:title" content="Chapter 9 Small Particulate Feeding | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
   <meta property="og:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="github-repo" content="vmahan1998/GoFish" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Small Particulate Feeding | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries" />
+  <meta name="twitter:title" content="Chapter 9 Small Particulate Feeding | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
   
   <meta name="twitter:description" content="This document contains a library of agent-based model functions for migratory fish." />
   <meta name="twitter:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
@@ -550,7 +550,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Environmental Risk in Estuaries</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</a>
           </h1>
         </div>
 
@@ -880,7 +880,7 @@ consistent with bioenergetic constraints derived largely from studies of
 ectothermic aquatic organisms, particularly fishes
 <span class="citation">(<a href="#ref-norin_metabolic_2018">Norin and Gamperl 2018</a>)</span>:</p>
 <p><span class="math display">\[
-\begin{equation} Filter_{base} = \left(\frac{size}{100}\right) \cdot Met_{tick} \cdot Eff_{digest} \hspace{2cm} \text{(C.46)} \end{equation}
+Filter_{base} = \left(\frac{size}{100}\right) \cdot Met_{tick} \cdot Eff_{digest} \hspace{2cm} \text{(C.46)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -900,7 +900,7 @@ deviation from that optimum following a Gaussian performance curve
 gradients, representing maximal feeding performance at intermediate SPM
 and reduced suitability at both lower and higher concentrations:</p>
 <p><span class="math display">\[
-\begin{equation} A_{interest} = e^{-\frac{(SPM - SPM_{optimal})^2}{2 \cdot \sigma^2}}  \hspace{2cm} \text{(C.47)} \end{equation}
+A_{interest} = e^{-\frac{(SPM - SPM_{optimal})^2}{2 \cdot \sigma^2}}  \hspace{2cm} \text{(C.47)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -918,7 +918,7 @@ patch (<span class="math inline">\(\frac{kg}{m^3}\)</span>).</li>
 <h3><span class="header-section-number">9.7.3</span> Resource Benefit Calculation<a href="small-particulate-feeding.html#resource-benefit-calculation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Benefit for each neighboring patch:</p>
 <p><span class="math display">\[
-\begin{equation} A_{benefit} = SPM \cdot A_{interst} \cdot Filter_{base}  \hspace{2cm} \text{(C.48)} \end{equation}
+A_{benefit} = SPM \cdot A_{interst} \cdot Filter_{base}  \hspace{2cm} \text{(C.48)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -933,7 +933,7 @@ patch (<span class="math inline">\(\frac{kg}{m^3}\)</span>).</li>
 </ul>
 <p>If con-specifics are present:</p>
 <p><span class="math display">\[
-\begin{equation} A_{benefit} = \frac{A_{benefit}}{N_{conspecifics}}  \hspace{2cm} \text{(C.49)} \end{equation}
+A_{benefit} = \frac{A_{benefit}}{N_{conspecifics}}  \hspace{2cm} \text{(C.49)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -947,7 +947,7 @@ patch (<span class="math inline">\(\frac{kg}{m^3}\)</span>).</li>
 <h3><span class="header-section-number">9.7.4</span> Movement<a href="small-particulate-feeding.html#movement" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Travel distance is reduced by swimming efficiency:</p>
 <p><span class="math display">\[
-\begin{equation} D_{travel} = min(D_{to-patch},\ A_{speed} \cdot swim_{Eff})  \hspace{2cm} \text{(C.50)} \end{equation}
+D_{travel} = min(D_{to-patch},\ A_{speed} \cdot swim_{Eff})  \hspace{2cm} \text{(C.50)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -962,7 +962,7 @@ energetics (%).</li>
 </ul>
 <p>Energy cost of swimming:</p>
 <p><span class="math display">\[
-\begin{equation} E_{agent} = E_{agent} - (E_{swim} \cdot D_{travel})  \hspace{2cm} \text{(C.51)} \end{equation}
+E_{agent} = E_{agent} - (E_{swim} \cdot D_{travel})  \hspace{2cm} \text{(C.51)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -978,7 +978,7 @@ units).</li>
 <h3><span class="header-section-number">9.7.5</span> Feeding and Stomach Loading<a href="small-particulate-feeding.html#feeding-and-stomach-loading" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Assimilated biomass:</p>
 <p><span class="math display">\[
-\begin{equation} M_{intake} = min(M_{prey},\ stomach_{max} - M_{stomach})  \hspace{2cm} \text{(C.52)} \end{equation}
+M_{intake} = min(M_{prey},\ stomach_{max} - M_{stomach})  \hspace{2cm} \text{(C.52)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -992,7 +992,7 @@ units).</li>
 <h3><span class="header-section-number">9.7.6</span> Contaminant Assimilation and Biomagnification<a href="small-particulate-feeding.html#contaminant-assimilation-and-biomagnification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Biomagnification factors follow <span class="citation">Lavoie et al. (<a href="#ref-lavoie_biomagnification_2013">2013</a>)</span>:</p>
 <p><span class="math display">\[
-\begin{equation} BMF_{MeHg} = 10^{(0.24 \cdot \Delta TP)}  \hspace{2cm} \text{(C.53)} \end{equation}
+BMF_{MeHg} = 10^{(0.24 \cdot \Delta TP)}  \hspace{2cm} \text{(C.53)}
 \]</span> Where:</p>
 <ul>
 <li><span class="math inline">\(\Delta TP = 1\)</span> is the trophic position difference for
@@ -1001,7 +1001,7 @@ biomagnification.</li>
 (dimensionless).</li>
 </ul>
 <p><span class="math display">\[
-\begin{equation} BMF_{MeHg} = 10^{0.24} \approx 1.74  \hspace{2cm} \text{(C.54)} \end{equation}
+BMF_{MeHg} = 10^{0.24} \approx 1.74  \hspace{2cm} \text{(C.54)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1010,7 +1010,7 @@ biomagnification.</li>
 </ul>
 <p>Assimilation equations:</p>
 <p><span class="math display">\[
-\begin{equation} MeHg_{intake} = SPM \cdot MeHg_{patch} \cdot BMF_{MeHg} \cdot M_{intake}  \hspace{2cm} \text{(C.55)} \end{equation}
+MeHg_{intake} = SPM \cdot MeHg_{patch} \cdot BMF_{MeHg} \cdot M_{intake}  \hspace{2cm} \text{(C.55)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1025,7 +1025,7 @@ uptake (ng g⁻¹).</li>
 </ul>
 <p>Stomach contaminant update:</p>
 <p><span class="math display">\[
-\begin{equation} MeHg_{stomach} = MeHg_{stomach} + MeHg_{intake}  \hspace{2cm} \text{(C.56)} \end{equation}
+MeHg_{stomach} = MeHg_{stomach} + MeHg_{intake}  \hspace{2cm} \text{(C.56)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1377,7 +1377,7 @@ catabolism, lipid used, and body mass loss over time.</p>
 <h3><span class="header-section-number">9.15.1</span> Lipid Mobilization<a href="small-particulate-feeding.html#lipid-mobilization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Maximum lipid available for mobilization depends on relative body mass:</p>
 <p><span class="math display">\[
-\begin{equation} Lipid_{refill} = 0.5 \times \left(\frac{A_{mass}}{A_{mass_{i}}}\right)  \hspace{2cm} \text{(C.57)} \end{equation}
+Lipid_{refill} = 0.5 \times \left(\frac{A_{mass}}{A_{mass_{i}}}\right)  \hspace{2cm} \text{(C.57)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1388,7 +1388,7 @@ energetic scaling (g).</li>
 </ul>
 <p>Energy deficit relative to full energy:</p>
 <p><span class="math display">\[
-\begin{equation} E_{deficit} = 100 - E_{agent}  \hspace{2cm} \text{(C.58)} \end{equation}
+E_{deficit} = 100 - E_{agent}  \hspace{2cm} \text{(C.58)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1399,7 +1399,7 @@ energetic scaling (g).</li>
 </ul>
 <p>Lipid required to refill the deficit:</p>
 <p><span class="math display">\[
-\begin{equation} Lipid_{needed} = \frac{Energy_{deficit}}{100}  \hspace{2cm} \text{(C.59)} \end{equation}
+Lipid_{needed} = \frac{Energy_{deficit}}{100}  \hspace{2cm} \text{(C.59)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1410,7 +1410,7 @@ relative energy).</li>
 </ul>
 <p>Actual lipid mobilized:</p>
 <p><span class="math display">\[
-\begin{equation} Lipid_{used} = \min(Lipid_{needed},\ Lipid_{refill}) \times Lipid_{Eff}  \hspace{2cm} \text{(C.60)} \end{equation}
+Lipid_{used} = \min(Lipid_{needed},\ Lipid_{refill}) \times Lipid_{Eff}  \hspace{2cm} \text{(C.60)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1427,7 +1427,7 @@ catabolism (%).</li>
 <h3><span class="header-section-number">9.15.2</span> Energy Conversion<a href="small-particulate-feeding.html#energy-conversion-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Mobilized lipid is converted into energy:</p>
 <p><span class="math display">\[
-\begin{equation} E_{added} = Lipid_{used} \times 100  \hspace{2cm} \text{(C.61)} \end{equation}
+E_{added} = Lipid_{used} \times 100  \hspace{2cm} \text{(C.61)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1437,7 +1437,7 @@ units).</li>
 </ul>
 <p>Energy is capped at one hundred:</p>
 <p><span class="math display">\[
-\begin{equation} E_{agent} = \min(100,\ E_{agent} + E_{added})  \hspace{2cm} \text{(C.62)} \end{equation}
+E_{agent} = \min(100,\ E_{agent} + E_{added})  \hspace{2cm} \text{(C.62)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1451,7 +1451,7 @@ units).</li>
 <h3><span class="header-section-number">9.15.3</span> Weight Loss<a href="small-particulate-feeding.html#weight-loss" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Weight decreases proportionally to lipid used:</p>
 <p><span class="math display">\[
-\begin{equation} A_{mass} = A_{mass} - Lipid_{used}  \hspace{2cm} \text{(C.63)} \end{equation}
+A_{mass} = A_{mass} - Lipid_{used}  \hspace{2cm} \text{(C.63)}
 \]</span> Where:</p>
 <ul>
 <li><span class="math inline">\(A_{mass}\)</span> is an agent’s body mass used for allometric and energetic
