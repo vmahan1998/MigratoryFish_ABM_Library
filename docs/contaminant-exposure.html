@@ -23,7 +23,7 @@
 <meta name="author" content="Vanessa Quintana" />
 
 
-<meta name="date" content="2025-11-24" />
+<meta name="date" content="2026-04-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="migration-cues.html"/>
-<link rel="next" href="filter-feeding.html"/>
+<link rel="next" href="small-particulate-feeding.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -198,11 +198,12 @@ div.csl-indent {
 <li class="chapter" data-level="6.6" data-path="salinity-exposure.html"><a href="salinity-exposure.html#initialization-2"><i class="fa fa-check"></i><b>6.6</b> Initialization</a></li>
 <li class="chapter" data-level="6.7" data-path="salinity-exposure.html"><a href="salinity-exposure.html#submodels-2"><i class="fa fa-check"></i><b>6.7</b> Submodels</a>
 <ul>
-<li class="chapter" data-level="6.7.1" data-path="salinity-exposure.html"><a href="salinity-exposure.html#osmotic-stress"><i class="fa fa-check"></i><b>6.7.1</b> Osmotic Stress</a></li>
+<li class="chapter" data-level="6.7.1" data-path="salinity-exposure.html"><a href="salinity-exposure.html#salinity-stress"><i class="fa fa-check"></i><b>6.7.1</b> Salinity Stress</a></li>
 <li class="chapter" data-level="6.7.2" data-path="salinity-exposure.html"><a href="salinity-exposure.html#chloride-cell-density"><i class="fa fa-check"></i><b>6.7.2</b> Chloride Cell Density</a></li>
 <li class="chapter" data-level="" data-path="salinity-exposure.html"><a href="salinity-exposure.html#osmoregulation-energy"><i class="fa fa-check"></i>Osmoregulation Energy</a></li>
 <li class="chapter" data-level="6.7.3" data-path="salinity-exposure.html"><a href="salinity-exposure.html#energy-balance"><i class="fa fa-check"></i><b>6.7.3</b> Energy Balance</a></li>
 </ul></li>
+<li class="chapter" data-level="6.8" data-path="salinity-exposure.html"><a href="salinity-exposure.html#netlogo-implementation-2"><i class="fa fa-check"></i><b>6.8</b> Netlogo Implementation</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="migration-cues.html"><a href="migration-cues.html"><i class="fa fa-check"></i><b>7</b> Migration Cues</a>
 <ul>
@@ -215,20 +216,17 @@ div.csl-indent {
 <li class="chapter" data-level="7.3.3" data-path="migration-cues.html"><a href="migration-cues.html#patch-variables-3"><i class="fa fa-check"></i><b>7.3.3</b> Patch Variables</a></li>
 <li class="chapter" data-level="7.3.4" data-path="migration-cues.html"><a href="migration-cues.html#agent-variables-3"><i class="fa fa-check"></i><b>7.3.4</b> Agent Variables</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="migration-cues.html"><a href="migration-cues.html#process-overview-and-scheduling-3"><i class="fa fa-check"></i><b>7.4</b> Process Overview and Scheduling</a>
-<ul>
-<li class="chapter" data-level="7.4.1" data-path="migration-cues.html"><a href="migration-cues.html#environmental-inputs-from-r"><i class="fa fa-check"></i><b>7.4.1</b> 1. <strong>Environmental Inputs (from R)</strong></a></li>
-<li class="chapter" data-level="7.4.2" data-path="migration-cues.html"><a href="migration-cues.html#identify-cue-days"><i class="fa fa-check"></i><b>7.4.2</b> 2. <strong>Identify Cue Days</strong></a></li>
-<li class="chapter" data-level="7.4.3" data-path="migration-cues.html"><a href="migration-cues.html#activate-cue"><i class="fa fa-check"></i><b>7.4.3</b> 3. <strong>Activate Cue</strong></a></li>
-<li class="chapter" data-level="7.4.4" data-path="migration-cues.html"><a href="migration-cues.html#alewife-migration-probability-accumulation"><i class="fa fa-check"></i><b>7.4.4</b> 4. <strong>Alewife Migration Probability Accumulation</strong></a></li>
-<li class="chapter" data-level="7.4.5" data-path="migration-cues.html"><a href="migration-cues.html#initiation-of-migration"><i class="fa fa-check"></i><b>7.4.5</b> 5. <strong>Initiation of Migration</strong></a></li>
-</ul></li>
+<li class="chapter" data-level="7.4" data-path="migration-cues.html"><a href="migration-cues.html#process-overview-and-scheduling-3"><i class="fa fa-check"></i><b>7.4</b> Process Overview and Scheduling</a></li>
 <li class="chapter" data-level="7.5" data-path="migration-cues.html"><a href="migration-cues.html#design-concepts-3"><i class="fa fa-check"></i><b>7.5</b> Design Concepts</a></li>
 <li class="chapter" data-level="7.6" data-path="migration-cues.html"><a href="migration-cues.html#initialization-3"><i class="fa fa-check"></i><b>7.6</b> Initialization</a></li>
-<li class="chapter" data-level="7.7" data-path="migration-cues.html"><a href="migration-cues.html#submodels-3"><i class="fa fa-check"></i><b>7.7</b> Submodels</a></li>
-<li class="chapter" data-level="7.8" data-path="migration-cues.html"><a href="migration-cues.html#identifying-cue-days-preprocessed-in-r"><i class="fa fa-check"></i><b>7.8</b> 1. Identifying Cue Days (Preprocessed in R)</a></li>
-<li class="chapter" data-level="7.9" data-path="migration-cues.html"><a href="migration-cues.html#alewife-migration-probability"><i class="fa fa-check"></i><b>7.9</b> 2. Alewife Migration Probability</a></li>
-<li class="chapter" data-level="7.10" data-path="migration-cues.html"><a href="migration-cues.html#netlogo-implementation-2"><i class="fa fa-check"></i><b>7.10</b> Netlogo Implementation</a></li>
+<li class="chapter" data-level="7.7" data-path="migration-cues.html"><a href="migration-cues.html#submodels-3"><i class="fa fa-check"></i><b>7.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="migration-cues.html"><a href="migration-cues.html#identifying-cue-days-preprocessed-in-r"><i class="fa fa-check"></i><b>7.7.1</b> Identifying Cue Days (Preprocessed in R)</a></li>
+<li class="chapter" data-level="7.7.2" data-path="migration-cues.html"><a href="migration-cues.html#activation-of-migration-cue"><i class="fa fa-check"></i><b>7.7.2</b> Activation of Migration Cue</a></li>
+<li class="chapter" data-level="7.7.3" data-path="migration-cues.html"><a href="migration-cues.html#accumulation-of-migration-probability"><i class="fa fa-check"></i><b>7.7.3</b> Accumulation of Migration Probability</a></li>
+<li class="chapter" data-level="7.7.4" data-path="migration-cues.html"><a href="migration-cues.html#initiate-migration"><i class="fa fa-check"></i><b>7.7.4</b> Initiate Migration</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="migration-cues.html"><a href="migration-cues.html#netlogo-implementation-3"><i class="fa fa-check"></i><b>7.8</b> Netlogo Implementation</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html"><i class="fa fa-check"></i><b>8</b> Contaminant Exposure</a>
 <ul>
@@ -251,57 +249,52 @@ div.csl-indent {
 <li class="chapter" data-level="8.7.3" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#uptake-risk"><i class="fa fa-check"></i><b>8.7.3</b> Uptake Risk</a></li>
 <li class="chapter" data-level="8.7.4" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#cumulative-uptake"><i class="fa fa-check"></i><b>8.7.4</b> Cumulative Uptake</a></li>
 </ul></li>
-<li class="chapter" data-level="8.8" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#submodels-methylmercury-exposure-and-uptake"><i class="fa fa-check"></i><b>8.8</b> Submodels: Methylmercury Exposure and Uptake</a>
-<ul>
-<li class="chapter" data-level="8.8.1" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#normalization-1"><i class="fa fa-check"></i><b>8.8.1</b> Normalization</a></li>
-<li class="chapter" data-level="8.8.2" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#exposure-duration-1"><i class="fa fa-check"></i><b>8.8.2</b> Exposure Duration</a></li>
-<li class="chapter" data-level="8.8.3" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#uptake-risk-1"><i class="fa fa-check"></i><b>8.8.3</b> Uptake Risk</a></li>
-<li class="chapter" data-level="8.8.4" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#cumulative-uptake-1"><i class="fa fa-check"></i><b>8.8.4</b> Cumulative Uptake</a></li>
+<li class="chapter" data-level="8.8" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#netlogo-implementation-4"><i class="fa fa-check"></i><b>8.8</b> Netlogo Implementation</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="filter-feeding.html"><a href="filter-feeding.html"><i class="fa fa-check"></i><b>9</b> Filter Feeding</a>
+<li class="chapter" data-level="9" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html"><i class="fa fa-check"></i><b>9</b> Small Particulate Feeding</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="filter-feeding.html"><a href="filter-feeding.html#overview-5"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
-<li class="chapter" data-level="9.2" data-path="filter-feeding.html"><a href="filter-feeding.html#purpose-and-patterns"><i class="fa fa-check"></i><b>9.2</b> Purpose and Patterns</a></li>
-<li class="chapter" data-level="9.3" data-path="filter-feeding.html"><a href="filter-feeding.html#entities-state-variables-and-scales-5"><i class="fa fa-check"></i><b>9.3</b> Entities, State Variables, and Scales</a>
+<li class="chapter" data-level="9.1" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#overview-5"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
+<li class="chapter" data-level="9.2" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#purpose-and-patterns"><i class="fa fa-check"></i><b>9.2</b> Purpose and Patterns</a></li>
+<li class="chapter" data-level="9.3" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#entities-state-variables-and-scales-5"><i class="fa fa-check"></i><b>9.3</b> Entities, State Variables, and Scales</a>
 <ul>
-<li class="chapter" data-level="9.3.1" data-path="filter-feeding.html"><a href="filter-feeding.html#spatial-and-temporal-scales-5"><i class="fa fa-check"></i><b>9.3.1</b> Spatial and Temporal Scales</a></li>
-<li class="chapter" data-level="9.3.2" data-path="filter-feeding.html"><a href="filter-feeding.html#global-variables-5"><i class="fa fa-check"></i><b>9.3.2</b> <strong>Global Variables</strong></a></li>
-<li class="chapter" data-level="9.3.3" data-path="filter-feeding.html"><a href="filter-feeding.html#patch-variables-5"><i class="fa fa-check"></i><b>9.3.3</b> <strong>Patch Variables</strong></a></li>
-<li class="chapter" data-level="9.3.4" data-path="filter-feeding.html"><a href="filter-feeding.html#agent-variables-5"><i class="fa fa-check"></i><b>9.3.4</b> <strong>Agent Variables</strong></a></li>
+<li class="chapter" data-level="9.3.1" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#spatial-and-temporal-scales-5"><i class="fa fa-check"></i><b>9.3.1</b> Spatial and Temporal Scales</a></li>
+<li class="chapter" data-level="9.3.2" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#global-variables-5"><i class="fa fa-check"></i><b>9.3.2</b> <strong>Global Variables</strong></a></li>
+<li class="chapter" data-level="9.3.3" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#patch-variables-5"><i class="fa fa-check"></i><b>9.3.3</b> <strong>Patch Variables</strong></a></li>
+<li class="chapter" data-level="9.3.4" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#agent-variables-5"><i class="fa fa-check"></i><b>9.3.4</b> <strong>Agent Variables</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="filter-feeding.html"><a href="filter-feeding.html#process-overview-and-scheduling-5"><i class="fa fa-check"></i><b>9.4</b> Process Overview and Scheduling</a></li>
-<li class="chapter" data-level="9.5" data-path="filter-feeding.html"><a href="filter-feeding.html#design-concepts-5"><i class="fa fa-check"></i><b>9.5</b> Design Concepts</a></li>
-<li class="chapter" data-level="9.6" data-path="filter-feeding.html"><a href="filter-feeding.html#initialization-5"><i class="fa fa-check"></i><b>9.6</b> Initialization</a></li>
-<li class="chapter" data-level="9.7" data-path="filter-feeding.html"><a href="filter-feeding.html#submodels-4"><i class="fa fa-check"></i><b>9.7</b> Submodels</a>
+<li class="chapter" data-level="9.4" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#process-overview-and-scheduling-5"><i class="fa fa-check"></i><b>9.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="9.5" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#design-concepts-5"><i class="fa fa-check"></i><b>9.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="9.6" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#initialization-5"><i class="fa fa-check"></i><b>9.6</b> Initialization</a></li>
+<li class="chapter" data-level="9.7" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#submodels-4"><i class="fa fa-check"></i><b>9.7</b> Submodels</a>
 <ul>
-<li class="chapter" data-level="9.7.1" data-path="filter-feeding.html"><a href="filter-feeding.html#filtration-capacity"><i class="fa fa-check"></i><b>9.7.1</b> Filtration Capacity</a></li>
-<li class="chapter" data-level="9.7.2" data-path="filter-feeding.html"><a href="filter-feeding.html#spm-interest-gaussian-suitability"><i class="fa fa-check"></i><b>9.7.2</b> SPM Interest (Gaussian Suitability)</a></li>
-<li class="chapter" data-level="9.7.3" data-path="filter-feeding.html"><a href="filter-feeding.html#benefit-calculation"><i class="fa fa-check"></i><b>9.7.3</b> Benefit Calculation</a></li>
-<li class="chapter" data-level="9.7.4" data-path="filter-feeding.html"><a href="filter-feeding.html#movement"><i class="fa fa-check"></i><b>9.7.4</b> Movement</a></li>
-<li class="chapter" data-level="9.7.5" data-path="filter-feeding.html"><a href="filter-feeding.html#feeding-and-stomach-loading"><i class="fa fa-check"></i><b>9.7.5</b> Feeding and Stomach Loading</a></li>
-<li class="chapter" data-level="9.7.6" data-path="filter-feeding.html"><a href="filter-feeding.html#contaminant-assimilation-and-biomagnification"><i class="fa fa-check"></i><b>9.7.6</b> Contaminant Assimilation and Biomagnification</a></li>
+<li class="chapter" data-level="9.7.1" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#filtration-capacity"><i class="fa fa-check"></i><b>9.7.1</b> Filtration Capacity</a></li>
+<li class="chapter" data-level="9.7.2" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#spm-interest-gaussian-suitability"><i class="fa fa-check"></i><b>9.7.2</b> SPM Interest (Gaussian Suitability)</a></li>
+<li class="chapter" data-level="9.7.3" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#resource-benefit-calculation"><i class="fa fa-check"></i><b>9.7.3</b> Resource Benefit Calculation</a></li>
+<li class="chapter" data-level="9.7.4" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#movement"><i class="fa fa-check"></i><b>9.7.4</b> Movement</a></li>
+<li class="chapter" data-level="9.7.5" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#feeding-and-stomach-loading"><i class="fa fa-check"></i><b>9.7.5</b> Feeding and Stomach Loading</a></li>
+<li class="chapter" data-level="9.7.6" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#contaminant-assimilation-and-biomagnification"><i class="fa fa-check"></i><b>9.7.6</b> Contaminant Assimilation and Biomagnification</a></li>
 </ul></li>
-<li class="chapter" data-level="9.8" data-path="filter-feeding.html"><a href="filter-feeding.html#overview-6"><i class="fa fa-check"></i><b>9.8</b> Overview</a></li>
-<li class="chapter" data-level="9.9" data-path="filter-feeding.html"><a href="filter-feeding.html#purpose-5"><i class="fa fa-check"></i><b>9.9</b> Purpose</a></li>
-<li class="chapter" data-level="9.10" data-path="filter-feeding.html"><a href="filter-feeding.html#entities-state-variables-and-scales-6"><i class="fa fa-check"></i><b>9.10</b> Entities, State Variables, and Scales</a>
+<li class="chapter" data-level="9.8" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#netlogo-implementation-5"><i class="fa fa-check"></i><b>9.8</b> Netlogo Implementation</a></li>
+<li class="chapter" data-level="9.9" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#overview-6"><i class="fa fa-check"></i><b>9.9</b> Overview</a></li>
+<li class="chapter" data-level="9.10" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#purpose-5"><i class="fa fa-check"></i><b>9.10</b> Purpose</a></li>
+<li class="chapter" data-level="9.11" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#entities-state-variables-and-scales-6"><i class="fa fa-check"></i><b>9.11</b> Entities, State Variables, and Scales</a>
 <ul>
-<li class="chapter" data-level="9.10.1" data-path="filter-feeding.html"><a href="filter-feeding.html#spatial-and-temporal-scales-6"><i class="fa fa-check"></i><b>9.10.1</b> Spatial and Temporal Scales</a></li>
-<li class="chapter" data-level="9.10.2" data-path="filter-feeding.html"><a href="filter-feeding.html#global-variables-6"><i class="fa fa-check"></i><b>9.10.2</b> <strong>Global Variables</strong></a></li>
-<li class="chapter" data-level="9.10.3" data-path="filter-feeding.html"><a href="filter-feeding.html#patch-variables-6"><i class="fa fa-check"></i><b>9.10.3</b> Patch Variables</a></li>
-<li class="chapter" data-level="9.10.4" data-path="filter-feeding.html"><a href="filter-feeding.html#agent-variables-6"><i class="fa fa-check"></i><b>9.10.4</b> Agent Variables</a></li>
+<li class="chapter" data-level="9.11.1" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#spatial-and-temporal-scales-6"><i class="fa fa-check"></i><b>9.11.1</b> Spatial and Temporal Scales</a></li>
+<li class="chapter" data-level="9.11.2" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#global-variables-6"><i class="fa fa-check"></i><b>9.11.2</b> <strong>Global Variables</strong></a></li>
+<li class="chapter" data-level="9.11.3" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#patch-variables-6"><i class="fa fa-check"></i><b>9.11.3</b> Patch Variables</a></li>
+<li class="chapter" data-level="9.11.4" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#agent-variables-6"><i class="fa fa-check"></i><b>9.11.4</b> Agent Variables</a></li>
 </ul></li>
-<li class="chapter" data-level="9.11" data-path="filter-feeding.html"><a href="filter-feeding.html#process-overview-and-scheduling-6"><i class="fa fa-check"></i><b>9.11</b> Process Overview and Scheduling</a></li>
-<li class="chapter" data-level="9.12" data-path="filter-feeding.html"><a href="filter-feeding.html#design-concepts-6"><i class="fa fa-check"></i><b>9.12</b> Design Concepts</a></li>
-<li class="chapter" data-level="9.13" data-path="filter-feeding.html"><a href="filter-feeding.html#initialization-6"><i class="fa fa-check"></i><b>9.13</b> Initialization</a></li>
-<li class="chapter" data-level="9.14" data-path="filter-feeding.html"><a href="filter-feeding.html#submodels-5"><i class="fa fa-check"></i><b>9.14</b> Submodels</a>
+<li class="chapter" data-level="9.12" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#process-overview-and-scheduling-6"><i class="fa fa-check"></i><b>9.12</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="9.13" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#design-concepts-6"><i class="fa fa-check"></i><b>9.13</b> Design Concepts</a></li>
+<li class="chapter" data-level="9.14" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#initialization-6"><i class="fa fa-check"></i><b>9.14</b> Initialization</a></li>
+<li class="chapter" data-level="9.15" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#submodels-5"><i class="fa fa-check"></i><b>9.15</b> Submodels</a>
 <ul>
-<li class="chapter" data-level="9.14.1" data-path="filter-feeding.html"><a href="filter-feeding.html#lipid-mobilization"><i class="fa fa-check"></i><b>9.14.1</b> Lipid Mobilization</a></li>
-<li class="chapter" data-level="9.14.2" data-path="filter-feeding.html"><a href="filter-feeding.html#energy-conversion-1"><i class="fa fa-check"></i><b>9.14.2</b> Energy Conversion</a></li>
-<li class="chapter" data-level="9.14.3" data-path="filter-feeding.html"><a href="filter-feeding.html#weight-loss"><i class="fa fa-check"></i><b>9.14.3</b> Weight Loss</a></li>
-<li class="chapter" data-level="9.14.4" data-path="filter-feeding.html"><a href="filter-feeding.html#contaminant-bookkeeping"><i class="fa fa-check"></i><b>9.14.4</b> Contaminant Bookkeeping</a></li>
+<li class="chapter" data-level="9.15.1" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#lipid-mobilization"><i class="fa fa-check"></i><b>9.15.1</b> Lipid Mobilization</a></li>
+<li class="chapter" data-level="9.15.2" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#energy-conversion-1"><i class="fa fa-check"></i><b>9.15.2</b> Energy Conversion</a></li>
+<li class="chapter" data-level="9.15.3" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#weight-loss"><i class="fa fa-check"></i><b>9.15.3</b> Weight Loss</a></li>
+<li class="chapter" data-level="9.15.4" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#contaminant-bookkeeping"><i class="fa fa-check"></i><b>9.15.4</b> Contaminant Bookkeeping</a></li>
 </ul></li>
-<li class="chapter" data-level="9.15" data-path="filter-feeding.html"><a href="filter-feeding.html#netlogo-implementation-3"><i class="fa fa-check"></i><b>9.15</b> Netlogo Implementation</a></li>
+<li class="chapter" data-level="9.16" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#netlogo-implementation-6"><i class="fa fa-check"></i><b>9.16</b> Netlogo Implementation</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="landward-migration.html"><a href="landward-migration.html"><i class="fa fa-check"></i><b>10</b> Landward Migration</a>
 <ul>
@@ -325,6 +318,7 @@ div.csl-indent {
 <li class="chapter" data-level="10.7.4" data-path="landward-migration.html"><a href="landward-migration.html#travel-cost"><i class="fa fa-check"></i><b>10.7.4</b> Travel Cost</a></li>
 <li class="chapter" data-level="10.7.5" data-path="landward-migration.html"><a href="landward-migration.html#swimming-energy"><i class="fa fa-check"></i><b>10.7.5</b> Swimming Energy</a></li>
 </ul></li>
+<li class="chapter" data-level="10.8" data-path="landward-migration.html"><a href="landward-migration.html#netlogo-implementation-7"><i class="fa fa-check"></i><b>10.8</b> Netlogo Implementation</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="seaward-migration.html"><a href="seaward-migration.html"><i class="fa fa-check"></i><b>11</b> Seaward Migration</a>
 <ul>
@@ -348,7 +342,7 @@ div.csl-indent {
 <li class="chapter" data-level="11.7.4" data-path="seaward-migration.html"><a href="seaward-migration.html#travel-cost-1"><i class="fa fa-check"></i><b>11.7.4</b> Travel Cost</a></li>
 <li class="chapter" data-level="11.7.5" data-path="seaward-migration.html"><a href="seaward-migration.html#swimming-energy-1"><i class="fa fa-check"></i><b>11.7.5</b> Swimming Energy</a></li>
 </ul></li>
-<li class="chapter" data-level="11.8" data-path="seaward-migration.html"><a href="seaward-migration.html#netlogo-implementation-4"><i class="fa fa-check"></i><b>11.8</b> NetLogo Implementation</a></li>
+<li class="chapter" data-level="11.8" data-path="seaward-migration.html"><a href="seaward-migration.html#netlogo-implementation-8"><i class="fa fa-check"></i><b>11.8</b> NetLogo Implementation</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="schooling.html"><a href="schooling.html"><i class="fa fa-check"></i><b>12</b> Schooling</a>
 <ul>
@@ -372,7 +366,7 @@ div.csl-indent {
 <li class="chapter" data-level="12.7.5" data-path="schooling.html"><a href="schooling.html#alignment"><i class="fa fa-check"></i><b>12.7.5</b> Alignment</a></li>
 <li class="chapter" data-level="12.7.6" data-path="schooling.html"><a href="schooling.html#speed-adjustment"><i class="fa fa-check"></i><b>12.7.6</b> Speed Adjustment</a></li>
 </ul></li>
-<li class="chapter" data-level="12.8" data-path="schooling.html"><a href="schooling.html#netlogo-implementation-5"><i class="fa fa-check"></i><b>12.8</b> Netlogo Implementation</a></li>
+<li class="chapter" data-level="12.8" data-path="schooling.html"><a href="schooling.html#netlogo-implementation-9"><i class="fa fa-check"></i><b>12.8</b> Netlogo Implementation</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html"><i class="fa fa-check"></i><b>13</b> Selective Tidal Stream Transport</a>
 <ul>
@@ -394,7 +388,7 @@ div.csl-indent {
 <li class="chapter" data-level="13.7.2" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#behavior-during-stst"><i class="fa fa-check"></i><b>13.7.2</b> Behavior During STST</a></li>
 <li class="chapter" data-level="13.7.3" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#stop-conditions-for-stst"><i class="fa fa-check"></i><b>13.7.3</b> Stop Conditions for STST</a></li>
 </ul></li>
-<li class="chapter" data-level="13.8" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#netlogo-implementation-6"><i class="fa fa-check"></i><b>13.8</b> Netlogo Implementation</a></li>
+<li class="chapter" data-level="13.8" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#netlogo-implementation-10"><i class="fa fa-check"></i><b>13.8</b> Netlogo Implementation</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html"><i class="fa fa-check"></i><b>14</b> Predation and Fleeing Behavior</a>
 <ul>
@@ -407,23 +401,17 @@ div.csl-indent {
 <li class="chapter" data-level="14.3.3" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#prey-agent-variables"><i class="fa fa-check"></i><b>14.3.3</b> Prey: Agent Variables</a></li>
 <li class="chapter" data-level="14.3.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-agent-variables"><i class="fa fa-check"></i><b>14.3.4</b> Predator: Agent Variables</a></li>
 </ul></li>
-<li class="chapter" data-level="14.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#process-overview-and-scheduling-11"><i class="fa fa-check"></i><b>14.4</b> Process Overview and Scheduling</a>
-<ul>
-<li class="chapter" data-level="14.4.1" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#prey-behavior-per-agent"><i class="fa fa-check"></i><b>14.4.1</b> Prey Behavior (per agent)</a></li>
-<li class="chapter" data-level="14.4.2" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-behavior-per-agent"><i class="fa fa-check"></i><b>14.4.2</b> Predator Behavior (per agent)</a></li>
-</ul></li>
+<li class="chapter" data-level="14.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#process-overview-and-scheduling-11"><i class="fa fa-check"></i><b>14.4</b> Process Overview and Scheduling</a></li>
 <li class="chapter" data-level="14.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#design-concepts-11"><i class="fa fa-check"></i><b>14.5</b> Design Concepts</a></li>
 <li class="chapter" data-level="14.6" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#initialization-11"><i class="fa fa-check"></i><b>14.6</b> Initialization</a></li>
 <li class="chapter" data-level="14.7" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#submodels-10"><i class="fa fa-check"></i><b>14.7</b> Submodels</a>
 <ul>
-<li class="chapter" data-level="14.7.1" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#prey-detection-probability"><i class="fa fa-check"></i><b>14.7.1</b> Prey Detection Probability</a></li>
-<li class="chapter" data-level="14.7.2" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#reaction-time"><i class="fa fa-check"></i><b>14.7.2</b> Reaction Time</a></li>
-<li class="chapter" data-level="14.7.3" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#alarm-response-propagation"><i class="fa fa-check"></i><b>14.7.3</b> Alarm Response Propagation</a></li>
-<li class="chapter" data-level="14.7.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#fleeing-speed"><i class="fa fa-check"></i><b>14.7.4</b> Fleeing Speed</a></li>
-<li class="chapter" data-level="14.7.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#catch-effort"><i class="fa fa-check"></i><b>14.7.5</b> Catch Effort</a></li>
-<li class="chapter" data-level="14.7.6" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#gape-filtering"><i class="fa fa-check"></i><b>14.7.6</b> Gape Filtering</a></li>
-<li class="chapter" data-level="14.7.7" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#energy-gain-by-predators"><i class="fa fa-check"></i><b>14.7.7</b> Energy Gain by Predators</a></li>
-<li class="chapter" data-level="14.7.8" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#energy-depletion-by-prey"><i class="fa fa-check"></i><b>14.7.8</b> Energy Depletion by Prey</a></li>
+<li class="chapter" data-level="14.7.1" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#prey-fleeing-trigger-and-directional-response"><i class="fa fa-check"></i><b>14.7.1</b> Prey Fleeing Trigger and Directional Response</a></li>
+<li class="chapter" data-level="14.7.2" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#prey-fleeing-movement-and-energetic-cost"><i class="fa fa-check"></i><b>14.7.2</b> Prey Fleeing Movement and Energetic Cost</a></li>
+<li class="chapter" data-level="14.7.3" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-prey-detection-and-chase"><i class="fa fa-check"></i><b>14.7.3</b> Predator Prey Detection and Chase</a></li>
+<li class="chapter" data-level="14.7.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-burst-speed-adjustment"><i class="fa fa-check"></i><b>14.7.4</b> Predator Burst Speed Adjustment</a></li>
+<li class="chapter" data-level="14.7.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predation-and-consumption"><i class="fa fa-check"></i><b>14.7.5</b> Predation and Consumption</a></li>
+<li class="chapter" data-level="14.7.6" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#interaction-with-migration-movement-and-swimming-energy"><i class="fa fa-check"></i><b>14.7.6</b> Interaction With Migration Movement and Swimming Energy</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="model-building-tutorial-staging-schooling.html"><a href="model-building-tutorial-staging-schooling.html"><i class="fa fa-check"></i><b>15</b> Model Building Tutorial: Staging &amp; Schooling</a>
@@ -491,7 +479,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="glossary.html"><a href="glossary.html#f"><i class="fa fa-check"></i>F</a>
 <ul>
-<li class="chapter" data-level="18.3.19" data-path="glossary.html"><a href="glossary.html#filter-feeding-1"><i class="fa fa-check"></i><b>18.3.19</b> <strong>Filter Feeding</strong></a></li>
+<li class="chapter" data-level="18.3.19" data-path="glossary.html"><a href="glossary.html#filter-feeding"><i class="fa fa-check"></i><b>18.3.19</b> <strong>Filter Feeding</strong></a></li>
 <li class="chapter" data-level="18.3.20" data-path="glossary.html"><a href="glossary.html#flood"><i class="fa fa-check"></i><b>18.3.20</b> <strong>Flood</strong></a></li>
 <li class="chapter" data-level="18.3.21" data-path="glossary.html"><a href="glossary.html#flood-limit"><i class="fa fa-check"></i><b>18.3.21</b> <strong>Flood Limit</strong></a></li>
 </ul></li>
@@ -530,7 +518,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="glossary.html"><a href="glossary.html#s"><i class="fa fa-check"></i>S</a>
 <ul>
 <li class="chapter" data-level="18.3.36" data-path="glossary.html"><a href="glossary.html#salinity"><i class="fa fa-check"></i><b>18.3.36</b> <strong>Salinity</strong></a></li>
-<li class="chapter" data-level="18.3.37" data-path="glossary.html"><a href="glossary.html#salinity-stress"><i class="fa fa-check"></i><b>18.3.37</b> <strong>Salinity Stress</strong></a></li>
+<li class="chapter" data-level="18.3.37" data-path="glossary.html"><a href="glossary.html#salinity-stress-1"><i class="fa fa-check"></i><b>18.3.37</b> <strong>Salinity Stress</strong></a></li>
 <li class="chapter" data-level="18.3.38" data-path="glossary.html"><a href="glossary.html#salt-wedge"><i class="fa fa-check"></i><b>18.3.38</b> <strong>Salt Wedge</strong></a></li>
 <li class="chapter" data-level="18.3.39" data-path="glossary.html"><a href="glossary.html#seaward-migration-1"><i class="fa fa-check"></i><b>18.3.39</b> <strong>Seaward Migration</strong></a></li>
 <li class="chapter" data-level="18.3.40" data-path="glossary.html"><a href="glossary.html#selective-tidal-stream-transport-stst"><i class="fa fa-check"></i><b>18.3.40</b> <strong>Selective Tidal Stream Transport (STST)</strong></a></li>
@@ -574,7 +562,7 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 8</span> Contaminant Exposure<a href="contaminant-exposure.html#contaminant-exposure" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="overview-4" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Overview<a href="contaminant-exposure.html#overview-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The contaminant exposure submodel simulates mercury and methylmercury exposure risk across gills for migratory fish moving through spatially and temporally variable contamination fields. Exposure risk depends on contaminant concentration, suspended particulate matter, and metabolic rate. Concentrations of mercury and methylmercury are normalized across the spatial domain, and depth averaged SPM values modulate risk to reflect particle bound contaminant transport. Agents accumulate both instantaneous and cumulative exposure, allowing estimation of bioaccumulation risk over the migration season.</p>
+<p>The contaminant exposure submodel simulates mercury and methylmercury uptake across the gills for migratory fish moving through spatially and temporally variable contamination fields. Exposure risk is governed by contaminant concentration, suspended particulate matter (SPM), and metabolic rate, with concentrations normalized across the spatial domain and depth-averaged SPM modulating risk to reflect particle-bound transport. Agents accumulate both instantaneous and cumulative exposure, allowing estimation of bioaccumulation risk over the migration season. This formulation reflects established mechanisms of methylmercury (MeHg) uptake in fishes, where exposure during active movement occurs by branchial uptake across the gills <span class="citation">(<a href="#ref-hall_food_1997">Hall et al. 1997</a>; <a href="#ref-evans_fish_1987">D. H. Evans 1987</a>)</span>. The gill epithelium serves as the primary interface for this exchange, with uptake regulated by diffusion, ion transport, and local water chemistry, and increasing with metabolic demand as elevated respiration enhances water flux across the gills; physiological stress can further modify uptake through changes in ion regulation and membrane permeability <span class="citation">(<a href="#ref-trudel_bioenergetics_2006">Trudel and Rasmussen 2006</a>)</span>.</p>
 </div>
 <div id="purpose-4" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> Purpose<a href="contaminant-exposure.html#purpose-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -607,12 +595,12 @@ div.csl-indent {
 <tr>
 <td><strong>MeHg-threshold</strong></td>
 <td>15 ug per kg</td>
-<td>Screening threshold for methylmercury <span class="citation">(<a href="#ref-noaa_national_oceanic_and_atmospheric_administration_sediment_1990">National Oceanic {and} Atmospheric Administration 1990</a>; <a href="#ref-gaudet_canadian_1995">Gaudet et al. 1995</a>)</span></td>
+<td>Screening threshold for methylmercury <span class="citation">(<a href="#ref-noaa_national_oceanic_and_atmospheric_administration_sediment_1990">National Oceanic and Atmospheric Administration (NOAA) 1990</a>; <a href="#ref-gaudet_canadian_1995">Gaudet et al. 1995</a>)</span></td>
 </tr>
 <tr>
 <td><strong>Hg-threshold</strong></td>
 <td>150 ug per kg</td>
-<td>NOAA guideline for mercury contamination <span class="citation">(<a href="#ref-noaa_national_oceanic_and_atmospheric_administration_sediment_1990">National Oceanic {and} Atmospheric Administration 1990</a>; <a href="#ref-gaudet_canadian_1995">Gaudet et al. 1995</a>)</span></td>
+<td>NOAA guideline for mercury contamination <span class="citation">(<a href="#ref-noaa_national_oceanic_and_atmospheric_administration_sediment_1990">National Oceanic and Atmospheric Administration (NOAA) 1990</a>; <a href="#ref-gaudet_canadian_1995">Gaudet et al. 1995</a>)</span></td>
 </tr>
 <tr>
 <td><strong>min-Hg, max-Hg</strong></td>
@@ -737,37 +725,50 @@ div.csl-indent {
 <div id="process-overview-and-scheduling-4" class="section level2 hasAnchor" number="8.4">
 <h2><span class="header-section-number">8.4</span> Process Overview and Scheduling<a href="contaminant-exposure.html#process-overview-and-scheduling-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li>Retrieve mercury, methylmercury, and depth averaged SPM values from the current patch.<br />
-</li>
-<li>Normalize patch contaminants between 0 and 1.<br />
-</li>
-<li>Compare patch levels to stress thresholds.<br />
-</li>
-<li>Update exposure durations.<br />
-</li>
-<li>Compute uptake risk using metabolism, ionregulatory stress, and SPM.<br />
-</li>
-<li>Add uptake risk to cumulative body burden.<br />
-</li>
-<li>Update patch level species specific risk metrics.</li>
+<li><p>Retrieve methylmercury (ng g⁻¹), and depth-averaged SPM values from
+the current patch (<span class="math inline">\(\frac{kg}{m^3}\)</span>).</p></li>
+<li><p>Normalize patch contaminants between 0 and 1.</p></li>
+<li><p>Compare patch levels to stress thresholds.</p></li>
+<li><p>Update exposure durations (ticks).</p></li>
+<li><p>Compute uptake risk using metabolism ((energy units) tick⁻¹),
+ion-regulatory stress (dimensionless), patch methylmercury (ng g⁻¹),
+and SPM (<span class="math inline">\(\frac{kg}{m^3}\)</span>).</p></li>
+<li><p>Add uptake risk to cumulative body burden (dimensionless),
+initialized at zero but configurable based on user-defined inital
+conditions.</p></li>
+<li><p>Update patch-level species-specific risk metrics.</p></li>
 </ol>
 </div>
 <div id="design-concepts-4" class="section level2 hasAnchor" number="8.5">
 <h2><span class="header-section-number">8.5</span> Design Concepts<a href="contaminant-exposure.html#design-concepts-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Basic Principles:</strong><br />
-Contaminant uptake follows toxicokinetic principles where absorption increases with concentration, metabolic rate, and suspended particulate matter (SPM). Depth averaged SPM reflects hydrodynamic transport and particle bound contaminant processes for fish typically found near the middle of the water column.</p>
-<p><strong>Emergence:</strong><br />
-Exposure and risk patterns emerge from individual movement across heterogeneous contamination fields coupled with metabolic and stress driven physiology.</p>
-<p><strong>Adaptation:</strong><br />
-Agents do not actively avoid contamination, but their internal physiology modulates uptake in response to metabolic changes.</p>
-<p><strong>Objectives:</strong><br />
-This model does not give agents risk minimization behavior. Instead, risk is assessed to evaluate means of exposure pathways and cumulative toxic exposure.</p>
-<p><strong>Sensing:</strong><br />
-Agents sense patch level mercury, methylmercury, SPM, and internal metabolic state.</p>
-<p><strong>Stochasticity:</strong><br />
-Variation in spatial contaminant fields or individual characteristics and state creates stochastic variation in exposure.</p>
-<p><strong>Observation:</strong><br />
-Outputs include instantaneous exposure risk, cumulative exposure risk, normalized exposure totals, and patch level species specific contributions.</p>
+<p><strong>Basic Principles:</strong> Contaminant uptake follows toxico-kinetic
+principles, where absorption is driven by dissolved methylmercury
+concentrations and mediated by physiological processes, including
+metabolic rate and stress, that regulate uptake, retention, and
+elimination (e.g., <span class="citation">Wang and Wong (<a href="#ref-wang_bioaccumulation_2003">2003</a>)</span>;
+<span class="citation">Trudel and Rasmussen (<a href="#ref-trudel_bioenergetics_2006">2006</a>)</span>). SPM represents the hydrodynamic transport
+medium for sediment-bound contaminants and regulates the availability of
+dissolved MeHg in the water column, modulating exposure by influencing
+the concentration of dissolved contaminants available for branchial
+uptake.</p>
+<p><strong>Emergence:</strong> Exposure and risk patterns emerge from individual
+movement across heterogeneous contamination fields, coupled with
+metabolic demand (energy units per tick) and stress-driven physiology
+(dimensionless).</p>
+<p><strong>Adaptation:</strong> Agents do not actively avoid contamination, but their
+internal physiology modulates uptake in response to metabolic changes.</p>
+<p><strong>Objectives:</strong> This model does not give agents risk minimization
+behavior. Instead, risk is assessed to evaluate plausible exposure
+pathways and cumulative toxic exposure.</p>
+<p><strong>Sensing:</strong> Agents track patch-level mercury, methylmercury, and SPM,
+along with internal metabolic state, to quantify contaminant exposure
+and flux; this is a model construct for accounting purposes and does not
+represent biological sensing.</p>
+<p><strong>Stochasticity:</strong> Variation in spatial contaminant fields or individual
+characteristics and state creates stochastic variation in exposure.</p>
+<p><strong>Observation:</strong> Outputs include instantaneous exposure risk, cumulative
+exposure risk, normalized exposure totals, and patch level species
+specific contributions.</p>
 </div>
 <div id="initialization-4" class="section level2 hasAnchor" number="8.6">
 <h2><span class="header-section-number">8.6</span> Initialization<a href="contaminant-exposure.html#initialization-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -808,67 +809,92 @@ Outputs include instantaneous exposure risk, cumulative exposure risk, normalize
 <div id="normalization" class="section level3 hasAnchor" number="8.7.1">
 <h3><span class="header-section-number">8.7.1</span> Normalization<a href="contaminant-exposure.html#normalization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="math display">\[
-Hg_{normalized} = \frac{Hg_{current} - minHg}{maxHg - minHg}
+\begin{equation} MeHg_{normalized} = \frac{MeHg_{patch} - MeHg_{min}}{MeHg_{max} - MeHg_{min}}  \hspace{2cm} \text{(C.40)} \end{equation}
 \]</span></p>
-<p>Bounded in the range 0 to 1.</p>
+<p>Where:</p>
+<ul>
+<li><p><span class="math inline">\(MeHg_{normalized}\)</span> is the normalized methylmercury concentration
+(dimensionless).</p></li>
+<li><p><span class="math inline">\(MeHg_{patch}\)</span> is the patch methylmercury concentration at the agent
+location (ng g⁻¹).</p></li>
+<li><p><span class="math inline">\(MeHg_{min}\)</span> is the minimum methylmercury value for normalization,
+relative to minimum contaminant concentration observes in system (ng
+g⁻¹).</p></li>
+<li><p><span class="math inline">\(MeHg_{max}\)</span> is the maximum methylmercury value for normalization,
+relative to maximumcontaminant concentration observes in system (ng
+g⁻¹).</p></li>
+</ul>
+<p>Clamped to the range 0 to 1.</p>
 </div>
 <div id="exposure-duration" class="section level3 hasAnchor" number="8.7.2">
 <h3><span class="header-section-number">8.7.2</span> Exposure Duration<a href="contaminant-exposure.html#exposure-duration" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="math display">\[
-Hg_{exp} = Hg_{exp} + 1 \quad \text{if } Hg_{current} &gt; Hg_{threshold}
+\begin{equation} MeHg_{exp} = MeHg_{exp} + 1 \quad \text{if } MeHg_{patch} &gt; MeHg_{threshold}  \hspace{2cm} \text{(C.41)} \end{equation}
 \]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(MeHg_{exp}\)</span> is the Duration of exposure above threshold (ticks).</li>
+<li><span class="math inline">\(MeHg_{patch}\)</span> is the patch-level methylmercury used in feeding
+uptake (ng g⁻¹).</li>
+<li><span class="math inline">\(MeHg_{threshold}\)</span> is the threshold concentration for exposure
+duration tracking, initalized at the Effects Range–Low for MeHg
+(ERL = 15 ng g⁻¹)
+<span class="citation">(<a href="#ref-noaa_national_oceanic_and_atmospheric_administration_sediment_1990">National Oceanic and Atmospheric Administration (NOAA) 1990</a>)</span>.</li>
+</ul>
 </div>
 <div id="uptake-risk" class="section level3 hasAnchor" number="8.7.3">
 <h3><span class="header-section-number">8.7.3</span> Uptake Risk<a href="contaminant-exposure.html#uptake-risk" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>SPM acts as a scaling factor on exposure risk, representing increased
+availability of dissolved MeHg associated with elevated SPM
+concentrations.</p>
 <p><span class="math display">\[
-Hg_{risk} = metabolism \cdot Hg_{normalized} \cdot (1 + S) \cdot (1 + SPM)
+\begin{equation} MeHg_{risk} = Met_{tick} \cdot MeHg_{normalized} \cdot (1 + S_{stress}) \cdot (1 + SPM)  \hspace{2cm} \text{(C.42)} \end{equation}
 \]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(MeHg_{risk}\)</span> is an agent’s instantaneous methylmercury exposure
+risk (dimensionless).</li>
+<li><span class="math inline">\(Met_{tick}\)</span> is the total metabolic rate for the current simulation
+tick (energy units).</li>
+<li><span class="math inline">\(MeHg_{normalized}\)</span> is the normalized methylmercury concentration
+(dimensionless).</li>
+<li><span class="math inline">\(S_{stress}\)</span> is an agent’s physiological salinity stress index
+(dimensionless).</li>
+<li><span class="math inline">\(SPM\)</span> is the suspended particulate matter (SPM) concentration on the
+patch (<span class="math inline">\(\frac{kg}{m^3}\)</span>).</li>
+</ul>
 </div>
 <div id="cumulative-uptake" class="section level3 hasAnchor" number="8.7.4">
 <h3><span class="header-section-number">8.7.4</span> Cumulative Uptake<a href="contaminant-exposure.html#cumulative-uptake" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="math display">\[
-Hg_{total} = Hg_{total} + Hg_{risk}
+\begin{equation} MeHg_{total} = MeHg_{total} + MeHg_{risk}  \hspace{2cm} \text{(C.43)} \end{equation}
 \]</span></p>
-<p>Patch level storage based on species for cumulative duration risk experience in space:</p>
+<p>Where:</p>
 <ul>
-<li><strong>Hg-exp-risk</strong><br />
-</li>
-<li><strong>Hg-exp-risk</strong></li>
+<li><span class="math inline">\(MeHg_{total}\)</span> is an agent’s cumulative methylmercury body burden
+(dimensionless).</li>
+<li><span class="math inline">\(MeHg_{risk}\)</span> is an agent’s instantaneous methylmercury exposure
+risk (dimensionless).</li>
+</ul>
+<p>Patch-level and individual-level storage based on species for cumulative
+duration risk experienced:</p>
+<p><span class="math display">\[
+\begin{equation} MeHg_{exp-risk} = MeHg_{exp-risk} + MeHg_{risk} \hspace{2cm} \text{(C.44)} \end{equation}
+\]</span></p>
+<p><span class="math display">\[
+\begin{equation} MeHg_{exp-patch} = MeHg_{exp-patch} + MeHg_{risk} \hspace{2cm} \text{(C.45)} \end{equation}
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(MeHg_{exp-risk}\)</span> is the cumulative exposure-weighted risk per
+individual (dimensionless).</li>
+<li><span class="math inline">\(MeHg_{exp-patch}\)</span> is the patch-level cumulative exposure
+contribution (dimensionless).</li>
 </ul>
 </div>
 </div>
-<div id="submodels-methylmercury-exposure-and-uptake" class="section level2 hasAnchor" number="8.8">
-<h2><span class="header-section-number">8.8</span> Submodels: Methylmercury Exposure and Uptake<a href="contaminant-exposure.html#submodels-methylmercury-exposure-and-uptake" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="normalization-1" class="section level3 hasAnchor" number="8.8.1">
-<h3><span class="header-section-number">8.8.1</span> Normalization<a href="contaminant-exposure.html#normalization-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display">\[
-MeHg_{normalized} = \frac{MeHg_{current} - minMeHg}{maxMeHg - minMeHg}
-\]</span></p>
-<p>Clamped to the range 0 to 1.</p>
-</div>
-<div id="exposure-duration-1" class="section level3 hasAnchor" number="8.8.2">
-<h3><span class="header-section-number">8.8.2</span> Exposure Duration<a href="contaminant-exposure.html#exposure-duration-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display">\[
-MeHg_{exp} = MeHg_{exp} + 1 \quad \text{if } MeHg_{current} &gt; MeHg_{threshold}
-\]</span></p>
-</div>
-<div id="uptake-risk-1" class="section level3 hasAnchor" number="8.8.3">
-<h3><span class="header-section-number">8.8.3</span> Uptake Risk<a href="contaminant-exposure.html#uptake-risk-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display">\[
-MeHg_{risk} = metabolism \cdot MeHg_{normalized} \cdot (1 + S) \cdot (1 + SPM)
-\]</span></p>
-</div>
-<div id="cumulative-uptake-1" class="section level3 hasAnchor" number="8.8.4">
-<h3><span class="header-section-number">8.8.4</span> Cumulative Uptake<a href="contaminant-exposure.html#cumulative-uptake-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display">\[
-MeHg_{total} = MeHg_{total} + MeHg_{risk}
-\]</span></p>
-<p>Patch level storage based on species for cumulative duration risk experience in space:</p>
-<ul>
-<li><strong>MeHg-exp-risk</strong><br />
-</li>
-<li><strong>MeHg-exp-risk</strong></li>
-</ul>
+<div id="netlogo-implementation-4" class="section level2 hasAnchor" number="8.8">
+<h2><span class="header-section-number">8.8</span> Netlogo Implementation<a href="contaminant-exposure.html#netlogo-implementation-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <pre class="netlogo"><code>
 globals [
   ;; Thresholds
@@ -1081,14 +1107,25 @@ end</code></pre>
 
 </div>
 </div>
-</div>
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-evans_fish_1987" class="csl-entry">
+Evans, D H. 1987. <span>“The Fish Gill: Site of Action and Model for Toxic Effects of Environmental Pollutants.”</span> <em>Environmental Health Perspectives</em> 71 (April): 47–58. <a href="https://doi.org/10.1289/ehp.877147">https://doi.org/10.1289/ehp.877147</a>.
+</div>
 <div id="ref-gaudet_canadian_1995" class="csl-entry">
 Gaudet, C., S. Lingard, P. Cureton, K. Keenleyside, S. Smith, and G. Raju. 1995. <span>“Canadian Environmental Quality Guidelines for Mercury.”</span> <em>Water, Air, &amp; Soil Pollution</em> 80 (1): 1149–59. <a href="https://doi.org/10.1007/BF01189777">https://doi.org/10.1007/BF01189777</a>.
 </div>
+<div id="ref-hall_food_1997" class="csl-entry">
+Hall, B. D., R. A. Bodaly, R. J. P. Fudge, J. W. M. Rudd, and D. M. Rosenberg. 1997. <span>“Food as the <span>Dominant</span> <span>Pathway</span> of <span>Methylmercury</span> <span>Uptake</span> by <span>Fish</span>.”</span> <em>Water, Air, and Soil Pollution</em> 100 (1-2): 13–24. <a href="https://doi.org/10.1023/A:1018071406537">https://doi.org/10.1023/A:1018071406537</a>.
+</div>
 <div id="ref-noaa_national_oceanic_and_atmospheric_administration_sediment_1990" class="csl-entry">
-National Oceanic {and} Atmospheric Administration, (NOAA). 1990. <span>“Sediment Quality Guidelines Developed for the National Status and Trends Program.”</span> National Oceanic; Atmospheric Administration (<span>NOAA</span>). <a href="https://rais.ornl.gov/documents/ECO_BENCH_NOAA.pdf">https://rais.ornl.gov/documents/ECO_BENCH_NOAA.pdf</a>.
+National Oceanic and Atmospheric Administration (NOAA). 1990. <span>“Sediment Quality Guidelines Developed for the National Status and Trends Program.”</span> National Oceanic; Atmospheric Administration. <a href="https://rais.ornl.gov/documents/ECO_BENCH_NOAA.pdf">https://rais.ornl.gov/documents/ECO_BENCH_NOAA.pdf</a>.
+</div>
+<div id="ref-trudel_bioenergetics_2006" class="csl-entry">
+Trudel, Marc, and Joseph B Rasmussen. 2006. <span>“Bioenergetics and Mercury Dynamics in Fish: A Modelling Perspective.”</span> <em>Canadian Journal of Fisheries and Aquatic Sciences</em> 63 (8): 1890–1902. <a href="https://doi.org/10.1139/f06-081">https://doi.org/10.1139/f06-081</a>.
+</div>
+<div id="ref-wang_bioaccumulation_2003" class="csl-entry">
+Wang, Wen-Xiong, and Raymond S. K. Wong. 2003. <span>“Bioaccumulation Kinetics and Exposure Pathways of Inorganic Mercury and Methylmercury in a Marine Fish, the Sweetlips Plectorhinchus Gibbosus.”</span> <em>Marine Ecology Progress Series</em> 261: 257–68. <a href="https://doi.org/10.3354/meps261257">https://doi.org/10.3354/meps261257</a>.
 </div>
 </div>
             </section>
@@ -1097,7 +1134,7 @@ National Oceanic {and} Atmospheric Administration, (NOAA). 1990. <span>“Sedime
         </div>
       </div>
 <a href="migration-cues.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="filter-feeding.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="small-particulate-feeding.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
