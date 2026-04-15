@@ -2,7 +2,9 @@
 
 ## Overview
 
-Selective Tidal Stream Transport (STST) is a behavioral strategy that enables agents to conserve energy by passively drifting with the current. It is triggered when the along-channel velocity of the patch exceeds the agent’s effective swimming speed, and that speed is below a species-specific minimum threshold. Once engaged, agents align with the tidal current and are carried downstream or upstream, depending on flow velocity. STST reduces the metabolic cost of movement by substituting active swimming with passive transport. This behavior persists for a limited duration or until swimming ability improves, after which agents resume directional migration.
+Selective Tidal Stream Transport (STST) is a behavioral strategy that enables agents to conserve energy by alternating between active swimming and passive drift under strong hydrodynamic forcing. Within this submodel, STST is triggered when the along-channel velocity of a patch exceeds an agent’s effective swimming speed and that speed falls below a species-specific minimum threshold. When engaged, agents align with the tidal current and are passively transported upstream or downstream depending on flow direction, reducing the metabolic cost of movement by substituting active swimming with drift.
+
+This behavior is well documented in anadromous and estuarine fishes, where individuals exploit tidal currents to facilitate migration while minimizing energy expenditure [@ForwardTankersley2001; @Gibson2001STST]. Movement during STST is governed by local flow velocity, allowing migration pathways, displacement, and energy savings to emerge dynamically from the interaction between individual swimming capacity and the tidal flow field. STST persists for a limited duration or until swimming ability improves, after which agents resume directional migration.
 
 ## Purpose
 
@@ -44,27 +46,38 @@ To simulate a passive energy-conserving behavior in migratory fish that allows t
 
 ## Process Overview and Scheduling
 
-1.  Compare swimming speed ($V_{agent}$) with flow speed ($V_{patch}$).
+1.  Compare swimming speed ($A_{speed}$) with flow speed ($V_{patch}$).
 
-2.  If $|V_{patch}| > V_{agent}$ and $V_{agent} \leq Speed_{min}$, enter STST.
+2.  If $|V_{patch}| > A_{speed}$ and $A_{speed} \leq Speed_{min}$, enter
+    STST.
 
-3.  In STST: align with current, update position via drift, apply reduced energy cost.
+3.  In STST: align with current, update position via drift, apply
+    reduced energy cost.
 
-4.  If $V_{agent} > Speed_{min}$, exit STST and resume active swimming.
+4.  If $A_{speed} > Speed_{min}$, exit STST and resume active swimming.
 
 ## Design Concepts
 
-**Basic Principles:** Selective tidal stream transport is based on behavioral ecology and energetics, simulating the tradeoff between active swimming and energy conservation through passive transport.
+**Basic Principles:** Selective tidal stream transport (STST) is a
+documented behavioral strategy in anadromous fishes that exploits tidal
+currents to conserve energy during migration (e.g.,
+@ForwardTankersley2001; @Gibson2001STST)
 
-**Emergence:** Passive drift behavior and resulting migration paths emerge from agent-flow interactions and individual swimming limitations.
+**Emergence:** Passive drift behavior and resulting migration paths
+emerge from agent-flow interactions and individual swimming limitations.
 
-**Adaptation:** Agents adapt their mode of movement based on their swimming ability relative to environmental flow, dynamically choosing energy-efficient strategies.
+**Adaptation:** Agents adapt their mode of movement based on their
+swimming ability relative to environmental flow, dynamically choosing
+energy-efficient strategies.
 
 **Objectives:** Agents seek to minimizing energy loss in strong flows.
 
-**Sensing:** Agents sense their own $V_{agent}$ and the $V_{patch}$ to determine whether passive drift is needed.
+**Sensing:** Agents sense their own $A_{speed}$ and the $V_{patch}$ to
+determine whether passive drift is needed.
 
-**Observation:** Records STST patch events , energy expenditure ($E_{agent}$), and displacement are logged to analyze behavior across flow regimes.
+**Observation:** Records STST patch events , energy expenditure
+($E_{agent}$), and displacement are logged to analyze behavior across
+flow regimes.
 
 ## Initialization
 
@@ -80,87 +93,108 @@ To simulate a passive energy-conserving behavior in migratory fish that allows t
 
 ### Trigger Conditions for STST
 
-Agents compare their swimming ability to the flow conditions. If local flow exceeds their capability and their effort is below a defined threshold, they enter STST:
+Agents compare their swimming ability to the flow conditions. If local
+flow exceeds their capability and their effort is below a defined
+threshold, they enter STST:
 
 $$
-|V_{patch}| > V_{agent} \quad \text{and} \quad V_{agent} \leq Speed_{min}
+\begin{equation} |V_{patch}| > A_{speed} \quad \text{and} \quad A_{speed} \leq Speed_{min}  \hspace{2cm} \text{(C.94)} \end{equation}
 $$
+
+Where:
+
+-   $V_{patch}$ is the depth-Averaged along-channel water velocity at
+    the patch (m s⁻¹).
+-   $A_{speed}$ is the actual swimming speed used for movement (m s⁻¹).
+-   $Speed_{min}$ is the minimum sustainable swimming speed (m s⁻¹).
 
 While in STST:
 
-Heading aligns with the current (drift vector) & swimming speed is set to:
+Heading aligns with the current (drift vector) & swimming speed is set
+to:
 
 $$
-V_{agent} = |V_{patch}|
+\begin{equation} A_{speed} = |V_{patch}|  \hspace{2cm} \text{(C.95)} \end{equation}
 $$
+
+Where:
+
+-   $V_{patch}$ is the depth-Averaged along-channel water velocity at
+    the patch (m s⁻¹).
+-   $A_{speed}$ is the actual swimming speed used for movement (m s⁻¹).
 
 Energy is set as:
 
 $$
-E_{swim} = swim_{base}
+\begin{equation} E_{swim} = swim_{base}  \hspace{2cm} \text{(C.96)} \end{equation}
 $$
 
 Where:
 
--   $V_{agent}$ is the current swimming speed of the agent.
-
--   $V_{patch}$ is the along-channel velocity at the agent's current patch.
-
--   $Speed_{min}$ is the minimum sustainable swimming speed of the agent.
-
--   $swim_{base}$ is the base swimming cost based on agent size.
-
--   $E_{swim}$ is the total energy cost during passive movement.
+-   $E_{swim}$ is the energy cost of swimming for the tick (energy
+    units).
+-   $swim_{base}$ is the baseline energetic cost of swimming (energy
+    units).
 
 ### Behavior During STST
 
-While in STST, agents align with the current (either landward or seaward) and are passively transported:
+While in STST, agents align with the current (either landward or
+seaward) and are passively transported:
 
 $$
-\vec{Y}_{t+1} = \vec{Y}_t + |V_{patch}| \cdot \hat{u}
+\begin{equation} \vec{Y}_{t+1} = \vec{Y}_t + |V_{patch}| \cdot \hat{u}  \hspace{2cm} \text{(C.97)} \end{equation}
 $$
+
+Where:
+
+-   $\vec{Y}_t$ is the Agent spatial position vector.
+-   $V_{patch}$ is the depth-Averaged along-channel water velocity at
+    the patch (m s⁻¹).
+-   $\hat{u}_{patch}$ is the unit direction vector of patch flow,
+    defined as $\hat{u}_{patch} = V_{patch} / |V_{patch}|$ when
+    $|V_{patch}| > 0$.
 
 Swimming speed is overwritten:
 
 $$
-V_{agent} = |V_{patch}|
+\begin{equation} A_{speed} = |V_{patch}|  \hspace{2cm} \text{(C.98)} \end{equation}
 $$
+
+Where:
+
+-   $A_{speed}$ is the actual swimming speed used for movement (m s⁻¹).
+-   $V_{patch}$ is the depth-Averaged along-channel water velocity at
+    the patch (m s⁻¹).
 
 Energy cost is minimized:
 
 $$
-E_{swim} = swim_{base}
+\begin{equation} E_{swim} = swim_{base}  \hspace{2cm} \text{(C.99)} \end{equation}
 $$
 
 Where:
 
--   $\vec{Y}_t$ is the agent’s current spatial position.
-
--   $\vec{Y}_{t+1}$ is the position after drifting.
-
--   $V_{patch}$ is the along-channel velocity at the agent's current patch.
-
--   $\hat{u}_{patch}$ is the direction of the patch velocity (unit vector).
-
--   $swim_{base}$ is the base swimming cost based on agent size.
-
--   $E_{swim}$ is the total energy cost during passive movement.
-
+-   $E_{swim}$ is the energy cost of swimming for the tick (energy
+    units).
+-   $swim_{base}$ is the baseline energetic cost of swimming (energy
+    units).
+    
 ### Stop Conditions for STST
 
-Agents exit STST when they regain sufficient swimming capacity to exceed threshold:
+Agents exit STST when they regain sufficient swimming capacity to exceed
+threshold:
 
 $$
-V_{agent} > Speed_{min}
+\begin{equation} A_{speed} > speed_{min}  \hspace{2cm} \text{(C.100)} \end{equation}
 $$
 
 Where:
 
--   $V_{agent}$ is the current swimming speed of the agent.
+-   $A_{speed}$ is the actual swimming speed used for movement (m s⁻¹).
+-   $speed_{min}$ is the minimum sustainable swimming speed (m s⁻¹).
 
--   $Speed_{min}$ is the minimum sustainable swimming speed of the agent.
-
-This triggers a return to active migratory movement and deactivates $STST_{?}$.
+This triggers a return to active migratory movement and deactivates
+$STST_{?}$.
 
 ## Netlogo Implementation
 

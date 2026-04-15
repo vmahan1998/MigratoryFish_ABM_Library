@@ -2,7 +2,7 @@
 
 ## Overview
 
-Schooling is an emergent collective behavior in which fish align, cohere, and maintain spacing with nearby con-specifics. In this model, schooling increases hydrodynamic efficiency, predator avoidance, and coordinated migration. The submodel follows the classic behavioral rules from agent based schooling and BOIDS frameworks (separation, alignment, and cohesion).
+Schooling is an emergent collective behavior in which fish align, cohere, and maintain spacing with nearby conspecifics, increasing hydrodynamic efficiency, predator avoidance, and coordinated migration. Within this model, schooling arises from local interactions among individuals, where agents adjust position, heading, and speed in response to nearby neighbors following the classic behavioral rules of separation, alignment, and cohesion. These rules are consistent with established models of collective fish behavior and agent-based schooling frameworks [@dobon_netlogo_2018; @reynolds_flocks_1987]. As a result, group structure, synchronized movement, and cohesion emerge from decentralized decision-making rather than being imposed at the group level, allowing schooling dynamics to adapt to changing environmental conditions during migration. 
 
 The schooling behavior in this model is adapted from the publicly available NetLogo model [Fish Schooling For Predator Avoidance](https://modelingcommons.org/browse/one_model/5709#model_tabs_browse_info) created by Sebastian Dobon and shared through the NetLogo Modeling Commons. That model implements classic schooling rules from the original BOIDS framework developed by Craig Reynolds in 1987 in his paper *Flocks, Herds, and Schools: A Distributed Behavioral Model* [@reynolds_flocks_1987]. 
 
@@ -39,46 +39,54 @@ The purpose of this submodel is to simulate collective movement patterns observe
 
 ## Process Overview and Scheduling
 
-1. Identify schoolmates based on species identity and shared migration state.
-2. Detect the nearest neighbor among schoolmates.
-3. Apply separation when neighbors are too close.
-4. Apply cohesion and alignment when spacing is adequate.
-5. Adjust speed to match group speed and maintain coordination.
+1.  Identify schoolmates based on species identity (categorical) and
+    shared migration state (categorical).
+
+2.  Detect the nearest neighbor among schoolmates (distance, patch
+    units, where 1 patch = 3 m).
+
+3.  Apply separation when neighbors are too close (threshold distance,
+    patch units).
+
+4.  Apply cohesion and alignment when spacing is adequate
+    (distance-based interaction, patch units).
+
+5.  Adjust speed to match group speed and maintain coordination (patch
+    units tick⁻¹).
 
 ## Design Concepts
 
-**Basic Principles**  
-Schooling arises from separation, cohesion, and alignment. These rules reflect collective behaviors observed in migrating fishes.
+**Basic Principles:** Schooling arises from local interaction rules of
+separation, cohesion, and alignment, implemented through the schooling
+and predator avoidance functions[@dobon_netlogo_2018]. These behavioral
+rules reflect well documented collective dynamics observed in migrating
+fishes, where individuals maintain group structure while balancing
+spacing, directional alignment, and coordinated movement.
 
-**Emergence**  
-Cohesive schools, spacing patterns, and synchronized direction arise without centralized control.
+**Emergence:** Cohesive schools, spacing patterns, and synchronized
+direction arise without centralized control.
 
-**Adaptation**  
-Agents adjust heading and speed in response to nearby schoolmates.
+**Adaptation:** Agents adjust heading and speed in response to nearby
+schoolmates.
 
-**Objectives**  
-Fish do not attempt to form schools explicitly. Schooling emerges from local rules.
+**Sensing**\
+Agents sense species identity, distance to schoolmates, spacing, and
+local movement direction.
 
-**Learning**  
-There is no internal learning. Behavior is reactive and rule based.
-
-**Prediction**  
-Agents do not predict future states of neighbors. They respond to current spacing and direction.
-
-**Sensing**  
-Agents sense species identity, distance to schoolmates, spacing, and local movement direction.
-
-**Interaction**  
+**Interaction**\
 Agents change speed and heading based on interactions with neighbors.
 
-**Stochasticity**  
-Small random turning angles elsewhere in the model introduce variability in movement.
+**Stochasticity**\
+Small random turning angles elsewhere in the model introduce variability
+in movement.
 
-**Collectives**  
-Schools form as dynamic collectives with shared direction and spacing rules.
+**Collectives**\
+Schools form as dynamic collectives with shared direction and spacing
+rules.
 
-**Observation**  
-School size, spacing, direction, and cohesion may be tracked to evaluate emergent schooling patterns.
+**Observation**\
+School size, spacing, direction, and cohesion may be tracked to evaluate
+emergent schooling patterns.
 
 ## Initialization
 
@@ -94,11 +102,14 @@ School size, spacing, direction, and cohesion may be tracked to evaluate emergen
 
 ### Identifying Schoolmates
 
-Fish select schoolmates from nearby con-specifics that share the same migration state, including the start of migration and direction (landward or seaward).
+Fish select schoolmates from nearby con-specifics that share the same
+migration state, including the start of migration and direction
+(landward or seaward).
 
 ### Nearest Neighbor
 
-The closest schoolmate is used to determine whether spacing rules or cohesion rules should be applied.
+The closest schoolmate is used to determine whether spacing rules or
+cohesion rules should be applied.
 
 ### Separation
 

@@ -2,7 +2,9 @@
 
 ## Overview
 
-Filter feeding is a foraging behavior in which fish consume suspended particulate matter as they migrate through estuarine and coastal systems. In this submodel, agents evaluate neighboring patches based on suspended particulate matter concentration and selectively filter feed where energetic return is highest. Filtration capacity increases with body size, metabolic rate, and digestion efficiency, and is reduced under competition from other filter feeding fish. Contaminant loads in the water column directly influence mercury and methylmercury assimilation during feeding, including biomagnification effects.
+Filter feeding is a foraging behavior in which fish consume suspended particulate matter (SPM) while moving through estuarine and coastal systems, linking food availability directly to hydrodynamic transport processes. In this submodel, agents evaluate neighboring patches based on SPM concentration and selectively feed where energetic return is highest, following optimal foraging principles that maximize net energy gain relative to the costs of searching, handling, and movement [@townsend_application_1985]. Filtration capacity scales with body size, metabolic demand, and digestion efficiency, consistent with bioenergetic constraints on intake and processing capacity [@norin_metabolic_2018], and is reduced under competition from other filter-feeding fish.
+
+Within this submodel, SPM includes both inorganic particles and organic material such as algae, detritus, and zooplankton, acting as both a food resource and a vector for contaminant transport in estuarine systems [@kjelland_integrated_2015; @kjelland_review_2015]. As a result, contaminant exposure through this pathway is directly linked to feeding behavior, where assimilated biomass carries associated mercury and methylmercury that are incorporated into internal stores through biomagnification processes [@lavoie_biomagnification_2013]. This formulation allows feeding-driven exposure to emerge from the interaction between hydrodynamic SPM fields, foraging decisions, and physiological constraints, rather than being treated as a static uptake rate.
 
 ## Purpose and Patterns
 
@@ -81,38 +83,66 @@ This submodel represents the following ecological patterns:
 
 ## Process Overview and Scheduling
 
-1.  Compute filtration capacity based on size, metabolism, and digestion efficiency.\
-2.  Evaluate neighboring patches using a Gaussian suitability curve around optimal SPM.\
-3.  Apply a competition penalty based on the number of con-specifics feeding on each patch.\
-4.  Select the patch with the highest filtration benefit.\
-5.  Move toward the chosen patch with travel distance reduced by swimming efficiency.\
-6.  Apply swimming energy cost.\
-7.  Filter feed by assimilating SPM scaled biomass from the chosen patch.\
-8.  Assimilate mercury and methylmercury using biomagnification factors from Lavoie et al (2013).\
-9.  Add assimilated biomass and contaminants to stomach contents.
+1.  Compute filtration capacity based on size, metabolism, and digestion
+    efficiency.
+2.  Evaluate neighboring patches using a Gaussian suitability curve
+    around optimal SPM, reflecting unimodal feeding performance where
+    filtration efficiency and energetic return peak at intermediate
+    resource concentrations and decline at both low and high extremes
+    due to limitation or processing constraints [@hirzel_habitat_2008].
+3.  Apply a competition penalty based on the number of conspecifics
+    feeding on each patch to represent density-dependent foraging, where
+    increased local competition reduces per-capita resource availability
+    and filtration efficiency, consistent with optimal foraging
+    predictions under shared resource use [@townsend_application_1985]
+    and observed density-dependent feeding dynamics in SPM-mediated
+    systems [@kjelland_integrated_2015].
+4.  Select the patch with the highest filtration benefit.
+5.  Move toward the chosen patch with travel distance reduced by
+    swimming efficiency.
+6.  Apply swimming energy cost (energy units).
+7.  Filter feed by assimilating SPM scaled biomass from the chosen
+    patch.
+8.  Assimilate mercury and methylmercury using biomagnification factors
+    from [@lavoie_biomagnification_2013].
+9.  Add assimilated biomass (g) and contaminants (ng) to stomach
+    contents .
 
 ## Design Concepts
 
-**Basic Principles**\
-Filter feeding reflects how pelagic and estuarine fish forage on suspended particles while migrating. Filtration scales with size, metabolism, and digestive efficiency. SPM determines food availability and contaminant exposure.
+**Basic Principles:** Small particulate feeding reflects how pelagic and
+estuarine fish forage on suspended particles while migrating
+[@janssen_feeding_1980]. Filtration scales with size and metabolic
+demand consistent with bioenergetic scaling principles
+[@norin_metabolic_2018]. Suspended particulate matter (SPM) influences
+both food availability and contaminant exposure pathways in estuarine
+systems [@kjelland_integrated_2015; @kjelland_review_2015;
+@lavoie_biomagnification_2013].
 
-**Emergence**\
-Feeding hotspots emerge where hydrodynamic SPM fields align with optimal SPM and competition is minimal. Contaminant loads emerge from local mercury and methylmercury concentrations and biomagnification.
+**Emergence:** Feeding hotspots emerge where hydrodynamic SPM fields
+align with optimal SPM and competition is minimal. Contaminant loads
+emerge from local mercury and methylmercury concentrations and
+biomagnification.
 
-**Adaptation**\
-Agents adjust their direction and feeding behavior based on SPM quality, filtration capacity, and local competition.
+**Adaptation:** Agents adjust their direction and feeding behavior based
+on SPM quality, filtration capacity, and local competition.
 
-**Sensing**\
-Agents sense SPM, mercury, methylmercury, competition from conspecifics, stomach fullness, and their own metabolic and digestive state.
+**Sensing:** Agents sense SPM, mercury, methylmercury, competition from
+conspecifics, stomach fullness, and their own metabolic and digestive
+state.
 
-**Stochasticity**\
-Variation in SPM quality, contaminant concentrations, and local competition create variability in feeding and assimilation outcomes.
+**Stochasticity:** Variation in SPM quality, contaminant concentrations,
+and local competition create variability in feeding and assimilation
+outcomes.
 
-**Interaction**\
-Competition reduces filtration benefit when more fish feed on the same patch. Mercury and methylmercury assimilation depends on local contaminant levels and feeding intensity.
+**Interaction:** Competition reduces filtration benefit when multiple
+conspecifics occupy the same patch, consistent with density-dependent
+foraging dynamics in spatially structured systems
+[@kjelland_integrated_2015].
 
-**Observation**\
-The model tracks biomass intake, mercury and methylmercury assimilation, stomach contents, and contaminant load added per patch.
+**Observation:** The model tracks biomass intake, mercury and
+methylmercury assimilation, stomach contents, and contaminant load added
+per patch.
 
 ## Initialization
 
@@ -128,99 +158,181 @@ The model tracks biomass intake, mercury and methylmercury assimilation, stomach
 
 ### Filtration Capacity
 
-Filtration scales with size, metabolism, and digestion efficiency:
+Filtration scales with size, metabolism, and digestion efficiency,
+consistent with bioenergetic constraints derived largely from studies of
+ectothermic aquatic organisms, particularly fishes
+[@norin_metabolic_2018]:
 
 $$
-Filtration_{base} = \left(\frac{size}{100}\right) \cdot metabolism\_{rate} \cdot digestion\_{efficiency}
+\begin{equation} Filter_{base} = \left(\frac{size}{100}\right) \cdot Met_{tick} \cdot Eff_{digest} \hspace{2cm} \text{(C.46)} \end{equation}
 $$
+
+Where:
+
+-   $Met_{tick}$ is the total metabolic rate for the current simulation
+    tick ((energy units) tick⁻¹).
+-   $Eff_{digest}$ is efficiency factor controlling digestion and
+    filtration (%). User-defined value.
+-   $Filter_{base}$ is the baseline filtration capacity for SPM feeding
+    (g tick⁻¹).
 
 ### SPM Interest (Gaussian Suitability)
 
-Suitability peaks at the optimal SPM and declines with distance:
+Suitability peaks at the optimal SPM concentration and declines with
+deviation from that optimum following a Gaussian performance curve
+[@hirzel_habitat_2008], capturing a unimodal response to environmental
+gradients, representing maximal feeding performance at intermediate SPM
+and reduced suitability at both lower and higher concentrations:
 
 $$
-Interest = e^{-\frac{(SPM - optimalSPM)^2}{2 \cdot \sigma^2}}
+\begin{equation} A_{interest} = e^{-\frac{(SPM - SPM_{optimal})^2}{2 \cdot \sigma^2}}  \hspace{2cm} \text{(C.47)} \end{equation}
 $$
 
-Where $\sigma$ is the SPM standard deviation tolerance (here 25).
+Where:
 
-### Benefit Calculation
+-   $A_{interest}$ is the suitability weight for SPM-based feeding
+    (dimensionless).
+-   $SPM_{optimal}$ is the optimal SPM concentration for feeding
+    suitability ($\frac{kg}{m^3}$).
+-   $SPM$ is the suspended particulate matter (SPM) concentration on the
+    patch ($\frac{kg}{m^3}$).
+-   $\sigma$ is the standard deviation tolerance for suitability curve
+    ($\frac{kg}{m^3}$).
+
+### Resource Benefit Calculation
 
 Benefit for each neighboring patch:
 
 $$
-Benefit = SPM \cdot Interest \cdot Filtration_{base}
+\begin{equation} A_{benefit} = SPM \cdot A_{interst} \cdot Filter_{base}  \hspace{2cm} \text{(C.48)} \end{equation}
 $$
+
+Where:
+
+-   $A_{benefit}$ is the relative feeding benefit score for a candidate
+    patch (dimensionless).
+-   $A_{interest}$ is the suitability weight for SPM-based feeding
+    (dimensionless).
+-   $SPM$ is the suspended particulate matter (SPM) concentration on the
+    patch ($\frac{kg}{m^3}$).
+-   $Filter_{base}$ is the baseline filtration capacity for SPM feeding
+    (g tick⁻¹).
 
 If con-specifics are present:
 
 $$
-Benefit = \frac{Benefit}{N_{conspecifics}}
+\begin{equation} A_{benefit} = \frac{A_{benefit}}{N_{conspecifics}}  \hspace{2cm} \text{(C.49)} \end{equation}
 $$
 
+Where:
+
+-   $A_{interest}$ is the suitability weight for SPM-based feeding
+    (dimensionless).
+-   $N_{conspecifics}$ is the number of conspecifics on a patch
+    (agents).
+    
 ### Movement
 
 Travel distance is reduced by swimming efficiency:
 
 $$
-Distance = min(DistanceToPatch,\ speed \cdot swim\_{efficiency})
+\begin{equation} D_{travel} = min(D_{to-patch},\ A_{speed} \cdot swim_{Eff})  \hspace{2cm} \text{(C.50)} \end{equation}
 $$
+
+Where:
+
+-   $D_{travel}$ is the distance traveled in the current tick (patch
+    units).
+-   $D_{to-patch}$ is the distance to a candidate target patch (patch
+    units).
+-   $A_{speed}$ is the actual swimming speed used for movement (m
+    tick⁻¹).
+-   $swim_{Eff}$ is the efficiency multiplier applied to swimming
+    energetics (%).
 
 Energy cost of swimming:
 
 $$
-Energy = Energy - (E\_{swim} \cdot Distance)
+\begin{equation} E_{agent} = E_{agent} - (E_{swim} \cdot D_{travel})  \hspace{2cm} \text{(C.51)} \end{equation}
 $$
+
+Where:
+
+-   $E_{agent}$ is the total internal energy available to the agent
+    (energy units).
+-   $E_{swim}$ is the energy cost of swimming for the tick ((energy
+    units) patch⁻¹).
+-   $D_{travel}$ is the distance traveled in the current tick (patch
+    units).
 
 ### Feeding and Stomach Loading
 
 Assimilated biomass:
 
 $$
-Intake = min(PreyAssimilated,\ StomachCapacity - StomachContents)
+\begin{equation} M_{intake} = min(M_{prey},\ stomach_{max} - M_{stomach})  \hspace{2cm} \text{(C.52)} \end{equation}
 $$
+
+Where:
+
+-   $M_{intake}$ is the biomass actually ingested by the agent (g).
+-   $M_{prey}$ is the biomass available from SPM filtration (g).
+-   $stomach_{max}$ is an agent's maximum stomach capacity (g).
+-   $M_{stomach}$ is the biomass currently stored in the stomach (g).
 
 ### Contaminant Assimilation and Biomagnification
 
 Biomagnification factors follow @lavoie_biomagnification_2013:
 
 $$
-BMF_{MeHg} = 10^{(0.24 \cdot \Delta TP)}
-$$
+\begin{equation} BMF_{MeHg} = 10^{(0.24 \cdot \Delta TP)}  \hspace{2cm} \text{(C.53)} \end{equation}
+$$ Where:
+
+-   $\Delta TP = 1$ is the trophic position difference for
+    biomagnification.
+-   $BMF_{MeHg}$ is the biomagnification factor for methylmercury
+    (dimensionless).
 
 $$
-BMF_{Hg} = 10^{(0.14 \cdot \Delta TP)}
+\begin{equation} BMF_{MeHg} = 10^{0.24} \approx 1.74  \hspace{2cm} \text{(C.54)} \end{equation}
 $$
 
-With $\Delta TP = 1$:
+Where:
 
-$$
-BMF_{MeHg} = 10^{0.24} \approx 1.74
-$$
-
-$$
-BMF_{Hg} = 10^{0.14} \approx 1.38
-$$
+-   $BMF_{MeHg}$ is the biomagnification factor for methylmercury
+    (dimensionless).
 
 Assimilation equations:
 
 $$
-MeHg_{assim} = SPM \cdot MeHg_{patch} \cdot BMF_{MeHg} \cdot PreyAssimilated
+\begin{equation} MeHg_{intake} = SPM \cdot MeHg_{patch} \cdot BMF_{MeHg} \cdot M_{intake}  \hspace{2cm} \text{(C.55)} \end{equation}
 $$
 
-$$
-Hg_{assim} = SPM \cdot Hg_{patch} \cdot BMF_{Hg} \cdot PreyAssimilated
-$$
+Where:
+
+-   $MeHg_{intake}$ is the methylmercury biomass actually ingested by
+    the agent (ng).
+-   $SPM$ is the suspended particulate matter (SPM) concentration on the
+    patch ($\frac{kg}{m^3}$).
+-   $MeHg_{patch}$ is the patch-level methylmercury used in feeding
+    uptake (ng g⁻¹).
+-   $BMF_{MeHg}$ is the biomagnification factor for methylmercury.
+-   $M_{intake}$ is the biomass actually ingested by the agent (g).
 
 Stomach contaminant update:
 
 $$
-StomachMeHg = StomachMeHg + MeHg_{assim}
+\begin{equation} MeHg_{stomach} = MeHg_{stomach} + MeHg_{intake}  \hspace{2cm} \text{(C.56)} \end{equation}
 $$
 
-$$
-StomachHg = StomachHg + Hg_{assim}
-$$
+Where:
+
+-   $MeHg_{stomach}$ is the methylmercury currently stored in the
+    stomach (ng).
+-   $MeHg_{intake}$ is the methylmercury biomass actually ingested by
+    the agent (ng).
+    
+## Netlogo Implementation
 
 ```{netlogo}
 

@@ -2,7 +2,7 @@
 
 ## Overview
 
-Digestion converts consumed prey mass into usable energy and transfers associated contaminants such as inorganic mercury and methylmercury from stomach contents into internal body burden pools. This submodel simulates the breakdown of ingested prey at a rate proportional to the agent’s current metabolic rate. As stomach contents are digested, a fraction is converted into energy while mercury and methylmercury are incorporated into the agent’s contaminant loads. When stomach contents reach zero, agents transition into foraging mode and begin drawing on lipid reserves.
+Digestion converts consumed prey mass into usable energy while transferring associated contaminants such as inorganic mercury and methylmercury from stomach contents into internal body burden pools. Within P-MEM, digestion is modeled as a metabolically mediated process, where digestive throughput is proportional to the agent’s current metabolic rate and reflects established links between physiological state, energetic demand, and digestive processing in fishes, including gut evacuation and energy assimilation [@volkoff_effects_2020; @fu_behavioural_2009]. As stomach contents are broken down, a fraction of biomass is converted into energy while biomass-associated contaminants are internalized, linking feeding, energetic gain, and contaminant uptake within a unified framework. When stomach contents are depleted, agents transition into foraging mode and begin drawing on lipid reserves.
 
 ## Purpose
 
@@ -18,19 +18,19 @@ To simulate how migratory fish process ingested prey into energy and contaminant
 ### Global Variables
 
 | Global Variable | Definition |
-|----|----|
+|------------------------------------|------------------------------------|
 | **none required** | Digestion uses internal agent state + metabolism-rate from metabolism submodel. |
 
 ### Patch Variables
 
 | Variable Name | Definition |
-|----|----|
+|------------------------------------|------------------------------------|
 | None required | Digestion is an internal physiological process and does not depend on patch attributes. |
 
 ### Agent Variables
 
 | Variable Name | Definition |
-|----|----|
+|------------------------------------|------------------------------------|
 | **stomach-contents** | Total mass of prey currently held in the stomach. |
 | **stomach-contents-Hg** | Inorganic mercury contained within the stomach contents. |
 | **stomach-contents-MeHg** | Methylmercury contained within the stomach contents. |
@@ -49,44 +49,64 @@ To simulate how migratory fish process ingested prey into energy and contaminant
 
 ## Process Overview and Scheduling
 
-1.  Set digestion rate equal to the current metabolic rate.\
-2.  Calculate the mass digested during the current tick.\
-3.  Compute the corresponding amounts of inorganic and methylmercury digested.\
-4.  Remove digested prey mass and associated contaminants from stomach contents.\
-5.  Convert a fraction of digested biomass into usable energy.\
-6.  Add mercury and methylmercury to cumulative body burden pools.\
-7.  When stomach contents reach zero, set foraging to true and begin lipid use.
+1.  Set digestion rate equal to the current metabolic rate ((energy
+    units) tick⁻¹).
+
+2.  Calculate the mass digested during the current tick (g).
+
+3.  Compute the corresponding amounts of inorganic and methylmercury
+    digested (ng).
+
+4.  Remove digested biomass and associated contaminants from stomach
+    contents (g; ng).
+
+5.  Convert a fraction of digested biomass into usable energy ((energy
+    units) tick⁻¹).
+
+6.  Add mercury and methylmercury to cumulative body burden pools (ng).
+
+7.  When stomach contents reach zero, set foraging to true and begin
+    lipid use.
 
 ## Design Concepts
 
-**Basic Principles:**\
-Digestion is modeled as a metabolic rate dependent process, where higher metabolic demand results in greater digestive throughput. Contaminants are transferred into the agent’s body burden proportionally to the fraction of mass digested.
+**Basic Principles:** Digestion is modeled as a metabolic rate dependent
+process, where higher metabolic demand results in greater digestive
+throughput [@brown_toward_2004]. Dietary MeHg uptake was represented as
+proportional to assimilated (digested) prey mass, consistent with
+mercury mass balance formulations that model uptake from food via an
+assimilation term [@trudel_bioenergetics_2006]
 
-**Emergence:**\
-Patterns of energy gain and contaminant uptake emerge from interactions among foraging success, metabolism, digestion efficiency, and prey availability.
+**Emergence:** Patterns of energy gain and contaminant uptake emerge
+from interactions among foraging success, metabolism, digestion
+efficiency, and prey availability.
 
-**Adaptation:**\
-Agents respond to depleted stomach contents by transitioning into foraging mode and initiating lipid catabolism when necessary.
+**Adaptation:** Agents respond to depleted stomach contents by
+transitioning into foraging mode and initiating lipid catabolism when
+necessary.
 
-**Objectives:**\
-Agents maximize energetic intake to support migration, physiological function, and survival while minimizing energetic deficits.
+**Objectives:** Agents allocate available energy across movement,
+maintenance, and physiological processes to maximize reproductive
+success along the migration pathway while minimizing the risk of
+energetic depletion.
 
-**Sensing:**\
-Agents sense their own energetic state through stomach contents and energy levels.
+**Sensing:** Agents sense their own energetic state through stomach
+contents and energy levels.
 
-**Stochasticity:**\
-Stochasticity arises indirectly from variation in prey encounters or foraging success, although digestion itself is deterministic.
+**Stochasticity:** Stochasticity arises indirectly from variation in
+prey encounters or foraging success, although digestion itself is
+deterministic.
 
-**Collectives:**\
-Digestion occurs independently for each agent and does not require group level dynamics.
+**Collectives:** Digestion occurs independently for each agent and does
+not require group level dynamics.
 
-**Observation:**\
-Outputs of interest include digested mass per tick, gained energy, contaminant uptake, and cumulative contaminant burdens.
+**Observation:** Outputs of interest include digested mass per tick,
+gained energy, contaminant uptake, and cumulative contaminant burdens.
 
 ## Initialization
 
 | Variable | Initialized Value | Justification |
-|:--:|:--:|:--:|
+|:----------------------:|:----------------------:|:----------------------:|
 | stomach-contents | 0 | Agents begin without prey unless defined by scenario. |
 | stomach-contents-Hg | 0 | No initial inorganic mercury from digestion. |
 | stomach-contents-MeHg | 0 | No initial methylmercury from digestion. |
@@ -100,74 +120,131 @@ Outputs of interest include digested mass per tick, gained energy, contaminant u
 Digestive throughput is driven by metabolic rate:
 
 $$
-digestion\text{-}rate = metabolism\text{-}rate
+\begin{equation} R_{digest} = Met_{tick}  \hspace{2cm} \text{(C.11)} \end{equation}
 $$
+
+Where:
+
+-   $R_{digest}$ is the digestion rate of an individual agent (g
+    tick⁻¹).
+
+-   $Met_{base}$ is the baseline metabolic rate used as the reference
+    for all energetic scaling ((energy units) tick⁻¹).
 
 Digested mass per tick:
 
 $$
-digested = stomach\text{-}contents \cdot digestion\text{-}rate
+\begin{equation} M_{digested} = M_{stomach} \cdot R_{digest} \cdot Eff_{digest}  \hspace{2cm} \text{(C.12)} \end{equation}
 $$
+
+Where:
+
+-   $M_{digested}$ is the biomass digested during the current tick (g).
+
+-   $M_{stomach}$ is the biomass currently stored in the stomach (g).
+
+-   $R_{digest}$ is the digestion rate of an individual agent (g
+    tick⁻¹).
+
+-   $Eff_{digest}$ is the efficiency factor controlling digestion and
+    filtration (%).
 
 Proportional mercury assimilation:
 
 $$
-digested\text{-}Hg = \left( \frac{digested}{stomach\text{-}contents} \right) \cdot stomach\text{-}contents\text{-}Hg
+\begin{equation} MeHg_{digested} = \left( \frac{M_{digested}}{M_{stomach}} \right) \cdot MeHg_{stomach}  \hspace{2cm} \text{(C.13)} \end{equation}
 $$
 
-$$
-digested\text{-}MeHg = \left( \frac{digested}{stomach\text{-}contents} \right) \cdot stomach\text{-}contents\text{-}MeHg
-$$
+Where:
+
+-   $MeHg_{digested}$ is the methylmercury assimilated during digestion
+    (ng).
+
+-   $M_{digested}$ is the biomass digested during the current tick (g).
+
+-   $M_{stomach}$ is the biomass currently stored in the stomach (g).
+
+-   $MeHg_{stomach}$ is the methylmercury currently stored in the
+    stomach (ng).
 
 Updated stomach contents:
 
 $$
-stomach\text{-}contents = stomach\text{-}contents - digested
+\begin{equation} M_{stomach} = M_{stomach} - M_{digested}  \hspace{2cm} \text{(C.14)} \end{equation}
 $$
+
+Where:
+
+-   $M_{digested}$ is the biomass digested during the current tick (g).
+
+-   $M_{stomach}$ is the biomass currently stored in the stomach (g).
 
 ### Energy Conversion
 
 Energy gained from digestion:
 
 $$
-gained\text{-}energy = digested \cdot digestion\text{-}efficiency \cdot 40
-$$
+\begin{equation} E_{gain} = M_{digested} \cdot 100  \hspace{2cm} \text{(C.15)} \end{equation}
+$$ Where:
+
+-   $E_{gain}$ is the energy gained from digested biomass (energy
+    units).
+
+-   $M_{digested}$ is the biomass digested during the current tick (g).
 
 Updated energy pool:
 
 $$
-energy = energy + gained\text{-}energy
+\begin{equation} E_{agent} = E_{agent} + E_{gain}  \hspace{2cm} \text{(C.16)} \end{equation}
 $$
+
+Where:
+
+-   $E_{agent}$ is the total internal energy available to the agent
+    (energy units).
+
+-   $E_{gain}$ is the energy gained from digested biomass (energy
+    units).
 
 ### Contaminant Assimilation
 
 Contaminants absorbed during digestion:
 
 $$
-mehg\text{-}foraging = digested\text{-}MeHg
-$$
+\begin{equation} MeHg_{forage} = MeHg_{forage} + MeHg_{digested}  \hspace{2cm} \text{(C.17)} \end{equation}
+$$ Where:
 
-$$
-hg\text{-}foraging = digested\text{-}Hg
-$$
+-   $MeHg_{forage}$ is the cumulative methylmercury uptake via feeding
+    (ng).
+
+-   $MeHg_{digested}$ is the methylmercury assimilated during digestion
+    (ng).
 
 Accumulated body burden:
 
 $$
-mehg\text{-}total = mehg\text{-}total + digested\text{-}MeHg
+\begin{equation} MeHg_{total} = MeHg_{total} + MeHg_{digested}  \hspace{2cm} \text{(C.18)} \end{equation}
 $$
 
-$$
-hg\text{-}total = hg\text{-}total + digested\text{-}Hg
-$$
+Where:
 
+-   $MeHg_{total}$ is the cumulative methylmercury body burden (ng).
+
+-   $MeHg_{digested}$ is the methylmercury assimilated during digestion
+    (ng).
+    
 ### Transition to Foraging
 
 When stomach contents reach zero:
 
 -   lipid-loss is activated
 
-This switches the prey to burn fat energy reserves instead of relying on stomach contents.
+This switches the prey to burn fat energy reserves instead of relying on
+stomach contents. This transition represents a shift from exogenous to
+endogenous energy use, consistent with anadromous fishes such as river
+herring, which reduce or cease feeding during spawning migration and
+rely on stored lipid reserves to support metabolic demands and movement
+[@araujo_energetic_2013; @zenga_assessing_2020].
 
 ## Netlogo Implementation
 

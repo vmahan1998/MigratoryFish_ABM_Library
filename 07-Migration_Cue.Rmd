@@ -2,21 +2,9 @@
 
 ## Overview
 
-This submodel simulates how migratory fish detect environmental cues that signal the onset of migration. The mechanism is grounded in empirical evidence that **simultaneous declines in daylength and temperature** reliably precede the initiation of seaward migration in several anadromous species. In this model, migration begins only when a fish experiences environmental conditions consistent with an autumnal cue window defined by:
+This submodel simulates how migratory fish detect environmental cues that signal the onset of migration, based on the interaction between photoperiod and temperature, which are widely recognized as primary drivers of migration timing in anadromous fishes. Photoperiod provides a seasonal signal regulating physiological readiness, while temperature modifies the timing of migration initiation and can act as a releasing factor (e.g., @zydlewski_photoperiod_2014; @garcia-vega_upstream_2022). In this model, migration begins when individuals experience a coincident decline in both daylength and temperature (ΔL < 0 and ΔT < 0 on the same day), representing a simplified autumnal cue window. These events are classified as cue days, during which individuals stochastically accumulate the probability of initiating migration. For predators such as striped bass, migration probability is additionally linked to alewife presence, integrating species interactions into migration onset.
 
--   A **decline in daylength**\
-    $$
-    \Delta L < 0
-    $$
-
--   A **decline in temperature**\
-    $$
-    \Delta T < 0
-    $$
-
--   And these declines occurring **on the same day**, indicating a **coincident decline**
-
-When this occurs, the day is labeled a *cue day*. Upon reaching cue days, individuals begin stochastically accumulating the probability of initiating migration. For predators (striped bass), migration probability additionally depends on alewife presence, linking species interactions to migration onset.
+Rather than assuming a fixed threshold, this formulation represents migration cues as periods of coincident decline in environmental conditions, capturing seasonal transitions that trigger movement. This cue formulation is applied specifically to upstream migration and is site-specific, requiring evaluation and potential recalibration for other systems. Downstream migration is not explicitly cued and instead emerges from the model following completion of migration objectives such as spawning or foraging.
 
 ## Purpose
 
@@ -61,7 +49,7 @@ Migration cues do not depend on patch-level conditions. No patch-scale variables
 
 ## Process Overview and Scheduling
 
-### 1. **Environmental Inputs (from R)**
+1. Environmental Inputs (from R)
 
 External R preprocessing computes:
 
@@ -73,76 +61,40 @@ External R preprocessing computes:
 
 This dataset defines the environmental basis for triggering migration.
 
-### 2. **Identify Cue Days**
+2.  When a cue day is detected, activate the migration cue, defined by
+    coincident declines in the rate of change of temperature and
+    photoperiod, and enable migration readiness.
 
-Cue days are those where:
+3.  For agents with an active migration trigger, individual migration
+    probability is incremented at each simulation time step (tick).
 
-$$
-\Delta T < 0 \quad \land \quad \Delta L < 0
-$$
-
-The model loads the CSV at setup and extracts all days meeting this criterion into `cue-days`.
-
-### 3. **Activate Cue**
-
-Each simulation day checks whether:
-
-$$
-\text{day-of-year} \in cue\text{-}days
-$$
-
-If true, then:
-
--   **cue-active? = true**
--   **migration-trigger? = true**
-
-This marks the environmental onset of migration preparedness.
-
-### 4. **Alewife Migration Probability Accumulation**
-
-Once the migration trigger is active, each tick adds:
-
-$$
-migration\_probability_{t+1} =
-migration\_probability_t +
-\left(0.00001 + U(0, 0.00004)\right)
-$$
-
-Capped at:
-
-$$
-migration\_probability \le 1
-$$
-
-This produces:
-
--   Individual variation in migration timing\
--   Realistic ramping into migration\
--   Stochastic onset probabilities
-
-### 5. **Initiation of Migration**
-
-An agent begins migration when:
-
-$$
-\text{random-float}(1) < migration\_probability
-$$
-
-At this moment:
-
--   **start-migration? = true**
--   Movement functions shift from staging to directed migration
+4.  When an agent’s migration probability exceeds a stochastic
+    threshold, initiate migration.
 
 ## Design Concepts
 
-**Basic Principles**\
-The mechanism reflects literature on photoperiod- and temperature-driven migration cues.
+**Basic Principles:** The mechanism reflects literature on the
+interaction between photoperiod and temperature as drivers of migration
+timing in anadromous fishes, where migration responses emerge from the
+combined influence of seasonal and short-term environmental signals
+(e.g., @zydlewski_photoperiod_2014; @garcia-vega_upstream_2022;
+@jonsson_environmental_1991).
 
-**Emergence**\
-Migration timing varies among individuals because probability increments differ slightly with stochasticity.
+**Emergence:** Migration timing varies among individuals
+[@dingle_2014_migration] and is represented in the model through
+stochastic variation in the accumulation of migration probability,
+resulting in asynchronous migration initiation across agents.
 
-**Observation**\
-Key outputs: cue day activation, probability trajectories, proportion of migrants through time.
+**Adaptation:** Agents transition from staging to active migration in
+response to environmental cue activation and internal readiness state.
+
+**Stochasticity:** Stochasticity enters through probabilistic
+accumulation of migration readiness and random threshold exceedance for
+migration initiation.
+
+**Observation:** Key outputs include cue activation timing, individual
+migration probability trajectories, and the proportion of agents
+initiating migration through time.
 
 ## Initialization
 
@@ -156,11 +108,16 @@ Key outputs: cue day activation, probability trajectories, proportion of migrant
 
 ## Submodels
 
-## 1. Identifying Cue Days (Preprocessed in R)
+### Identifying Cue Days (Preprocessed in R)
 
 $$
-\Delta T < 0, \;\; \Delta L < 0
+\begin{equation} \Delta T < 0, \;\; \Delta L < 0  \hspace{2cm} \text{(C.33)} \end{equation}
 $$
+
+Where:
+
+-   $\Delta T$ is the change in temperature used to flag cue days.
+-   $\Delta L$ is the change in photoperiod proxy used to flag cue days.
 
 The preprocessing script:
 
@@ -168,39 +125,92 @@ The preprocessing script:
 2.  Applies smoothing
 3.  Flags coincident declines
 
-## 2. Activation of Migration Cue
+### Activation of Migration Cue
 
-At each simulation day, the model checks whether the current day-of-year corresponds to a predefined cue day. If true, the migration cue is activated:
+At each simulation day, the model checks whether the current day-of-year
+corresponds to a predefined cue day. If true, the migration cue is
+activated:
 
-$$ cue\text{-}active? = \text{true} $$
+$$
+\begin{equation} cue\text{-}active? = \text{true}  \hspace{2cm} \text{(C.34)} \end{equation}
+$$
 
-$$ migration\text{-}trigger? = \text{true} $$
+Where:
 
-This marks the onset of migration preparedness for all agents.
+-   $cue\text{-}active?$ is the indicator that migration cue is active.
 
-## 3. Accumulation of Migration Probability
+This represents the environmental system state in which the cue has
+occurred, after which agents respond by transitioning to an internal
+readiness state:
 
-For each agent with an active migration trigger, migration probability increases stochastically each tick:
+$$
+\begin{equation} migration\text{-}trigger? = \text{true}  \hspace{2cm} \text{(C.35)} \end{equation}
+$$
 
-$$ migration\_probability_{t+1} = migration\_probability_t + \left(0.00001 + U(0, 0.00004)\right) $$
+Where:
+
+-   $migration\text{-}trigger?$ is the indicator of migration readiness.
+
+This marks the onset of migration preparedness for all agents, where an
+individual has sensed the cue and transitions to an internally primed
+state. In migratory organisms, environmental signals are sensed first
+and then establish readiness, after which movement is initiated only
+when conditions are favorable rather than immediately upon cue detection
+[@dingle_2014_migration].
+
+### Accumulation of Migration Probability
+
+For each agent with an active migration trigger, migration probability
+increases stochastically each tick:
+
+$$
+\begin{equation} P_{t+1}
+= P_{t} +
+\left(0.00001 + U(0, 0.00004)\right)  \hspace{2cm} \text{(C.36)} \end{equation}
+$$
+
+Where:
+
+-   $P_{t}$ is the individual migration probability at time $t$.
 
 Migration probability is capped at:
 
-$$ migration\_probability \le 1 $$
+$$
+\begin{equation} P_{t} \le 1  \hspace{2cm} \text{(C.37)} \end{equation}
+$$
 
-This formulation produces gradual increase into migration and individual variation in migration timing.
+Where:
 
-## 4. Initiate Migration
+-   $P_{t}$ is the individual migration probability at time $t$.
 
-An agent initiates migration when its migration probability exceeds a stochastic threshold:
+This formulation produces gradual increase into migration and individual
+variation in migration timing.
 
-$$ random\text{-}float(1) < migration\_probability $$
+### Initiate Migration
+
+An agent initiates migration when its migration probability exceeds a
+stochastic threshold:
+
+$$
+\begin{equation} random\text{-}float(1) < P_{t}  \hspace{2cm} \text{(C.38)} \end{equation}
+$$
+
+Where:
+
+-   $P_{t}$ is the individual migration probability at time $t$.
 
 When this condition is met:
 
-$$ start\text{-}migration? = \text{true} $$
+$$
+\begin{equation} start\text{-}migration? = \text{true}  \hspace{2cm} \text{(C.39)} \end{equation}
+$$
 
-The agent transitions from staging behavior to directed migratory movem
+Where:
+
+-   $start\text{-}migration?$ is the indicator that migration has begun.
+
+The agent transitions from staging behavior to directed migratory
+movement.
 
 ## Netlogo Implementation
 
