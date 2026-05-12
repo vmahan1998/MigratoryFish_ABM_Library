@@ -1,14 +1,14 @@
-# Landward Migration
+# Landward Movement
 
 ## Overview
 
-This function simulates landward migration for fish moving upstream through riverine and estuarine systems, where agents adjust movement based on local water velocity, energetic condition, and the relative difficulty of swimming in a given flow. Within this submodel, upstream movement emerges from the interaction between hydrodynamic forcing, body size, and energetic state, as agents navigate spatially variable flow fields where velocity and depth constrain swimming difficulty and energetic cost. These relationships are consistent with allometric scaling in aquatic organisms [@brown_toward_2004] and observed behavioral responses of fish to hydrodynamic conditions during migration [@gibson_selective_2001].
+This function simulates landward movement for fish moving upstream through riverine and estuarine systems, where agents adjust movement based on local water velocity, energetic condition, and the relative difficulty of swimming in a given flow. Within this submodel, upstream movement emerges from the interaction between hydrodynamic forcing, body size, and energetic state, as agents navigate spatially variable flow fields where velocity and depth constrain swimming difficulty and energetic cost. These relationships are consistent with allometric scaling in aquatic organisms [@brown_toward_2004] and observed behavioral responses of fish to hydrodynamic conditions during movement [@gibson_selective_2001].
 
-Movement is structured through a least-cost framework that is recalculated under changing hydrodynamic conditions, where agents respond locally to gradients in flow resistance and path difficulty rather than optimizing globally. This formulation allows migration pathways, travel time, and energy expenditure to emerge dynamically from repeated interactions between organismal capacity and the hydrodynamic environment.
+Movement is structured through a least-cost framework that is recalculated under changing hydrodynamic conditions, where agents respond locally to gradients in flow resistance and path difficulty rather than optimizing globally. This formulation allows movement pathways, travel time, and energy expenditure to emerge dynamically from repeated interactions between organismal capacity and the hydrodynamic environment.
 
 ## Purpose
 
-The purpose of this submodel is to represent upstream migration under realistic spatial hydrodynamic resistance. Agents evaluate flow velocity, movement difficulty, body condition, and patch level travel costs before advancing along a least cost path toward a home location.
+The purpose of this submodel is to represent upstream movement under realistic spatial hydrodynamic resistance. Agents evaluate flow velocity, movement difficulty, body condition, and patch level travel costs before advancing along a least cost path toward a home location.
 
 ## Entities, State Variables, and Scales
 
@@ -47,7 +47,7 @@ The purpose of this submodel is to represent upstream migration under realistic 
 | **swim-efficiency** | Scaling factor for acceleration and deceleration. |
 | **difficulty-factor** | Difficulty of movement under local velocity conditions. |
 | **planned-path** | Sequence of patches in the least cost route. |
-| **home-patch** | Destination patch for migration. |
+| **home-patch** | Destination patch for movement. |
 | **trail** | Record of patches visited by the agent. |
 
 ## Process Overview and Scheduling
@@ -70,7 +70,7 @@ The purpose of this submodel is to represent upstream migration under realistic 
 **Basic Principles:** Hydrodynamic constraints, difficulty scaling, and
 body condition influence agent movement.
 
-**Emergence:** Migration routes, temporal occupancy, and movement speed
+**Emergence:** movement routes, temporal occupancy, and movement speed
 emerge from repeated interactions of flow and difficulty.
 
 **Objectives:** Agents attempt to reach the home patch but do not
@@ -249,7 +249,7 @@ desired value. Otherwise speed is set directly.
 
 ### Path Based Movement
 
-Landward migration uses a least cost routing strategy instead of direct
+Landward movement uses a least cost routing strategy instead of direct
 vector movement. The number of patches traversed in a tick is based on
 swimming speed:
 
@@ -366,7 +366,7 @@ Higher difficulty and lower swim efficiency increase metabolic cost.
 
 ```{netlogo}
 ;; ===================================================================
-;;  LANDWARD MIGRATION + HYDRODYNAMIC SWIMMING SUBMODEL DECLARATIONS
+;;  LANDWARD MOVEMENT + HYDRODYNAMIC SWIMMING SUBMODEL DECLARATIONS
 ;; ===================================================================
 
 globals [
@@ -412,7 +412,7 @@ turtles-own [
   E-swim
   swim-base
 
-  ;; Migration targets
+  ;; movement targets
   home-patch
   migration-patch
 
@@ -586,7 +586,7 @@ end
 
 
 ;; ===================================================================
-;;  LANDWARD MIGRATION — PATH EXECUTION
+;;  LANDWARD MOVEMENT — PATH EXECUTION
 ;; ===================================================================
 
 to migrate-landward

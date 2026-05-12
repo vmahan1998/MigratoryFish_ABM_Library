@@ -23,7 +23,7 @@ Several themes guided the design of the workshop and the way it connects to mode
 
 -   **Participant driven priorities.** Participants were asked which species were most important to understand for management of the system or species that should be prioritized based on community interest, which functions and interactions they believed to be relevant for understanding mercury toxicity in migratory fish, and how those behaviors should be represented.
 
--   **Outputs that answer real questions.** Each participant had the opportunity to propose a question or hypothesis to test using the developed functions and select preferred outputs from the functions such as migration paths, exposure metrics, or habitat use. These wish-list requests now correspond to specific model output routines and visualizations.
+-   **Outputs that answer real questions.** Each participant had the opportunity to propose a question or hypothesis to test using the developed functions and select preferred outputs from the functions such as movement paths, exposure metrics, or habitat use. These wish-list requests now correspond to specific model output routines and visualizations.
 
 -   **Accessible language and shared vocabulary.** A glossary of terms translated physiological, hydrodynamic, and modeling concepts into accessible language. This glossary can be found at the end of this document and is intended to support a range of readers.
 
@@ -102,9 +102,9 @@ Note: these are presentations of functions before participant feedback. Updated 
   <div class="grid-item">
     <div class="grid-icon">💧</div>
     <h4>Osmoregulation</h4>
-    <a href="materials/Osmoregultation_Function.pdf">Demo</a>
-    <a href="materials/Anadromous_Fish_Behavior_Fact_Sheet_Osmoregultation.pdf">Info Sheet</a>
-    <a href="materials/Osmoregultation_Output_Table_35.pdf">Output Table</a>
+    <a href="materials/Osmoregulation_Function.pdf">Demo</a>
+    <a href="materials/Anadromous_Fish_Behavior_Fact_Sheet_Osmoregulation.pdf">Info Sheet</a>
+    <a href="materials/Osmoregulation_Function_Output_Table_35.pdf">Output Table</a>
   </div>
 
   <div class="grid-item">
@@ -112,7 +112,7 @@ Note: these are presentations of functions before participant feedback. Updated 
     <h4>Thermoregulation</h4>
     <a href="materials/Thermoregulation_Function.pdf">Demo</a>
     <a href="materials/Anadromous_Fish_Behavior_Fact_Sheet_Thermoregulation.pdf">Info Sheet</a>
-    <a href="materials/Thermoregulation_Output_Table_35.pdf">Output Table</a>
+    <a href="materials/Thermoregulation_Function_Output_Table_35.pdf">Output Table</a>
   </div>
 
   <div class="grid-item">
@@ -120,7 +120,7 @@ Note: these are presentations of functions before participant feedback. Updated 
     <h4>Bioaccumulation</h4>
     <a href="materials/Bioaccumulation_Function.pdf">Demo</a>
     <a href="materials/Anadromous_Fish_Behavior_Fact_Sheet_Bioaccumulation.pdf">Info Sheet</a>
-    <a href="materials/Bioaccumulation_Output_Table_35.pdf">Output Table</a>
+    <a href="materials/Bioaccumulation_Function_Output_Table_35.pdf">Output Table</a>
   </div>
 
   <div class="grid-item">
@@ -128,15 +128,15 @@ Note: these are presentations of functions before participant feedback. Updated 
     <h4>Resting</h4>
     <a href="materials/Resting_Function.pdf">Demo</a>
     <a href="materials/Anadromous_Fish_Behavior_Fact_Sheet_Resting.pdf">Info Sheet</a>
-    <a href="materials/Resting_Output_Table_35.pdf">Output Table</a>
+    <a href="materials/Resting_Function_Output_Table_35.pdf">Output Table</a>
   </div>
 
   <div class="grid-item">
     <div class="grid-icon">🐟➡️</div>
-    <h4>Migration</h4>
+    <h4>Movement</h4>
     <a href="materials/Migration_Function.pdf">Demo</a>
     <a href="materials/Anadromous_Fish_Behavior_Fact_Sheet_Migration.pdf">Info Sheet</a>
-    <a href="materials/Migration_Output_Table_35.pdf">Output Table</a>
+    <a href="materials/Migration_Function_Output_Table_35.pdf">Output Table</a>
   </div>
 
   <div class="grid-item">
@@ -144,7 +144,7 @@ Note: these are presentations of functions before participant feedback. Updated 
     <h4>Foraging</h4>
     <a href="materials/Foraging_Function.pdf">Demo</a>
     <a href="materials/Anadromous_Fish_Behavior_Fact_Sheet_Foraging.pdf">Info Sheet</a>
-    <a href="materials/Foraging_Output_Table_35.pdf">Output Table</a>
+    <a href="materials/Foraging_Function_Output_Table_35.pdf">Output Table</a>
   </div>
 
   <div class="grid-item">
@@ -152,7 +152,7 @@ Note: these are presentations of functions before participant feedback. Updated 
     <h4>Spawning</h4>
     <a href="materials/Spawning_Function.pdf">Demo</a>
     <a href="materials/Anadromous_Fish_Behavior_Fact_Sheet_Spawning.pdf">Info Sheet</a>
-    <a href="materials/Spawning_Output_Table_35.pdf">Output Table</a>
+    <a href="materials/Spawning_Function_Output_Table_35.pdf">Output Table</a>
   </div>
 
   <div class="grid-item">
@@ -160,7 +160,7 @@ Note: these are presentations of functions before participant feedback. Updated 
     <h4>Predation</h4>
     <a href="materials/Predation_Function.pdf">Demo</a>
     <a href="materials/Anadromous_Fish_Behavior_Fact_Sheet_Predation.pdf">Info Sheet</a>
-    <a href="materials/Predation_Output_Table_35.pdf">Output Table</a>
+    <a href="materials/Predation_Function_Output_Table_35.pdf">Output Table</a>
   </div>
 
 </div>
@@ -218,11 +218,11 @@ Key components included:
 
 -   **World café on internal fish processes.** Small rotating groups discussed processes such as osmoregulation, thermoregulation, bioaccumulation, and resting. Discussion leaders presented demos and recorded notes, which later informed how these processes are parameterized and sequenced within this library.
 
--   **World café on external behaviors and conditions.** A second set of rotations focused on external functions such as foraging, migration, predation, and spawning. These conversations helped identify how fish interact with their environment and where and when the model should track exposure risk.
+-   **World café on external behaviors and conditions.** A second set of rotations focused on external functions such as foraging, movement, predation, and spawning. These conversations helped identify how fish interact with their environment and where and when the model should track exposure risk.
 
 -   **Wish list outputs.** Participants wrote down specific outputs they wanted from the model and the reasoning behind each request, including migration timing, exposure patterns, energy budgets, and habitat use. The goal is to incorporate as many of these outputs as possible to support subsequent management and research.
 
-[Hypothesis Form](materials/Workshop_Hypothesis_Model_Form_45)
+[Hypothesis Form](materials/Workshop_Hypothesis_Model_Form_45.docx)
 
 -   **Model demo.** A short demonstration of the model interface supported visual learners and connected the function modules to emergent behaviors.
 

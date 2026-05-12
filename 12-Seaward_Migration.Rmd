@@ -1,23 +1,23 @@
-# Seaward Migration
+# Seaward Movement
 
 ## Overview
 
-This function simulates seaward migration for fish moving downstream through riverine and estuarine systems. Agents respond to hydrodynamic conditions by adjusting swimming difficulty, swimming speed, and movement along a least cost pathway toward a downstream migration patch.
+This function simulates seaward movement for fish moving downstream through riverine and estuarine systems. Agents respond to hydrodynamic conditions by adjusting swimming difficulty, swimming speed, and movement along a least cost pathway toward a downstream movement patch.
 
 This submodel represents downstream movement following the same
-mechanistic framework as landward migration, where movement emerges from
+mechanistic framework as landward movement, where movement emerges from
 the interaction between hydrodynamic forcing, body size, and energetic
 state [@brown_toward_2004; @gibson_selective_2001]. In this case,
 movement occurs in the seaward direction, requiring a change in sign
 within velocity-based scaling terms to reflect alignment with downstream
-flow. As in landward migration, agents follow a least-cost pathway based
+flow. As in landward movement, agents follow a least-cost pathway based
 on local hydrodynamic resistance, allowing downstream trajectories,
 travel time, and energy expenditure to emerge dynamically from the
 interaction between organismal capacity and the flow field.
 
 ## Purpose
 
-The purpose of this submodel is to represent downstream migration under realistic hydrodynamic resistance. Agents evaluate flow velocity, movement difficulty, energetic condition, and travel costs before advancing along a least cost route toward a migration destination.
+The purpose of this submodel is to represent downstream movement under realistic hydrodynamic resistance. Agents evaluate flow velocity, movement difficulty, energetic condition, and travel costs before advancing along a least cost route toward a movement destination.
 
 ## Entities, State Variables, and Scales
 
@@ -369,7 +369,7 @@ Where:
 ```{netlogo}
 
 ;; ===================================================================
-;;  LANDWARD MIGRATION + HYDRODYNAMIC SWIMMING SUBMODEL DECLARATIONS
+;;  SEAWARD MOVEMENT + HYDRODYNAMIC SWIMMING SUBMODEL DECLARATIONS
 ;; ===================================================================
 
 globals [
@@ -415,7 +415,7 @@ turtles-own [
   E-swim
   swim-base
 
-  ;; Migration targets
+  ;; Movement targets
   home-patch
   migration-patch
 
@@ -428,7 +428,7 @@ turtles-own [
 ]
 
 ;; ===================================================================
-;;  SEAWARD MIGRATION + HYDRODYNAMIC SWIMMING SUBMODEL
+;;  SEAWARD MOVEMENT + HYDRODYNAMIC SWIMMING SUBMODEL
 ;; ===================================================================
 
 ;; -------------------------------------------------------------------
@@ -556,7 +556,7 @@ end
 
 
 ;; -------------------------------------------------------------------
-;;  Seaward Migration – Movement Execution
+;;  Seaward Movement – Movement Execution
 ;; -------------------------------------------------------------------
 to migrate-seaward
   

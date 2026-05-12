@@ -139,7 +139,7 @@ energy-conversion-1
 weight-loss
 contaminant-bookkeeping
 netlogo-implementation-6
-landward-migration
+landward-movement
 overview-7
 purpose-6
 entities-state-variables-and-scales-7
@@ -157,7 +157,7 @@ path-based-movement
 travel-cost
 swimming-energy
 netlogo-implementation-7
-seaward-migration
+seaward-movement
 overview-8
 purpose-7
 entities-state-variables-and-scales-8
@@ -270,7 +270,7 @@ flood-limit
 homing
 homeostasis
 iteroparous
-landward-migration-1
+landward-migration
 lipid-catabolism
 mercury
 metabolism-1
@@ -284,7 +284,7 @@ pelagic
 salinity
 salinity-stress-1
 salt-wedge
-seaward-migration-1
+seaward-migration
 selective-tidal-stream-transport-stst
 semelparous
 spawning

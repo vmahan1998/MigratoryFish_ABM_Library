@@ -36,9 +36,9 @@ Each chapter in this library corresponds to a major behavior, physiological func
 
 -   **Lipid Catabolism**
 
--   **Landward Migration**
+-   **Landward Movement**
 
--   **Seaward Migration**
+-   **Seaward Movement**
 
 -   **Schooling**
 
