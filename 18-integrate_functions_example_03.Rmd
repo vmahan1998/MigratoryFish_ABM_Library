@@ -174,6 +174,7 @@ to setup
   reset-ticks ;; Reset the tick counter
 end
 ```
+
 ### The penobscot-setup procedure — full site-specific
 
 ``` netlogo
@@ -837,7 +838,7 @@ The R implementation of P-MEM is an analytical companion to the NetLogo model ra
 ### Output file types
 
 | File type | Naming pattern | One row per |
-|---|---|---|
+|------------------------|------------------------|------------------------|
 | Agent — alewives | `results_alewives_<scenario>_mig_test_<run>_<month>.csv` | agent × export tick |
 | Agent — striped bass | `results_stripedbass_<scenario>_mig_test_<run>_<month>.csv` | agent × export tick |
 | Daily totals | `results_daily_<stamp>_<run>.csv` | simulation day |
@@ -885,11 +886,12 @@ build_agent_index <- function(base_dir, species_prefix, scenarios, runs, months_
 prey_files <- build_agent_index(base_dir, "results_alewives",    scenarios, runs, months_use)
 pred_files <- build_agent_index(base_dir, "results_stripedbass", scenarios, runs, months_use)
 ```
+
 ### Datetime conversion
 
 Each agent file records `day`, `hour`, and `minute` relative to the simulation calendar (DOY 91 = April 1, 2023). The helper below converts these to POSIXct for time-series alignment across months and runs.
 
-```r
+``` r
 make_datetime_from_dayhm <- function(day, hour, minute,
                                      year = 2023, tz_use = "UTC") {
   base <- as.POSIXct(sprintf("%d-01-01 00:00:00", year), tz = tz_use)
@@ -1236,7 +1238,7 @@ for (scen in scenarios) {
 
 ## Applied Potential for Decision Making
 
-P-MEM was designed not only as a research tool but as a framework for translating simulation outputs into actionable information for environmental managers, restoration practitioners, and community stakeholders. The [Mercury Risk Explorer](<https://vkzfr3-vanessa-mahan.shinyapps.io/Mercury_Risk_Explorer/>) is the interactive decision-support interface built on P-MEM outputs, allowing users to explore model results without running the simulation directly.
+P-MEM was designed not only as a research tool but as a framework for translating simulation outputs into actionable information for environmental managers, restoration practitioners, and community stakeholders. The [Mercury Risk Explorer](https://vkzfr3-vanessa-mahan.shinyapps.io/Mercury_Risk_Explorer/) is the interactive decision-support interface built on P-MEM outputs, allowing users to explore model results without running the simulation directly.
 
 ### Navigating to the Behavior-Mediated Risk tab
 
@@ -1244,11 +1246,11 @@ The Mercury Risk Explorer is organized around the core finding of P-MEM: that re
 
 To reach it:
 
-1. Open [Mercury Risk Explorer](https://vkzfr3-vanessa-mahan.shinyapps.io/Mercury_Risk_Explorer/)
-2. Select the **Behavior-Mediated Risk** tab from the navigation panel
-3. Use the **Scenario** dropdown to toggle between predation pressure levels (None, Low, Base, High), which correspond to different predation scenarios
-4. Use the **Species** selector to switch between alewife and striped bass outputs
-5. Use the **Metric** selector to choose among cumulative MeHg exposure risk, gill exposure risk, foraging risk, and residence time
+1.  Open [Mercury Risk Explorer](https://vkzfr3-vanessa-mahan.shinyapps.io/Mercury_Risk_Explorer/)
+2.  Select the **Behavior-Mediated Risk** tab from the navigation panel
+3.  Use the **Scenario** dropdown to toggle between predation pressure levels (None, Low, Base, High), which correspond to different predation scenarios
+4.  Use the **Species** selector to switch between alewife and striped bass outputs
+5.  Use the **Metric** selector to choose among cumulative MeHg exposure risk, gill exposure risk, foraging risk, and residence time
 
 ### What the outputs show
 
@@ -1256,18 +1258,18 @@ The tab provides three linked views that together illustrate how behavior mediat
 
 **Spatial exposure maps** show cumulative `mehg_exp_risk_total` (gill exposure) and `mehg_foraging_risk_total` (foraging exposure) aggregated across patches and averaged across replicate runs for each scenario.
 
-**Temporal risk profiles** show how mean cumulative exposure accumulates through the season, with 95% confidence intervals across replicate runs. 
+**Temporal risk profiles** show how mean cumulative exposure accumulates through the season, with 95% confidence intervals across replicate runs.
 
-**Behavioral state time series** show the proportion of agents in each state (STST passive drift, active migration, foraging, at destination) as a function of time. 
+**Behavioral state time series** show the proportion of agents in each state (STST passive drift, active migration, foraging, at destination) as a function of time.
 
 ### Decision-relevant outputs
 
-Applied ABMs are most valuable when they are designed from the outset around questions that managers cannot answer with static spatial analysis alone. Three categories of decision-relevant questions recur across environmental management contexts, and the design choices made throughout this book — spatially explicit environments, state-dependent behavioral submodels, and physiological feedbacks — are what make an ABM capable of addressing them.
+Applied ABMs are most valuable when they are designed from the outset around questions that managers cannot answer with static spatial analysis alone. Three categories of decision-relevant questions recur across environmental management contexts, and the design choices made throughout this book (spatially explicit environments, state-dependent behavioral submodels, and physiological feedbacks) are what make an ABM capable of addressing them.
 
-- **Where is risk highest and when?** Spatially and temporally explicit ABMs simulate *when* individual agents are in high-risk locations, not just whether suitable habitat overlaps with a hazard. Because every agent carries its own physiological and behavioral state through time, the model identifies which combinations of location, timing, life-history stage, and behavioral mode produce the highest cumulative risk — information invisible to static exposure-potential or habitat suitability analyses.
+-   **Where is risk highest and when?** Spatially and temporally explicit ABMs simulate *when* individual agents are in high-risk locations, not just whether suitable habitat overlaps with a hazard. Because every agent carries its own physiological and behavioral state through time, the model identifies which combinations of location, timing, life-history stage, and behavioral mode produce the highest cumulative risk — information invisible to static exposure-potential or habitat suitability analyses.
 
-- **How does a stressor reorganize behavior and exposure?** ABMs allow stressors to be represented as behavioral interactions rather than fixed mortality or exposure rates, so the outcome emerges from the accumulated consequences of individual decisions across time. Models designed with explicit, traceable function dependencies can isolate which behavioral pathway is responsible for a given outcome, making the mechanism transparent to managers and stakeholders.
+-   **How does a stressor reorganize behavior and exposure?** ABMs allow stressors to be represented as behavioral interactions rather than fixed mortality or exposure rates, so the outcome emerges from the accumulated consequences of individual decisions across time. Models designed with explicit, traceable function dependencies can isolate which behavioral pathway is responsible for a given outcome, making the mechanism transparent to managers and stakeholders.
 
-- **What outcomes follow from a physical or management intervention?** Because submodels are coupled through shared state variables, a change to the environment propagates through the behavioral and physiological chain the same way it would in the real system — and that full propagation chain is traceable through the function dependency table. This traceability is what makes model predictions credible and actionable rather than descriptive.
+-   **What outcomes follow from a physical or management intervention?** Because submodels are coupled through shared state variables, a change to the environment propagates through the behavioral and physiological chain the same way it would in the real system and that full propagation chain is traceable through the function dependency table. This traceability is what makes model predictions credible and actionable rather than descriptive.
 
-These outputs illustrate how agent-based models can be implemented to support applied decision making across a range of environmental management contexts. The questions addressed here represent a general class of problems that arise whenever managers need to understand not just where a hazard exists, but how organisms interact with it through movement, physiology, and social behavior. Process-based behavioral models produce qualitatively different management insights than static habitat suitability or exposure-potential analyses because they simulate how individual decisions aggregate into population-level patterns across space and time. The modular design of the GoFish library means that the same architecture used here can be adapted to other species, other stressors, and other spatial domains by substituting the relevant environmental forcing, species parameters, and outcome metrics while preserving the core behavioral and physiological logic.
+These outputs illustrate how agent-based models can be implemented to support applied decision making across a range of environmental management contexts. The questions addressed here represent a general class of problems that arise whenever managers need to understand not just where a hazard exists, but how organisms interact with it through movement, physiology, and social behavior. Process-based behavioral models produce qualitatively different management insights than static habitat suitability or exposure-potential analyses because they simulate how individual decisions aggregate into population-level patterns across space and time. The modular design of the *GoFish Library* means that the same architecture used here can be adapted to other species, other stressors, and other spatial domains by substituting the relevant environmental forcing, species parameters, and outcome metrics while preserving the core behavioral and physiological logic.
