@@ -298,7 +298,7 @@ programming-resources
 netlogo
 r
 python
-how-to-choos-a-programming-language
+how-to-choose-a-programming-language
 code-repositories-and-examples
 acclimated-salinity
 agent

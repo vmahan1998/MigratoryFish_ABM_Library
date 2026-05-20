@@ -254,7 +254,7 @@ Python is a general-purpose programming language with a large scientific computi
 
 ---
 
-### How to Choos a Programming Language
+### How to Choose a Programming Language
 
 **When to use Python for ABMs.**
 
