@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 15 Simple Model Building Tutorial: Schooling &amp; Landward Migration | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</title>
+  <meta name="description" content="This document contains a library of agent-based model functions for migratory fish." />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 15 Simple Model Building Tutorial: Schooling &amp; Landward Migration | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
+  <meta property="og:description" content="This document contains a library of agent-based model functions for migratory fish." />
+  <meta name="github-repo" content="vmahan1998/GoFish" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 15 Simple Model Building Tutorial: Schooling &amp; Landward Migration | GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries" />
+  
+  <meta name="twitter:description" content="This document contains a library of agent-based model functions for migratory fish." />
+  <meta name="twitter:image" content="https://vmahan1998.github.io/GoFish/images/vmq.png" />
+
+<meta name="author" content="Vanessa Quintana, Gayle Zydlewski, Joeseph Dello-Russo, Kaylyn Zipp, Todd Swannack" />
+
+
+<meta name="date" content="2026-05-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="predation-and-fleeing-behavior.html"/>
+<link rel="next" href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">GoFish</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#application-context"><i class="fa fa-check"></i>Application Context</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-this-library"><i class="fa fa-check"></i>How to Use This Library</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#structure"><i class="fa fa-check"></i><b>1.1</b> Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="agent-based-models.html"><a href="agent-based-models.html"><i class="fa fa-check"></i><b>2</b> Agent-Based Models</a>
+<ul>
+<li class="chapter" data-level="2.0.1" data-path="agent-based-models.html"><a href="agent-based-models.html#what-abms-can-help-us-understand"><i class="fa fa-check"></i><b>2.0.1</b> What ABMs Can Help Us Understand</a></li>
+<li class="chapter" data-level="2.0.2" data-path="agent-based-models.html"><a href="agent-based-models.html#what-abms-are-not-designed-to-do"><i class="fa fa-check"></i><b>2.0.2</b> What ABMs Are Not Designed to Do</a></li>
+<li class="chapter" data-level="2.0.3" data-path="agent-based-models.html"><a href="agent-based-models.html#emergent-behaviors"><i class="fa fa-check"></i><b>2.0.3</b> Emergent Behaviors</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html"><a href="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html"><i class="fa fa-check"></i><b>3</b> Co-Development of ABMs: Penobscot Estuary Community Workshop August 6, 2025</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html"><a href="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html#core-co-development-themes"><i class="fa fa-check"></i><b>3.1</b> Core Co-Development Themes</a></li>
+<li class="chapter" data-level="3.2" data-path="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html"><a href="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html#workshop-development"><i class="fa fa-check"></i><b>3.2</b> Workshop Development</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html"><a href="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html#pre-workshop-collaboration-steps"><i class="fa fa-check"></i><b>3.2.1</b> Pre-Workshop Collaboration Steps</a></li>
+<li class="chapter" data-level="3.2.2" data-path="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html"><a href="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html#identifying-participants-of-interest"><i class="fa fa-check"></i><b>3.2.2</b> Identifying Participants of Interest</a></li>
+<li class="chapter" data-level="3.2.3" data-path="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html"><a href="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html#enticing-participants-to-attend"><i class="fa fa-check"></i><b>3.2.3</b> Enticing Participants to Attend</a></li>
+<li class="chapter" data-level="3.2.4" data-path="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html"><a href="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html#selecting-the-venue"><i class="fa fa-check"></i><b>3.2.4</b> Selecting the Venue</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html"><a href="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html#facilitating-the-workshop"><i class="fa fa-check"></i><b>3.3</b> Facilitating the Workshop</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html"><a href="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html#agenda-activities"><i class="fa fa-check"></i><b>3.3.1</b> Agenda Activities</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html"><a href="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html#after-the-workshop"><i class="fa fa-check"></i><b>3.4</b> After the Workshop</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html"><a href="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html#incorporating-feedback"><i class="fa fa-check"></i><b>3.4.1</b> Incorporating Feedback</a></li>
+<li class="chapter" data-level="3.4.2" data-path="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html"><a href="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html#post-workshop-follow-up"><i class="fa fa-check"></i><b>3.4.2</b> Post-Workshop Follow-Up</a></li>
+<li class="chapter" data-level="3.4.3" data-path="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html"><a href="co-development-of-abms-penobscot-estuary-community-workshop-august-6-2025.html#acknowledgements"><i class="fa fa-check"></i><b>3.4.3</b> Acknowledgements</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="metabolism.html"><a href="metabolism.html"><i class="fa fa-check"></i><b>4</b> Metabolism</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="metabolism.html"><a href="metabolism.html#overview"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="metabolism.html"><a href="metabolism.html#purpose"><i class="fa fa-check"></i><b>4.2</b> Purpose</a></li>
+<li class="chapter" data-level="4.3" data-path="metabolism.html"><a href="metabolism.html#entities-state-variables-and-scales"><i class="fa fa-check"></i><b>4.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="metabolism.html"><a href="metabolism.html#spatial-and-temporal-scales"><i class="fa fa-check"></i><b>4.3.1</b> Spatial and Temporal Scales</a></li>
+<li class="chapter" data-level="4.3.2" data-path="metabolism.html"><a href="metabolism.html#global-variables"><i class="fa fa-check"></i><b>4.3.2</b> Global Variables</a></li>
+<li class="chapter" data-level="4.3.3" data-path="metabolism.html"><a href="metabolism.html#patch-variables"><i class="fa fa-check"></i><b>4.3.3</b> Patch Variables</a></li>
+<li class="chapter" data-level="4.3.4" data-path="metabolism.html"><a href="metabolism.html#agent-variables"><i class="fa fa-check"></i><b>4.3.4</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="metabolism.html"><a href="metabolism.html#process-overview-and-scheduling"><i class="fa fa-check"></i><b>4.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="4.5" data-path="metabolism.html"><a href="metabolism.html#design-concepts"><i class="fa fa-check"></i><b>4.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="4.6" data-path="metabolism.html"><a href="metabolism.html#initialization"><i class="fa fa-check"></i><b>4.6</b> Initialization</a></li>
+<li class="chapter" data-level="4.7" data-path="metabolism.html"><a href="metabolism.html#submodels"><i class="fa fa-check"></i><b>4.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="metabolism.html"><a href="metabolism.html#initialize-metabolism"><i class="fa fa-check"></i><b>4.7.1</b> Initialize Metabolism</a></li>
+<li class="chapter" data-level="4.7.2" data-path="metabolism.html"><a href="metabolism.html#energy-partitions"><i class="fa fa-check"></i><b>4.7.2</b> Energy Partitions</a></li>
+<li class="chapter" data-level="4.7.3" data-path="metabolism.html"><a href="metabolism.html#metabolic-rate-calculation"><i class="fa fa-check"></i><b>4.7.3</b> Metabolic Rate Calculation</a></li>
+<li class="chapter" data-level="4.7.4" data-path="metabolism.html"><a href="metabolism.html#efficiency-multipliers"><i class="fa fa-check"></i><b>4.7.4</b> Efficiency Multipliers</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="metabolism.html"><a href="metabolism.html#netlogo-implementation"><i class="fa fa-check"></i><b>4.8</b> Netlogo Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="digestion.html"><a href="digestion.html"><i class="fa fa-check"></i><b>5</b> Digestion</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="digestion.html"><a href="digestion.html#overview-1"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="digestion.html"><a href="digestion.html#purpose-1"><i class="fa fa-check"></i><b>5.2</b> Purpose</a></li>
+<li class="chapter" data-level="5.3" data-path="digestion.html"><a href="digestion.html#entities-state-variables-and-scales-1"><i class="fa fa-check"></i><b>5.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="digestion.html"><a href="digestion.html#spatial-and-temporal-scales-1"><i class="fa fa-check"></i><b>5.3.1</b> Spatial and Temporal Scales</a></li>
+<li class="chapter" data-level="5.3.2" data-path="digestion.html"><a href="digestion.html#global-variables-1"><i class="fa fa-check"></i><b>5.3.2</b> Global Variables</a></li>
+<li class="chapter" data-level="5.3.3" data-path="digestion.html"><a href="digestion.html#patch-variables-1"><i class="fa fa-check"></i><b>5.3.3</b> Patch Variables</a></li>
+<li class="chapter" data-level="5.3.4" data-path="digestion.html"><a href="digestion.html#agent-variables-1"><i class="fa fa-check"></i><b>5.3.4</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="digestion.html"><a href="digestion.html#process-overview-and-scheduling-1"><i class="fa fa-check"></i><b>5.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="5.5" data-path="digestion.html"><a href="digestion.html#design-concepts-1"><i class="fa fa-check"></i><b>5.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="5.6" data-path="digestion.html"><a href="digestion.html#initialization-1"><i class="fa fa-check"></i><b>5.6</b> Initialization</a></li>
+<li class="chapter" data-level="5.7" data-path="digestion.html"><a href="digestion.html#submodels-1"><i class="fa fa-check"></i><b>5.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="digestion.html"><a href="digestion.html#digestion-rate-and-breakdown"><i class="fa fa-check"></i><b>5.7.1</b> Digestion Rate and Breakdown</a></li>
+<li class="chapter" data-level="5.7.2" data-path="digestion.html"><a href="digestion.html#energy-conversion"><i class="fa fa-check"></i><b>5.7.2</b> Energy Conversion</a></li>
+<li class="chapter" data-level="5.7.3" data-path="digestion.html"><a href="digestion.html#contaminant-assimilation"><i class="fa fa-check"></i><b>5.7.3</b> Contaminant Assimilation</a></li>
+<li class="chapter" data-level="5.7.4" data-path="digestion.html"><a href="digestion.html#transition-to-foraging"><i class="fa fa-check"></i><b>5.7.4</b> Transition to Foraging</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="digestion.html"><a href="digestion.html#netlogo-implementation-1"><i class="fa fa-check"></i><b>5.8</b> Netlogo Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="salinity-exposure.html"><a href="salinity-exposure.html"><i class="fa fa-check"></i><b>6</b> Salinity Exposure</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="salinity-exposure.html"><a href="salinity-exposure.html#overview-2"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="salinity-exposure.html"><a href="salinity-exposure.html#purpose-2"><i class="fa fa-check"></i><b>6.2</b> Purpose</a></li>
+<li class="chapter" data-level="6.3" data-path="salinity-exposure.html"><a href="salinity-exposure.html#entities-state-variables-and-scales-2"><i class="fa fa-check"></i><b>6.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="salinity-exposure.html"><a href="salinity-exposure.html#spatial-and-temporal-scales-2"><i class="fa fa-check"></i><b>6.3.1</b> Spatial and Temporal Scales</a></li>
+<li class="chapter" data-level="6.3.2" data-path="salinity-exposure.html"><a href="salinity-exposure.html#global-variables-2"><i class="fa fa-check"></i><b>6.3.2</b> Global Variables</a></li>
+<li class="chapter" data-level="6.3.3" data-path="salinity-exposure.html"><a href="salinity-exposure.html#patch-variables-2"><i class="fa fa-check"></i><b>6.3.3</b> Patch Variables</a></li>
+<li class="chapter" data-level="6.3.4" data-path="salinity-exposure.html"><a href="salinity-exposure.html#agent-variables-2"><i class="fa fa-check"></i><b>6.3.4</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="salinity-exposure.html"><a href="salinity-exposure.html#process-overview-and-scheduling-2"><i class="fa fa-check"></i><b>6.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="6.5" data-path="salinity-exposure.html"><a href="salinity-exposure.html#design-concepts-2"><i class="fa fa-check"></i><b>6.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="6.6" data-path="salinity-exposure.html"><a href="salinity-exposure.html#initialization-2"><i class="fa fa-check"></i><b>6.6</b> Initialization</a></li>
+<li class="chapter" data-level="6.7" data-path="salinity-exposure.html"><a href="salinity-exposure.html#submodels-2"><i class="fa fa-check"></i><b>6.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="salinity-exposure.html"><a href="salinity-exposure.html#salinity-stress"><i class="fa fa-check"></i><b>6.7.1</b> Salinity Stress</a></li>
+<li class="chapter" data-level="6.7.2" data-path="salinity-exposure.html"><a href="salinity-exposure.html#chloride-cell-density"><i class="fa fa-check"></i><b>6.7.2</b> Chloride Cell Density</a></li>
+<li class="chapter" data-level="" data-path="salinity-exposure.html"><a href="salinity-exposure.html#osmoregulation-energy"><i class="fa fa-check"></i>Osmoregulation Energy</a></li>
+<li class="chapter" data-level="6.7.3" data-path="salinity-exposure.html"><a href="salinity-exposure.html#energy-balance"><i class="fa fa-check"></i><b>6.7.3</b> Energy Balance</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="salinity-exposure.html"><a href="salinity-exposure.html#netlogo-implementation-2"><i class="fa fa-check"></i><b>6.8</b> Netlogo Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="migration-cues.html"><a href="migration-cues.html"><i class="fa fa-check"></i><b>7</b> Migration Cues</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="migration-cues.html"><a href="migration-cues.html#overview-3"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="migration-cues.html"><a href="migration-cues.html#purpose-3"><i class="fa fa-check"></i><b>7.2</b> Purpose</a></li>
+<li class="chapter" data-level="7.3" data-path="migration-cues.html"><a href="migration-cues.html#entities-state-variables-and-scales-3"><i class="fa fa-check"></i><b>7.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="migration-cues.html"><a href="migration-cues.html#spatial-and-temporal-scales-3"><i class="fa fa-check"></i><b>7.3.1</b> Spatial and Temporal Scales</a></li>
+<li class="chapter" data-level="7.3.2" data-path="migration-cues.html"><a href="migration-cues.html#global-variables-3"><i class="fa fa-check"></i><b>7.3.2</b> Global Variables</a></li>
+<li class="chapter" data-level="7.3.3" data-path="migration-cues.html"><a href="migration-cues.html#patch-variables-3"><i class="fa fa-check"></i><b>7.3.3</b> Patch Variables</a></li>
+<li class="chapter" data-level="7.3.4" data-path="migration-cues.html"><a href="migration-cues.html#agent-variables-3"><i class="fa fa-check"></i><b>7.3.4</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="migration-cues.html"><a href="migration-cues.html#process-overview-and-scheduling-3"><i class="fa fa-check"></i><b>7.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="7.5" data-path="migration-cues.html"><a href="migration-cues.html#design-concepts-3"><i class="fa fa-check"></i><b>7.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="7.6" data-path="migration-cues.html"><a href="migration-cues.html#initialization-3"><i class="fa fa-check"></i><b>7.6</b> Initialization</a></li>
+<li class="chapter" data-level="7.7" data-path="migration-cues.html"><a href="migration-cues.html#submodels-3"><i class="fa fa-check"></i><b>7.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="migration-cues.html"><a href="migration-cues.html#identifying-cue-days-preprocessed-in-r"><i class="fa fa-check"></i><b>7.7.1</b> Identifying Cue Days (Preprocessed in R)</a></li>
+<li class="chapter" data-level="7.7.2" data-path="migration-cues.html"><a href="migration-cues.html#activation-of-migration-cue"><i class="fa fa-check"></i><b>7.7.2</b> Activation of Migration Cue</a></li>
+<li class="chapter" data-level="7.7.3" data-path="migration-cues.html"><a href="migration-cues.html#accumulation-of-migration-probability"><i class="fa fa-check"></i><b>7.7.3</b> Accumulation of Migration Probability</a></li>
+<li class="chapter" data-level="7.7.4" data-path="migration-cues.html"><a href="migration-cues.html#initiate-migration"><i class="fa fa-check"></i><b>7.7.4</b> Initiate Migration</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="migration-cues.html"><a href="migration-cues.html#netlogo-implementation-3"><i class="fa fa-check"></i><b>7.8</b> Netlogo Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html"><i class="fa fa-check"></i><b>8</b> Contaminant Exposure</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#overview-4"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#purpose-4"><i class="fa fa-check"></i><b>8.2</b> Purpose</a></li>
+<li class="chapter" data-level="8.3" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#entities-state-variables-and-scales-4"><i class="fa fa-check"></i><b>8.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#spatial-and-temporal-scales-4"><i class="fa fa-check"></i><b>8.3.1</b> Spatial and Temporal Scales</a></li>
+<li class="chapter" data-level="8.3.2" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#global-variables-4"><i class="fa fa-check"></i><b>8.3.2</b> Global Variables</a></li>
+<li class="chapter" data-level="8.3.3" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#patch-variables-4"><i class="fa fa-check"></i><b>8.3.3</b> Patch Variables</a></li>
+<li class="chapter" data-level="8.3.4" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#agent-variables-4"><i class="fa fa-check"></i><b>8.3.4</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#process-overview-and-scheduling-4"><i class="fa fa-check"></i><b>8.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="8.5" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#design-concepts-4"><i class="fa fa-check"></i><b>8.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="8.6" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#initialization-4"><i class="fa fa-check"></i><b>8.6</b> Initialization</a></li>
+<li class="chapter" data-level="8.7" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#submodels-mercury-exposure-and-uptake"><i class="fa fa-check"></i><b>8.7</b> Submodels: Mercury Exposure and Uptake</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#normalization"><i class="fa fa-check"></i><b>8.7.1</b> Normalization</a></li>
+<li class="chapter" data-level="8.7.2" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#exposure-duration"><i class="fa fa-check"></i><b>8.7.2</b> Exposure Duration</a></li>
+<li class="chapter" data-level="8.7.3" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#uptake-risk"><i class="fa fa-check"></i><b>8.7.3</b> Uptake Risk</a></li>
+<li class="chapter" data-level="8.7.4" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#cumulative-uptake"><i class="fa fa-check"></i><b>8.7.4</b> Cumulative Uptake</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="contaminant-exposure.html"><a href="contaminant-exposure.html#netlogo-implementation-4"><i class="fa fa-check"></i><b>8.8</b> Netlogo Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html"><i class="fa fa-check"></i><b>9</b> Small Particulate Feeding</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#overview-5"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
+<li class="chapter" data-level="9.2" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#purpose-and-patterns"><i class="fa fa-check"></i><b>9.2</b> Purpose and Patterns</a></li>
+<li class="chapter" data-level="9.3" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#entities-state-variables-and-scales-5"><i class="fa fa-check"></i><b>9.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#spatial-and-temporal-scales-5"><i class="fa fa-check"></i><b>9.3.1</b> Spatial and Temporal Scales</a></li>
+<li class="chapter" data-level="9.3.2" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#global-variables-5"><i class="fa fa-check"></i><b>9.3.2</b> <strong>Global Variables</strong></a></li>
+<li class="chapter" data-level="9.3.3" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#patch-variables-5"><i class="fa fa-check"></i><b>9.3.3</b> <strong>Patch Variables</strong></a></li>
+<li class="chapter" data-level="9.3.4" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#agent-variables-5"><i class="fa fa-check"></i><b>9.3.4</b> <strong>Agent Variables</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#process-overview-and-scheduling-5"><i class="fa fa-check"></i><b>9.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="9.5" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#design-concepts-5"><i class="fa fa-check"></i><b>9.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="9.6" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#initialization-5"><i class="fa fa-check"></i><b>9.6</b> Initialization</a></li>
+<li class="chapter" data-level="9.7" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#submodels-4"><i class="fa fa-check"></i><b>9.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="9.7.1" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#filtration-capacity"><i class="fa fa-check"></i><b>9.7.1</b> Filtration Capacity</a></li>
+<li class="chapter" data-level="9.7.2" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#spm-interest-gaussian-suitability"><i class="fa fa-check"></i><b>9.7.2</b> SPM Interest (Gaussian Suitability)</a></li>
+<li class="chapter" data-level="9.7.3" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#resource-benefit-calculation"><i class="fa fa-check"></i><b>9.7.3</b> Resource Benefit Calculation</a></li>
+<li class="chapter" data-level="9.7.4" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#movement"><i class="fa fa-check"></i><b>9.7.4</b> Movement</a></li>
+<li class="chapter" data-level="9.7.5" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#feeding-and-stomach-loading"><i class="fa fa-check"></i><b>9.7.5</b> Feeding and Stomach Loading</a></li>
+<li class="chapter" data-level="9.7.6" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#contaminant-assimilation-and-biomagnification"><i class="fa fa-check"></i><b>9.7.6</b> Contaminant Assimilation and Biomagnification</a></li>
+</ul></li>
+<li class="chapter" data-level="9.8" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#netlogo-implementation-5"><i class="fa fa-check"></i><b>9.8</b> Netlogo Implementation</a></li>
+<li class="chapter" data-level="9.9" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#overview-6"><i class="fa fa-check"></i><b>9.9</b> Overview</a></li>
+<li class="chapter" data-level="9.10" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#purpose-5"><i class="fa fa-check"></i><b>9.10</b> Purpose</a></li>
+<li class="chapter" data-level="9.11" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#entities-state-variables-and-scales-6"><i class="fa fa-check"></i><b>9.11</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="9.11.1" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#spatial-and-temporal-scales-6"><i class="fa fa-check"></i><b>9.11.1</b> Spatial and Temporal Scales</a></li>
+<li class="chapter" data-level="9.11.2" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#global-variables-6"><i class="fa fa-check"></i><b>9.11.2</b> <strong>Global Variables</strong></a></li>
+<li class="chapter" data-level="9.11.3" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#patch-variables-6"><i class="fa fa-check"></i><b>9.11.3</b> Patch Variables</a></li>
+<li class="chapter" data-level="9.11.4" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#agent-variables-6"><i class="fa fa-check"></i><b>9.11.4</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="9.12" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#process-overview-and-scheduling-6"><i class="fa fa-check"></i><b>9.12</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="9.13" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#design-concepts-6"><i class="fa fa-check"></i><b>9.13</b> Design Concepts</a></li>
+<li class="chapter" data-level="9.14" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#initialization-6"><i class="fa fa-check"></i><b>9.14</b> Initialization</a></li>
+<li class="chapter" data-level="9.15" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#submodels-5"><i class="fa fa-check"></i><b>9.15</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="9.15.1" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#lipid-mobilization"><i class="fa fa-check"></i><b>9.15.1</b> Lipid Mobilization</a></li>
+<li class="chapter" data-level="9.15.2" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#energy-conversion-1"><i class="fa fa-check"></i><b>9.15.2</b> Energy Conversion</a></li>
+<li class="chapter" data-level="9.15.3" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#weight-loss"><i class="fa fa-check"></i><b>9.15.3</b> Weight Loss</a></li>
+<li class="chapter" data-level="9.15.4" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#contaminant-bookkeeping"><i class="fa fa-check"></i><b>9.15.4</b> Contaminant Bookkeeping</a></li>
+</ul></li>
+<li class="chapter" data-level="9.16" data-path="small-particulate-feeding.html"><a href="small-particulate-feeding.html#netlogo-implementation-6"><i class="fa fa-check"></i><b>9.16</b> Netlogo Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="landward-movement.html"><a href="landward-movement.html"><i class="fa fa-check"></i><b>10</b> Landward Movement</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="landward-movement.html"><a href="landward-movement.html#overview-7"><i class="fa fa-check"></i><b>10.1</b> Overview</a></li>
+<li class="chapter" data-level="10.2" data-path="landward-movement.html"><a href="landward-movement.html#purpose-6"><i class="fa fa-check"></i><b>10.2</b> Purpose</a></li>
+<li class="chapter" data-level="10.3" data-path="landward-movement.html"><a href="landward-movement.html#entities-state-variables-and-scales-7"><i class="fa fa-check"></i><b>10.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="landward-movement.html"><a href="landward-movement.html#spatial-and-temporal-scales-7"><i class="fa fa-check"></i><b>10.3.1</b> Spatial and Temporal Scales</a></li>
+<li class="chapter" data-level="10.3.2" data-path="landward-movement.html"><a href="landward-movement.html#global-variables-7"><i class="fa fa-check"></i><b>10.3.2</b> Global Variables</a></li>
+<li class="chapter" data-level="10.3.3" data-path="landward-movement.html"><a href="landward-movement.html#patch-variables-7"><i class="fa fa-check"></i><b>10.3.3</b> Patch Variables</a></li>
+<li class="chapter" data-level="10.3.4" data-path="landward-movement.html"><a href="landward-movement.html#agent-variables-7"><i class="fa fa-check"></i><b>10.3.4</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="landward-movement.html"><a href="landward-movement.html#process-overview-and-scheduling-7"><i class="fa fa-check"></i><b>10.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="10.5" data-path="landward-movement.html"><a href="landward-movement.html#design-concepts-7"><i class="fa fa-check"></i><b>10.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="10.6" data-path="landward-movement.html"><a href="landward-movement.html#initialization-7"><i class="fa fa-check"></i><b>10.6</b> Initialization</a></li>
+<li class="chapter" data-level="10.7" data-path="landward-movement.html"><a href="landward-movement.html#submodels-6"><i class="fa fa-check"></i><b>10.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="landward-movement.html"><a href="landward-movement.html#swimming-difficulty"><i class="fa fa-check"></i><b>10.7.1</b> Swimming Difficulty</a></li>
+<li class="chapter" data-level="10.7.2" data-path="landward-movement.html"><a href="landward-movement.html#swimming-speed"><i class="fa fa-check"></i><b>10.7.2</b> Swimming Speed</a></li>
+<li class="chapter" data-level="10.7.3" data-path="landward-movement.html"><a href="landward-movement.html#path-based-movement"><i class="fa fa-check"></i><b>10.7.3</b> Path Based Movement</a></li>
+<li class="chapter" data-level="10.7.4" data-path="landward-movement.html"><a href="landward-movement.html#travel-cost"><i class="fa fa-check"></i><b>10.7.4</b> Travel Cost</a></li>
+<li class="chapter" data-level="10.7.5" data-path="landward-movement.html"><a href="landward-movement.html#swimming-energy"><i class="fa fa-check"></i><b>10.7.5</b> Swimming Energy</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="landward-movement.html"><a href="landward-movement.html#netlogo-implementation-7"><i class="fa fa-check"></i><b>10.8</b> Netlogo Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="seaward-movement.html"><a href="seaward-movement.html"><i class="fa fa-check"></i><b>11</b> Seaward Movement</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="seaward-movement.html"><a href="seaward-movement.html#overview-8"><i class="fa fa-check"></i><b>11.1</b> Overview</a></li>
+<li class="chapter" data-level="11.2" data-path="seaward-movement.html"><a href="seaward-movement.html#purpose-7"><i class="fa fa-check"></i><b>11.2</b> Purpose</a></li>
+<li class="chapter" data-level="11.3" data-path="seaward-movement.html"><a href="seaward-movement.html#entities-state-variables-and-scales-8"><i class="fa fa-check"></i><b>11.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="seaward-movement.html"><a href="seaward-movement.html#spatial-and-temporal-scales-8"><i class="fa fa-check"></i><b>11.3.1</b> Spatial and Temporal Scales</a></li>
+<li class="chapter" data-level="11.3.2" data-path="seaward-movement.html"><a href="seaward-movement.html#global-variables-8"><i class="fa fa-check"></i><b>11.3.2</b> Global Variables</a></li>
+<li class="chapter" data-level="11.3.3" data-path="seaward-movement.html"><a href="seaward-movement.html#patch-variables-8"><i class="fa fa-check"></i><b>11.3.3</b> Patch Variables</a></li>
+<li class="chapter" data-level="11.3.4" data-path="seaward-movement.html"><a href="seaward-movement.html#agent-variables-8"><i class="fa fa-check"></i><b>11.3.4</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="seaward-movement.html"><a href="seaward-movement.html#process-overview-and-scheduling-8"><i class="fa fa-check"></i><b>11.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="11.5" data-path="seaward-movement.html"><a href="seaward-movement.html#design-concepts-8"><i class="fa fa-check"></i><b>11.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="11.6" data-path="seaward-movement.html"><a href="seaward-movement.html#initialization-8"><i class="fa fa-check"></i><b>11.6</b> Initialization</a></li>
+<li class="chapter" data-level="11.7" data-path="seaward-movement.html"><a href="seaward-movement.html#submodels-7"><i class="fa fa-check"></i><b>11.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="11.7.1" data-path="seaward-movement.html"><a href="seaward-movement.html#swimming-difficulty-1"><i class="fa fa-check"></i><b>11.7.1</b> Swimming Difficulty</a></li>
+<li class="chapter" data-level="11.7.2" data-path="seaward-movement.html"><a href="seaward-movement.html#swimming-speed-1"><i class="fa fa-check"></i><b>11.7.2</b> Swimming Speed</a></li>
+<li class="chapter" data-level="11.7.3" data-path="seaward-movement.html"><a href="seaward-movement.html#path-based-movement-1"><i class="fa fa-check"></i><b>11.7.3</b> Path-Based Movement</a></li>
+<li class="chapter" data-level="11.7.4" data-path="seaward-movement.html"><a href="seaward-movement.html#travel-cost-1"><i class="fa fa-check"></i><b>11.7.4</b> Travel Cost</a></li>
+<li class="chapter" data-level="11.7.5" data-path="seaward-movement.html"><a href="seaward-movement.html#swimming-energy-1"><i class="fa fa-check"></i><b>11.7.5</b> Swimming Energy</a></li>
+</ul></li>
+<li class="chapter" data-level="11.8" data-path="seaward-movement.html"><a href="seaward-movement.html#netlogo-implementation-8"><i class="fa fa-check"></i><b>11.8</b> NetLogo Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="schooling.html"><a href="schooling.html"><i class="fa fa-check"></i><b>12</b> Schooling</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="schooling.html"><a href="schooling.html#overview-9"><i class="fa fa-check"></i><b>12.1</b> Overview</a></li>
+<li class="chapter" data-level="12.2" data-path="schooling.html"><a href="schooling.html#purpose-8"><i class="fa fa-check"></i><b>12.2</b> Purpose</a></li>
+<li class="chapter" data-level="12.3" data-path="schooling.html"><a href="schooling.html#entities-state-variables-and-scales-9"><i class="fa fa-check"></i><b>12.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="schooling.html"><a href="schooling.html#spatial-and-temporal-scales-9"><i class="fa fa-check"></i><b>12.3.1</b> Spatial and Temporal Scales</a></li>
+<li class="chapter" data-level="12.3.2" data-path="schooling.html"><a href="schooling.html#patch-variables-9"><i class="fa fa-check"></i><b>12.3.2</b> Patch Variables</a></li>
+<li class="chapter" data-level="12.3.3" data-path="schooling.html"><a href="schooling.html#agent-variables-9"><i class="fa fa-check"></i><b>12.3.3</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="schooling.html"><a href="schooling.html#process-overview-and-scheduling-9"><i class="fa fa-check"></i><b>12.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="12.5" data-path="schooling.html"><a href="schooling.html#design-concepts-9"><i class="fa fa-check"></i><b>12.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="12.6" data-path="schooling.html"><a href="schooling.html#initialization-9"><i class="fa fa-check"></i><b>12.6</b> Initialization</a></li>
+<li class="chapter" data-level="12.7" data-path="schooling.html"><a href="schooling.html#submodels-8"><i class="fa fa-check"></i><b>12.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="12.7.1" data-path="schooling.html"><a href="schooling.html#identifying-schoolmates"><i class="fa fa-check"></i><b>12.7.1</b> Identifying Schoolmates</a></li>
+<li class="chapter" data-level="12.7.2" data-path="schooling.html"><a href="schooling.html#nearest-neighbor"><i class="fa fa-check"></i><b>12.7.2</b> Nearest Neighbor</a></li>
+<li class="chapter" data-level="12.7.3" data-path="schooling.html"><a href="schooling.html#separation"><i class="fa fa-check"></i><b>12.7.3</b> Separation</a></li>
+<li class="chapter" data-level="12.7.4" data-path="schooling.html"><a href="schooling.html#cohesion"><i class="fa fa-check"></i><b>12.7.4</b> Cohesion</a></li>
+<li class="chapter" data-level="12.7.5" data-path="schooling.html"><a href="schooling.html#alignment"><i class="fa fa-check"></i><b>12.7.5</b> Alignment</a></li>
+<li class="chapter" data-level="12.7.6" data-path="schooling.html"><a href="schooling.html#speed-adjustment"><i class="fa fa-check"></i><b>12.7.6</b> Speed Adjustment</a></li>
+</ul></li>
+<li class="chapter" data-level="12.8" data-path="schooling.html"><a href="schooling.html#netlogo-implementation-9"><i class="fa fa-check"></i><b>12.8</b> Netlogo Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html"><i class="fa fa-check"></i><b>13</b> Selective Tidal Stream Transport</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#overview-10"><i class="fa fa-check"></i><b>13.1</b> Overview</a></li>
+<li class="chapter" data-level="13.2" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#purpose-9"><i class="fa fa-check"></i><b>13.2</b> Purpose</a></li>
+<li class="chapter" data-level="13.3" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#entities-state-variables-and-scales-10"><i class="fa fa-check"></i><b>13.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#spatial-and-temporal-scales-10"><i class="fa fa-check"></i><b>13.3.1</b> Spatial and Temporal Scales</a></li>
+<li class="chapter" data-level="13.3.2" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#global-variables-9"><i class="fa fa-check"></i><b>13.3.2</b> <strong>Global Variables</strong></a></li>
+<li class="chapter" data-level="13.3.3" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#patch-variables-10"><i class="fa fa-check"></i><b>13.3.3</b> Patch Variables</a></li>
+<li class="chapter" data-level="13.3.4" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#agent-variables-10"><i class="fa fa-check"></i><b>13.3.4</b> Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#process-overview-and-scheduling-10"><i class="fa fa-check"></i><b>13.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="13.5" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#design-concepts-10"><i class="fa fa-check"></i><b>13.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="13.6" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#initialization-10"><i class="fa fa-check"></i><b>13.6</b> Initialization</a></li>
+<li class="chapter" data-level="13.7" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#submodels-9"><i class="fa fa-check"></i><b>13.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="13.7.1" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#trigger-conditions-for-stst"><i class="fa fa-check"></i><b>13.7.1</b> Trigger Conditions for STST</a></li>
+<li class="chapter" data-level="13.7.2" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#behavior-during-stst"><i class="fa fa-check"></i><b>13.7.2</b> Behavior During STST</a></li>
+<li class="chapter" data-level="13.7.3" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#stop-conditions-for-stst"><i class="fa fa-check"></i><b>13.7.3</b> Stop Conditions for STST</a></li>
+</ul></li>
+<li class="chapter" data-level="13.8" data-path="selective-tidal-stream-transport.html"><a href="selective-tidal-stream-transport.html#netlogo-implementation-10"><i class="fa fa-check"></i><b>13.8</b> Netlogo Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html"><i class="fa fa-check"></i><b>14</b> Predation and Fleeing Behavior</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#overview-11"><i class="fa fa-check"></i><b>14.1</b> Overview</a></li>
+<li class="chapter" data-level="14.2" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#purpose-and-patterns-1"><i class="fa fa-check"></i><b>14.2</b> Purpose and Patterns</a></li>
+<li class="chapter" data-level="14.3" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#entities-state-variables-and-scales-11"><i class="fa fa-check"></i><b>14.3</b> Entities, State Variables, and Scales</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#spatial-and-temporal-scales-11"><i class="fa fa-check"></i><b>14.3.1</b> Spatial and Temporal Scales</a></li>
+<li class="chapter" data-level="14.3.2" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#patch-variables-11"><i class="fa fa-check"></i><b>14.3.2</b> Patch Variables</a></li>
+<li class="chapter" data-level="14.3.3" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#prey-agent-variables"><i class="fa fa-check"></i><b>14.3.3</b> Prey: Agent Variables</a></li>
+<li class="chapter" data-level="14.3.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-agent-variables"><i class="fa fa-check"></i><b>14.3.4</b> Predator: Agent Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#process-overview-and-scheduling-11"><i class="fa fa-check"></i><b>14.4</b> Process Overview and Scheduling</a></li>
+<li class="chapter" data-level="14.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#design-concepts-11"><i class="fa fa-check"></i><b>14.5</b> Design Concepts</a></li>
+<li class="chapter" data-level="14.6" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#initialization-11"><i class="fa fa-check"></i><b>14.6</b> Initialization</a></li>
+<li class="chapter" data-level="14.7" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#submodels-10"><i class="fa fa-check"></i><b>14.7</b> Submodels</a>
+<ul>
+<li class="chapter" data-level="14.7.1" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#prey-fleeing-trigger-and-directional-response"><i class="fa fa-check"></i><b>14.7.1</b> Prey Fleeing Trigger and Directional Response</a></li>
+<li class="chapter" data-level="14.7.2" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#prey-fleeing-movement-and-energetic-cost"><i class="fa fa-check"></i><b>14.7.2</b> Prey Fleeing Movement and Energetic Cost</a></li>
+<li class="chapter" data-level="14.7.3" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-prey-detection-and-chase"><i class="fa fa-check"></i><b>14.7.3</b> Predator Prey Detection and Chase</a></li>
+<li class="chapter" data-level="14.7.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-burst-speed-adjustment"><i class="fa fa-check"></i><b>14.7.4</b> Predator Burst Speed Adjustment</a></li>
+<li class="chapter" data-level="14.7.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predation-and-consumption"><i class="fa fa-check"></i><b>14.7.5</b> Predation and Consumption</a></li>
+<li class="chapter" data-level="14.7.6" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#interaction-with-migration-movement-and-swimming-energy"><i class="fa fa-check"></i><b>14.7.6</b> Interaction With Migration Movement and Swimming Energy</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="simple-model-building-tutorial-schooling-landward-migration.html"><a href="simple-model-building-tutorial-schooling-landward-migration.html"><i class="fa fa-check"></i><b>15</b> Simple Model Building Tutorial: Schooling &amp; Landward Migration</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="simple-model-building-tutorial-schooling-landward-migration.html"><a href="simple-model-building-tutorial-schooling-landward-migration.html#module-integration"><i class="fa fa-check"></i><b>15.1</b> Module Integration</a></li>
+<li class="chapter" data-level="15.2" data-path="simple-model-building-tutorial-schooling-landward-migration.html"><a href="simple-model-building-tutorial-schooling-landward-migration.html#function-dependencies"><i class="fa fa-check"></i><b>15.2</b> Function Dependencies</a></li>
+<li class="chapter" data-level="15.3" data-path="simple-model-building-tutorial-schooling-landward-migration.html"><a href="simple-model-building-tutorial-schooling-landward-migration.html#implementation-in-netlogo"><i class="fa fa-check"></i><b>15.3</b> Implementation in NetLogo</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="simple-model-building-tutorial-schooling-landward-migration.html"><a href="simple-model-building-tutorial-schooling-landward-migration.html#variable-declarations"><i class="fa fa-check"></i><b>15.3.1</b> Variable declarations</a></li>
+<li class="chapter" data-level="15.3.2" data-path="simple-model-building-tutorial-schooling-landward-migration.html"><a href="simple-model-building-tutorial-schooling-landward-migration.html#setup"><i class="fa fa-check"></i><b>15.3.2</b> Setup</a></li>
+<li class="chapter" data-level="15.3.3" data-path="simple-model-building-tutorial-schooling-landward-migration.html"><a href="simple-model-building-tutorial-schooling-landward-migration.html#the-go-procedure-time-sequence"><i class="fa fa-check"></i><b>15.3.3</b> The go procedure — time sequence</a></li>
+<li class="chapter" data-level="15.3.4" data-path="simple-model-building-tutorial-schooling-landward-migration.html"><a href="simple-model-building-tutorial-schooling-landward-migration.html#what-to-observe"><i class="fa fa-check"></i><b>15.3.4</b> What to observe</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="simple-model-building-tutorial-schooling-landward-migration.html"><a href="simple-model-building-tutorial-schooling-landward-migration.html#implementation-in-r"><i class="fa fa-check"></i><b>15.4</b> Implementation in R</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="simple-model-building-tutorial-schooling-landward-migration.html"><a href="simple-model-building-tutorial-schooling-landward-migration.html#agent-data-structure"><i class="fa fa-check"></i><b>15.4.1</b> Agent data structure</a></li>
+<li class="chapter" data-level="15.4.2" data-path="simple-model-building-tutorial-schooling-landward-migration.html"><a href="simple-model-building-tutorial-schooling-landward-migration.html#submodel-functions"><i class="fa fa-check"></i><b>15.4.2</b> Submodel functions</a></li>
+<li class="chapter" data-level="15.4.3" data-path="simple-model-building-tutorial-schooling-landward-migration.html"><a href="simple-model-building-tutorial-schooling-landward-migration.html#simulation-loop"><i class="fa fa-check"></i><b>15.4.3</b> Simulation loop</a></li>
+<li class="chapter" data-level="15.4.4" data-path="simple-model-building-tutorial-schooling-landward-migration.html"><a href="simple-model-building-tutorial-schooling-landward-migration.html#visualizing-outputs"><i class="fa fa-check"></i><b>15.4.4</b> Visualizing outputs</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="simple-model-building-tutorial-schooling-landward-migration.html"><a href="simple-model-building-tutorial-schooling-landward-migration.html#implementation-in-python"><i class="fa fa-check"></i><b>15.5</b> Implementation in Python</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="simple-model-building-tutorial-schooling-landward-migration.html"><a href="simple-model-building-tutorial-schooling-landward-migration.html#agent-data-structure-1"><i class="fa fa-check"></i><b>15.5.1</b> Agent data structure</a></li>
+<li class="chapter" data-level="15.5.2" data-path="simple-model-building-tutorial-schooling-landward-migration.html"><a href="simple-model-building-tutorial-schooling-landward-migration.html#submodel-functions-1"><i class="fa fa-check"></i><b>15.5.2</b> Submodel functions</a></li>
+<li class="chapter" data-level="15.5.3" data-path="simple-model-building-tutorial-schooling-landward-migration.html"><a href="simple-model-building-tutorial-schooling-landward-migration.html#simulation-loop-1"><i class="fa fa-check"></i><b>15.5.3</b> Simulation loop</a></li>
+<li class="chapter" data-level="15.5.4" data-path="simple-model-building-tutorial-schooling-landward-migration.html"><a href="simple-model-building-tutorial-schooling-landward-migration.html#visualizing-outputs-1"><i class="fa fa-check"></i><b>15.5.4</b> Visualizing outputs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"><a href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"><i class="fa fa-check"></i><b>16</b> Complex Model Building Tutorial: Landward Migration, Schooling &amp; Selective Tidal Stream Transport</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"><a href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html#module-integration-1"><i class="fa fa-check"></i><b>16.1</b> Module Integration</a></li>
+<li class="chapter" data-level="16.2" data-path="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"><a href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html#function-dependencies-1"><i class="fa fa-check"></i><b>16.2</b> Function Dependencies</a></li>
+<li class="chapter" data-level="16.3" data-path="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"><a href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html#implementation-in-netlogo-1"><i class="fa fa-check"></i><b>16.3</b> Implementation in NetLogo</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"><a href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html#variable-declarations-1"><i class="fa fa-check"></i><b>16.3.1</b> Variable declarations</a></li>
+<li class="chapter" data-level="16.3.2" data-path="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"><a href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html#setup-1"><i class="fa fa-check"></i><b>16.3.2</b> Setup</a></li>
+<li class="chapter" data-level="16.3.3" data-path="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"><a href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html#the-go-procedure-time-step-sequence"><i class="fa fa-check"></i><b>16.3.3</b> The go procedure — time step sequence</a></li>
+<li class="chapter" data-level="16.3.4" data-path="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"><a href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html#what-to-observe-1"><i class="fa fa-check"></i><b>16.3.4</b> What to observe</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"><a href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html#implementation-in-r-1"><i class="fa fa-check"></i><b>16.4</b> Implementation in R</a>
+<ul>
+<li class="chapter" data-level="16.4.1" data-path="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"><a href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html#agent-and-patch-data-structures"><i class="fa fa-check"></i><b>16.4.1</b> Agent and patch data structures</a></li>
+<li class="chapter" data-level="16.4.2" data-path="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"><a href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html#submodel-functions-2"><i class="fa fa-check"></i><b>16.4.2</b> Submodel functions</a></li>
+<li class="chapter" data-level="16.4.3" data-path="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"><a href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html#simulation-loop-2"><i class="fa fa-check"></i><b>16.4.3</b> Simulation loop</a></li>
+<li class="chapter" data-level="16.4.4" data-path="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"><a href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html#visualizing-outputs-2"><i class="fa fa-check"></i><b>16.4.4</b> Visualizing outputs</a></li>
+</ul></li>
+<li class="chapter" data-level="16.5" data-path="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"><a href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html#implementation-in-python-1"><i class="fa fa-check"></i><b>16.5</b> Implementation in Python</a>
+<ul>
+<li class="chapter" data-level="16.5.1" data-path="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"><a href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html#agent-and-patch-data-structures-1"><i class="fa fa-check"></i><b>16.5.1</b> Agent and patch data structures</a></li>
+<li class="chapter" data-level="16.5.2" data-path="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"><a href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html#submodel-functions-3"><i class="fa fa-check"></i><b>16.5.2</b> Submodel functions</a></li>
+<li class="chapter" data-level="16.5.3" data-path="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"><a href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html#simulation-loop-3"><i class="fa fa-check"></i><b>16.5.3</b> Simulation loop</a></li>
+<li class="chapter" data-level="16.5.4" data-path="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html"><a href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html#visualizing-outputs-3"><i class="fa fa-check"></i><b>16.5.4</b> Visualizing outputs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="complex-model-building-tutorial-one-way-migration.html"><a href="complex-model-building-tutorial-one-way-migration.html"><i class="fa fa-check"></i><b>17</b> Complex Model Building Tutorial: One-Way Migration</a>
+<ul>
+<li class="chapter" data-level="17.0.1" data-path="complex-model-building-tutorial-one-way-migration.html"><a href="complex-model-building-tutorial-one-way-migration.html#module-integration-2"><i class="fa fa-check"></i><b>17.0.1</b> Module Integration</a></li>
+<li class="chapter" data-level="17.0.2" data-path="complex-model-building-tutorial-one-way-migration.html"><a href="complex-model-building-tutorial-one-way-migration.html#function-dependencies-2"><i class="fa fa-check"></i><b>17.0.2</b> Function Dependencies</a></li>
+<li class="chapter" data-level="17.1" data-path="complex-model-building-tutorial-one-way-migration.html"><a href="complex-model-building-tutorial-one-way-migration.html#implementation-in-netlogo-2"><i class="fa fa-check"></i><b>17.1</b> Implementation in NetLogo:</a></li>
+<li class="chapter" data-level="17.2" data-path="complex-model-building-tutorial-one-way-migration.html"><a href="complex-model-building-tutorial-one-way-migration.html#implementation-in-r-2"><i class="fa fa-check"></i><b>17.2</b> Implementation in R:</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="modeling-toolkit.html"><a href="modeling-toolkit.html"><i class="fa fa-check"></i><b>18</b> Modeling Toolkit</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="modeling-toolkit.html"><a href="modeling-toolkit.html#learning-resources"><i class="fa fa-check"></i><b>18.1</b> Learning Resources</a></li>
+<li class="chapter" data-level="18.2" data-path="modeling-toolkit.html"><a href="modeling-toolkit.html#best-practices"><i class="fa fa-check"></i><b>18.2</b> Best Practices</a></li>
+<li class="chapter" data-level="18.3" data-path="modeling-toolkit.html"><a href="modeling-toolkit.html#code-repositories-examples"><i class="fa fa-check"></i><b>18.3</b> Code Repositories &amp; Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="glossary.html"><a href="glossary.html"><i class="fa fa-check"></i>Glossary</a>
+<ul>
+<li class="chapter" data-level="" data-path="glossary.html"><a href="glossary.html#a"><i class="fa fa-check"></i>A</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="glossary.html"><a href="glossary.html#acclimated-salinity"><i class="fa fa-check"></i><b>18.3.1</b> <strong>Acclimated Salinity</strong></a></li>
+<li class="chapter" data-level="18.3.2" data-path="glossary.html"><a href="glossary.html#agent"><i class="fa fa-check"></i><b>18.3.2</b> <strong>Agent</strong></a></li>
+<li class="chapter" data-level="18.3.3" data-path="glossary.html"><a href="glossary.html#allometric"><i class="fa fa-check"></i><b>18.3.3</b> <strong>Allometric</strong></a></li>
+<li class="chapter" data-level="18.3.4" data-path="glossary.html"><a href="glossary.html#anadromous"><i class="fa fa-check"></i><b>18.3.4</b> <strong>Anadromous</strong></a></li>
+<li class="chapter" data-level="18.3.5" data-path="glossary.html"><a href="glossary.html#base-energy"><i class="fa fa-check"></i><b>18.3.5</b> <strong>Base Energy</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="glossary.html"><a href="glossary.html#b"><i class="fa fa-check"></i>B</a>
+<ul>
+<li class="chapter" data-level="18.3.6" data-path="glossary.html"><a href="glossary.html#benthic"><i class="fa fa-check"></i><b>18.3.6</b> <strong>Benthic</strong></a></li>
+<li class="chapter" data-level="18.3.7" data-path="glossary.html"><a href="glossary.html#bioaccumulation"><i class="fa fa-check"></i><b>18.3.7</b> <strong>Bioaccumulation</strong></a></li>
+<li class="chapter" data-level="18.3.8" data-path="glossary.html"><a href="glossary.html#biomagnification"><i class="fa fa-check"></i><b>18.3.8</b> <strong>Biomagnification</strong></a></li>
+<li class="chapter" data-level="18.3.9" data-path="glossary.html"><a href="glossary.html#bottom-feeding"><i class="fa fa-check"></i><b>18.3.9</b> <strong>Bottom Feeding</strong></a></li>
+<li class="chapter" data-level="18.3.10" data-path="glossary.html"><a href="glossary.html#broadcast-spawning"><i class="fa fa-check"></i><b>18.3.10</b> <strong>Broadcast Spawning</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="glossary.html"><a href="glossary.html#c"><i class="fa fa-check"></i>C</a>
+<ul>
+<li class="chapter" data-level="18.3.11" data-path="glossary.html"><a href="glossary.html#chloride-cells"><i class="fa fa-check"></i><b>18.3.11</b> <strong>Chloride Cells</strong></a></li>
+<li class="chapter" data-level="18.3.12" data-path="glossary.html"><a href="glossary.html#contamination"><i class="fa fa-check"></i><b>18.3.12</b> <strong>Contamination</strong></a></li>
+<li class="chapter" data-level="18.3.13" data-path="glossary.html"><a href="glossary.html#current-velocity"><i class="fa fa-check"></i><b>18.3.13</b> <strong>Current Velocity</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="glossary.html"><a href="glossary.html#d"><i class="fa fa-check"></i>D</a>
+<ul>
+<li class="chapter" data-level="18.3.14" data-path="glossary.html"><a href="glossary.html#diadromous"><i class="fa fa-check"></i><b>18.3.14</b> <strong>Diadromous</strong></a></li>
+<li class="chapter" data-level="18.3.15" data-path="glossary.html"><a href="glossary.html#digestion-1"><i class="fa fa-check"></i><b>18.3.15</b> <strong>Digestion</strong></a></li>
+<li class="chapter" data-level="18.3.16" data-path="glossary.html"><a href="glossary.html#depth-bathymetry"><i class="fa fa-check"></i><b>18.3.16</b> <strong>Depth (Bathymetry)</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="glossary.html"><a href="glossary.html#e"><i class="fa fa-check"></i>E</a>
+<ul>
+<li class="chapter" data-level="18.3.17" data-path="glossary.html"><a href="glossary.html#ebb"><i class="fa fa-check"></i><b>18.3.17</b> <strong>Ebb</strong></a></li>
+<li class="chapter" data-level="18.3.18" data-path="glossary.html"><a href="glossary.html#environmental-stress"><i class="fa fa-check"></i><b>18.3.18</b> <strong>Environmental Stress</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="glossary.html"><a href="glossary.html#f"><i class="fa fa-check"></i>F</a>
+<ul>
+<li class="chapter" data-level="18.3.19" data-path="glossary.html"><a href="glossary.html#filter-feeding"><i class="fa fa-check"></i><b>18.3.19</b> <strong>Filter Feeding</strong></a></li>
+<li class="chapter" data-level="18.3.20" data-path="glossary.html"><a href="glossary.html#flood"><i class="fa fa-check"></i><b>18.3.20</b> <strong>Flood</strong></a></li>
+<li class="chapter" data-level="18.3.21" data-path="glossary.html"><a href="glossary.html#flood-limit"><i class="fa fa-check"></i><b>18.3.21</b> <strong>Flood Limit</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="glossary.html"><a href="glossary.html#h"><i class="fa fa-check"></i>H</a>
+<ul>
+<li class="chapter" data-level="18.3.22" data-path="glossary.html"><a href="glossary.html#homing"><i class="fa fa-check"></i><b>18.3.22</b> <strong>Homing</strong></a></li>
+<li class="chapter" data-level="18.3.23" data-path="glossary.html"><a href="glossary.html#homeostasis"><i class="fa fa-check"></i><b>18.3.23</b> <strong>Homeostasis</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="glossary.html"><a href="glossary.html#i"><i class="fa fa-check"></i>I</a>
+<ul>
+<li class="chapter" data-level="18.3.24" data-path="glossary.html"><a href="glossary.html#iteroparous"><i class="fa fa-check"></i><b>18.3.24</b> <strong>Iteroparous</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="glossary.html"><a href="glossary.html#l"><i class="fa fa-check"></i>L</a>
+<ul>
+<li class="chapter" data-level="18.3.25" data-path="glossary.html"><a href="glossary.html#landward-migration"><i class="fa fa-check"></i><b>18.3.25</b> <strong>Landward Migration</strong></a></li>
+<li class="chapter" data-level="18.3.26" data-path="glossary.html"><a href="glossary.html#lipid-catabolism"><i class="fa fa-check"></i><b>18.3.26</b> <strong>Lipid Catabolism</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="glossary.html"><a href="glossary.html#m"><i class="fa fa-check"></i>M</a>
+<ul>
+<li class="chapter" data-level="18.3.27" data-path="glossary.html"><a href="glossary.html#mercury"><i class="fa fa-check"></i><b>18.3.27</b> <strong>Mercury</strong></a></li>
+<li class="chapter" data-level="18.3.28" data-path="glossary.html"><a href="glossary.html#metabolism-1"><i class="fa fa-check"></i><b>18.3.28</b> <strong>Metabolism</strong></a></li>
+<li class="chapter" data-level="18.3.29" data-path="glossary.html"><a href="glossary.html#methylmercury"><i class="fa fa-check"></i><b>18.3.29</b> <strong>Methylmercury</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="glossary.html"><a href="glossary.html#o"><i class="fa fa-check"></i>O</a>
+<ul>
+<li class="chapter" data-level="18.3.30" data-path="glossary.html"><a href="glossary.html#optimal-temperature"><i class="fa fa-check"></i><b>18.3.30</b> <strong>Optimal Temperature</strong></a></li>
+<li class="chapter" data-level="18.3.31" data-path="glossary.html"><a href="glossary.html#osmoregulation"><i class="fa fa-check"></i><b>18.3.31</b> <strong>Osmoregulation</strong></a></li>
+<li class="chapter" data-level="18.3.32" data-path="glossary.html"><a href="glossary.html#osmoregulatory-energy"><i class="fa fa-check"></i><b>18.3.32</b> <strong>Osmoregulatory Energy</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="glossary.html"><a href="glossary.html#p"><i class="fa fa-check"></i>P</a>
+<ul>
+<li class="chapter" data-level="18.3.33" data-path="glossary.html"><a href="glossary.html#pairwise-spawning"><i class="fa fa-check"></i><b>18.3.33</b> <strong>Pairwise Spawning</strong></a></li>
+<li class="chapter" data-level="18.3.34" data-path="glossary.html"><a href="glossary.html#patch"><i class="fa fa-check"></i><b>18.3.34</b> <strong>Patch</strong></a></li>
+<li class="chapter" data-level="18.3.35" data-path="glossary.html"><a href="glossary.html#pelagic"><i class="fa fa-check"></i><b>18.3.35</b> <strong>Pelagic</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="glossary.html"><a href="glossary.html#s"><i class="fa fa-check"></i>S</a>
+<ul>
+<li class="chapter" data-level="18.3.36" data-path="glossary.html"><a href="glossary.html#salinity"><i class="fa fa-check"></i><b>18.3.36</b> <strong>Salinity</strong></a></li>
+<li class="chapter" data-level="18.3.37" data-path="glossary.html"><a href="glossary.html#salinity-stress-1"><i class="fa fa-check"></i><b>18.3.37</b> <strong>Salinity Stress</strong></a></li>
+<li class="chapter" data-level="18.3.38" data-path="glossary.html"><a href="glossary.html#salt-wedge"><i class="fa fa-check"></i><b>18.3.38</b> <strong>Salt Wedge</strong></a></li>
+<li class="chapter" data-level="18.3.39" data-path="glossary.html"><a href="glossary.html#seaward-migration"><i class="fa fa-check"></i><b>18.3.39</b> <strong>Seaward Migration</strong></a></li>
+<li class="chapter" data-level="18.3.40" data-path="glossary.html"><a href="glossary.html#selective-tidal-stream-transport-stst"><i class="fa fa-check"></i><b>18.3.40</b> <strong>Selective Tidal Stream Transport (STST)</strong></a></li>
+<li class="chapter" data-level="18.3.41" data-path="glossary.html"><a href="glossary.html#semelparous"><i class="fa fa-check"></i><b>18.3.41</b> <strong>Semelparous</strong></a></li>
+<li class="chapter" data-level="18.3.42" data-path="glossary.html"><a href="glossary.html#spawning"><i class="fa fa-check"></i><b>18.3.42</b> <strong>Spawning</strong></a></li>
+<li class="chapter" data-level="18.3.43" data-path="glossary.html"><a href="glossary.html#staging"><i class="fa fa-check"></i><b>18.3.43</b> <strong>Staging</strong></a></li>
+<li class="chapter" data-level="18.3.44" data-path="glossary.html"><a href="glossary.html#suspended-particulate-matter-spm"><i class="fa fa-check"></i><b>18.3.44</b> <strong>Suspended Particulate Matter (SPM)</strong></a></li>
+<li class="chapter" data-level="18.3.45" data-path="glossary.html"><a href="glossary.html#swimming-difficulty-2"><i class="fa fa-check"></i><b>18.3.45</b> <strong>Swimming Difficulty</strong></a></li>
+<li class="chapter" data-level="18.3.46" data-path="glossary.html"><a href="glossary.html#swimming-energy-2"><i class="fa fa-check"></i><b>18.3.46</b> <strong>Swimming Energy</strong></a></li>
+<li class="chapter" data-level="18.3.47" data-path="glossary.html"><a href="glossary.html#swimming-speed-velocity"><i class="fa fa-check"></i><b>18.3.47</b> <strong>Swimming Speed (Velocity)</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="glossary.html"><a href="glossary.html#t"><i class="fa fa-check"></i>T</a>
+<ul>
+<li class="chapter" data-level="18.3.48" data-path="glossary.html"><a href="glossary.html#temperature"><i class="fa fa-check"></i><b>18.3.48</b> <strong>Temperature</strong></a></li>
+<li class="chapter" data-level="18.3.49" data-path="glossary.html"><a href="glossary.html#temperature-stress"><i class="fa fa-check"></i><b>18.3.49</b> <strong>Temperature Stress</strong></a></li>
+<li class="chapter" data-level="18.3.50" data-path="glossary.html"><a href="glossary.html#thermal-tolerance"><i class="fa fa-check"></i><b>18.3.50</b> <strong>Thermal Tolerance</strong></a></li>
+<li class="chapter" data-level="18.3.51" data-path="glossary.html"><a href="glossary.html#thermoregulation"><i class="fa fa-check"></i><b>18.3.51</b> <strong>Thermoregulation</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="simple-model-building-tutorial-schooling-landward-migration" class="section level1 hasAnchor" number="15">
+<h1><span class="header-section-number">Chapter 15</span> Simple Model Building Tutorial: Schooling &amp; Landward Migration<a href="simple-model-building-tutorial-schooling-landward-migration.html#simple-model-building-tutorial-schooling-landward-migration" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This tutorial introduces function integration by combining two submodels — <strong>schooling</strong> and <strong>landward migration</strong> — into a single model time step. It is intentionally simple: movement is represented as a generic forward step (<code>fd speed</code>) with no hydrodynamic resistance, routing cost fields, or energy tracking. The goal is to show <em>how</em> these two functions talk to each other and in what order they should be called, before adding the complexity of real hydrology or site-specific data.</p>
+<div id="module-integration" class="section level2 hasAnchor" number="15.1">
+<h2><span class="header-section-number">15.1</span> Module Integration<a href="simple-model-building-tutorial-schooling-landward-migration.html#module-integration" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Schooling and landward migration interact because they share the same agents and operate within the same time step, but serve different purposes. Migration drives each agent toward an upstream destination by turning to face <code>home-patch</code> and stepping forward; schooling adjusts heading and speed so that agents moving in the same direction stay cohesive as a group. When both functions are active together, migration sets the gross direction of travel and schooling refines it. Within this simple example, agents move toward their destination while also maintaining spacing and alignment with nearby con-specifics.</p>
+<p><strong>Temporal structure.</strong> Each tick represents one discrete time step. Every agent does the following, in order:</p>
+<ol style="list-style-type: decimal">
+<li>Check whether migration has started</li>
+<li>If migrating: face <code>home-patch</code> and move forward by <code>speed</code></li>
+<li>If schoolmates are present: apply separation, cohesion, and alignment rules</li>
+<li>Check arrival at destination</li>
+</ol>
+<p><strong>Spatial scale.</strong> The environment is a simple abstract grid of water patches. There are no real coordinates, tidal cycles, or input data files. Agents have a <code>home-patch</code> (upstream destination) and a <code>migration-patch</code> (downstream entry point), which are set at initialization.</p>
+<p><strong>Coupling logic.</strong> Migration faces the agent toward <code>home-patch</code> and calls <code>fd speed</code>; schooling then adjusts heading and speed <em>after</em> movement, modifying the next time step’s trajectory. This ordering means migration drives direction and schooling refines it. Because <code>adjust-speed</code> can slow an agent below its set speed, the school naturally converges on an emergent group speed — this is intentional behavior representing the cohesion trade-off.</p>
+</div>
+<div id="function-dependencies" class="section level2 hasAnchor" number="15.2">
+<h2><span class="header-section-number">15.2</span> Function Dependencies<a href="simple-model-building-tutorial-schooling-landward-migration.html#function-dependencies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Function</th>
+<th>Required Inputs</th>
+<th>Output Variables</th>
+<th>Dependent On</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>migrate-landward</code></td>
+<td><code>speed</code>, <code>home-patch</code></td>
+<td><code>xcor</code>, <code>ycor</code>, <code>patch-here</code></td>
+<td>migration state flags</td>
+</tr>
+<tr>
+<td><code>find-schoolmates</code></td>
+<td><code>breed</code>, <code>start-migration?</code>, <code>landward-migration?</code></td>
+<td><code>schoolmates</code></td>
+<td>migration state flags</td>
+</tr>
+<tr>
+<td><code>find-nearest-neighbor</code></td>
+<td><code>schoolmates</code></td>
+<td><code>nearest-neighbor</code></td>
+<td><code>find-schoolmates</code></td>
+</tr>
+<tr>
+<td><code>separate</code></td>
+<td><code>nearest-neighbor</code>, <code>minimum-separation</code>, <code>speed</code>, <code>min-speed</code></td>
+<td><code>heading</code>, <code>speed</code></td>
+<td><code>find-nearest-neighbor</code></td>
+</tr>
+<tr>
+<td><code>cohere</code></td>
+<td><code>schoolmates</code>, <code>cohere-coefficient</code></td>
+<td><code>heading</code></td>
+<td><code>find-nearest-neighbor</code></td>
+</tr>
+<tr>
+<td><code>align</code></td>
+<td><code>schoolmates</code>, <code>align-coefficient</code></td>
+<td><code>heading</code></td>
+<td><code>find-nearest-neighbor</code></td>
+</tr>
+<tr>
+<td><code>adjust-speed</code></td>
+<td><code>schoolmates</code>, <code>speed</code>, <code>min-speed</code></td>
+<td><code>speed</code></td>
+<td><code>find-nearest-neighbor</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key dependency:</strong> Schooling requires <code>start-migration?</code> and <code>landward-migration?</code> to be <code>true</code> before <code>find-schoolmates</code> will return any agents. An agent that has not yet begun migrating will have an empty <code>schoolmates</code> agent set and skip the schooling block entirely.</p>
+</div>
+<div id="implementation-in-netlogo" class="section level2 hasAnchor" number="15.3">
+<h2><span class="header-section-number">15.3</span> Implementation in NetLogo<a href="simple-model-building-tutorial-schooling-landward-migration.html#implementation-in-netlogo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This example uses a minimal environment — all patches are water and agents face and step toward <code>home-patch</code> each time step. There are no GIS data, no CSV inputs, no calendar, and no energy or velocity calculations.</p>
+<div id="variable-declarations" class="section level3 hasAnchor" number="15.3.1">
+<h3><span class="header-section-number">15.3.1</span> Variable declarations<a href="simple-model-building-tutorial-schooling-landward-migration.html#variable-declarations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre class="netlogo"><code>patches-own [
+  patch-terrain   ;; &quot;water&quot; or &quot;land&quot;
+]
+
+turtles-own [
+  ;; Migration state
+  start-migration?
+  landward-migration?
+  seaward-migration?
+  at-destination?
+
+  ;; Destination patches
+  home-patch
+  migration-patch
+
+  ;; Swimming
+  speed
+  min-speed
+
+  ;; Schooling
+  schoolmates
+  nearest-neighbor
+  minimum-separation
+  align-coefficient
+  cohere-coefficient
+  separate-coefficient
+]</code></pre>
+</div>
+<div id="setup" class="section level3 hasAnchor" number="15.3.2">
+<h3><span class="header-section-number">15.3.2</span> Setup<a href="simple-model-building-tutorial-schooling-landward-migration.html#setup" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre class="netlogo"><code>to setup
+  clear-all
+
+  ask patches [
+    set patch-terrain &quot;water&quot;
+  ]
+
+  create-turtles 20 [
+    setxy (min-pxcor + random world-width) (min-pycor + random world-height)
+    set shape &quot;fish&quot;
+    set color cyan
+
+    ;; Migration state — start migrating immediately in this minimal example
+    set start-migration?    true
+    set landward-migration? true
+    set seaward-migration?  false
+    set at-destination?     false
+
+    ;; Assign destination and entry patches
+    set home-patch      patch max-pxcor 0   ;; upstream end
+    set migration-patch patch min-pxcor 0   ;; downstream entry point
+
+    ;; Swimming parameters
+    set min-speed  0.5
+    set speed      1 + random-float 1
+
+    ;; Schooling parameters (BOIDS coefficients)
+    set minimum-separation   1.5
+    set align-coefficient    25
+    set cohere-coefficient   25
+    set separate-coefficient 25
+  ]
+
+  reset-ticks
+end</code></pre>
+</div>
+<div id="the-go-procedure-time-sequence" class="section level3 hasAnchor" number="15.3.3">
+<h3><span class="header-section-number">15.3.3</span> The go procedure — time sequence<a href="simple-model-building-tutorial-schooling-landward-migration.html#the-go-procedure-time-sequence" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre class="netlogo"><code>to go
+
+  ask turtles [
+
+    ;; Step 1: move toward home-patch
+    ;; face turns the agent toward its destination; fd moves it forward by speed.
+    ;; No routing cost field or velocity calculation needed here.
+    if landward-migration? and not at-destination? [
+      face home-patch
+      fd speed
+    ]
+
+    ;; Step 2: apply schooling rules (separation, cohesion, alignment, speed)
+    ;; find-schoolmates uses start-migration? and landward-migration? to form
+    ;; groups only among agents sharing the same migration state.
+    school
+
+    ;; Step 3: check arrival
+    if patch-here = home-patch [
+      set at-destination?     true
+      set landward-migration? false
+    ]
+  ]
+
+  tick
+end</code></pre>
+</div>
+<div id="what-to-observe" class="section level3 hasAnchor" number="15.3.4">
+<h3><span class="header-section-number">15.3.4</span> What to observe<a href="simple-model-building-tutorial-schooling-landward-migration.html#what-to-observe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>School cohesion:</strong> Plot <code>mean [distance nearest-neighbor] of turtles with [any? schoolmates]</code> over time. It should stabilize near <code>minimum-separation</code>.</li>
+<li><strong>Migration progress:</strong> Plot <code>mean [xcor] of turtles</code> — it should increase steadily toward <code>max-pxcor</code>.</li>
+<li><strong>Speed convergence:</strong> Plot <code>mean [speed] of turtles</code> — because <code>adjust-speed</code> pulls agents toward the group speed, individual variation should narrow over time.</li>
+</ul>
+</div>
+</div>
+<div id="implementation-in-r" class="section level2 hasAnchor" number="15.4">
+<h2><span class="header-section-number">15.4</span> Implementation in R<a href="simple-model-building-tutorial-schooling-landward-migration.html#implementation-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The R version represents the same logic using a data frame of agents updated in a loop. Movement is a simple position increment toward <code>home_x</code> — no routing, no velocity, no energy — and schooling adjusts heading and speed using the same BOIDS rules.</p>
+<div id="agent-data-structure" class="section level3 hasAnchor" number="15.4.1">
+<h3><span class="header-section-number">15.4.1</span> Agent data structure<a href="simple-model-building-tutorial-schooling-landward-migration.html#agent-data-structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb15-2"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-2" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-3" tabindex="-1"></a>n_agents <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb15-4"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-4" tabindex="-1"></a>n_ticks  <span class="ot">&lt;-</span> <span class="dv">150</span></span>
+<span id="cb15-5"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-5" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-6" tabindex="-1"></a>agents <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb15-7"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-7" tabindex="-1"></a>  <span class="at">id                   =</span> <span class="dv">1</span><span class="sc">:</span>n_agents,</span>
+<span id="cb15-8"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-8" tabindex="-1"></a>  <span class="at">x                    =</span> <span class="fu">runif</span>(n_agents, <span class="dv">0</span>, <span class="dv">5</span>),   <span class="co"># random start positions</span></span>
+<span id="cb15-9"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-9" tabindex="-1"></a>  <span class="at">y                    =</span> <span class="fu">runif</span>(n_agents, <span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>),</span>
+<span id="cb15-10"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-10" tabindex="-1"></a>  <span class="at">home_x               =</span> <span class="dv">50</span>,                      <span class="co"># upstream destination</span></span>
+<span id="cb15-11"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-11" tabindex="-1"></a>  <span class="at">start_migration      =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb15-12"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-12" tabindex="-1"></a>  <span class="at">landward_migration   =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb15-13"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-13" tabindex="-1"></a>  <span class="at">at_destination       =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb15-14"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-14" tabindex="-1"></a>  <span class="at">speed                =</span> <span class="fu">runif</span>(n_agents, <span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb15-15"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-15" tabindex="-1"></a>  <span class="at">min_speed            =</span> <span class="fl">0.5</span>,</span>
+<span id="cb15-16"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-16" tabindex="-1"></a>  <span class="at">heading              =</span> <span class="dv">0</span>,                       <span class="co"># degrees, 0 = facing upstream</span></span>
+<span id="cb15-17"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-17" tabindex="-1"></a>  <span class="at">minimum_separation   =</span> <span class="fl">1.5</span>,</span>
+<span id="cb15-18"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-18" tabindex="-1"></a>  <span class="at">cohere_coefficient   =</span> <span class="fl">0.25</span>,</span>
+<span id="cb15-19"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-19" tabindex="-1"></a>  <span class="at">align_coefficient    =</span> <span class="fl">0.25</span>,</span>
+<span id="cb15-20"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-20" tabindex="-1"></a>  <span class="at">separate_coefficient =</span> <span class="fl">0.25</span></span>
+<span id="cb15-21"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb15-21" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="submodel-functions" class="section level3 hasAnchor" number="15.4.2">
+<h3><span class="header-section-number">15.4.2</span> Submodel functions<a href="simple-model-building-tutorial-schooling-landward-migration.html#submodel-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-1" tabindex="-1"></a><span class="co"># ── Landward migration ────────────────────────────────────────────────────────</span></span>
+<span id="cb16-2"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-2" tabindex="-1"></a><span class="co"># Turns agent toward home_x and steps forward by speed.</span></span>
+<span id="cb16-3"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-3" tabindex="-1"></a><span class="co"># No velocity, cost field, or energy — just direction and distance.</span></span>
+<span id="cb16-4"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-4" tabindex="-1"></a>migrate_landward <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, speed, home_x) {</span>
+<span id="cb16-5"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-5" tabindex="-1"></a>  angle <span class="ot">&lt;-</span> <span class="fu">atan2</span>(<span class="dv">0</span>, home_x <span class="sc">-</span> x)        <span class="co"># heading toward home (y held at 0)</span></span>
+<span id="cb16-6"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-6" tabindex="-1"></a>  new_x <span class="ot">&lt;-</span> x <span class="sc">+</span> speed <span class="sc">*</span> <span class="fu">cos</span>(angle)</span>
+<span id="cb16-7"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-7" tabindex="-1"></a>  new_x <span class="ot">&lt;-</span> <span class="fu">pmin</span>(new_x, home_x)         <span class="co"># cap at destination</span></span>
+<span id="cb16-8"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-8" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">x =</span> new_x, <span class="at">y =</span> y, <span class="at">heading =</span> angle <span class="sc">*</span> <span class="dv">180</span> <span class="sc">/</span> pi)</span>
+<span id="cb16-9"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-9" tabindex="-1"></a>}</span>
+<span id="cb16-10"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-10" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-11" tabindex="-1"></a><span class="co"># ── Find schoolmates ──────────────────────────────────────────────────────────</span></span>
+<span id="cb16-12"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-12" tabindex="-1"></a>find_schoolmates <span class="ot">&lt;-</span> <span class="cf">function</span>(agent_id, agents) {</span>
+<span id="cb16-13"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-13" tabindex="-1"></a>  focal <span class="ot">&lt;-</span> agents[agents<span class="sc">$</span>id <span class="sc">==</span> agent_id, ]</span>
+<span id="cb16-14"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-14" tabindex="-1"></a>  agents[agents<span class="sc">$</span>id <span class="sc">!=</span> agent_id <span class="sc">&amp;</span></span>
+<span id="cb16-15"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-15" tabindex="-1"></a>           agents<span class="sc">$</span>start_migration <span class="sc">&amp;</span></span>
+<span id="cb16-16"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-16" tabindex="-1"></a>           agents<span class="sc">$</span>landward_migration <span class="sc">==</span> focal<span class="sc">$</span>landward_migration, ]</span>
+<span id="cb16-17"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-17" tabindex="-1"></a>}</span>
+<span id="cb16-18"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-18" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-19" tabindex="-1"></a><span class="co"># ── Schooling (BOIDS rules) ───────────────────────────────────────────────────</span></span>
+<span id="cb16-20"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-20" tabindex="-1"></a>school_agent <span class="ot">&lt;-</span> <span class="cf">function</span>(agent_id, agents) {</span>
+<span id="cb16-21"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-21" tabindex="-1"></a>  focal <span class="ot">&lt;-</span> agents[agents<span class="sc">$</span>id <span class="sc">==</span> agent_id, ]</span>
+<span id="cb16-22"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-22" tabindex="-1"></a>  mates <span class="ot">&lt;-</span> <span class="fu">find_schoolmates</span>(agent_id, agents)</span>
+<span id="cb16-23"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-23" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-24" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">nrow</span>(mates) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb16-25"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-25" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">heading =</span> focal<span class="sc">$</span>heading, <span class="at">speed =</span> focal<span class="sc">$</span>speed))</span>
+<span id="cb16-26"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-26" tabindex="-1"></a>  }</span>
+<span id="cb16-27"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-27" tabindex="-1"></a></span>
+<span id="cb16-28"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-28" tabindex="-1"></a>  <span class="co"># Nearest neighbor</span></span>
+<span id="cb16-29"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-29" tabindex="-1"></a>  dists   <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((mates<span class="sc">$</span>x <span class="sc">-</span> focal<span class="sc">$</span>x)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (mates<span class="sc">$</span>y <span class="sc">-</span> focal<span class="sc">$</span>y)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb16-30"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-30" tabindex="-1"></a>  nn_dist <span class="ot">&lt;-</span> <span class="fu">min</span>(dists)</span>
+<span id="cb16-31"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-31" tabindex="-1"></a>  nn_x    <span class="ot">&lt;-</span> mates<span class="sc">$</span>x[<span class="fu">which.min</span>(dists)]</span>
+<span id="cb16-32"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-32" tabindex="-1"></a></span>
+<span id="cb16-33"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-33" tabindex="-1"></a>  new_heading <span class="ot">&lt;-</span> focal<span class="sc">$</span>heading</span>
+<span id="cb16-34"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-34" tabindex="-1"></a>  new_speed   <span class="ot">&lt;-</span> focal<span class="sc">$</span>speed</span>
+<span id="cb16-35"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-35" tabindex="-1"></a></span>
+<span id="cb16-36"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-36" tabindex="-1"></a>  <span class="cf">if</span> (nn_dist <span class="sc">&lt;</span> focal<span class="sc">$</span>minimum_separation) {</span>
+<span id="cb16-37"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-37" tabindex="-1"></a>    <span class="co"># Separate: slow down if neighbor is ahead, turn away otherwise</span></span>
+<span id="cb16-38"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-38" tabindex="-1"></a>    <span class="cf">if</span> (nn_x <span class="sc">&gt;</span> focal<span class="sc">$</span>x) {</span>
+<span id="cb16-39"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-39" tabindex="-1"></a>      new_speed <span class="ot">&lt;-</span> <span class="fu">max</span>(focal<span class="sc">$</span>min_speed, focal<span class="sc">$</span>speed <span class="sc">-</span> <span class="fl">0.1</span>)</span>
+<span id="cb16-40"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-40" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb16-41"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-41" tabindex="-1"></a>      new_heading <span class="ot">&lt;-</span> focal<span class="sc">$</span>heading <span class="sc">+</span></span>
+<span id="cb16-42"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-42" tabindex="-1"></a>        (focal<span class="sc">$</span>separate_coefficient <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">*</span> <span class="fu">sign</span>(focal<span class="sc">$</span>x <span class="sc">-</span> nn_x) <span class="sc">*</span> <span class="dv">10</span></span>
+<span id="cb16-43"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-43" tabindex="-1"></a>    }</span>
+<span id="cb16-44"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-44" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb16-45"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-45" tabindex="-1"></a>    <span class="co"># Cohere: turn toward centroid of schoolmates</span></span>
+<span id="cb16-46"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-46" tabindex="-1"></a>    centroid_x  <span class="ot">&lt;-</span> <span class="fu">mean</span>(mates<span class="sc">$</span>x)</span>
+<span id="cb16-47"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-47" tabindex="-1"></a>    new_heading <span class="ot">&lt;-</span> focal<span class="sc">$</span>heading <span class="sc">+</span></span>
+<span id="cb16-48"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-48" tabindex="-1"></a>      (focal<span class="sc">$</span>cohere_coefficient <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">*</span> <span class="fu">sign</span>(centroid_x <span class="sc">-</span> focal<span class="sc">$</span>x) <span class="sc">*</span> <span class="dv">10</span></span>
+<span id="cb16-49"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-49" tabindex="-1"></a></span>
+<span id="cb16-50"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-50" tabindex="-1"></a>    <span class="co"># Align: match mean heading of schoolmates</span></span>
+<span id="cb16-51"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-51" tabindex="-1"></a>    mean_heading <span class="ot">&lt;-</span> <span class="fu">mean</span>(mates<span class="sc">$</span>heading)</span>
+<span id="cb16-52"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-52" tabindex="-1"></a>    new_heading  <span class="ot">&lt;-</span> new_heading <span class="sc">+</span></span>
+<span id="cb16-53"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-53" tabindex="-1"></a>      (focal<span class="sc">$</span>align_coefficient <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">*</span> (mean_heading <span class="sc">-</span> new_heading)</span>
+<span id="cb16-54"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-54" tabindex="-1"></a>  }</span>
+<span id="cb16-55"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-55" tabindex="-1"></a></span>
+<span id="cb16-56"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-56" tabindex="-1"></a>  <span class="co"># Adjust speed: speed up if a schoolmate is faster, otherwise slow down</span></span>
+<span id="cb16-57"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-57" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">max</span>(mates<span class="sc">$</span>speed) <span class="sc">&gt;</span> focal<span class="sc">$</span>speed <span class="sc">+</span> <span class="fl">0.1</span>) {</span>
+<span id="cb16-58"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-58" tabindex="-1"></a>    new_speed <span class="ot">&lt;-</span> focal<span class="sc">$</span>speed <span class="sc">*</span> <span class="fl">1.1</span></span>
+<span id="cb16-59"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-59" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (focal<span class="sc">$</span>speed <span class="sc">&gt;</span> focal<span class="sc">$</span>min_speed) {</span>
+<span id="cb16-60"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-60" tabindex="-1"></a>    new_speed <span class="ot">&lt;-</span> focal<span class="sc">$</span>speed <span class="sc">*</span> <span class="fl">0.9</span></span>
+<span id="cb16-61"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-61" tabindex="-1"></a>  }</span>
+<span id="cb16-62"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-62" tabindex="-1"></a>  new_speed <span class="ot">&lt;-</span> <span class="fu">max</span>(new_speed, focal<span class="sc">$</span>min_speed)</span>
+<span id="cb16-63"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-63" tabindex="-1"></a></span>
+<span id="cb16-64"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-64" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">heading =</span> new_heading <span class="sc">%%</span> <span class="dv">360</span>, <span class="at">speed =</span> new_speed)</span>
+<span id="cb16-65"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb16-65" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="simulation-loop" class="section level3 hasAnchor" number="15.4.3">
+<h3><span class="header-section-number">15.4.3</span> Simulation loop<a href="simple-model-building-tutorial-schooling-landward-migration.html#simulation-loop" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-1" tabindex="-1"></a>log_ticks <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;list&quot;</span>, n_ticks)</span>
+<span id="cb17-2"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-2" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-3" tabindex="-1"></a><span class="cf">for</span> (tick <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_ticks) {</span>
+<span id="cb17-4"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-4" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-5" tabindex="-1"></a>  <span class="co"># Step 1: migrate — face home and step forward</span></span>
+<span id="cb17-6"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-6" tabindex="-1"></a>  migrating <span class="ot">&lt;-</span> agents<span class="sc">$</span>start_migration <span class="sc">&amp;</span> agents<span class="sc">$</span>landward_migration <span class="sc">&amp;</span></span>
+<span id="cb17-7"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-7" tabindex="-1"></a>               <span class="sc">!</span>agents<span class="sc">$</span>at_destination</span>
+<span id="cb17-8"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-8" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-9" tabindex="-1"></a>  move_results <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">which</span>(migrating), <span class="cf">function</span>(i) {</span>
+<span id="cb17-10"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-10" tabindex="-1"></a>    <span class="fu">migrate_landward</span>(agents<span class="sc">$</span>x[i], agents<span class="sc">$</span>y[i],</span>
+<span id="cb17-11"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-11" tabindex="-1"></a>                     agents<span class="sc">$</span>speed[i], agents<span class="sc">$</span>home_x[i])</span>
+<span id="cb17-12"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-12" tabindex="-1"></a>  })</span>
+<span id="cb17-13"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-13" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-14" tabindex="-1"></a>  agents<span class="sc">$</span>x[migrating]       <span class="ot">&lt;-</span> <span class="fu">sapply</span>(move_results, <span class="st">`</span><span class="at">[[</span><span class="st">`</span>, <span class="st">&quot;x&quot;</span>)</span>
+<span id="cb17-15"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-15" tabindex="-1"></a>  agents<span class="sc">$</span>y[migrating]       <span class="ot">&lt;-</span> <span class="fu">sapply</span>(move_results, <span class="st">`</span><span class="at">[[</span><span class="st">`</span>, <span class="st">&quot;y&quot;</span>)</span>
+<span id="cb17-16"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-16" tabindex="-1"></a>  agents<span class="sc">$</span>heading[migrating] <span class="ot">&lt;-</span> <span class="fu">sapply</span>(move_results, <span class="st">`</span><span class="at">[[</span><span class="st">`</span>, <span class="st">&quot;heading&quot;</span>)</span>
+<span id="cb17-17"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-17" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-18" tabindex="-1"></a>  <span class="co"># Step 2: school — separation, cohesion, alignment, speed adjustment</span></span>
+<span id="cb17-19"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-19" tabindex="-1"></a>  school_results <span class="ot">&lt;-</span> <span class="fu">lapply</span>(agents<span class="sc">$</span>id, <span class="cf">function</span>(aid) {</span>
+<span id="cb17-20"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-20" tabindex="-1"></a>    <span class="fu">school_agent</span>(aid, agents)</span>
+<span id="cb17-21"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-21" tabindex="-1"></a>  })</span>
+<span id="cb17-22"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-22" tabindex="-1"></a>  agents<span class="sc">$</span>heading <span class="ot">&lt;-</span> <span class="fu">sapply</span>(school_results, <span class="st">`</span><span class="at">[[</span><span class="st">`</span>, <span class="st">&quot;heading&quot;</span>)</span>
+<span id="cb17-23"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-23" tabindex="-1"></a>  agents<span class="sc">$</span>speed   <span class="ot">&lt;-</span> <span class="fu">sapply</span>(school_results, <span class="st">`</span><span class="at">[[</span><span class="st">`</span>, <span class="st">&quot;speed&quot;</span>)</span>
+<span id="cb17-24"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-24" tabindex="-1"></a></span>
+<span id="cb17-25"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-25" tabindex="-1"></a>  <span class="co"># Step 3: check arrival</span></span>
+<span id="cb17-26"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-26" tabindex="-1"></a>  agents <span class="ot">&lt;-</span> agents <span class="sc">|&gt;</span></span>
+<span id="cb17-27"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-27" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb17-28"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-28" tabindex="-1"></a>      <span class="at">at_destination     =</span> x <span class="sc">&gt;=</span> home_x,</span>
+<span id="cb17-29"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-29" tabindex="-1"></a>      <span class="at">landward_migration =</span> <span class="sc">!</span>at_destination</span>
+<span id="cb17-30"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-30" tabindex="-1"></a>    )</span>
+<span id="cb17-31"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-31" tabindex="-1"></a></span>
+<span id="cb17-32"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-32" tabindex="-1"></a>  <span class="co"># Log summary statistics</span></span>
+<span id="cb17-33"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-33" tabindex="-1"></a>  log_ticks[[tick]] <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb17-34"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-34" tabindex="-1"></a>    <span class="at">tick       =</span> tick,</span>
+<span id="cb17-35"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-35" tabindex="-1"></a>    <span class="at">mean_x     =</span> <span class="fu">mean</span>(agents<span class="sc">$</span>x),</span>
+<span id="cb17-36"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-36" tabindex="-1"></a>    <span class="at">mean_speed =</span> <span class="fu">mean</span>(agents<span class="sc">$</span>speed),</span>
+<span id="cb17-37"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-37" tabindex="-1"></a>    <span class="at">n_arrived  =</span> <span class="fu">sum</span>(agents<span class="sc">$</span>at_destination)</span>
+<span id="cb17-38"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-38" tabindex="-1"></a>  )</span>
+<span id="cb17-39"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-39" tabindex="-1"></a>}</span>
+<span id="cb17-40"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-40" tabindex="-1"></a></span>
+<span id="cb17-41"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb17-41" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(log_ticks)</span></code></pre></div>
+</div>
+<div id="visualizing-outputs" class="section level3 hasAnchor" number="15.4.4">
+<h3><span class="header-section-number">15.4.4</span> Visualizing outputs<a href="simple-model-building-tutorial-schooling-landward-migration.html#visualizing-outputs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb18-2"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-2" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-3" tabindex="-1"></a><span class="co"># Migration progress</span></span>
+<span id="cb18-4"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-4" tabindex="-1"></a><span class="fu">ggplot</span>(results, <span class="fu">aes</span>(<span class="at">x =</span> tick, <span class="at">y =</span> mean_x)) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;#2c7bb6&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb18-6"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Mean agent position over time&quot;</span>,</span>
+<span id="cb18-7"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-7" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Tick&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Mean upstream position&quot;</span>) <span class="sc">+</span></span>
+<span id="cb18-8"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb18-9"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-9" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-10" tabindex="-1"></a><span class="co"># Speed convergence from schooling</span></span>
+<span id="cb18-11"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-11" tabindex="-1"></a><span class="fu">ggplot</span>(results, <span class="fu">aes</span>(<span class="at">x =</span> tick, <span class="at">y =</span> mean_speed)) <span class="sc">+</span></span>
+<span id="cb18-12"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-12" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;#d7191c&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb18-13"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-13" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Mean agent speed over time&quot;</span>,</span>
+<span id="cb18-14"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-14" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Tick&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Mean speed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb18-15"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-15" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb18-16"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-16" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-17" tabindex="-1"></a><span class="co"># Cumulative arrivals</span></span>
+<span id="cb18-18"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-18" tabindex="-1"></a><span class="fu">ggplot</span>(results, <span class="fu">aes</span>(<span class="at">x =</span> tick, <span class="at">y =</span> n_arrived)) <span class="sc">+</span></span>
+<span id="cb18-19"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-19" tabindex="-1"></a>  <span class="fu">geom_step</span>(<span class="at">color =</span> <span class="st">&quot;#1a9641&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb18-20"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-20" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Cumulative arrivals at home patch&quot;</span>,</span>
+<span id="cb18-21"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-21" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Tick&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Number of agents arrived&quot;</span>) <span class="sc">+</span></span>
+<span id="cb18-22"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb18-22" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+</div>
+</div>
+<div id="implementation-in-python" class="section level2 hasAnchor" number="15.5">
+<h2><span class="header-section-number">15.5</span> Implementation in Python<a href="simple-model-building-tutorial-schooling-landward-migration.html#implementation-in-python" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Python version follows the same structure as the R implementation — a data frame of agents updated in a loop, with movement as a simple step toward <code>home_x</code> and schooling applied per agent. The <code>pandas</code> library handles the agent table; schooling is applied with a row-wise loop since each agent needs to read the full table.</p>
+<div id="agent-data-structure-1" class="section level3 hasAnchor" number="15.5.1">
+<h3><span class="header-section-number">15.5.1</span> Agent data structure<a href="simple-model-building-tutorial-schooling-landward-migration.html#agent-data-structure-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb19-2"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb19-3"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-3" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-4" tabindex="-1"></a>n_agents <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb19-5"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-5" tabindex="-1"></a>n_ticks  <span class="op">=</span> <span class="dv">150</span></span>
+<span id="cb19-6"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-6" tabindex="-1"></a>rng      <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb19-7"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-7" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-8" tabindex="-1"></a>agents <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb19-9"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-9" tabindex="-1"></a>    <span class="st">&quot;id&quot;</span>                  : np.arange(n_agents),</span>
+<span id="cb19-10"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-10" tabindex="-1"></a>    <span class="st">&quot;x&quot;</span>                   : rng.uniform(<span class="dv">0</span>, <span class="dv">5</span>, n_agents),   <span class="co"># random start positions</span></span>
+<span id="cb19-11"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-11" tabindex="-1"></a>    <span class="st">&quot;y&quot;</span>                   : rng.uniform(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, n_agents),</span>
+<span id="cb19-12"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-12" tabindex="-1"></a>    <span class="st">&quot;home_x&quot;</span>              : <span class="dv">50</span>,                            <span class="co"># upstream destination</span></span>
+<span id="cb19-13"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-13" tabindex="-1"></a>    <span class="st">&quot;start_migration&quot;</span>     : <span class="va">True</span>,</span>
+<span id="cb19-14"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-14" tabindex="-1"></a>    <span class="st">&quot;landward_migration&quot;</span>  : <span class="va">True</span>,</span>
+<span id="cb19-15"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-15" tabindex="-1"></a>    <span class="st">&quot;at_destination&quot;</span>      : <span class="va">False</span>,</span>
+<span id="cb19-16"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-16" tabindex="-1"></a>    <span class="st">&quot;speed&quot;</span>               : rng.uniform(<span class="dv">1</span>, <span class="dv">2</span>, n_agents),</span>
+<span id="cb19-17"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-17" tabindex="-1"></a>    <span class="st">&quot;min_speed&quot;</span>           : <span class="fl">0.5</span>,</span>
+<span id="cb19-18"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-18" tabindex="-1"></a>    <span class="st">&quot;heading&quot;</span>             : <span class="fl">0.0</span>,                           <span class="co"># degrees, 0 = upstream</span></span>
+<span id="cb19-19"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-19" tabindex="-1"></a>    <span class="st">&quot;minimum_separation&quot;</span>  : <span class="fl">1.5</span>,</span>
+<span id="cb19-20"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-20" tabindex="-1"></a>    <span class="st">&quot;cohere_coefficient&quot;</span>  : <span class="fl">0.25</span>,</span>
+<span id="cb19-21"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-21" tabindex="-1"></a>    <span class="st">&quot;align_coefficient&quot;</span>   : <span class="fl">0.25</span>,</span>
+<span id="cb19-22"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-22" tabindex="-1"></a>    <span class="st">&quot;separate_coefficient&quot;</span>: <span class="fl">0.25</span>,</span>
+<span id="cb19-23"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb19-23" tabindex="-1"></a>})</span></code></pre></div>
+</div>
+<div id="submodel-functions-1" class="section level3 hasAnchor" number="15.5.2">
+<h3><span class="header-section-number">15.5.2</span> Submodel functions<a href="simple-model-building-tutorial-schooling-landward-migration.html#submodel-functions-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-1" tabindex="-1"></a><span class="co"># ── Landward migration ────────────────────────────────────────────────────────</span></span>
+<span id="cb20-2"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-2" tabindex="-1"></a><span class="co"># Turns agent toward home_x and steps forward by speed.</span></span>
+<span id="cb20-3"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-3" tabindex="-1"></a><span class="co"># No velocity, cost field, or energy — just direction and distance.</span></span>
+<span id="cb20-4"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-4" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-5" tabindex="-1"></a><span class="kw">def</span> migrate_landward(x, y, speed, home_x):</span>
+<span id="cb20-6"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-6" tabindex="-1"></a>    angle <span class="op">=</span> np.arctan2(<span class="dv">0</span>, home_x <span class="op">-</span> x)        <span class="co"># heading toward home (y held at 0)</span></span>
+<span id="cb20-7"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-7" tabindex="-1"></a>    new_x <span class="op">=</span> x <span class="op">+</span> speed <span class="op">*</span> np.cos(angle)</span>
+<span id="cb20-8"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-8" tabindex="-1"></a>    new_x <span class="op">=</span> <span class="bu">min</span>(new_x, home_x)               <span class="co"># cap at destination</span></span>
+<span id="cb20-9"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-9" tabindex="-1"></a>    heading <span class="op">=</span> np.degrees(angle)</span>
+<span id="cb20-10"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-10" tabindex="-1"></a>    <span class="cf">return</span> new_x, y, heading</span>
+<span id="cb20-11"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-11" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-12" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-13" tabindex="-1"></a><span class="co"># ── Find schoolmates ──────────────────────────────────────────────────────────</span></span>
+<span id="cb20-14"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-14" tabindex="-1"></a></span>
+<span id="cb20-15"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-15" tabindex="-1"></a><span class="kw">def</span> find_schoolmates(agent_id, agents):</span>
+<span id="cb20-16"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-16" tabindex="-1"></a>    focal <span class="op">=</span> agents.loc[agents[<span class="st">&quot;id&quot;</span>] <span class="op">==</span> agent_id].iloc[<span class="dv">0</span>]</span>
+<span id="cb20-17"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-17" tabindex="-1"></a>    mates <span class="op">=</span> agents[</span>
+<span id="cb20-18"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-18" tabindex="-1"></a>        (agents[<span class="st">&quot;id&quot;</span>] <span class="op">!=</span> agent_id) <span class="op">&amp;</span></span>
+<span id="cb20-19"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-19" tabindex="-1"></a>        (agents[<span class="st">&quot;start_migration&quot;</span>]) <span class="op">&amp;</span></span>
+<span id="cb20-20"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-20" tabindex="-1"></a>        (agents[<span class="st">&quot;landward_migration&quot;</span>] <span class="op">==</span> focal[<span class="st">&quot;landward_migration&quot;</span>])</span>
+<span id="cb20-21"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-21" tabindex="-1"></a>    ]</span>
+<span id="cb20-22"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-22" tabindex="-1"></a>    <span class="cf">return</span> mates</span>
+<span id="cb20-23"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-23" tabindex="-1"></a></span>
+<span id="cb20-24"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-24" tabindex="-1"></a></span>
+<span id="cb20-25"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-25" tabindex="-1"></a><span class="co"># ── Schooling (BOIDS rules) ───────────────────────────────────────────────────</span></span>
+<span id="cb20-26"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-26" tabindex="-1"></a></span>
+<span id="cb20-27"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-27" tabindex="-1"></a><span class="kw">def</span> school_agent(agent_id, agents):</span>
+<span id="cb20-28"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-28" tabindex="-1"></a>    focal <span class="op">=</span> agents.loc[agents[<span class="st">&quot;id&quot;</span>] <span class="op">==</span> agent_id].iloc[<span class="dv">0</span>]</span>
+<span id="cb20-29"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-29" tabindex="-1"></a>    mates <span class="op">=</span> find_schoolmates(agent_id, agents)</span>
+<span id="cb20-30"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-30" tabindex="-1"></a></span>
+<span id="cb20-31"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-31" tabindex="-1"></a>    <span class="cf">if</span> mates.empty:</span>
+<span id="cb20-32"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-32" tabindex="-1"></a>        <span class="cf">return</span> focal[<span class="st">&quot;heading&quot;</span>], focal[<span class="st">&quot;speed&quot;</span>]</span>
+<span id="cb20-33"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-33" tabindex="-1"></a></span>
+<span id="cb20-34"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-34" tabindex="-1"></a>    <span class="co"># Nearest neighbor</span></span>
+<span id="cb20-35"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-35" tabindex="-1"></a>    dists   <span class="op">=</span> np.sqrt((mates[<span class="st">&quot;x&quot;</span>] <span class="op">-</span> focal[<span class="st">&quot;x&quot;</span>])<span class="op">**</span><span class="dv">2</span> <span class="op">+</span></span>
+<span id="cb20-36"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-36" tabindex="-1"></a>                      (mates[<span class="st">&quot;y&quot;</span>] <span class="op">-</span> focal[<span class="st">&quot;y&quot;</span>])<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb20-37"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-37" tabindex="-1"></a>    nn_dist <span class="op">=</span> dists.<span class="bu">min</span>()</span>
+<span id="cb20-38"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-38" tabindex="-1"></a>    nn_x    <span class="op">=</span> mates.loc[dists.idxmin(), <span class="st">&quot;x&quot;</span>]</span>
+<span id="cb20-39"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-39" tabindex="-1"></a></span>
+<span id="cb20-40"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-40" tabindex="-1"></a>    new_heading <span class="op">=</span> focal[<span class="st">&quot;heading&quot;</span>]</span>
+<span id="cb20-41"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-41" tabindex="-1"></a>    new_speed   <span class="op">=</span> focal[<span class="st">&quot;speed&quot;</span>]</span>
+<span id="cb20-42"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-42" tabindex="-1"></a></span>
+<span id="cb20-43"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-43" tabindex="-1"></a>    <span class="cf">if</span> nn_dist <span class="op">&lt;</span> focal[<span class="st">&quot;minimum_separation&quot;</span>]:</span>
+<span id="cb20-44"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-44" tabindex="-1"></a>        <span class="co"># Separate: slow down if neighbor is ahead, turn away otherwise</span></span>
+<span id="cb20-45"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-45" tabindex="-1"></a>        <span class="cf">if</span> nn_x <span class="op">&gt;</span> focal[<span class="st">&quot;x&quot;</span>]:</span>
+<span id="cb20-46"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-46" tabindex="-1"></a>            new_speed <span class="op">=</span> <span class="bu">max</span>(focal[<span class="st">&quot;min_speed&quot;</span>], focal[<span class="st">&quot;speed&quot;</span>] <span class="op">-</span> <span class="fl">0.1</span>)</span>
+<span id="cb20-47"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-47" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb20-48"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-48" tabindex="-1"></a>            new_heading <span class="op">=</span> focal[<span class="st">&quot;heading&quot;</span>] <span class="op">+</span> (</span>
+<span id="cb20-49"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-49" tabindex="-1"></a>                focal[<span class="st">&quot;separate_coefficient&quot;</span>] <span class="op">/</span> <span class="dv">100</span></span>
+<span id="cb20-50"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-50" tabindex="-1"></a>            ) <span class="op">*</span> np.sign(focal[<span class="st">&quot;x&quot;</span>] <span class="op">-</span> nn_x) <span class="op">*</span> <span class="dv">10</span></span>
+<span id="cb20-51"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-51" tabindex="-1"></a></span>
+<span id="cb20-52"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-52" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb20-53"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-53" tabindex="-1"></a>        <span class="co"># Cohere: turn toward centroid of schoolmates</span></span>
+<span id="cb20-54"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-54" tabindex="-1"></a>        centroid_x  <span class="op">=</span> mates[<span class="st">&quot;x&quot;</span>].mean()</span>
+<span id="cb20-55"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-55" tabindex="-1"></a>        new_heading <span class="op">=</span> focal[<span class="st">&quot;heading&quot;</span>] <span class="op">+</span> (</span>
+<span id="cb20-56"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-56" tabindex="-1"></a>            focal[<span class="st">&quot;cohere_coefficient&quot;</span>] <span class="op">/</span> <span class="dv">100</span></span>
+<span id="cb20-57"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-57" tabindex="-1"></a>        ) <span class="op">*</span> np.sign(centroid_x <span class="op">-</span> focal[<span class="st">&quot;x&quot;</span>]) <span class="op">*</span> <span class="dv">10</span></span>
+<span id="cb20-58"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-58" tabindex="-1"></a></span>
+<span id="cb20-59"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-59" tabindex="-1"></a>        <span class="co"># Align: match mean heading of schoolmates</span></span>
+<span id="cb20-60"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-60" tabindex="-1"></a>        mean_heading <span class="op">=</span> mates[<span class="st">&quot;heading&quot;</span>].mean()</span>
+<span id="cb20-61"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-61" tabindex="-1"></a>        new_heading  <span class="op">=</span> new_heading <span class="op">+</span> (</span>
+<span id="cb20-62"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-62" tabindex="-1"></a>            focal[<span class="st">&quot;align_coefficient&quot;</span>] <span class="op">/</span> <span class="dv">100</span></span>
+<span id="cb20-63"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-63" tabindex="-1"></a>        ) <span class="op">*</span> (mean_heading <span class="op">-</span> new_heading)</span>
+<span id="cb20-64"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-64" tabindex="-1"></a></span>
+<span id="cb20-65"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-65" tabindex="-1"></a>    <span class="co"># Adjust speed: speed up if a schoolmate is faster, otherwise slow down</span></span>
+<span id="cb20-66"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-66" tabindex="-1"></a>    <span class="cf">if</span> mates[<span class="st">&quot;speed&quot;</span>].<span class="bu">max</span>() <span class="op">&gt;</span> focal[<span class="st">&quot;speed&quot;</span>] <span class="op">+</span> <span class="fl">0.1</span>:</span>
+<span id="cb20-67"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-67" tabindex="-1"></a>        new_speed <span class="op">=</span> focal[<span class="st">&quot;speed&quot;</span>] <span class="op">*</span> <span class="fl">1.1</span></span>
+<span id="cb20-68"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-68" tabindex="-1"></a>    <span class="cf">elif</span> focal[<span class="st">&quot;speed&quot;</span>] <span class="op">&gt;</span> focal[<span class="st">&quot;min_speed&quot;</span>]:</span>
+<span id="cb20-69"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-69" tabindex="-1"></a>        new_speed <span class="op">=</span> focal[<span class="st">&quot;speed&quot;</span>] <span class="op">*</span> <span class="fl">0.9</span></span>
+<span id="cb20-70"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-70" tabindex="-1"></a>    new_speed <span class="op">=</span> <span class="bu">max</span>(new_speed, focal[<span class="st">&quot;min_speed&quot;</span>])</span>
+<span id="cb20-71"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-71" tabindex="-1"></a></span>
+<span id="cb20-72"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb20-72" tabindex="-1"></a>    <span class="cf">return</span> new_heading <span class="op">%</span> <span class="dv">360</span>, new_speed</span></code></pre></div>
+</div>
+<div id="simulation-loop-1" class="section level3 hasAnchor" number="15.5.3">
+<h3><span class="header-section-number">15.5.3</span> Simulation loop<a href="simple-model-building-tutorial-schooling-landward-migration.html#simulation-loop-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-1" tabindex="-1"></a>log_ticks <span class="op">=</span> []</span>
+<span id="cb21-2"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-2" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-3" tabindex="-1"></a><span class="cf">for</span> tick <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n_ticks <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb21-4"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-4" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-5" tabindex="-1"></a>    <span class="co"># Step 1: migrate — face home and step forward</span></span>
+<span id="cb21-6"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-6" tabindex="-1"></a>    migrating <span class="op">=</span> (</span>
+<span id="cb21-7"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-7" tabindex="-1"></a>        agents[<span class="st">&quot;start_migration&quot;</span>] <span class="op">&amp;</span></span>
+<span id="cb21-8"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-8" tabindex="-1"></a>        agents[<span class="st">&quot;landward_migration&quot;</span>] <span class="op">&amp;</span></span>
+<span id="cb21-9"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-9" tabindex="-1"></a>        <span class="op">~</span>agents[<span class="st">&quot;at_destination&quot;</span>]</span>
+<span id="cb21-10"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-10" tabindex="-1"></a>    )</span>
+<span id="cb21-11"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-11" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-12" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> agents.index[migrating]:</span>
+<span id="cb21-13"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-13" tabindex="-1"></a>        row <span class="op">=</span> agents.loc[i]</span>
+<span id="cb21-14"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-14" tabindex="-1"></a>        new_x, new_y, new_heading <span class="op">=</span> migrate_landward(</span>
+<span id="cb21-15"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-15" tabindex="-1"></a>            row[<span class="st">&quot;x&quot;</span>], row[<span class="st">&quot;y&quot;</span>], row[<span class="st">&quot;speed&quot;</span>], row[<span class="st">&quot;home_x&quot;</span>]</span>
+<span id="cb21-16"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-16" tabindex="-1"></a>        )</span>
+<span id="cb21-17"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-17" tabindex="-1"></a>        agents.at[i, <span class="st">&quot;x&quot;</span>]       <span class="op">=</span> new_x</span>
+<span id="cb21-18"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-18" tabindex="-1"></a>        agents.at[i, <span class="st">&quot;y&quot;</span>]       <span class="op">=</span> new_y</span>
+<span id="cb21-19"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-19" tabindex="-1"></a>        agents.at[i, <span class="st">&quot;heading&quot;</span>] <span class="op">=</span> new_heading</span>
+<span id="cb21-20"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-20" tabindex="-1"></a></span>
+<span id="cb21-21"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-21" tabindex="-1"></a>    <span class="co"># Step 2: school — separation, cohesion, alignment, speed adjustment</span></span>
+<span id="cb21-22"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-22" tabindex="-1"></a>    school_results <span class="op">=</span> [school_agent(aid, agents) <span class="cf">for</span> aid <span class="kw">in</span> agents[<span class="st">&quot;id&quot;</span>]]</span>
+<span id="cb21-23"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-23" tabindex="-1"></a>    agents[<span class="st">&quot;heading&quot;</span>] <span class="op">=</span> [r[<span class="dv">0</span>] <span class="cf">for</span> r <span class="kw">in</span> school_results]</span>
+<span id="cb21-24"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-24" tabindex="-1"></a>    agents[<span class="st">&quot;speed&quot;</span>]   <span class="op">=</span> [r[<span class="dv">1</span>] <span class="cf">for</span> r <span class="kw">in</span> school_results]</span>
+<span id="cb21-25"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-25" tabindex="-1"></a></span>
+<span id="cb21-26"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-26" tabindex="-1"></a>    <span class="co"># Step 3: check arrival</span></span>
+<span id="cb21-27"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-27" tabindex="-1"></a>    agents[<span class="st">&quot;at_destination&quot;</span>]    <span class="op">=</span> agents[<span class="st">&quot;x&quot;</span>] <span class="op">&gt;=</span> agents[<span class="st">&quot;home_x&quot;</span>]</span>
+<span id="cb21-28"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-28" tabindex="-1"></a>    agents[<span class="st">&quot;landward_migration&quot;</span>] <span class="op">=</span> <span class="op">~</span>agents[<span class="st">&quot;at_destination&quot;</span>]</span>
+<span id="cb21-29"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-29" tabindex="-1"></a></span>
+<span id="cb21-30"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-30" tabindex="-1"></a>    <span class="co"># Log summary statistics</span></span>
+<span id="cb21-31"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-31" tabindex="-1"></a>    log_ticks.append({</span>
+<span id="cb21-32"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-32" tabindex="-1"></a>        <span class="st">&quot;tick&quot;</span>      : tick,</span>
+<span id="cb21-33"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-33" tabindex="-1"></a>        <span class="st">&quot;mean_x&quot;</span>    : agents[<span class="st">&quot;x&quot;</span>].mean(),</span>
+<span id="cb21-34"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-34" tabindex="-1"></a>        <span class="st">&quot;mean_speed&quot;</span>: agents[<span class="st">&quot;speed&quot;</span>].mean(),</span>
+<span id="cb21-35"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-35" tabindex="-1"></a>        <span class="st">&quot;n_arrived&quot;</span> : agents[<span class="st">&quot;at_destination&quot;</span>].<span class="bu">sum</span>(),</span>
+<span id="cb21-36"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-36" tabindex="-1"></a>    })</span>
+<span id="cb21-37"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-37" tabindex="-1"></a></span>
+<span id="cb21-38"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb21-38" tabindex="-1"></a>results <span class="op">=</span> pd.DataFrame(log_ticks)</span></code></pre></div>
+</div>
+<div id="visualizing-outputs-1" class="section level3 hasAnchor" number="15.5.4">
+<h3><span class="header-section-number">15.5.4</span> Visualizing outputs<a href="simple-model-building-tutorial-schooling-landward-migration.html#visualizing-outputs-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb22-2"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-2" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-3" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb22-4"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-4" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-5" tabindex="-1"></a><span class="co"># Migration progress</span></span>
+<span id="cb22-6"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-6" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(results[<span class="st">&quot;tick&quot;</span>], results[<span class="st">&quot;mean_x&quot;</span>], color<span class="op">=</span><span class="st">&quot;#2c7bb6&quot;</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb22-7"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-7" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">&quot;Mean agent position over time&quot;</span>)</span>
+<span id="cb22-8"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-8" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">&quot;Tick&quot;</span>)</span>
+<span id="cb22-9"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-9" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">&quot;Mean upstream position&quot;</span>)</span>
+<span id="cb22-10"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-10" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-11" tabindex="-1"></a><span class="co"># Speed convergence from schooling</span></span>
+<span id="cb22-12"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-12" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(results[<span class="st">&quot;tick&quot;</span>], results[<span class="st">&quot;mean_speed&quot;</span>], color<span class="op">=</span><span class="st">&quot;#d7191c&quot;</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb22-13"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-13" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">&quot;Mean agent speed over time&quot;</span>)</span>
+<span id="cb22-14"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-14" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">&quot;Tick&quot;</span>)</span>
+<span id="cb22-15"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-15" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">&quot;Mean speed&quot;</span>)</span>
+<span id="cb22-16"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-16" tabindex="-1"></a></span>
+<span id="cb22-17"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-17" tabindex="-1"></a><span class="co"># Cumulative arrivals</span></span>
+<span id="cb22-18"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-18" tabindex="-1"></a>axes[<span class="dv">2</span>].step(results[<span class="st">&quot;tick&quot;</span>], results[<span class="st">&quot;n_arrived&quot;</span>],</span>
+<span id="cb22-19"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-19" tabindex="-1"></a>             color<span class="op">=</span><span class="st">&quot;#1a9641&quot;</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, where<span class="op">=</span><span class="st">&quot;post&quot;</span>)</span>
+<span id="cb22-20"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-20" tabindex="-1"></a>axes[<span class="dv">2</span>].set_title(<span class="st">&quot;Cumulative arrivals at home patch&quot;</span>)</span>
+<span id="cb22-21"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-21" tabindex="-1"></a>axes[<span class="dv">2</span>].set_xlabel(<span class="st">&quot;Tick&quot;</span>)</span>
+<span id="cb22-22"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-22" tabindex="-1"></a>axes[<span class="dv">2</span>].set_ylabel(<span class="st">&quot;Number of agents arrived&quot;</span>)</span>
+<span id="cb22-23"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-23" tabindex="-1"></a></span>
+<span id="cb22-24"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-24" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb22-25"><a href="simple-model-building-tutorial-schooling-landward-migration.html#cb22-25" tabindex="-1"></a>plt.show()</span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="predation-and-fleeing-behavior.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="complex-model-building-tutorial-landward-migration-schooling-selective-tidal-stream-transport.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/16-integrate_functions_example_01.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": "GoFish.pdf",
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
