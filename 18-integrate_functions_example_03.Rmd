@@ -32,7 +32,7 @@ The `swim` procedure is the central integrator: it sets `previous-patch` / `prev
 
 ## Function Dependencies
 
-The table below shows the full dependency chain for an alewife in the landward migration phase. Functions are listed in the order they must be called each tick. See Appendix C of Mahan (2025) for the complete equation set for each submodel.
+The table below shows the full dependency chain for an alewife in the landward migration phase. Functions are listed in the order they must be called each tick.
 
 | Function | Required Inputs | Output Variables | Dependent On |
 |------------------|------------------|------------------|------------------|
@@ -59,7 +59,7 @@ The table below shows the full dependency chain for an alewife in the landward m
 
 **STST and schooling coupling:** `selective-tidal-stream-transport-landward` gates the call to `migrate-landward`. `migrate-landward` contains the full schooling sequence (`find-schoolmates` → `find-nearest-neighbor` → `separate` / `cohere` + `align` → `adjust-speed`) before executing path-following movement. Agents in STST drift passively and do not school; this is correct behavior and means school cohesion metrics are only meaningful for active-swimming ticks.
 
-**Migration cue → start-migration?:** The `calc-migration-probability` function increments `migration-probability` each day the cue is active, and an agent transitions to `start-migration? = true` stochastically when `random-float 1 <= migration-probability`. This produces a spread of entry dates that matches the observed distribution of Milford Dam passage counts used for model evaluation (Mahan 2025, Table 4.3).
+**Migration cue → start-migration?:** The `calc-migration-probability` function increments `migration-probability` each day the cue is active, and an agent transitions to `start-migration? = true` stochastically when `random-float 1 <= migration-probability`. This produces a spread of entry dates that can used for model evaluation.
 
 ## Implementation in NetLogo
 
@@ -516,11 +516,11 @@ end
 
 ### What to observe
 
-The P-MEM produces outputs across three categories, all of which are visualized in the Mercury Risk Explorer (<https://vkzfr3-vanessa-mahan.shinyapps.io/Mercury_Risk_Explorer/>):
+The P-MEM produces outputs across three categories:
 
--   **Migration timing and passage counts:** Compare `alewives-on-line-daily-total-landward` against the 2023 Milford Dam fish lift counts (the model evaluation dataset used in Mahan 2025, Table 4.3). The stochastic migration probability ramp should produce a realistic spread of entry dates peaked in late April–May.
+-   **Migration timing and passage counts:** Compare `alewives-on-line-daily-total-landward` against observed fish passage data. The stochastic migration probability ramp should produce a realistic spread of entry dates peaked in late April–May.
 -   **Behavioral state dynamics:** Plot the proportions of agents in STST (`selective-tidal-transport?`), foraging (`foraging?`), landward migration (`landward-migration?`), and at destination (`at-destination?`) over time. These proportions shift across the tidal cycle and across the migration season, illustrating how behavior reorganizes contaminant exposure opportunity.
--   **Exposure pathway dominance:** Compare `mean [hg-uptake-risk] of alewives` (branchial, gill-contact exposure) against `mean [hg-foraging-total] of alewives` (particulate ingestion) across predation scenarios. Mahan (2025, Chapter 4) shows that predation pressure shifts which pathway dominates individual cumulative burden.
+-   **Exposure pathway dominance:** Compare `mean [hg-uptake-risk] of alewives` (branchial, gill-contact exposure) against `mean [hg-foraging-total] of alewives` (particulate ingestion) across predation scenarios. P-MEM shows that predation pressure shifts which pathway dominates individual cumulative burden.
 -   **Spatial exposure patterns:** The Mercury Risk Explorer shows cumulative `hg-exp-risk-total-alewife` and `mehg-exp-risk-total-alewife` aggregated across patches, revealing which reaches of the estuary accumulate the most contaminant interaction across scenarios.
 
 ### Export Results from Netlogo

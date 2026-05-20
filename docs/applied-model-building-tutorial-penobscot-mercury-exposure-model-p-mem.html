@@ -713,7 +713,7 @@ div.csl-indent {
 </div>
 <div id="function-dependencies-2" class="section level2 hasAnchor" number="17.2">
 <h2><span class="header-section-number">17.2</span> Function Dependencies<a href="applied-model-building-tutorial-penobscot-mercury-exposure-model-p-mem.html#function-dependencies-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The table below shows the full dependency chain for an alewife in the landward migration phase. Functions are listed in the order they must be called each tick. See Appendix C of Mahan (2025) for the complete equation set for each submodel.</p>
+<p>The table below shows the full dependency chain for an alewife in the landward migration phase. Functions are listed in the order they must be called each tick.</p>
 <table>
 <colgroup>
 <col width="25%" />
@@ -842,7 +842,7 @@ div.csl-indent {
 </table>
 <p><strong>Key dependency on <code>swim</code>:</strong> All contamination, osmoregulation, and digestion functions read patch-level variables (<code>mercury</code>, <code>methylmercury</code>, <code>salinity</code>, <code>temperature</code>, <code>SPM</code>) from <code>patch-here</code>. This means <code>swim</code> — which moves the agent — must complete before any of these functions run. If the order is reversed, agents are exposed to the contaminant levels of the <em>previous</em> tick’s patch, not their current location.</p>
 <p><strong>STST and schooling coupling:</strong> <code>selective-tidal-stream-transport-landward</code> gates the call to <code>migrate-landward</code>. <code>migrate-landward</code> contains the full schooling sequence (<code>find-schoolmates</code> → <code>find-nearest-neighbor</code> → <code>separate</code> / <code>cohere</code> + <code>align</code> → <code>adjust-speed</code>) before executing path-following movement. Agents in STST drift passively and do not school; this is correct behavior and means school cohesion metrics are only meaningful for active-swimming ticks.</p>
-<p><strong>Migration cue → start-migration?:</strong> The <code>calc-migration-probability</code> function increments <code>migration-probability</code> each day the cue is active, and an agent transitions to <code>start-migration? = true</code> stochastically when <code>random-float 1 &lt;= migration-probability</code>. This produces a spread of entry dates that matches the observed distribution of Milford Dam passage counts used for model evaluation (Mahan 2025, Table 4.3).</p>
+<p><strong>Migration cue → start-migration?:</strong> The <code>calc-migration-probability</code> function increments <code>migration-probability</code> each day the cue is active, and an agent transitions to <code>start-migration? = true</code> stochastically when <code>random-float 1 &lt;= migration-probability</code>. This produces a spread of entry dates that can used for model evaluation.</p>
 </div>
 <div id="implementation-in-netlogo-2" class="section level2 hasAnchor" number="17.3">
 <h2><span class="header-section-number">17.3</span> Implementation in NetLogo<a href="applied-model-building-tutorial-penobscot-mercury-exposure-model-p-mem.html#implementation-in-netlogo-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1289,11 +1289,11 @@ end</code></pre>
 </div>
 <div id="what-to-observe-2" class="section level3 hasAnchor" number="17.3.6">
 <h3><span class="header-section-number">17.3.6</span> What to observe<a href="applied-model-building-tutorial-penobscot-mercury-exposure-model-p-mem.html#what-to-observe-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The P-MEM produces outputs across three categories, all of which are visualized in the Mercury Risk Explorer (<a href="https://vkzfr3-vanessa-mahan.shinyapps.io/Mercury_Risk_Explorer/" class="uri">https://vkzfr3-vanessa-mahan.shinyapps.io/Mercury_Risk_Explorer/</a>):</p>
+<p>The P-MEM produces outputs across three categories:</p>
 <ul>
-<li><strong>Migration timing and passage counts:</strong> Compare <code>alewives-on-line-daily-total-landward</code> against the 2023 Milford Dam fish lift counts (the model evaluation dataset used in Mahan 2025, Table 4.3). The stochastic migration probability ramp should produce a realistic spread of entry dates peaked in late April–May.</li>
+<li><strong>Migration timing and passage counts:</strong> Compare <code>alewives-on-line-daily-total-landward</code> against observed fish passage data. The stochastic migration probability ramp should produce a realistic spread of entry dates peaked in late April–May.</li>
 <li><strong>Behavioral state dynamics:</strong> Plot the proportions of agents in STST (<code>selective-tidal-transport?</code>), foraging (<code>foraging?</code>), landward migration (<code>landward-migration?</code>), and at destination (<code>at-destination?</code>) over time. These proportions shift across the tidal cycle and across the migration season, illustrating how behavior reorganizes contaminant exposure opportunity.</li>
-<li><strong>Exposure pathway dominance:</strong> Compare <code>mean [hg-uptake-risk] of alewives</code> (branchial, gill-contact exposure) against <code>mean [hg-foraging-total] of alewives</code> (particulate ingestion) across predation scenarios. Mahan (2025, Chapter 4) shows that predation pressure shifts which pathway dominates individual cumulative burden.</li>
+<li><strong>Exposure pathway dominance:</strong> Compare <code>mean [hg-uptake-risk] of alewives</code> (branchial, gill-contact exposure) against <code>mean [hg-foraging-total] of alewives</code> (particulate ingestion) across predation scenarios. P-MEM shows that predation pressure shifts which pathway dominates individual cumulative burden.</li>
 <li><strong>Spatial exposure patterns:</strong> The Mercury Risk Explorer shows cumulative <code>hg-exp-risk-total-alewife</code> and <code>mehg-exp-risk-total-alewife</code> aggregated across patches, revealing which reaches of the estuary accumulate the most contaminant interaction across scenarios.</li>
 </ul>
 </div>
