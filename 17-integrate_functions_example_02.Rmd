@@ -33,7 +33,7 @@ This means `selective-tidal-stream-transport-landward` is the *gatekeeper* for m
 
 ## Implementation in NetLogo
 
-This example uses a generic grid environment with procedurally generated tidal velocity. There are no GIS data, CSV inputs, or calendar — just agents, patches, a sawtooth velocity signal, and the behavioral functions called in the sequence used by `swim`. A complete working implementation is available at https://github.com/vmahan1998/Sample_ABM_Tutorials/tree/main/Complex_Example_02/Netlogo.
+This example uses a generic grid environment with procedurally generated tidal velocity. There are no GIS data, CSV inputs, or calendar — just agents, patches, a sawtooth velocity signal, and the behavioral functions called in the sequence used by `swim`. A complete working implementation is available at [Complex Model NetLogo Implementation](https://github.com/vmahan1998/Sample_ABM_Tutorials/tree/main/Complex_Example_02/Netlogo).
 
 ### Variable declarations
 
@@ -232,7 +232,7 @@ end
 
 ## Implementation in R
 
-This example builds directly on the NetLogo submodel files developed throughout the book — `Landward-Migration.nls`, `Selective-Tidal-Stream-Transport.nls`, and `Schooling.nls` and its component files. The tidal velocity signal and world setup are generic stand-ins for empirical inputs; everything else follows the variable conventions and function call sequence established in those files. A complete working implementation is available at https://github.com/vmahan1998/Sample_ABM_Tutorials/tree/main/Complex_Example_02/R.
+This example builds directly on the NetLogo submodel files developed throughout the book — `Landward-Migration.nls`, `Selective-Tidal-Stream-Transport.nls`, and `Schooling.nls` and its component files. The tidal velocity signal and world setup are generic stand-ins for empirical inputs; everything else follows the variable conventions and function call sequence established in those files. A complete working implementation is available at [Complex Model R Implementation](https://github.com/vmahan1998/Sample_ABM_Tutorials/tree/main/Complex_Example_02/R).
 
 ### Agent and patch data structures
 
@@ -544,7 +544,7 @@ ggplot(results, aes(x = tick, y = mean_energy)) +
 
 ## Implementation in Python
 
-The Python version follows the same structure as the R implementation — a `pandas` DataFrame of agents updated in a loop, with schooling nested inside `migrate_landward_lc`, which is itself called from inside `stst_landward`. The function nesting mirrors the NetLogo structure exactly. A complete working implementation is available at https://github.com/vmahan1998/Sample_ABM_Tutorials/tree/main/Complex_Example_02/Python.
+The Python version follows the same structure as the R implementation — a `pandas` DataFrame of agents updated in a loop, with schooling nested inside `migrate_landward_lc`, which is itself called from inside `stst_landward`. The function nesting mirrors the NetLogo structure exactly. A complete working implementation is available at [Complex Model Python Implementation](https://github.com/vmahan1998/Sample_ABM_Tutorials/tree/main/Complex_Example_02/Python).
 
 ### Agent and patch data structures
 

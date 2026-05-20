@@ -33,7 +33,7 @@ Schooling and landward movement interact because they share the same agents and 
 
 ## Implementation in NetLogo
 
-This example uses a minimal environment — all patches are water and agents face and step toward `home-patch` each time step. There are no GIS data, no CSV inputs, no calendar, and no energy or velocity calculations. A complete working implementation is available at https://github.com/vmahan1998/Sample_ABM_Tutorials/tree/main/Simple_Example_01/Netlogo.
+This example uses a minimal environment — all patches are water and agents face and step toward `home-patch` each time step. There are no GIS data, no CSV inputs, no calendar, and no energy or velocity calculations. A complete working implementation is available at [Simple Model NetLogo Implementation](https://github.com/vmahan1998/Sample_ABM_Tutorials/tree/main/Simple_Example_01/Netlogo).
 
 ### Variable declarations
 
@@ -146,7 +146,7 @@ end
 
 ## Implementation in R
 
-The R version represents the same logic using a data frame of agents updated in a loop. Movement is a simple position increment toward `home_x` — no routing, no velocity, no energy — and schooling adjusts heading and speed using the same BOIDS rules. A complete working implementation is available at https://github.com/vmahan1998/Sample_ABM_Tutorials/tree/main/Simple_Example_01/R.
+The R version represents the same logic using a data frame of agents updated in a loop. Movement is a simple position increment toward `home_x` — no routing, no velocity, no energy — and schooling adjusts heading and speed using the same BOIDS rules. A complete working implementation is available at [Simple Model R Implementation](https://github.com/vmahan1998/Sample_ABM_Tutorials/tree/main/Simple_Example_01/R).
 
 ### Agent data structure
 
@@ -319,7 +319,7 @@ ggplot(results, aes(x = tick, y = n_arrived)) +
 
 ## Implementation in Python
 
-The Python version follows the same structure as the R implementation — a data frame of agents updated in a loop, with movement as a simple step toward `home_x` and schooling applied per agent. The `pandas` library handles the agent table; schooling is applied with a row-wise loop since each agent needs to read the full table. A complete working implementation is available at https://github.com/vmahan1998/Sample_ABM_Tutorials/tree/main/Simple_Example_01/Python.
+The Python version follows the same structure as the R implementation — a data frame of agents updated in a loop, with movement as a simple step toward `home_x` and schooling applied per agent. The `pandas` library handles the agent table; schooling is applied with a row-wise loop since each agent needs to read the full table. A complete working implementation is available at [Simple Model Python Implementation](https://github.com/vmahan1998/Sample_ABM_Tutorials/tree/main/Simple_Example_01/Python).
 
 ### Agent data structure
 
