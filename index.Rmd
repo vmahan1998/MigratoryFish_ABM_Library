@@ -37,6 +37,6 @@ This library was originally developed in support of research on the influence of
 
 ## How to Use This Library {.unnumbered}
 
-Each function or behavior in this library can be combined with others to build a complete agent-based model for anadromous fish. These functions are designed to be adaptable, and easily configured for different species, life stages, or site-specific conditions.
+Each function or behavior in this library can be combined with others to build a complete agent-based model for migratory fish. These functions are designed to be adaptable, and easily configured for different species, life stages, or site-specific conditions.
 
 *For questions, feedback, guidance on implementation, or **interest in adding to the library**, please contact **Vanessa Quintana** at [**mahan.vanessa98\@gmail.com**](mailto:mahan.vanessa98@gmail.com){.email}**.**

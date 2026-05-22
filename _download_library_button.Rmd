@@ -2,7 +2,7 @@
 docx_path <- "/GoFish/chapter_downloads/Quintana_GoFish_Library.docx"
 
 cat(sprintf(
-  '<a href="%s" download class="btn-download">⬇ Download Complete Library (.docx)</a>\n\n',
+  '<a href="%s" download class="btn-download">🐟 Download Complete Library</a>\n\n',
   docx_path
 ))
 ```
