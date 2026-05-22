@@ -22,7 +22,7 @@ a.btn-download:visited {
   margin: 0.8em 0 1.8em 0;
   padding: 10px 20px;
   background: linear-gradient(135deg, #1a6e3c, #2ecc71);
-  color: white !important;
+  color: black !important;
   border-radius: 25px;
   text-decoration: none !important;
   font-size: 0.95em;
@@ -36,7 +36,7 @@ a.btn-download:visited {
 a.btn-download:hover,
 a.btn-download:focus {
   background: linear-gradient(135deg, #145a32, #27ae60);
-  color: white !important;
+  color: black !important;
   box-shadow: 0 6px 18px rgba(46, 204, 113, 0.5);
   transform: translateY(-2px);
   text-decoration: none !important;

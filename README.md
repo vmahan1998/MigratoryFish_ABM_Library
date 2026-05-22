@@ -211,8 +211,7 @@ partners. Full acknowledgements are documented in Chapter 3.
 
 If you use GoFish or P-MEM in your research, please cite:
 
-Quintana, V. (2026). GoFish: A Behavioral Function Library for Migratory
-Fish Agent-Based Models. University of Maine.
+Quintana, V. (2026). GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries. University of Maine.
 https://doi.org/10.5281/ZENODO.19483469
 
 ---
@@ -229,9 +228,6 @@ See [LICENSE](LICENSE) for details.
 **Vanessa Quintana**  
 University of Maine · USACE Engineering Research and Development Center  
 [GitHub](https://github.com/vmahan1998)
-
-**Gayle Zydlewski**  
-University of Maine · NOAA Sea Grant
 
 ---
 
