@@ -23,7 +23,7 @@
 <meta name="author" content="Vanessa Quintana, Gayle Zydlewski, Joeseph Dello-Russo, Kaylyn Zipp, Todd Swannack" />
 
 
-<meta name="date" content="2026-05-20" />
+<meta name="date" content="2026-05-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -129,7 +129,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -704,7 +703,7 @@ div.csl-indent {
 <div id="overview-11" class="section level2 hasAnchor" number="14.1">
 <h2><span class="header-section-number">14.1</span> Overview<a href="predation-and-fleeing-behavior.html#overview-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This module simulates predator–prey interactions between striped bass (predators) and alewife (prey) during migratory and staging periods, representing encounters as localized behavioral interactions embedded within movement, schooling, and energetic state. Predators visually detect nearby prey based on proximity, visual range, gape limitation, and stomach capacity, initiate pursuit when energetically feasible, and consume prey within capture range. Prey respond through directional fleeing and short evasive movements, with escape responses propagating across nearby individuals through a patch-level alarm mechanism. The model tracks energetic costs of pursuit and escape, prey consumption events, and resulting spatial patterns of predation risk.</p>
-<p>The interaction structure is adapted from the NetLogo schooling and predation framework of <span class="citation">(<a href="#ref-dobon_netlogo_2018">Dobon 2018</a>)</span>, extended here by linking chase, escape, and capture outcomes to hydrodynamic movement, energetic cost, and contaminant transfer. Predator–prey interactions are inherently spatial and emerge from movement and local overlap among individuals, where encounter rates are governed by proximity and relative motion through the environment <span class="citation">(<a href="#ref-northfield_spatial_2017">Northfield, Barton, and Schmitz 2017</a>)</span>. These interactions follow established predator–prey theory in which consumption arises from encounter processes and functional responses linking prey availability to predator intake <span class="citation">(<a href="#ref-diz-pita_predatorprey_2021">Diz-Pita and Otero-Espinar 2021</a>)</span>, allowing predation risk, prey displacement, predator foraging success, and contaminant uptake to emerge dynamically rather than being imposed as fixed mortality or feeding rates.</p>
+<p>The interaction structure is adapted from the NetLogo schooling and predation framework of <span class="citation">(<a href="#ref-dobon_netlogo_2018">Dobon 2018</a>)</span>, extended here by linking chase, escape, and capture outcomes to hydrodynamic movement, energetic cost, and contaminant transfer. Predator–prey interactions are inherently spatial and emerge from movement and local overlap among individuals, where encounter rates are governed by proximity and relative motion through the environment <span class="citation">(<a href="#ref-northfield_spatial_2017">Northfield et al. 2017</a>)</span>. These interactions follow established predator–prey theory in which consumption arises from encounter processes and functional responses linking prey availability to predator intake <span class="citation">(<a href="#ref-diz-pita_predatorprey_2021">Diz-Pita and Otero-Espinar 2021</a>)</span>, allowing predation risk, prey displacement, predator foraging success, and contaminant uptake to emerge dynamically rather than being imposed as fixed mortality or feeding rates.</p>
 </div>
 <div id="purpose-and-patterns-1" class="section level2 hasAnchor" number="14.2">
 <h2><span class="header-section-number">14.2</span> Purpose and Patterns<a href="predation-and-fleeing-behavior.html#purpose-and-patterns-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1552,12 +1551,12 @@ units).</p></li>
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-diz-pita_predatorprey_2021" class="csl-entry">
 Diz-Pita, Érika, and M. Victoria Otero-Espinar. 2021. <span>“Predator–<span>Prey</span> <span>Models</span>: <span>A</span> <span>Review</span> of <span>Some</span> <span>Recent</span> <span>Advances</span>.”</span> <em>Mathematics</em> 9 (15): 1783. <a href="https://doi.org/10.3390/math9151783">https://doi.org/10.3390/math9151783</a>.
 </div>
 <div id="ref-dobon_netlogo_2018" class="csl-entry">
-Dobon, Sebastian. 2018. <span>“Netlogo Fish Schooling for Predator Avoidance Model.”</span> Evanston, <span>IL</span>: Northwestern University.
+Dobon, Sebastian. 2018. <em>Netlogo Fish Schooling for Predator Avoidance Model</em>. Northwestern University.
 </div>
 <div id="ref-northfield_spatial_2017" class="csl-entry">
 Northfield, Tobin D., Brandon T. Barton, and Oswald J. Schmitz. 2017. <span>“A Spatial Theory for Emergent Multiple Predator–Prey Interactions in Food Webs.”</span> <em>Ecology and Evolution</em> 7 (17): 6935–48. <a href="https://doi.org/10.1002/ece3.3250">https://doi.org/10.1002/ece3.3250</a>.

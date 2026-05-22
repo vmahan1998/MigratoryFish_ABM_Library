@@ -6,6 +6,8 @@ This page consolidates the tools, references, practices, and repositories that s
 
 ## Best Practices
 
+Building a good agent-based model is not just about getting the code to run. It is about building something that can be understood, evaluated, extended, and trusted by people other than the person who wrote it. The practices described in this section are not bureaucratic overhead. They are the difference between a model that produces a result and a model that produces a defensible, reproducible, and reusable scientific contribution. Each practice discussed below targets a specific failure mode that is common in computational ecological modeling: undocumented assumptions that cannot be verified, entangled code that cannot be debugged, outputs that cannot be traced back to a specific model version, and behavioral rules that encode the modeler's assumptions rather than the system's ecology. When addressed using the best practices of agent-based models, they form a workflow that supports model development at every stage, from the first behavioral rule to the final manuscript figure.
+
 ### ODD Protocol
 
 **What it is.** The ODD (Overview, Design Concepts, Details) protocol [@grimm_standard_2006; @grimm_odd_2010; @grimm_odd_2020] is the standard documentation framework for agent-based models. It covers seven elements in a fixed order:

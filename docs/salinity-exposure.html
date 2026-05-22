@@ -23,7 +23,7 @@
 <meta name="author" content="Vanessa Quintana, Gayle Zydlewski, Joeseph Dello-Russo, Kaylyn Zipp, Todd Swannack" />
 
 
-<meta name="date" content="2026-05-20" />
+<meta name="date" content="2026-05-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -129,7 +129,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -703,7 +702,7 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 6</span> Salinity Exposure<a href="salinity-exposure.html#salinity-exposure" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="overview-2" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Overview<a href="salinity-exposure.html#overview-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Osmoregulation allows migratory fish to maintain homeostasis by regulating internal ion concentrations in response to varying environmental salinities. Within the model, it is represented as a dynamic, state-dependent physiological process that links spatiotemporally explicit salinity exposure to ion-regulatory stress, chloride cell expression, and the metabolic energy costs of acclimation. Rather than assuming instantaneous equilibrium with surrounding salinity, agents experience osmotic stress based on local conditions and respond through time-dependent physiological adjustment <span class="citation">(<a href="#ref-evans_osmotic_2008">David H. Evans and Claiborne 2008</a>)</span>.</p>
+<p>Osmoregulation allows migratory fish to maintain homeostasis by regulating internal ion concentrations in response to varying environmental salinities. Within the model, it is represented as a dynamic, state-dependent physiological process that links spatiotemporally explicit salinity exposure to ion-regulatory stress, chloride cell expression, and the metabolic energy costs of acclimation. Rather than assuming instantaneous equilibrium with surrounding salinity, agents experience osmotic stress based on local conditions and respond through time-dependent physiological adjustment <span class="citation">(<a href="#ref-evans_osmotic_2008">Evans and Claiborne 2008</a>)</span>.</p>
 </div>
 <div id="purpose-2" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Purpose<a href="salinity-exposure.html#purpose-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -851,9 +850,9 @@ osmoregulation (%).</p></li>
 <h2><span class="header-section-number">6.5</span> Design Concepts<a href="salinity-exposure.html#design-concepts-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Basic Principles:</strong> The model is based on principles of physiological
 ecology and osmoregulatory energetics in teleost species
-<span class="citation">(<a href="#ref-evans_osmotic_2008">David H. Evans and Claiborne 2008</a>)</span>. It draws from empirical findings on ion
+<span class="citation">(<a href="#ref-evans_osmotic_2008">Evans and Claiborne 2008</a>)</span>. It draws from empirical findings on ion
 transport, chloride cell (ionocyte) proliferation, and the energetic
-costs of osmoregulation (e.g., <span class="citation">Allen, Cech, and Kültz (<a href="#ref-allen_mechanisms_2009">2009</a>)</span>;
+costs of osmoregulation (e.g., <span class="citation">Allen et al. (<a href="#ref-allen_mechanisms_2009">2009</a>)</span>;
 <span class="citation">Little et al. (<a href="#ref-little_metabolic_2023">2023</a>)</span>). This process is represented in the model as a
 delayed, rate-limited acclimation response, governed by osmotic stress,
 energy availability, and an acclimation interval (<span class="math inline">\(t_{osmo}\)</span>), rather
@@ -1009,7 +1008,7 @@ S_{stress} = S_{stress} \cdot 0.98 \quad \text{if conditions are stable and } C 
 <p>Agents also slowly shift their acclimated salinity toward ambient
 salinity when conditions have been stable for several time steps (e.g.,
 hours to days), consistent with documented time-dependent salinity
-acclimation in fishes <span class="citation">(<a href="#ref-evans_osmotic_2008">David H. Evans and Claiborne 2008</a>)</span>.</p>
+acclimation in fishes <span class="citation">(<a href="#ref-evans_osmotic_2008">Evans and Claiborne 2008</a>)</span>.</p>
 <p><span class="math display">\[
 S_{agent} = S_{agent} + (S_{patch} - S_{agent}) \cdot 0.02   \hspace{2cm} \text{(C.21)}
 \]</span></p>
@@ -1023,7 +1022,7 @@ S_{agent} = S_{agent} + (S_{patch} - S_{agent}) \cdot 0.02   \hspace{2cm} \text{
 <h3><span class="header-section-number">6.7.2</span> Chloride Cell Density<a href="salinity-exposure.html#chloride-cell-density" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Chloride cell proliferation is driven by the level of ion-regulatory
 stress the agent experiences when encountering a difference in salinity
-<span class="citation">(<a href="#ref-evans_osmotic_2008">David H. Evans and Claiborne 2008</a>)</span>. In teleost fishes, ion transport capacity and
+<span class="citation">(<a href="#ref-evans_osmotic_2008">Evans and Claiborne 2008</a>)</span>. In teleost fishes, ion transport capacity and
 chloride cell function are regulated through changes in transporter
 activity and cell abundance in response to environmental salinity and
 endocrine signaling, rather than instantaneous adjustment. Accordingly,
@@ -1147,7 +1146,7 @@ salinity changes.</p>
 <p>This formulation follows established allometric scaling relationships in
 ecological physiology, where metabolic and physiological processes scale
 with body mass (g) according to a power-law relationship (e.g.,
-<span class="citation">Kleiber (<a href="#ref-kleiber_body_1932">1932</a>)</span>; <span class="citation">West, Brown, and Enquist (<a href="#ref-west_general_1997">1997</a>)</span>; <span class="citation">Brown et al. (<a href="#ref-brown_toward_2004">2004</a>)</span>;
+<span class="citation">Kleiber (<a href="#ref-kleiber_body_1932">1932</a>)</span>; <span class="citation">West et al. (<a href="#ref-west_general_1997">1997</a>)</span>; <span class="citation">Brown et al. (<a href="#ref-brown_toward_2004">2004</a>)</span>;
 <span class="citation">Schmidt-Nielsen (<a href="#ref-schmidt_nielsen_animal_1997">1997</a>)</span>).</p>
 <p>Metabolic cost related to mass (g):</p>
 <p><span class="math display">\[
@@ -1408,7 +1407,7 @@ end
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-allen_mechanisms_2009" class="csl-entry">
 Allen, Peter J., Joseph J. Cech, and Dietmar Kültz. 2009. <span>“Mechanisms of Seawater Acclimation in a Primitive, Anadromous Fish, the Green Sturgeon.”</span> <em>Journal of Comparative Physiology B</em> 179 (7): 903–20. <a href="https://doi.org/10.1007/s00360-009-0372-2">https://doi.org/10.1007/s00360-009-0372-2</a>.
 </div>
@@ -1416,7 +1415,7 @@ Allen, Peter J., Joseph J. Cech, and Dietmar Kültz. 2009. <span>“Mechanisms o
 Brown, James H., James F. Gillooly, Andrew P. Allen, Van M. Savage, and Geoffrey B. West. 2004. <span>“<span>TOWARD</span> a <span>METABOLIC</span> <span>THEORY</span> <span>OF</span> <span>ECOLOGY</span>.”</span> <em>Ecology</em> 85 (7): 1771–89. <a href="https://doi.org/10.1890/03-9000">https://doi.org/10.1890/03-9000</a>.
 </div>
 <div id="ref-evans_osmotic_2008" class="csl-entry">
-Evans, David H., and James B. Claiborne. 2008. <span>“Osmotic and Ionic Regulation in Fishes.”</span> In <em>Osmotic and Ionic Regulation</em>, edited by David H. Evans, 1st ed., 295–366. <span>CRC</span> Press. <a href="https://doi.org/10.1201/9780849380525-8">https://doi.org/10.1201/9780849380525-8</a>.
+Evans, David H., and James B. Claiborne. 2008. <span>“Osmotic and Ionic Regulation in Fishes.”</span> In <em>Osmotic and Ionic Regulation</em>, 1st ed., edited by David H. Evans. <span>CRC</span> Press. <a href="https://doi.org/10.1201/9780849380525-8">https://doi.org/10.1201/9780849380525-8</a>.
 </div>
 <div id="ref-kleiber_body_1932" class="csl-entry">
 Kleiber, Max. 1932. <span>“Body Size and Metabolism.”</span> <em>Hilgardia</em> 6 (11): 315–53.

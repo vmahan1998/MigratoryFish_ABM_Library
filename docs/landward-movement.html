@@ -23,7 +23,7 @@
 <meta name="author" content="Vanessa Quintana, Gayle Zydlewski, Joeseph Dello-Russo, Kaylyn Zipp, Todd Swannack" />
 
 
-<meta name="date" content="2026-05-20" />
+<meta name="date" content="2026-05-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -129,7 +129,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -703,7 +702,7 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 10</span> Landward Movement<a href="landward-movement.html#landward-movement" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="overview-7" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">10.1</span> Overview<a href="landward-movement.html#overview-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This function simulates landward movement for fish moving upstream through riverine and estuarine systems, where agents adjust movement based on local water velocity, energetic condition, and the relative difficulty of swimming in a given flow. Within this submodel, upstream movement emerges from the interaction between hydrodynamic forcing, body size, and energetic state, as agents navigate spatially variable flow fields where velocity and depth constrain swimming difficulty and energetic cost. These relationships are consistent with allometric scaling in aquatic organisms <span class="citation">(<a href="#ref-brown_toward_2004">Brown et al. 2004</a>)</span> and observed behavioral responses of fish to hydrodynamic conditions during movement <span class="citation">(<a href="#ref-gibson_selective_2001">Gibson, Barnes, and Atkinson 2001a</a>)</span>.</p>
+<p>This function simulates landward movement for fish moving upstream through riverine and estuarine systems, where agents adjust movement based on local water velocity, energetic condition, and the relative difficulty of swimming in a given flow. Within this submodel, upstream movement emerges from the interaction between hydrodynamic forcing, body size, and energetic state, as agents navigate spatially variable flow fields where velocity and depth constrain swimming difficulty and energetic cost. These relationships are consistent with allometric scaling in aquatic organisms <span class="citation">(<a href="#ref-brown_toward_2004">Brown et al. 2004</a>)</span> and observed behavioral responses of fish to hydrodynamic conditions during movement <span class="citation">(<a href="#ref-gibson_selective_2001">Gibson et al. 2001a</a>)</span>.</p>
 <p>Movement is structured through a least-cost framework that is recalculated under changing hydrodynamic conditions, where agents respond locally to gradients in flow resistance and path difficulty rather than optimizing globally. This formulation allows movement pathways, travel time, and energy expenditure to emerge dynamically from repeated interactions between organismal capacity and the hydrodynamic environment.</p>
 </div>
 <div id="purpose-6" class="section level2 hasAnchor" number="10.2">
@@ -941,7 +940,7 @@ the patch (m s⁻¹).</li>
 </ul>
 <p>This normalized velocity is scaled by relative body size
 <span class="math inline">\(M_{\text{agent}} / M_{\max}\)</span> and raised to a scaling exponent <span class="math inline">\(k\)</span>
-<span class="citation">(<a href="#ref-brown_toward_2004">Brown et al. 2004</a>; <a href="#ref-gibson_selective_2001">Gibson, Barnes, and Atkinson 2001a</a>)</span>:</p>
+<span class="citation">(<a href="#ref-brown_toward_2004">Brown et al. 2004</a>; <a href="#ref-gibson_selective_2001">Gibson et al. 2001a</a>)</span>:</p>
 <p><span class="math display">\[
 Df_{\text{raw}} =
 \left(
@@ -1444,7 +1443,7 @@ end</code></pre>
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-brown_toward_2004" class="csl-entry">
 Brown, James H., James F. Gillooly, Andrew P. Allen, Van M. Savage, and Geoffrey B. West. 2004. <span>“<span>TOWARD</span> a <span>METABOLIC</span> <span>THEORY</span> <span>OF</span> <span>ECOLOGY</span>.”</span> <em>Ecology</em> 85 (7): 1771–89. <a href="https://doi.org/10.1890/03-9000">https://doi.org/10.1890/03-9000</a>.
 </div>

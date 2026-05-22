@@ -23,7 +23,7 @@
 <meta name="author" content="Vanessa Quintana, Gayle Zydlewski, Joeseph Dello-Russo, Kaylyn Zipp, Todd Swannack" />
 
 
-<meta name="date" content="2026-05-20" />
+<meta name="date" content="2026-05-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -129,7 +129,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -703,7 +702,7 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 8</span> Contaminant Exposure<a href="contaminant-exposure.html#contaminant-exposure" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="overview-4" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Overview<a href="contaminant-exposure.html#overview-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The contaminant exposure submodel simulates mercury and methylmercury uptake across the gills for migratory fish moving through spatially and temporally variable contamination fields. Exposure risk is governed by contaminant concentration, suspended particulate matter (SPM), and metabolic rate, with concentrations normalized across the spatial domain and depth-averaged SPM modulating risk to reflect particle-bound transport. Agents accumulate both instantaneous and cumulative exposure, allowing estimation of bioaccumulation risk over the migration season. This formulation reflects established mechanisms of methylmercury (MeHg) uptake in fishes, where exposure during active movement occurs by branchial uptake across the gills <span class="citation">(<a href="#ref-hall_food_1997">Hall et al. 1997</a>; <a href="#ref-evans_fish_1987">D. H. Evans 1987</a>)</span>. The gill epithelium serves as the primary interface for this exchange, with uptake regulated by diffusion, ion transport, and local water chemistry, and increasing with metabolic demand as elevated respiration enhances water flux across the gills; physiological stress can further modify uptake through changes in ion regulation and membrane permeability <span class="citation">(<a href="#ref-trudel_bioenergetics_2006">Trudel and Rasmussen 2006</a>)</span>.</p>
+<p>The contaminant exposure submodel simulates mercury and methylmercury uptake across the gills for migratory fish moving through spatially and temporally variable contamination fields. Exposure risk is governed by contaminant concentration, suspended particulate matter (SPM), and metabolic rate, with concentrations normalized across the spatial domain and depth-averaged SPM modulating risk to reflect particle-bound transport. Agents accumulate both instantaneous and cumulative exposure, allowing estimation of bioaccumulation risk over the migration season. This formulation reflects established mechanisms of methylmercury (MeHg) uptake in fishes, where exposure during active movement occurs by branchial uptake across the gills <span class="citation">(<a href="#ref-hall_food_1997">Hall et al. 1997</a>; <a href="#ref-evans_fish_1987">Evans 1987</a>)</span>. The gill epithelium serves as the primary interface for this exchange, with uptake regulated by diffusion, ion transport, and local water chemistry, and increasing with metabolic demand as elevated respiration enhances water flux across the gills; physiological stress can further modify uptake through changes in ion regulation and membrane permeability <span class="citation">(<a href="#ref-trudel_bioenergetics_2006">Trudel and Rasmussen 2006</a>)</span>.</p>
 </div>
 <div id="purpose-4" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> Purpose<a href="contaminant-exposure.html#purpose-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1249,7 +1248,7 @@ end</code></pre>
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-evans_fish_1987" class="csl-entry">
 Evans, D H. 1987. <span>“The Fish Gill: Site of Action and Model for Toxic Effects of Environmental Pollutants.”</span> <em>Environmental Health Perspectives</em> 71 (April): 47–58. <a href="https://doi.org/10.1289/ehp.877147">https://doi.org/10.1289/ehp.877147</a>.
 </div>
@@ -1260,10 +1259,10 @@ Gaudet, C., S. Lingard, P. Cureton, K. Keenleyside, S. Smith, and G. Raju. 1995.
 Hall, B. D., R. A. Bodaly, R. J. P. Fudge, J. W. M. Rudd, and D. M. Rosenberg. 1997. <span>“Food as the <span>Dominant</span> <span>Pathway</span> of <span>Methylmercury</span> <span>Uptake</span> by <span>Fish</span>.”</span> <em>Water, Air, and Soil Pollution</em> 100 (1-2): 13–24. <a href="https://doi.org/10.1023/A:1018071406537">https://doi.org/10.1023/A:1018071406537</a>.
 </div>
 <div id="ref-noaa_national_oceanic_and_atmospheric_administration_sediment_1990" class="csl-entry">
-National Oceanic and Atmospheric Administration (NOAA). 1990. <span>“Sediment Quality Guidelines Developed for the National Status and Trends Program.”</span> National Oceanic; Atmospheric Administration. <a href="https://rais.ornl.gov/documents/ECO_BENCH_NOAA.pdf">https://rais.ornl.gov/documents/ECO_BENCH_NOAA.pdf</a>.
+National Oceanic and Atmospheric Administration (NOAA). 1990. <em>Sediment Quality Guidelines Developed for the National Status and Trends Program</em>. National Oceanic; Atmospheric Administration. <a href="https://rais.ornl.gov/documents/ECO_BENCH_NOAA.pdf">https://rais.ornl.gov/documents/ECO_BENCH_NOAA.pdf</a>.
 </div>
 <div id="ref-trudel_bioenergetics_2006" class="csl-entry">
-Trudel, Marc, and Joseph B Rasmussen. 2006. <span>“Bioenergetics and Mercury Dynamics in Fish: A Modelling Perspective.”</span> <em>Canadian Journal of Fisheries and Aquatic Sciences</em> 63 (8): 1890–1902. <a href="https://doi.org/10.1139/f06-081">https://doi.org/10.1139/f06-081</a>.
+Trudel, Marc, and Joseph B Rasmussen. 2006. <span>“Bioenergetics and Mercury Dynamics in Fish: A Modelling Perspective.”</span> <em>Canadian Journal of Fisheries and Aquatic Sciences</em> 63 (8): 1890–902. <a href="https://doi.org/10.1139/f06-081">https://doi.org/10.1139/f06-081</a>.
 </div>
 <div id="ref-wang_bioaccumulation_2003" class="csl-entry">
 Wang, Wen-Xiong, and Raymond S. K. Wong. 2003. <span>“Bioaccumulation Kinetics and Exposure Pathways of Inorganic Mercury and Methylmercury in a Marine Fish, the Sweetlips Plectorhinchus Gibbosus.”</span> <em>Marine Ecology Progress Series</em> 261: 257–68. <a href="https://doi.org/10.3354/meps261257">https://doi.org/10.3354/meps261257</a>.

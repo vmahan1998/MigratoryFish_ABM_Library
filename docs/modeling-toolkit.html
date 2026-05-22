@@ -23,7 +23,7 @@
 <meta name="author" content="Vanessa Quintana, Gayle Zydlewski, Joeseph Dello-Russo, Kaylyn Zipp, Todd Swannack" />
 
 
-<meta name="date" content="2026-05-20" />
+<meta name="date" content="2026-05-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -129,7 +129,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -705,6 +704,7 @@ div.csl-indent {
 <hr />
 <div id="best-practices" class="section level2 hasAnchor" number="18.1">
 <h2><span class="header-section-number">18.1</span> Best Practices<a href="modeling-toolkit.html#best-practices" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Building a good agent-based model is not just about getting the code to run. It is about building something that can be understood, evaluated, extended, and trusted by people other than the person who wrote it. The practices described in this section are not bureaucratic overhead. They are the difference between a model that produces a result and a model that produces a defensible, reproducible, and reusable scientific contribution. Each practice discussed below targets a specific failure mode that is common in computational ecological modeling: undocumented assumptions that cannot be verified, entangled code that cannot be debugged, outputs that cannot be traced back to a specific model version, and behavioral rules that encode the modeler’s assumptions rather than the system’s ecology. When addressed using the best practices of agent-based models, they form a workflow that supports model development at every stage, from the first behavioral rule to the final manuscript figure.</p>
 <div id="odd-protocol" class="section level3 hasAnchor" number="18.1.1">
 <h3><span class="header-section-number">18.1.1</span> ODD Protocol<a href="modeling-toolkit.html#odd-protocol" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>What it is.</strong> The ODD (Overview, Design Concepts, Details) protocol <span class="citation">(<a href="#ref-grimm_standard_2006">Grimm et al. 2006</a>, <a href="#ref-grimm_odd_2010">2010</a>, <a href="#ref-grimm_odd_2020">2020</a>)</span> is the standard documentation framework for agent-based models. It covers seven elements in a fixed order:</p>
@@ -1069,18 +1069,18 @@ div.csl-indent {
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-grimm_standard_2006" class="csl-entry">
-Grimm, Volker, Uta Berger, Finn Bastiansen, Sigrunn Eliassen, Vincent Ginot, Jarl Giske, John Goss-Custard, et al. 2006. <span>“A Standard Protocol for Describing Individual-Based and Agent-Based Models.”</span> <em>Ecological Modelling</em> 198 (1): 115–26. <a href="https://doi.org/10.1016/j.ecolmodel.2006.04.023">https://doi.org/10.1016/j.ecolmodel.2006.04.023</a>.
+Grimm, Volker, Uta Berger, Finn Bastiansen, et al. 2006. <span>“A Standard Protocol for Describing Individual-Based and Agent-Based Models.”</span> <em>Ecological Modelling</em> 198 (1): 115–26. <a href="https://doi.org/10.1016/j.ecolmodel.2006.04.023">https://doi.org/10.1016/j.ecolmodel.2006.04.023</a>.
 </div>
 <div id="ref-grimm_odd_2010" class="csl-entry">
 Grimm, Volker, Uta Berger, Donald L. DeAngelis, J. Gary Polhill, Jarl Giske, and Steven F. Railsback. 2010. <span>“The <span>ODD</span> Protocol: A Review and First Update.”</span> <em>Ecological Modelling</em> 221 (23): 2760–68. <a href="https://doi.org/10.1016/j.ecolmodel.2010.08.019">https://doi.org/10.1016/j.ecolmodel.2010.08.019</a>.
 </div>
 <div id="ref-grimm_odd_2020" class="csl-entry">
-Grimm, Volker, Steven F. Railsback, Christian E. Vincenot, Uta Berger, Cara Gallagher, Donald L. DeAngelis, Bruce Edmonds, et al. 2020. <span>“The <span>ODD</span> Protocol for Describing Agent-Based and Other Simulation Models: A Second Update to Improve Clarity, Replication, and Structural Realism.”</span> <em>Journal of Artificial Societies and Social Simulation</em> 23 (2): 7. <a href="https://doi.org/10.18564/jasss.4259">https://doi.org/10.18564/jasss.4259</a>.
+Grimm, Volker, Steven F. Railsback, Christian E. Vincenot, et al. 2020. <span>“The <span>ODD</span> Protocol for Describing Agent-Based and Other Simulation Models: A Second Update to Improve Clarity, Replication, and Structural Realism.”</span> <em>Journal of Artificial Societies and Social Simulation</em> 23 (2): 7. <a href="https://doi.org/10.18564/jasss.4259">https://doi.org/10.18564/jasss.4259</a>.
 </div>
 <div id="ref-grimm_pattern-oriented_2005" class="csl-entry">
-Grimm, Volker, Eloy Revilla, Uta Berger, Florian Jeltsch, Wolf M. Mooij, Steven F. Railsback, Hans-Hermann Thulke, Jacob Weiner, Thorsten Wiegand, and Donald L. DeAngelis. 2005. <span>“Pattern-<span>Oriented</span> <span>Modeling</span> of <span>Agent</span>-<span>Based</span> <span>Complex</span> <span>Systems</span>: <span>Lessons</span> from <span>Ecology</span>.”</span> <em>Science</em> 310 (5750): 987–91. <a href="https://doi.org/10.1126/science.1116681">https://doi.org/10.1126/science.1116681</a>.
+Grimm, Volker, Eloy Revilla, Uta Berger, et al. 2005. <span>“Pattern-<span>Oriented</span> <span>Modeling</span> of <span>Agent</span>-<span>Based</span> <span>Complex</span> <span>Systems</span>: <span>Lessons</span> from <span>Ecology</span>.”</span> <em>Science</em> 310 (5750): 987–91. <a href="https://doi.org/10.1126/science.1116681">https://doi.org/10.1126/science.1116681</a>.
 </div>
 </div>
             </section>

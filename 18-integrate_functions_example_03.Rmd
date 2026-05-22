@@ -35,7 +35,7 @@ The `swim` procedure is the central integrator: it sets `previous-patch` / `prev
 The table below shows the full dependency chain for an alewife in the landward migration phase. Functions are listed in the order they must be called each tick.
 
 | Function | Required Inputs | Output Variables | Dependent On |
-|------------------|------------------|------------------|------------------|
+|----|----|----|----|
 | `calendar` | `ticks`, `minute`, `hour`, `day` | `minute`, `hour`, `day`, `month`, `night?` | tick counter |
 | `update-patch-data` | `current-hour`, `velocity-series`, `salinity-series`, `temp-series`, `spm-series` | `velocity`, `salinity`, `temperature`, `SPM` (per patch) | `calendar` (hourly) |
 | `update-migration-cue` | `day`, `cue-days` | `cue-active?`, `migration-trigger?` | `calendar` (daily) |
@@ -519,10 +519,10 @@ end
 
 The P-MEM produces outputs across three categories:
 
--   **Migration timing and passage counts:** Compare `alewives-on-line-daily-total-landward` against observed fish passage data. The stochastic migration probability ramp should produce a realistic spread of entry dates peaked in late April–May.
--   **Behavioral state dynamics:** Plot the proportions of agents in STST (`selective-tidal-transport?`), foraging (`foraging?`), landward migration (`landward-migration?`), and at destination (`at-destination?`) over time. These proportions shift across the tidal cycle and across the migration season, illustrating how behavior reorganizes contaminant exposure opportunity.
--   **Exposure pathway dominance:** Compare `mean [hg-uptake-risk] of alewives` (branchial, gill-contact exposure) against `mean [hg-foraging-total] of alewives` (particulate ingestion) across predation scenarios. P-MEM shows that predation pressure shifts which pathway dominates individual cumulative burden.
--   **Spatial exposure patterns:** The Mercury Risk Explorer shows cumulative `hg-exp-risk-total-alewife` and `mehg-exp-risk-total-alewife` aggregated across patches, revealing which reaches of the estuary accumulate the most contaminant interaction across scenarios.
+- **Migration timing and passage counts:** Compare `alewives-on-line-daily-total-landward` against observed fish passage data. The stochastic migration probability ramp should produce a realistic spread of entry dates peaked in late April–May.
+- **Behavioral state dynamics:** Plot the proportions of agents in STST (`selective-tidal-transport?`), foraging (`foraging?`), landward migration (`landward-migration?`), and at destination (`at-destination?`) over time. These proportions shift across the tidal cycle and across the migration season, illustrating how behavior reorganizes contaminant exposure opportunity.
+- **Exposure pathway dominance:** Compare `mean [hg-uptake-risk] of alewives` (branchial, gill-contact exposure) against `mean [hg-foraging-total] of alewives` (particulate ingestion) across predation scenarios. P-MEM shows that predation pressure shifts which pathway dominates individual cumulative burden.
+- **Spatial exposure patterns:** The Mercury Risk Explorer shows cumulative `hg-exp-risk-total-alewife` and `mehg-exp-risk-total-alewife` aggregated across patches, revealing which reaches of the estuary accumulate the most contaminant interaction across scenarios.
 
 ### Export Results from Netlogo
 
@@ -838,7 +838,7 @@ The R implementation of P-MEM is an analytical companion to the NetLogo model ra
 ### Output file types
 
 | File type | Naming pattern | One row per |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | Agent — alewives | `results_alewives_<scenario>_mig_test_<run>_<month>.csv` | agent × export tick |
 | Agent — striped bass | `results_stripedbass_<scenario>_mig_test_<run>_<month>.csv` | agent × export tick |
 | Daily totals | `results_daily_<stamp>_<run>.csv` | simulation day |
@@ -1266,10 +1266,10 @@ The tab provides three linked views that together illustrate how behavior mediat
 
 Applied ABMs are most valuable when they are designed from the outset around questions that managers cannot answer with static spatial analysis alone. Three categories of decision-relevant questions recur across environmental management contexts, and the design choices made throughout this book (spatially explicit environments, state-dependent behavioral submodels, and physiological feedbacks) are what make an ABM capable of addressing them.
 
--   **Where is risk highest and when?** Spatially and temporally explicit ABMs simulate *when* individual agents are in high-risk locations, not just whether suitable habitat overlaps with a hazard. Because every agent carries its own physiological and behavioral state through time, the model identifies which combinations of location, timing, life-history stage, and behavioral mode produce the highest cumulative risk — information invisible to static exposure-potential or habitat suitability analyses.
+- **Where is risk highest and when?** Spatially and temporally explicit ABMs simulate *when* individual agents are in high-risk locations, not just whether suitable habitat overlaps with a hazard. Because every agent carries its own physiological and behavioral state through time, the model identifies which combinations of location, timing, life-history stage, and behavioral mode produce the highest cumulative risk — information invisible to static exposure-potential or habitat suitability analyses.
 
--   **How does a stressor reorganize behavior and exposure?** ABMs allow stressors to be represented as behavioral interactions rather than fixed mortality or exposure rates, so the outcome emerges from the accumulated consequences of individual decisions across time. Models designed with explicit, traceable function dependencies can isolate which behavioral pathway is responsible for a given outcome, making the mechanism transparent to managers and stakeholders.
+- **How does a stressor reorganize behavior and exposure?** ABMs allow stressors to be represented as behavioral interactions rather than fixed mortality or exposure rates, so the outcome emerges from the accumulated consequences of individual decisions across time. Models designed with explicit, traceable function dependencies can isolate which behavioral pathway is responsible for a given outcome, making the mechanism transparent to managers and stakeholders.
 
--   **What outcomes follow from a physical or management intervention?** Because submodels are coupled through shared state variables, a change to the environment propagates through the behavioral and physiological chain the same way it would in the real system and that full propagation chain is traceable through the function dependency table. This traceability is what makes model predictions credible and actionable rather than descriptive.
+- **What outcomes follow from a physical or management intervention?** Because submodels are coupled through shared state variables, a change to the environment propagates through the behavioral and physiological chain the same way it would in the real system and that full propagation chain is traceable through the function dependency table. This traceability is what makes model predictions credible and actionable rather than descriptive.
 
 These outputs illustrate how agent-based models can be implemented to support applied decision making across a range of environmental management contexts. The questions addressed here represent a general class of problems that arise whenever managers need to understand not just where a hazard exists, but how organisms interact with it through movement, physiology, and social behavior. Process-based behavioral models produce qualitatively different management insights than static habitat suitability or exposure-potential analyses because they simulate how individual decisions aggregate into population-level patterns across space and time. The modular design of the *GoFish Library* means that the same architecture used here can be adapted to other species, other stressors, and other spatial domains by substituting the relevant environmental forcing, species parameters, and outcome metrics while preserving the core behavioral and physiological logic.

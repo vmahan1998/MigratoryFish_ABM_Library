@@ -23,7 +23,7 @@
 <meta name="author" content="Vanessa Quintana, Gayle Zydlewski, Joeseph Dello-Russo, Kaylyn Zipp, Todd Swannack" />
 
 
-<meta name="date" content="2026-05-20" />
+<meta name="date" content="2026-05-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -129,7 +129,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -703,7 +702,7 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 7</span> Migration Cues<a href="migration-cues.html#migration-cues" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="overview-3" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Overview<a href="migration-cues.html#overview-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This submodel simulates how migratory fish detect environmental cues that signal the onset of migration, based on the interaction between photoperiod and temperature, which are widely recognized as primary drivers of migration timing in anadromous fishes. Photoperiod provides a seasonal signal regulating physiological readiness, while temperature modifies the timing of migration initiation and can act as a releasing factor (e.g., <span class="citation">Zydlewski, Stich, and McCormick (<a href="#ref-zydlewski_photoperiod_2014">2014</a>)</span>; <span class="citation">García-Vega et al. (<a href="#ref-garcia-vega_upstream_2022">2022</a>)</span>). In this model, migration begins when individuals experience a coincident decline in both daylength and temperature (ΔL &lt; 0 and ΔT &lt; 0 on the same day), representing a simplified autumnal cue window. These events are classified as cue days, during which individuals stochastically accumulate the probability of initiating migration. For predators such as striped bass, migration probability is additionally linked to alewife presence, integrating species interactions into migration onset.</p>
+<p>This submodel simulates how migratory fish detect environmental cues that signal the onset of migration, based on the interaction between photoperiod and temperature, which are widely recognized as primary drivers of migration timing in anadromous fishes. Photoperiod provides a seasonal signal regulating physiological readiness, while temperature modifies the timing of migration initiation and can act as a releasing factor (e.g., <span class="citation">Zydlewski et al. (<a href="#ref-zydlewski_photoperiod_2014">2014</a>)</span>; <span class="citation">García-Vega et al. (<a href="#ref-garcia-vega_upstream_2022">2022</a>)</span>). In this model, migration begins when individuals experience a coincident decline in both daylength and temperature (ΔL &lt; 0 and ΔT &lt; 0 on the same day), representing a simplified autumnal cue window. These events are classified as cue days, during which individuals stochastically accumulate the probability of initiating migration. For predators such as striped bass, migration probability is additionally linked to alewife presence, integrating species interactions into migration onset.</p>
 <p>Rather than assuming a fixed threshold, this formulation represents migration cues as periods of coincident decline in environmental conditions, capturing seasonal transitions that trigger movement. This cue formulation is applied specifically to upstream migration and is site-specific, requiring evaluation and potential recalibration for other systems. Downstream migration is not explicitly cued and instead emerges from the model following completion of migration objectives such as spawning or foraging.</p>
 </div>
 <div id="purpose-3" class="section level2 hasAnchor" number="7.2">
@@ -835,7 +834,7 @@ threshold, initiate migration.</p></li>
 interaction between photoperiod and temperature as drivers of migration
 timing in anadromous fishes, where migration responses emerge from the
 combined influence of seasonal and short-term environmental signals
-(e.g., <span class="citation">Zydlewski, Stich, and McCormick (<a href="#ref-zydlewski_photoperiod_2014">2014</a>)</span>; <span class="citation">García-Vega et al. (<a href="#ref-garcia-vega_upstream_2022">2022</a>)</span>;
+(e.g., <span class="citation">Zydlewski et al. (<a href="#ref-zydlewski_photoperiod_2014">2014</a>)</span>; <span class="citation">García-Vega et al. (<a href="#ref-garcia-vega_upstream_2022">2022</a>)</span>;
 <span class="citation">Jonsson (<a href="#ref-jonsson_environmental_1991">1991</a>)</span>).</p>
 <p><strong>Emergence:</strong> Migration timing varies among individuals
 <span class="citation">(<a href="#ref-dingle_2014_migration">Dingle 2014</a>)</span> and is represented in the model through
@@ -1083,9 +1082,9 @@ end</code></pre>
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-dingle_2014_migration" class="csl-entry">
-Dingle, Hugh. 2014. <em>Migration: The Biology of Life on the Move</em>. 2nd ed. Oxford, UK: Oxford University Press.
+Dingle, Hugh. 2014. <em>Migration: The Biology of Life on the Move</em>. 2nd ed. Oxford University Press.
 </div>
 <div id="ref-garcia-vega_upstream_2022" class="csl-entry">
 García-Vega, Ana, Juan Francisco Fuentes-Pérez, Pedro M. Leunda Urretabizkaia, José Ardaiz Ganuza, and Francisco Javier Sanz-Ronda. 2022. <span>“Upstream Migration of Anadromous and Potamodromous Brown Trout: Patterns and Triggers in a 25-Year Overview.”</span> <em>Hydrobiologia</em> 849 (1): 197–213. <a href="https://doi.org/10.1007/s10750-021-04720-9">https://doi.org/10.1007/s10750-021-04720-9</a>.

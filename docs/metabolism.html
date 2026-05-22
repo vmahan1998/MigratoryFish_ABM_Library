@@ -23,7 +23,7 @@
 <meta name="author" content="Vanessa Quintana, Gayle Zydlewski, Joeseph Dello-Russo, Kaylyn Zipp, Todd Swannack" />
 
 
-<meta name="date" content="2026-05-20" />
+<meta name="date" content="2026-05-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -129,7 +129,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -703,7 +702,7 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 4</span> Metabolism<a href="metabolism.html#metabolism" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="overview" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Overview<a href="metabolism.html#overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Metabolism determines the baseline and dynamic energy demand required for fish to maintain physiological function, support movement, regulate ions, digest food, and sustain long-term migration. Within P-MEM, metabolic rate is computed as a function of body size, temperature, and age, following established allometric scaling relationships in ectothermic organisms, particularly fishes (e.g., <span class="citation">(<a href="#ref-kleiber_body_1932">Kleiber 1932</a>; <a href="#ref-west_general_1997">West, Brown, and Enquist 1997</a>; <a href="#ref-brown_toward_2004">Brown et al. 2004</a>)</span>). Temperature sensitivity is represented using a Q10 formulation consistent with ectothermic metabolic responses <span class="citation">(<a href="#ref-schmidt_nielsen_animal_1997">Schmidt-Nielsen 1997</a>)</span>, while age-dependent scaling reflects ontogenetic changes in metabolic intensity <span class="citation">(<a href="#ref-glazier_beyond_2005">Glazier 2005</a>, <a href="#ref-glazier_relevance_2023">2023</a>)</span>. Metabolic efficiency, based on divergence from an agent’s optimal temperature, is then used to scale energy allocation across key internal processes including swimming, osmoregulation, and lipid catabolism.</p>
+<p>Metabolism determines the baseline and dynamic energy demand required for fish to maintain physiological function, support movement, regulate ions, digest food, and sustain long-term migration. Within P-MEM, metabolic rate is computed as a function of body size, temperature, and age, following established allometric scaling relationships in ectothermic organisms, particularly fishes (e.g., <span class="citation">(<a href="#ref-kleiber_body_1932">Kleiber 1932</a>; <a href="#ref-west_general_1997">West et al. 1997</a>; <a href="#ref-brown_toward_2004">Brown et al. 2004</a>)</span>). Temperature sensitivity is represented using a Q10 formulation consistent with ectothermic metabolic responses <span class="citation">(<a href="#ref-schmidt_nielsen_animal_1997">Schmidt-Nielsen 1997</a>)</span>, while age-dependent scaling reflects ontogenetic changes in metabolic intensity <span class="citation">(<a href="#ref-glazier_beyond_2005">Glazier 2005</a>, <a href="#ref-glazier_relevance_2023">2023</a>)</span>. Metabolic efficiency, based on divergence from an agent’s optimal temperature, is then used to scale energy allocation across key internal processes including swimming, osmoregulation, and lipid catabolism.</p>
 </div>
 <div id="purpose" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Purpose<a href="metabolism.html#purpose" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -881,7 +880,7 @@ and lipid catabolism (%).</p></li>
 temperature responses, and age scaling consistent with metabolic ecology
 theory (Brown et al., 2004; West et al., 1997; Kleiber, 1932). The model
 uses a Q10 temperature function <span class="citation">(<a href="#ref-schmidt_nielsen_animal_1997">Schmidt-Nielsen 1997</a>)</span>,
-Kleiber-type allometry <span class="citation">(<a href="#ref-kleiber_body_1932">Kleiber 1932</a>; <a href="#ref-west_general_1997">West, Brown, and Enquist 1997</a>)</span>, and
+Kleiber-type allometry <span class="citation">(<a href="#ref-kleiber_body_1932">Kleiber 1932</a>; <a href="#ref-west_general_1997">West et al. 1997</a>)</span>, and
 age-dependent reduction in metabolic intensity <span class="citation">(<a href="#ref-glazier_beyond_2005">Glazier 2005</a>, <a href="#ref-glazier_relevance_2023">2023</a>)</span>.</p>
 <p><strong>Emergence:</strong> Energetic constraints emerge from interactions among
 size, temperature, and age. These constraints then shape movement,
@@ -1033,7 +1032,7 @@ for all energetic scaling ((energy units) tick⁻¹).</p></li>
 <h3><span class="header-section-number">4.7.3</span> Metabolic Rate Calculation<a href="metabolism.html#metabolic-rate-calculation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>At each tick, metabolism is recalculated using allometric, temperature,
 and age scaling. The 0.75 exponent follows quarter-power scaling
-relationships observed across taxa <span class="citation">(<a href="#ref-kleiber_body_1932">Kleiber 1932</a>; <a href="#ref-west_general_1997">West, Brown, and Enquist 1997</a>; <a href="#ref-brown_toward_2004">Brown et al. 2004</a>)</span>. This formulation reflects
+relationships observed across taxa <span class="citation">(<a href="#ref-kleiber_body_1932">Kleiber 1932</a>; <a href="#ref-west_general_1997">West et al. 1997</a>; <a href="#ref-brown_toward_2004">Brown et al. 2004</a>)</span>. This formulation reflects
 metabolic scaling relationships in teleost fishes and is applied
 consistently across species, with species-specific differences
 represented through parameter values (e.g., age, body mass, age
@@ -1298,7 +1297,7 @@ end
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-brown_toward_2004" class="csl-entry">
 Brown, James H., James F. Gillooly, Andrew P. Allen, Van M. Savage, and Geoffrey B. West. 2004. <span>“<span>TOWARD</span> a <span>METABOLIC</span> <span>THEORY</span> <span>OF</span> <span>ECOLOGY</span>.”</span> <em>Ecology</em> 85 (7): 1771–89. <a href="https://doi.org/10.1890/03-9000">https://doi.org/10.1890/03-9000</a>.
 </div>
@@ -1306,7 +1305,7 @@ Brown, James H., James F. Gillooly, Andrew P. Allen, Van M. Savage, and Geoffrey
 Glazier, Douglas S. 2005. <span>“Beyond the <span>‘3/4‐power Law’</span>: Variation in the Intra‐and Interspecific Scaling of Metabolic Rate in Animals.”</span> <em>Biological Reviews</em> 80 (4): 611–62. <a href="https://doi.org/10.1017/S1464793105006834">https://doi.org/10.1017/S1464793105006834</a>.
 </div>
 <div id="ref-glazier_relevance_2023" class="csl-entry">
-———. 2023. <span>“The Relevance of Time in Biological Scaling.”</span> <em>Biology</em> 12 (8): 1084. <a href="https://doi.org/10.3390/biology12081084">https://doi.org/10.3390/biology12081084</a>.
+Glazier, Douglas S. 2023. <span>“The Relevance of Time in Biological Scaling.”</span> <em>Biology</em> 12 (8): 1084. <a href="https://doi.org/10.3390/biology12081084">https://doi.org/10.3390/biology12081084</a>.
 </div>
 <div id="ref-kleiber_body_1932" class="csl-entry">
 Kleiber, Max. 1932. <span>“Body Size and Metabolism.”</span> <em>Hilgardia</em> 6 (11): 315–53.
