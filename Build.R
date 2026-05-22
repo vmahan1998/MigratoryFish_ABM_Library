@@ -6,6 +6,15 @@
 #    3. Build the full bookdown site
 # ============================================================
 
+# ============================================================
+#  build.R
+#  Run this script to:
+#    1. Install any missing packages
+#    2. Register custom knitr engines
+#    3. Render each chapter as a .docx download
+#    4. Build the full bookdown site
+# ============================================================
+
 # ------------------------------------------------------------
 # 1. Check and install required packages
 # ------------------------------------------------------------
@@ -26,8 +35,6 @@ library(bookdown)
 # 2. Register custom knitr engines
 # ------------------------------------------------------------
 
-# Register netlogo as a passthrough engine so code blocks
-# render as plain code without throwing an error
 knitr::knit_engines$set(netlogo = function(options) {
   code <- paste(options$code, collapse = "\n")
   if (options$eval) {
@@ -51,10 +58,61 @@ if (!dir.exists(download_dir)) {
 }
 
 # ------------------------------------------------------------
-# 4. Render each chapter as a Word document
+# 4. Read bibliography files from index.Rmd YAML header
 # ------------------------------------------------------------
 
-# Find all numbered chapter Rmd files (e.g. 01-intro.Rmd, 02-ABM.Rmd)
+index_lines <- readLines("index.Rmd", warn = FALSE)
+
+bib_start <- grep("^bibliography:", index_lines)
+bib_files <- c()
+
+if (length(bib_start) > 0) {
+  for (i in (bib_start + 1):length(index_lines)) {
+    line <- trimws(index_lines[i])
+    # Stop when we hit the next YAML key
+    if (grepl("^[a-zA-Z]", line) && !grepl("^-", line)) break
+    if (grepl("^-", line)) {
+      bib_file <- gsub('^-\\s*"|"$', "", line)
+      bib_file <- trimws(bib_file)
+      if (file.exists(bib_file)) {
+        bib_files <- c(bib_files, bib_file)
+        message("Found bibliography: ", bib_file)
+      } else {
+        message("Warning: bibliography file not found: ", bib_file)
+      }
+    }
+  }
+}
+
+message("Total bibliography files loaded: ", length(bib_files))
+
+# Check for a CSL citation style file
+csl_file <- list.files(pattern = "\\.csl$")[1]
+if (!is.na(csl_file) && length(csl_file) > 0) {
+  message("Found CSL file: ", csl_file)
+} else {
+  csl_file <- NULL
+  message("No CSL file found, using default citation style")
+}
+
+# Build pandoc args once — reused for every chapter render
+pandoc_args <- "--citeproc"
+
+if (length(bib_files) > 0) {
+  bib_args    <- unlist(lapply(bib_files, function(b) c("--bibliography", b)))
+  pandoc_args <- c(pandoc_args, bib_args)
+}
+
+if (!is.null(csl_file)) {
+  pandoc_args <- c(pandoc_args, "--csl", csl_file)
+}
+
+message("Pandoc citation args ready\n")
+
+# ------------------------------------------------------------
+# 5. Render each chapter as a Word document
+# ------------------------------------------------------------
+
 chapter_files <- list.files(
   pattern = "^\\d+-.+\\.Rmd$",
   full.names = FALSE
@@ -66,9 +124,13 @@ if (length(chapter_files) == 0) {
   message("\nFound ", length(chapter_files), " chapter(s) to render as .docx\n")
 }
 
-# Optional: point to a Word template for consistent styling
-# Create this by saving a formatted .docx as word_template.docx in your project root
 word_template <- if (file.exists("word_template.docx")) "word_template.docx" else NULL
+
+if (!is.null(word_template)) {
+  message("Using Word template: ", word_template)
+} else {
+  message("No word_template.docx found, using default styling")
+}
 
 render_results <- data.frame(
   chapter  = character(),
@@ -79,16 +141,16 @@ render_results <- data.frame(
 
 for (ch in chapter_files) {
   
-  ch_lines    <- readLines(ch, warn = FALSE)
-  title_line  <- ch_lines[grep("^# ", ch_lines)[1]]
+  ch_lines   <- readLines(ch, warn = FALSE)
+  title_line <- ch_lines[grep("^# ", ch_lines)[1]]
   
   if (!is.na(title_line)) {
-    ch_title  <- sub("^# ", "", title_line)
-    ch_title  <- gsub("[^a-zA-Z0-9 ]", "", ch_title)
-    ch_title  <- gsub("\\s+", "_", trimws(ch_title))
+    ch_title <- sub("^# ", "", title_line)
+    ch_title <- gsub("[^a-zA-Z0-9 ]", "", ch_title)
+    ch_title <- gsub("\\s+", "_", trimws(ch_title))
   } else {
-    ch_title  <- gsub("\\.Rmd$", "", ch)
-    ch_title  <- gsub("^\\d+-", "", ch_title)
+    ch_title <- gsub("\\.Rmd$", "", ch)
+    ch_title <- gsub("^\\d+-", "", ch_title)
   }
   
   output_name <- paste0("Quintana_GoFish_", ch_title, ".docx")
@@ -101,11 +163,11 @@ for (ch in chapter_files) {
     rmarkdown::render(
       input         = ch,
       output_format = rmarkdown::word_document(
-        reference_docx  = word_template,
-        toc             = FALSE,
-        toc_depth       = 3,
-        fig_caption     = TRUE,
-        keep_md         = FALSE
+        reference_docx = word_template,
+        toc            = FALSE,
+        fig_caption    = TRUE,
+        keep_md        = FALSE,
+        pandoc_args    = pandoc_args
       ),
       output_file   = output_path,
       envir         = new.env(parent = globalenv()),
@@ -135,7 +197,7 @@ for (ch in chapter_files) {
 }
 
 # ------------------------------------------------------------
-# 5. Print render summary
+# 6. Print render summary
 # ------------------------------------------------------------
 
 message("\n============================================================")
@@ -163,7 +225,7 @@ message("\n  ", n_ok, " succeeded  |  ", n_error, " failed")
 message("============================================================\n")
 
 # ------------------------------------------------------------
-# 6. Build the full bookdown site
+# 7. Build the full bookdown site
 # ------------------------------------------------------------
 
 message("Building bookdown site...\n")
@@ -171,9 +233,9 @@ message("Building bookdown site...\n")
 tryCatch({
   
   bookdown::render_book(
-    input        = "index.Rmd",
+    input         = "index.Rmd",
     output_format = "bookdown::gitbook",
-    quiet        = FALSE
+    quiet         = FALSE
   )
   
   message("\n============================================================")
@@ -188,7 +250,7 @@ tryCatch({
 })
 
 # ------------------------------------------------------------
-# 7. Final summary
+# 8. Final summary
 # ------------------------------------------------------------
 
 message("Build complete.")
