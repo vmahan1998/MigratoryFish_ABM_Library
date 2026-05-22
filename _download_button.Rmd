@@ -1,17 +1,38 @@
 
 ```{r, echo=FALSE, results='asis', include=knitr::is_html_output()}
-ch_file   <- knitr::current_input()
 
-# Strip any path prefix, keep only the base filename
-ch_base   <- basename(ch_file)
+ch_file <- knitr::current_input(dir = TRUE)
+ch_base <- basename(ch_file)
 
-# Handle edge case where current_input returns _main.Rmd during bookdown build
-if (ch_base == "_main.Rmd" || nchar(ch_base) == 0) {
+if (ch_base == "_download_button.Rmd" || nchar(ch_base) == 0) {
+  ch_base <- tryCatch(
+    basename(knitr:::knit_current$get()),
+    error = function(e) ""
+  )
+}
+
+if (nchar(ch_base) == 0 || ch_base == "_main.Rmd" ||
+    ch_base == "_download_button.Rmd") {
   invisible(NULL)
 } else {
-  docx_name <- gsub("\\.Rmd$", ".docx", ch_base)
-  docx_path <- paste0("chapter_downloads/", docx_name)
-  
+
+  ch_lines   <- tryCatch(readLines(ch_base, warn = FALSE), error = function(e) "")
+  title_line <- ch_lines[grep("^# ", ch_lines)[1]]
+
+  if (length(title_line) > 0 && !is.na(title_line)) {
+    ch_title <- sub("^# ", "", title_line)
+    ch_title <- gsub("[^a-zA-Z0-9 ]", "", ch_title)
+    ch_title <- gsub("\\s+", "_", trimws(ch_title))
+  } else {
+    ch_title <- gsub("\\.Rmd$", "", ch_base)
+    ch_title <- gsub("^\\d+-", "", ch_title)
+  }
+
+  docx_name <- paste0("Quintana_GoFish_", ch_title, ".docx")
+
+  # Use root-relative path so it works on GitHub Pages regardless of chapter depth
+  docx_path <- paste0("/GoFish/chapter_downloads/", docx_name)
+
   cat(sprintf(
     '<a href="%s" download class="btn-download">⬇ Download this chapter (.docx)</a>\n\n',
     docx_path
