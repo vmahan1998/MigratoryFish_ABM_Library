@@ -13,6 +13,10 @@ pre code {
   white-space: inherit;
 }
 
+/* ============================================================
+   DOWNLOAD BUTTON — aquatic theme
+   ============================================================ */
+
 a.btn-download,
 a.btn-download:link,
 a.btn-download:visited {
@@ -20,29 +24,137 @@ a.btn-download:visited {
   align-items: center;
   gap: 8px;
   margin: 0.8em 0 1.8em 0;
-  padding: 10px 20px;
-  background: linear-gradient(135deg, #1a6e3c, #2ecc71);
-  color: black !important;
+  padding: 10px 22px;
+  background: linear-gradient(135deg, #0a3d62, #1e90ff) !important;
+  color: white !important;
+  -webkit-text-fill-color: white !important;
   border-radius: 25px;
   text-decoration: none !important;
   font-size: 0.95em;
   font-weight: 700;
-  letter-spacing: 0.03em;
-  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.4);
-  border: none;
-  transition: all 0.2s ease;
+  letter-spacing: 0.04em;
+  box-shadow: 0 4px 14px rgba(30, 144, 255, 0.45);
+  border: none !important;
+  transition: all 0.25s ease;
 }
 
 a.btn-download:hover,
 a.btn-download:focus {
-  background: linear-gradient(135deg, #145a32, #27ae60);
-  color: black !important;
-  box-shadow: 0 6px 18px rgba(46, 204, 113, 0.5);
+  background: linear-gradient(135deg, #062a45, #1278d4) !important;
+  color: white !important;
+  -webkit-text-fill-color: white !important;
+  box-shadow: 0 6px 20px rgba(30, 144, 255, 0.6);
   transform: translateY(-2px);
   text-decoration: none !important;
 }
 
 a.btn-download:active {
   transform: translateY(0px);
-  box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+  box-shadow: 0 2px 8px rgba(30, 144, 255, 0.3);
+}
+
+/* ============================================================
+   SITE WIDE — aquatic color accents
+   ============================================================ */
+
+/* Top navigation bar */
+.book .book-header {
+  background: linear-gradient(135deg, #0a3d62, #0c7aba) !important;
+}
+
+.book .book-header h1 a {
+  color: white !important;
+  -webkit-text-fill-color: white !important;
+}
+
+/* Sidebar */
+.book .book-summary {
+  background-color: #f0f8ff !important;
+  border-right: 2px solid #b3d9f7 !important;
+}
+
+/* Sidebar links */
+.book .book-summary ul.summary li a {
+  color: #0a3d62 !important;
+  font-weight: 500;
+}
+
+.book .book-summary ul.summary li a:hover {
+  color: #1e90ff !important;
+  background-color: #e0f0ff !important;
+}
+
+/* Active chapter in sidebar */
+.book .book-summary ul.summary li.active > a {
+  color: #1e90ff !important;
+  border-left: 4px solid #1e90ff;
+  background-color: #d6ecff !important;
+  font-weight: 700;
+}
+
+/* Chapter headings */
+.book .body-inner h1,
+.book .body-inner h2 {
+  color: #0a3d62 !important;
+  border-bottom: 2px solid #b3d9f7;
+  padding-bottom: 6px;
+}
+
+.book .body-inner h3,
+.book .body-inner h4 {
+  color: #0c7aba !important;
+}
+
+/* Links in body text */
+.book .body-inner a {
+  color: #1278d4 !important;
+}
+
+.book .body-inner a:hover {
+  color: #0a3d62 !important;
+  text-decoration: underline !important;
+}
+
+/* Navigation arrows */
+.navigation .fa {
+  color: #1e90ff !important;
+}
+
+/* Horizontal rule accents */
+.book .body-inner hr {
+  border-top: 2px solid #b3d9f7;
+}
+
+/* Code blocks */
+.book .body-inner pre {
+  background-color: #f0f8ff !important;
+  border-left: 4px solid #1e90ff;
+  border-radius: 6px;
+}
+
+/* Inline code */
+.book .body-inner code {
+  color: #0a3d62 !important;
+  background-color: #e0f0ff !important;
+  border-radius: 3px;
+  padding: 1px 4px;
+}
+
+/* Tables */
+.book .body-inner table thead {
+  background-color: #0a3d62 !important;
+  color: white !important;
+}
+
+.book .body-inner table thead th {
+  color: white !important;
+  -webkit-text-fill-color: white !important;
+}
+
+.book .body-inner table tbody tr:nth-child(even) {
+  background-color: #f0f8ff !important;
+}
+
+.book .body-inner table tbody tr:hover {
+  background-color: #d6ecff !important;
 }
