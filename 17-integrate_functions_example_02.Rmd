@@ -1,3 +1,6 @@
+```{r, child="_download_button.Rmd"}
+```
+
 # Complex Model Building Tutorial: Landward Movement, Schooling & Selective Tidal Stream Transport
 
 This tutorial builds on Chapter 15 by adding **Selective Tidal Stream Transport (STST)** to the landward movement and schooling framework. The environment now includes a procedural generated tidal velocity signal and a least-cost routing field, but still uses no real-world GIS data, empirical time series, or site-specific coordinates. The integration of STST with movement is the central modeling lesson: two functions that both govern movement must hand off control cleanly without conflicting.

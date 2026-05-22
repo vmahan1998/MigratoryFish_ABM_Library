@@ -1,3 +1,6 @@
+```{r, child="_download_button.Rmd"}
+```
+
 # Salinity Exposure
 
 ## Overview

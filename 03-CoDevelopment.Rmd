@@ -1,3 +1,6 @@
+```{r, child="_download_button.Rmd"}
+```
+
 # Co-Development of ABMs: Penobscot Estuary Community Workshop August 6, 2025
 
 This page documents how a participatory workshop informed the functions within this coding library, the representation of physiological processes, behaviors of migratory fish, and their interactions within an estuary. The purpose of this page is to showcase the value added by co-development and increase transparency about the development of this coding library.

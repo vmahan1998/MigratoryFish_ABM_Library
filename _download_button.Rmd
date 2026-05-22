@@ -1,0 +1,11 @@
+
+```{r, echo=FALSE, results='asis', include=knitr::is_html_output()}
+ch_file   <- knitr::current_input()
+docx_name <- gsub("\\.Rmd$", ".docx", basename(ch_file))
+docx_path <- paste0("chapter_downloads/", docx_name)
+
+cat(sprintf(
+  '<a href="%s" download class="btn-download">⬇ Download this chapter (.docx)</a>\n\n',
+  docx_path
+))
+```

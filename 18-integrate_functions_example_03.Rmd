@@ -1,3 +1,6 @@
+```{r, child="_download_button.Rmd"}
+```
+
 # Applied Model Building Tutorial: Penobscot Mercury Exposure Model (P-MEM)
 
 This chapter demonstrates how every submodel introduced in this library — schooling, landward and seaward migration, selective tidal stream transport, osmoregulation, metabolism, digestion, foraging, migration cue detection, and contaminant exposure — can be assembled into a single site-specific agent-based model. The Penobscot Mercury Exposure Model (P-MEM) is the applied implementation provided in [Quintana (2026)](https://doi.org/10.5281/ZENODO.19483469), and hosted [GitHub Version Repository](https://github.com/vmahan1998/Penobscot_Mercury_Exposure.git). Unlike the tutorial examples in Chapters 15 and 16, P-MEM is spatially and temporally explicit: agents navigate a 2-D GIS representation of the Penobscot River Estuary, forced by hourly hydrodynamic outputs from a validated Delft3D FM model, with a nested agent-based time step representing one 5-minute interval on a real calendar beginning in April 2023.
@@ -35,7 +38,7 @@ The `swim` procedure is the central integrator: it sets `previous-patch` / `prev
 The table below shows the full dependency chain for an alewife in the landward migration phase. Functions are listed in the order they must be called each tick.
 
 | Function | Required Inputs | Output Variables | Dependent On |
-|----|----|----|----|
+|------------------|------------------|------------------|------------------|
 | `calendar` | `ticks`, `minute`, `hour`, `day` | `minute`, `hour`, `day`, `month`, `night?` | tick counter |
 | `update-patch-data` | `current-hour`, `velocity-series`, `salinity-series`, `temp-series`, `spm-series` | `velocity`, `salinity`, `temperature`, `SPM` (per patch) | `calendar` (hourly) |
 | `update-migration-cue` | `day`, `cue-days` | `cue-active?`, `migration-trigger?` | `calendar` (daily) |
@@ -838,7 +841,7 @@ The R implementation of P-MEM is an analytical companion to the NetLogo model ra
 ### Output file types
 
 | File type | Naming pattern | One row per |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | Agent — alewives | `results_alewives_<scenario>_mig_test_<run>_<month>.csv` | agent × export tick |
 | Agent — striped bass | `results_stripedbass_<scenario>_mig_test_<run>_<month>.csv` | agent × export tick |
 | Daily totals | `results_daily_<stamp>_<run>.csv` | simulation day |
