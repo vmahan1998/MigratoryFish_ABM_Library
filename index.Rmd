@@ -22,6 +22,13 @@ url: https://vmahan1998.github.io/GoFish/
 ---
 
 # Preface {.unnumbered}
+```{r, echo=FALSE, results='asis', include=knitr::is_html_output()}
+cat('
+
+   ⬇ Download Complete Library (.docx)
+
+')
+```
 
 This library provides a comprehensive, modular framework for developing and documenting agent-based models (ABMs) that simulate the movement, behavior, and environmental interactions of migratory fish in coastal aquatic systems. It is designed to support the standardization and implementation of ABMs in fisheries management, enabling researchers and practitioners to address complex environmental questions and evaluate remediation or restoration scenarios.
 

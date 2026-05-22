@@ -110,7 +110,43 @@ if (!is.null(csl_file)) {
 message("Pandoc citation args ready\n")
 
 # ------------------------------------------------------------
-# 5. Render each chapter as a Word document
+# 5. Render full book as a single Word document
+# ------------------------------------------------------------
+
+message("Rendering full book as Word document...")
+
+full_book_path <- file.path(download_dir, "Quintana_GoFish_Library.docx")
+
+tryCatch({
+  
+  bookdown::render_book(
+    input         = "index.Rmd",
+    output_format = bookdown::word_document2(
+      reference_docx = word_template,
+      toc            = TRUE,
+      toc_depth      = 3,
+      fig_caption    = TRUE,
+      pandoc_args    = pandoc_args
+    ),
+    output_dir    = download_dir,
+    quiet         = TRUE
+  )
+  
+  # bookdown names the file after the book title, rename to our convention
+  generated <- list.files(download_dir, pattern = "\\.docx$", full.names = TRUE)
+  generated <- generated[!grepl("Quintana_GoFish_", generated)]
+  if (length(generated) > 0) {
+    file.rename(generated[1], full_book_path)
+  }
+  
+  message("  ✓ Full book rendered: ", full_book_path, "\n")
+  
+}, error = function(e) {
+  message("  ✗ Full book render failed: ", conditionMessage(e), "\n")
+})
+
+# ------------------------------------------------------------
+# 6. Render each chapter as a Word document
 # ------------------------------------------------------------
 
 chapter_files <- list.files(
@@ -197,7 +233,7 @@ for (ch in chapter_files) {
 }
 
 # ------------------------------------------------------------
-# 6. Print render summary
+# 7. Print render summary
 # ------------------------------------------------------------
 
 message("\n============================================================")
@@ -225,7 +261,7 @@ message("\n  ", n_ok, " succeeded  |  ", n_error, " failed")
 message("============================================================\n")
 
 # ------------------------------------------------------------
-# 7. Build the full bookdown site
+# 8. Build the full bookdown site
 # ------------------------------------------------------------
 
 message("Building bookdown site...\n")
@@ -250,7 +286,7 @@ tryCatch({
 })
 
 # ------------------------------------------------------------
-# 8. Final summary
+# 9. Final summary
 # ------------------------------------------------------------
 
 message("Build complete.")
