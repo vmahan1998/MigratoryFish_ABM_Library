@@ -79,7 +79,19 @@ render_results <- data.frame(
 
 for (ch in chapter_files) {
   
-  output_name <- gsub("\\.Rmd$", ".docx", ch)
+  ch_lines    <- readLines(ch, warn = FALSE)
+  title_line  <- ch_lines[grep("^# ", ch_lines)[1]]
+  
+  if (!is.na(title_line)) {
+    ch_title  <- sub("^# ", "", title_line)
+    ch_title  <- gsub("[^a-zA-Z0-9 ]", "", ch_title)
+    ch_title  <- gsub("\\s+", "_", trimws(ch_title))
+  } else {
+    ch_title  <- gsub("\\.Rmd$", "", ch)
+    ch_title  <- gsub("^\\d+-", "", ch_title)
+  }
+  
+  output_name <- paste0("Quintana_GoFish_", ch_title, ".docx")
   output_path <- file.path(download_dir, output_name)
   
   message("Rendering: ", ch, " → ", output_path)
