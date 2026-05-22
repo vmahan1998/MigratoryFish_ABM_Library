@@ -21,7 +21,7 @@ if (nchar(ch_base) == 0 || ch_base == "_main.Rmd") {
   docx_path <- paste0("/GoFish/chapter_downloads/", docx_name)
 
   cat(sprintf(
-    '<a href="%s" download class="btn-download">⬇ Download this chapter (.docx)</a>\n\n',
+    '<a href="%s" download class="btn-download">⬇ Download this chapter</a>\n\n',
     docx_path
   ))
 }

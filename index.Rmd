@@ -25,7 +25,7 @@ url: https://vmahan1998.github.io/GoFish/
 ```{r, echo=FALSE, results='asis', include=knitr::is_html_output()}
 cat('
 
-   ⬇ Download Complete Library (.docx)
+   ⬇ Download Complete Library
 
 ')
 ```
