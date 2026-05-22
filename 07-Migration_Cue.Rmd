@@ -1,4 +1,7 @@
 # Migration Cues
+```{r, include=FALSE}
+current_chapter <- "07-Migration_Cue.Rmd"
+```
 ```{r, child="_download_button.Rmd"}
 ```
 

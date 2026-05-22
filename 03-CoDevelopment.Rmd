@@ -1,4 +1,7 @@
 # Co-Development of ABMs: Penobscot Estuary Community Workshop August 6, 2025
+```{r, include=FALSE}
+current_chapter <- "03-CoDevelopment.Rmd"
+```
 ```{r, child="_download_button.Rmd"}
 ```
 

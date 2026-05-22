@@ -1,4 +1,7 @@
 # Salinity Exposure
+```{r, include=FALSE}
+current_chapter <- "06-Salinity_Exposure.Rmd"
+```
 ```{r, child="_download_button.Rmd"}
 ```
 

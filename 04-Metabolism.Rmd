@@ -1,4 +1,7 @@
 # Metabolism
+```{r, include=FALSE}
+current_chapter <- "04-Metabolism.Rmd"
+```
 ```{r, child="_download_button.Rmd"}
 ```
 

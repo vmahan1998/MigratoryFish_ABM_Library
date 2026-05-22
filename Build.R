@@ -102,7 +102,7 @@ for (ch in chapter_files) {
       input         = ch,
       output_format = rmarkdown::word_document(
         reference_docx  = word_template,
-        toc             = TRUE,
+        toc             = FALSE,
         toc_depth       = 3,
         fig_caption     = TRUE,
         keep_md         = FALSE

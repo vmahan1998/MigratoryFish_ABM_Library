@@ -1,4 +1,7 @@
 # Digestion
+```{r, include=FALSE}
+current_chapter <- "05-Digestion.Rmd"
+```
 ```{r, child="_download_button.Rmd"}
 ```
 

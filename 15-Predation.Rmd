@@ -1,4 +1,7 @@
 # Predation and Fleeing Behavior
+```{r, include=FALSE}
+current_chapter <- "15-Predation.Rmd"
+```
 ```{r, child="_download_button.Rmd"}
 ```
 

@@ -1,4 +1,7 @@
 # Small Particulate Feeding
+```{r, include=FALSE}
+current_chapter <- "09-Filter_Feeding.Rmd"
+```
 ```{r, child="_download_button.Rmd"}
 ```
 

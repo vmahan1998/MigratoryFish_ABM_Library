@@ -1,4 +1,7 @@
 # Applied Model Building Tutorial: Penobscot Mercury Exposure Model (P-MEM)
+```{r, include=FALSE}
+current_chapter <- "18-integrate_functions_example_03.Rmd"
+```
 ```{r, child="_download_button.Rmd"}
 ```
 

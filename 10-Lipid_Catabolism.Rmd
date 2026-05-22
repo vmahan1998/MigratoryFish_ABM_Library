@@ -1,4 +1,7 @@
 # Lipid Catabolism
+```{r, include=FALSE}
+current_chapter <- "10-Lipid_Catabolism.Rmd"
+```
 ```{r, child="_download_button.Rmd"}
 ```
 

@@ -1,4 +1,7 @@
 # Modeling Toolkit
+```{r, include=FALSE}
+current_chapter <- "19-summary.Rmd"
+```
 ```{r, child="_download_button.Rmd"}
 ```
 

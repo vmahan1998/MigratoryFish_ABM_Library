@@ -1,4 +1,7 @@
 # Selective Tidal Stream Transport
+```{r, include=FALSE}
+current_chapter <- "14-Selective_Tidal_Stream_Transport.Rmd"
+```
 ```{r, child="_download_button.Rmd"}
 ```
 

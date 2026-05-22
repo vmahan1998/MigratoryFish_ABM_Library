@@ -1,4 +1,7 @@
 # Schooling
+```{r, include=FALSE}
+current_chapter <- "13-Schooling.Rmd"
+```
 ```{r, child="_download_button.Rmd"}
 ```
 

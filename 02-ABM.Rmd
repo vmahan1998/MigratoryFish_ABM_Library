@@ -1,4 +1,7 @@
 # Agent-Based Models
+```{r, include=FALSE}
+current_chapter <- "02-ABM.Rmd"
+```
 ```{r, child="_download_button.Rmd"}
 ```
 

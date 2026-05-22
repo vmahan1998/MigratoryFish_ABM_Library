@@ -1,4 +1,7 @@
 # Complex Model Building Tutorial: Landward Movement, Schooling & Selective Tidal Stream Transport
+```{r, include=FALSE}
+current_chapter <- "17-integrate_functions_example_02.Rmd"
+```
 ```{r, child="_download_button.Rmd"}
 ```
 

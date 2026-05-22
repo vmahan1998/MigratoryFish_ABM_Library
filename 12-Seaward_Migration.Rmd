@@ -1,4 +1,7 @@
 # Seaward Movement
+```{r, include=FALSE}
+current_chapter <- "12-Seaward_Migration.Rmd"
+```
 ```{r, child="_download_button.Rmd"}
 ```
 

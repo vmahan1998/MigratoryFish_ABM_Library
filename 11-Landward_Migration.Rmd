@@ -1,4 +1,7 @@
 # Landward Movement
+```{r, include=FALSE}
+current_chapter <- "11-Landward_Migration.Rmd"
+```
 ```{r, child="_download_button.Rmd"}
 ```
 

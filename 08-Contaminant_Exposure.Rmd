@@ -1,4 +1,7 @@
 # Contaminant Exposure
+```{r, include=FALSE}
+current_chapter <- "08-Contaminant_Exposure.Rmd"
+```
 ```{r, child="_download_button.Rmd"}
 ```
 
