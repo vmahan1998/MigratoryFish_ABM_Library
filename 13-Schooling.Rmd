@@ -1,7 +1,6 @@
+# Schooling
 ```{r, child="_download_button.Rmd"}
 ```
-
-# Schooling
 
 ## Overview
 

@@ -1,7 +1,6 @@
+# Simple Model Building Tutorial: Schooling & Landward Movement
 ```{r, child="_download_button.Rmd"}
 ```
-
-# Simple Model Building Tutorial: Schooling & Landward Movement
 
 This tutorial introduces function integration by combining two submodels — **schooling** and **landward movement** — into a single model time step. It is intentionally simple: movement is represented as a generic forward step (`fd speed`) with no hydrodynamic resistance, routing cost fields, or energy tracking. The goal is to show *how* these two functions talk to each other and in what order they should be called, before adding the complexity of real hydrology or site-specific data.
 

@@ -16,14 +16,16 @@ pre code {
 .btn-download {
   display: inline-block;
   margin: 0.5em 0 1.5em 0;
-  padding: 6px 14px;
+  padding: 8px 16px;
   background-color: #2a4e8a;
   color: white !important;
   border-radius: 6px;
-  text-decoration: none;
+  text-decoration: none !important;
   font-size: 0.9em;
+  font-weight: bold;
 }
 
 .btn-download:hover {
   background-color: #1a3a6a;
+  color: white !important;
 }

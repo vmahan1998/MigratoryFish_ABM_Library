@@ -1,7 +1,6 @@
+# Migration Cues
 ```{r, child="_download_button.Rmd"}
 ```
-
-# Migration Cues
 
 ## Overview
 

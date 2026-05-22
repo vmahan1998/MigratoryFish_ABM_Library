@@ -1,7 +1,6 @@
+# Selective Tidal Stream Transport
 ```{r, child="_download_button.Rmd"}
 ```
-
-# Selective Tidal Stream Transport
 
 ## Overview
 

@@ -1,7 +1,6 @@
+# Predation and Fleeing Behavior
 ```{r, child="_download_button.Rmd"}
 ```
-
-# Predation and Fleeing Behavior
 
 ## Overview
 

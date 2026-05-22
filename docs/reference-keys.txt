@@ -123,6 +123,7 @@ movement
 feeding-and-stomach-loading
 contaminant-assimilation-and-biomagnification
 netlogo-implementation-5
+lipid-catabolism
 overview-6
 purpose-5
 entities-state-variables-and-scales-6
@@ -325,7 +326,7 @@ homing
 homeostasis
 iteroparous
 landward-migration
-lipid-catabolism
+lipid-catabolism-1
 mercury
 metabolism-1
 methylmercury

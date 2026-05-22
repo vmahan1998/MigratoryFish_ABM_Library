@@ -1,7 +1,6 @@
+# Agent-Based Models
 ```{r, child="_download_button.Rmd"}
 ```
-
-# Agent-Based Models
 
 ```{=html}
 <img src="images/abm.png"

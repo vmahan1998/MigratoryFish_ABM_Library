@@ -1,7 +1,6 @@
+# Modeling Toolkit
 ```{r, child="_download_button.Rmd"}
 ```
-
-# Modeling Toolkit
 
 This page consolidates the tools, references, practices, and repositories that support the modeling work described in this book. It is intended as a practical reference for readers building their own agent-based models using the GoFish framework or developing new implementations in NetLogo, R, or Python.
 

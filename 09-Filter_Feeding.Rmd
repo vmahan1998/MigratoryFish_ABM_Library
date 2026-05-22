@@ -1,7 +1,6 @@
+# Small Particulate Feeding
 ```{r, child="_download_button.Rmd"}
 ```
-
-# Small Particulate Feeding
 
 ## Overview
 

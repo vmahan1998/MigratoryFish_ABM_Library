@@ -1,11 +1,20 @@
 
 ```{r, echo=FALSE, results='asis', include=knitr::is_html_output()}
 ch_file   <- knitr::current_input()
-docx_name <- gsub("\\.Rmd$", ".docx", basename(ch_file))
-docx_path <- paste0("chapter_downloads/", docx_name)
 
-cat(sprintf(
-  '<a href="%s" download class="btn-download">⬇ Download this chapter (.docx)</a>\n\n',
-  docx_path
-))
+# Strip any path prefix, keep only the base filename
+ch_base   <- basename(ch_file)
+
+# Handle edge case where current_input returns _main.Rmd during bookdown build
+if (ch_base == "_main.Rmd" || nchar(ch_base) == 0) {
+  invisible(NULL)
+} else {
+  docx_name <- gsub("\\.Rmd$", ".docx", ch_base)
+  docx_path <- paste0("chapter_downloads/", docx_name)
+  
+  cat(sprintf(
+    '<a href="%s" download class="btn-download">⬇ Download this chapter (.docx)</a>\n\n',
+    docx_path
+  ))
+}
 ```
