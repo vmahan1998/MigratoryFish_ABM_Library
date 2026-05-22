@@ -1,22 +1,11 @@
 
 ```{r, echo=FALSE, results='asis', include=knitr::is_html_output()}
+ch_base <- if (exists("current_chapter")) current_chapter else ""
 
-ch_file <- knitr::current_input(dir = TRUE)
-ch_base <- basename(ch_file)
-
-if (ch_base == "_download_button.Rmd" || nchar(ch_base) == 0) {
-  ch_base <- tryCatch(
-    basename(knitr:::knit_current$get()),
-    error = function(e) ""
-  )
-}
-
-if (nchar(ch_base) == 0 || ch_base == "_main.Rmd" ||
-    ch_base == "_download_button.Rmd") {
+if (nchar(ch_base) == 0 || ch_base == "_main.Rmd") {
   invisible(NULL)
 } else {
-
-  ch_lines   <- tryCatch(readLines(ch_base, warn = FALSE), error = function(e) "")
+  ch_lines   <- readLines(ch_base, warn = FALSE)
   title_line <- ch_lines[grep("^# ", ch_lines)[1]]
 
   if (length(title_line) > 0 && !is.na(title_line)) {
@@ -29,8 +18,6 @@ if (nchar(ch_base) == 0 || ch_base == "_main.Rmd" ||
   }
 
   docx_name <- paste0("Quintana_GoFish_", ch_title, ".docx")
-
-  # Use root-relative path so it works on GitHub Pages regardless of chapter depth
   docx_path <- paste0("/GoFish/chapter_downloads/", docx_name)
 
   cat(sprintf(

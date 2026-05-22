@@ -1,5 +1,7 @@
 # Introduction
-
+```{r, include=FALSE}
+current_chapter <- "01-intro.Rmd"
+```
 ```{r, child="_download_button.Rmd"}
 ```
 
