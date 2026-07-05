@@ -1,6 +1,6 @@
 ---
 title: "GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries"
-author: "Vanessa Quintana, Kim Huguenard, Gayle Zydlewski, Joeseph Dello-Russo, Kaylyn Zipp, Todd Swannack"
+author: "Vanessa Quintana, Kim Huguenard, Gayle Zydlewski, Joseph Dello-Russo, Kaylyn Zipp, Todd Swannack"
 date: "`r Sys.Date()`"
 keywords: ["ecological modeling", "coding library", "netlogo", "agent-based", "pattern-oriented", "individual-based", "bioaccumulation", "estuary contamination", "hydrodynamics", "mercury", "anadromous fish", "GoFish", "SPM transport", "methylmercury", "GoFish Toolkit", "osmoregulation", "estuarine dynamics", "coupled models", "co-development", "fish behavior", "migratory fish"]
 site: bookdown::bookdown_site

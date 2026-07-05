@@ -209,10 +209,15 @@ partners. Full acknowledgements are documented in Chapter 3.
 
 ## Citation
 
-If you use GoFish or P-MEM in your research, please cite:
+If you use GoFish in your research, please cite:
 
-Quintana, V. (2026). GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries. University of Maine.
-https://doi.org/10.5281/ZENODO.19483469
+Files and Metadata:
+
+Quintana, V., Huguenard, K., Zydlewski, G., Dello-Russo, J., Zipp, K., & Swannack, T. (2026). GoFish: A next-generation toolkit for modeling migratory fish and quantifying sediment-bound contaminant risk in estuaries (Version 1.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.21209898
+
+Website:
+
+Quintana, V., Huguenard, K., Zydlewski, G., Dello-Russo, J., Zipp, K., & Swannack, T. (2026). GoFish documentation. https://vmahan1998.github.io/GoFish/
 
 ---
 
