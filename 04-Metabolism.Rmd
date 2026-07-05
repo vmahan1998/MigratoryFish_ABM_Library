@@ -114,9 +114,9 @@ efficiency multipliers.
 | Variable | Initialized Value | Justification |
 |:----------------:|:----------------------------:|:----------------------:|
 | Met-base | Computed using size, age, and temperature factors | Establishes a physiologically realistic baseline. |
-| swim-base | Met-base times movement ratio | Allocates baseline metabolism for locomotion. |
-| E-base | Met-base times 0.02 | Maintenance cost of cellular metabolic activity. |
-| E-creation | Met-base times 0.05 | Cost of forming new chloride cells. |
+| swim-base | Met-base * movement ratio | Allocates baseline metabolism for locomotion. |
+| E-base | Met-base * 0.02 | Maintenance cost of cellular metabolic activity. |
+| E-creation | Met-base * 0.05 | Cost of forming new chloride cells. |
 | motion-ratio | 0.7 normalized | Movement is energetically dominant. |
 | osmo-ratio | 0.3 normalized | Osmoregulation is energetically significant. |
 | E-osmo | 0 | No osmoregulation cost at initialization. |
