@@ -23,7 +23,7 @@
 <meta name="author" content="Vanessa Quintana, Gayle Zydlewski, Joeseph Dello-Russo, Kaylyn Zipp, Todd Swannack" />
 
 
-<meta name="date" content="2026-05-22" />
+<meta name="date" content="2026-07-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -479,6 +479,14 @@ div.csl-indent {
 <li class="chapter" data-level="15.7.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-burst-speed-adjustment"><i class="fa fa-check"></i><b>15.7.4</b> Predator Burst Speed Adjustment</a></li>
 <li class="chapter" data-level="15.7.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predation-and-consumption"><i class="fa fa-check"></i><b>15.7.5</b> Predation and Consumption</a></li>
 <li class="chapter" data-level="15.7.6" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#interaction-with-migration-movement-and-swimming-energy"><i class="fa fa-check"></i><b>15.7.6</b> Interaction With Migration Movement and Swimming Energy</a></li>
+</ul></li>
+<li class="chapter" data-level="15.8" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#netlogo-implementation-11"><i class="fa fa-check"></i><b>15.8</b> Netlogo Implementation</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#flee-predators"><i class="fa fa-check"></i><b>15.8.1</b> Flee Predators</a></li>
+<li class="chapter" data-level="15.8.2" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#scare-prey"><i class="fa fa-check"></i><b>15.8.2</b> Scare Prey</a></li>
+<li class="chapter" data-level="15.8.3" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#chase-nearest-prey"><i class="fa fa-check"></i><b>15.8.3</b> Chase Nearest Prey</a></li>
+<li class="chapter" data-level="15.8.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-speed"><i class="fa fa-check"></i><b>15.8.4</b> Predator Speed</a></li>
+<li class="chapter" data-level="15.8.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#consume-prey"><i class="fa fa-check"></i><b>15.8.5</b> Consume Prey</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="simple-model-building-tutorial-schooling-landward-movement.html"><a href="simple-model-building-tutorial-schooling-landward-movement.html"><i class="fa fa-check"></i><b>16</b> Simple Model Building Tutorial: Schooling &amp; Landward Movement</a>
@@ -1024,7 +1032,7 @@ consistent with bioenergetic constraints derived largely from studies of
 ectothermic aquatic organisms, particularly fishes
 <span class="citation">(<a href="#ref-norin_metabolic_2018">Norin and Gamperl 2018</a>)</span>:</p>
 <p><span class="math display">\[
-Filter_{base} = \left(\frac{size}{100}\right) \cdot Met_{tick} \cdot Eff_{digest} \hspace{2cm} \text{(C.46)}
+Filter_{base} = \left(\frac{size}{100}\right) \cdot Met_{tick} \cdot Eff_{digest} \hspace{2cm} \text{(9.1)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1044,7 +1052,7 @@ deviation from that optimum following a Gaussian performance curve
 gradients, representing maximal feeding performance at intermediate SPM
 and reduced suitability at both lower and higher concentrations:</p>
 <p><span class="math display">\[
-A_{interest} = e^{-\frac{(SPM - SPM_{optimal})^2}{2 \cdot \sigma^2}}  \hspace{2cm} \text{(C.47)}
+A_{interest} = e^{-\frac{(SPM - SPM_{optimal})^2}{2 \cdot \sigma^2}}  \hspace{2cm} \text{(9.2)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1062,7 +1070,7 @@ patch (<span class="math inline">\(\frac{kg}{m^3}\)</span>).</li>
 <h3><span class="header-section-number">9.7.3</span> Resource Benefit Calculation<a href="small-particulate-feeding.html#resource-benefit-calculation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Benefit for each neighboring patch:</p>
 <p><span class="math display">\[
-A_{benefit} = SPM \cdot A_{interst} \cdot Filter_{base}  \hspace{2cm} \text{(C.48)}
+A_{benefit} = SPM \cdot A_{interst} \cdot Filter_{base}  \hspace{2cm} \text{(9.3)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1077,7 +1085,7 @@ patch (<span class="math inline">\(\frac{kg}{m^3}\)</span>).</li>
 </ul>
 <p>If con-specifics are present:</p>
 <p><span class="math display">\[
-A_{benefit} = \frac{A_{benefit}}{N_{conspecifics}}  \hspace{2cm} \text{(C.49)}
+A_{benefit} = \frac{A_{benefit}}{N_{conspecifics}}  \hspace{2cm} \text{(9.4)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1091,7 +1099,7 @@ A_{benefit} = \frac{A_{benefit}}{N_{conspecifics}}  \hspace{2cm} \text{(C.49)}
 <h3><span class="header-section-number">9.7.4</span> Movement<a href="small-particulate-feeding.html#movement" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Travel distance is reduced by swimming efficiency:</p>
 <p><span class="math display">\[
-D_{travel} = min(D_{to-patch},\ A_{speed} \cdot swim_{Eff})  \hspace{2cm} \text{(C.50)}
+D_{travel} = min(D_{to-patch},\ A_{speed} \cdot swim_{Eff})  \hspace{2cm} \text{(9.5)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1106,7 +1114,7 @@ energetics (%).</li>
 </ul>
 <p>Energy cost of swimming:</p>
 <p><span class="math display">\[
-E_{agent} = E_{agent} - (E_{swim} \cdot D_{travel})  \hspace{2cm} \text{(C.51)}
+E_{agent} = E_{agent} - (E_{swim} \cdot D_{travel})  \hspace{2cm} \text{(9.6)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1122,7 +1130,7 @@ units).</li>
 <h3><span class="header-section-number">9.7.5</span> Feeding and Stomach Loading<a href="small-particulate-feeding.html#feeding-and-stomach-loading" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Assimilated biomass:</p>
 <p><span class="math display">\[
-M_{intake} = min(M_{prey},\ stomach_{max} - M_{stomach})  \hspace{2cm} \text{(C.52)}
+M_{intake} = min(M_{prey},\ stomach_{max} - M_{stomach})  \hspace{2cm} \text{(9.7)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1136,7 +1144,7 @@ M_{intake} = min(M_{prey},\ stomach_{max} - M_{stomach})  \hspace{2cm} \text{(C.
 <h3><span class="header-section-number">9.7.6</span> Contaminant Assimilation and Biomagnification<a href="small-particulate-feeding.html#contaminant-assimilation-and-biomagnification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Biomagnification factors follow <span class="citation">Lavoie et al. (<a href="#ref-lavoie_biomagnification_2013">2013</a>)</span>:</p>
 <p><span class="math display">\[
-BMF_{MeHg} = 10^{(0.24 \cdot \Delta TP)}  \hspace{2cm} \text{(C.53)}
+BMF_{MeHg} = 10^{(0.24 \cdot \Delta TP)}  \hspace{2cm} \text{(9.8)}
 \]</span> Where:</p>
 <ul>
 <li><span class="math inline">\(\Delta TP = 1\)</span> is the trophic position difference for
@@ -1145,7 +1153,7 @@ biomagnification.</li>
 (dimensionless).</li>
 </ul>
 <p><span class="math display">\[
-BMF_{MeHg} = 10^{0.24} \approx 1.74  \hspace{2cm} \text{(C.54)}
+BMF_{MeHg} = 10^{0.24} \approx 1.74  \hspace{2cm} \text{(9.9)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1154,7 +1162,7 @@ BMF_{MeHg} = 10^{0.24} \approx 1.74  \hspace{2cm} \text{(C.54)}
 </ul>
 <p>Assimilation equations:</p>
 <p><span class="math display">\[
-MeHg_{intake} = SPM \cdot MeHg_{patch} \cdot BMF_{MeHg} \cdot M_{intake}  \hspace{2cm} \text{(C.55)}
+MeHg_{intake} = SPM \cdot MeHg_{patch} \cdot BMF_{MeHg} \cdot M_{intake}  \hspace{2cm} \text{(9.10)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1169,7 +1177,7 @@ uptake (ng g⁻¹).</li>
 </ul>
 <p>Stomach contaminant update:</p>
 <p><span class="math display">\[
-MeHg_{stomach} = MeHg_{stomach} + MeHg_{intake}  \hspace{2cm} \text{(C.56)}
+MeHg_{stomach} = MeHg_{stomach} + MeHg_{intake}  \hspace{2cm} \text{(9.11)}
 \]</span></p>
 <p>Where:</p>
 <ul>

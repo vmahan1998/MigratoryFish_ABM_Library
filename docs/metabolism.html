@@ -23,7 +23,7 @@
 <meta name="author" content="Vanessa Quintana, Gayle Zydlewski, Joeseph Dello-Russo, Kaylyn Zipp, Todd Swannack" />
 
 
-<meta name="date" content="2026-05-22" />
+<meta name="date" content="2026-07-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -479,6 +479,14 @@ div.csl-indent {
 <li class="chapter" data-level="15.7.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-burst-speed-adjustment"><i class="fa fa-check"></i><b>15.7.4</b> Predator Burst Speed Adjustment</a></li>
 <li class="chapter" data-level="15.7.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predation-and-consumption"><i class="fa fa-check"></i><b>15.7.5</b> Predation and Consumption</a></li>
 <li class="chapter" data-level="15.7.6" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#interaction-with-migration-movement-and-swimming-energy"><i class="fa fa-check"></i><b>15.7.6</b> Interaction With Migration Movement and Swimming Energy</a></li>
+</ul></li>
+<li class="chapter" data-level="15.8" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#netlogo-implementation-11"><i class="fa fa-check"></i><b>15.8</b> Netlogo Implementation</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#flee-predators"><i class="fa fa-check"></i><b>15.8.1</b> Flee Predators</a></li>
+<li class="chapter" data-level="15.8.2" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#scare-prey"><i class="fa fa-check"></i><b>15.8.2</b> Scare Prey</a></li>
+<li class="chapter" data-level="15.8.3" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#chase-nearest-prey"><i class="fa fa-check"></i><b>15.8.3</b> Chase Nearest Prey</a></li>
+<li class="chapter" data-level="15.8.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-speed"><i class="fa fa-check"></i><b>15.8.4</b> Predator Speed</a></li>
+<li class="chapter" data-level="15.8.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#consume-prey"><i class="fa fa-check"></i><b>15.8.5</b> Consume Prey</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="simple-model-building-tutorial-schooling-landward-movement.html"><a href="simple-model-building-tutorial-schooling-landward-movement.html"><i class="fa fa-check"></i><b>16</b> Simple Model Building Tutorial: Schooling &amp; Landward Movement</a>
@@ -975,7 +983,7 @@ using species-specific traits and fixed parameter values and remains
 constant across simulation runs:</p>
 <p>Baseline metabolic constant is computed using:</p>
 <p><span class="math display">\[
-Met_{base} = C_{base} \left(\frac{A_{mass}}{M_{max}}\right)^{0.75} \left[1 + S_{age}\left(1 - \frac{A_{age}}{Age_{max}}\right)\right] \left(\frac{T_{opt}}{T_{max}}\right) \hspace{2cm} \text{(C.1)}
+Met_{base} = C_{base} \left(\frac{A_{mass}}{M_{max}}\right)^{0.75} \left[1 + S_{age}\left(1 - \frac{A_{age}}{Age_{max}}\right)\right] \left(\frac{T_{opt}}{T_{max}}\right) \hspace{2cm} \text{(4.1)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1000,7 +1008,7 @@ normalization (°C).</p></li>
 <p>Baseline energy partitions are computed from the initialized metabolic
 base:</p>
 <p><span class="math display">\[
-swim_{base} = Met_{base} \cdot Mt_{ratio}  \hspace{2cm} \text{(C.2)}
+swim_{base} = Met_{base} \cdot Mt_{ratio}  \hspace{2cm} \text{(4.2)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1012,7 +1020,7 @@ for all energetic scaling ((energy units) tick⁻¹).</p></li>
 swimming cost (%).</p></li>
 </ul>
 <p><span class="math display">\[
-E_{\text{base}} = Met_{base} \cdot 0.02  \hspace{2cm} \text{(C.3)}
+E_{\text{base}} = Met_{base} \cdot 0.02  \hspace{2cm} \text{(4.3)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1022,7 +1030,7 @@ E_{\text{base}} = Met_{base} \cdot 0.02  \hspace{2cm} \text{(C.3)}
 for all energetic scaling ((energy units) tick⁻¹).</p></li>
 </ul>
 <p><span class="math display">\[
-E_{\text{creation}} = Met_{base} \cdot 0.05  \hspace{2cm} \text{(C.4)}
+E_{\text{creation}} = Met_{base} \cdot 0.05  \hspace{2cm} \text{(4.4)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1043,7 +1051,7 @@ represented through parameter values (e.g., age, body mass, age
 structure, and thermal preferences).</p>
 <p>Size Factor:</p>
 <p><span class="math display">\[
-Size_{f} = \left(\frac{{A_{mass}}}{M_{max}}\right)^{0.75}  \hspace{2cm} \text{(C.5)}
+Size_{f} = \left(\frac{{A_{mass}}}{M_{max}}\right)^{0.75}  \hspace{2cm} \text{(4.5)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1058,7 +1066,7 @@ sensitivity of metabolic rate in ectotherms
 <span class="citation">(<a href="#ref-schmidt_nielsen_animal_1997">Schmidt-Nielsen 1997</a>; <a href="#ref-brown_toward_2004">Brown et al. 2004</a>)</span>.</p>
 <p>The Temperature Factor is implemented as:</p>
 <p><span class="math display">\[
-T_{f} = Q_{10}^{\left(\frac{T_{\text{patch}} - T_{\text{opt}}}{10}\right)}  \hspace{2cm} \text{(C.6)}
+T_{f} = Q_{10}^{\left(\frac{T_{\text{patch}} - T_{\text{opt}}}{10}\right)}  \hspace{2cm} \text{(4.6)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1076,7 +1084,7 @@ are incorporated using the following age-scaling factor
 <span class="citation">(<a href="#ref-glazier_beyond_2005">Glazier 2005</a>, <a href="#ref-glazier_relevance_2023">2023</a>)</span>:</p>
 <p>The Age Factor is calculated as:</p>
 <p><span class="math display">\[
-Age_{f} = 1 + \left(1 - \frac{A_{age}}{Age_{max}}\right)\cdot 0.5  \hspace{2cm} \text{(C.7)}
+Age_{f} = 1 + \left(1 - \frac{A_{age}}{Age_{max}}\right)\cdot 0.5  \hspace{2cm} \text{(4.7)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1093,7 +1101,7 @@ and temperature <span class="citation">(<a href="#ref-brown_toward_2004">Brown e
 Met_{tick} = Met_{base} \cdot
 Size_{f} \cdot
 T_{f} \cdot
-Age_{f}  \hspace{2cm} \text{(C.8)}
+Age_{f}  \hspace{2cm} \text{(4.8)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1110,7 +1118,7 @@ intensity (dimensionless).</p></li>
 </ul>
 <p>Metabolic accumulation:</p>
 <p><span class="math display">\[
-Met_{total} = Met_{total} + Met_{tick}  \hspace{2cm} \text{(C.9)}
+Met_{total} = Met_{total} + Met_{tick}  \hspace{2cm} \text{(4.9)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1138,7 +1146,7 @@ M_{\text{baseline}} =
 <p>Efficiency is computed as:</p>
 <p><span class="math display">\[
 Eff =
-\frac{Met_{tick}}{Met_{base}}  \hspace{2cm} \text{(C.10)}
+\frac{Met_{tick}}{Met_{base}}  \hspace{2cm} \text{(4.10)}
 \]</span></p>
 <p>Where:</p>
 <ul>

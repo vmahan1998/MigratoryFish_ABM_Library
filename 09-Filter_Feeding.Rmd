@@ -169,7 +169,7 @@ ectothermic aquatic organisms, particularly fishes
 [@norin_metabolic_2018]:
 
 $$
- Filter_{base} = \left(\frac{size}{100}\right) \cdot Met_{tick} \cdot Eff_{digest} \hspace{2cm} \text{(C.46)} 
+ Filter_{base} = \left(\frac{size}{100}\right) \cdot Met_{tick} \cdot Eff_{digest} \hspace{2cm} \text{(9.1)} 
 $$
 
 Where:
@@ -190,7 +190,7 @@ gradients, representing maximal feeding performance at intermediate SPM
 and reduced suitability at both lower and higher concentrations:
 
 $$
- A_{interest} = e^{-\frac{(SPM - SPM_{optimal})^2}{2 \cdot \sigma^2}}  \hspace{2cm} \text{(C.47)} 
+ A_{interest} = e^{-\frac{(SPM - SPM_{optimal})^2}{2 \cdot \sigma^2}}  \hspace{2cm} \text{(9.2)} 
 $$
 
 Where:
@@ -209,7 +209,7 @@ Where:
 Benefit for each neighboring patch:
 
 $$
- A_{benefit} = SPM \cdot A_{interst} \cdot Filter_{base}  \hspace{2cm} \text{(C.48)} 
+ A_{benefit} = SPM \cdot A_{interst} \cdot Filter_{base}  \hspace{2cm} \text{(9.3)} 
 $$
 
 Where:
@@ -226,7 +226,7 @@ Where:
 If con-specifics are present:
 
 $$
- A_{benefit} = \frac{A_{benefit}}{N_{conspecifics}}  \hspace{2cm} \text{(C.49)} 
+ A_{benefit} = \frac{A_{benefit}}{N_{conspecifics}}  \hspace{2cm} \text{(9.4)} 
 $$
 
 Where:
@@ -241,7 +241,7 @@ Where:
 Travel distance is reduced by swimming efficiency:
 
 $$
- D_{travel} = min(D_{to-patch},\ A_{speed} \cdot swim_{Eff})  \hspace{2cm} \text{(C.50)} 
+ D_{travel} = min(D_{to-patch},\ A_{speed} \cdot swim_{Eff})  \hspace{2cm} \text{(9.5)} 
 $$
 
 Where:
@@ -258,7 +258,7 @@ Where:
 Energy cost of swimming:
 
 $$
- E_{agent} = E_{agent} - (E_{swim} \cdot D_{travel})  \hspace{2cm} \text{(C.51)} 
+ E_{agent} = E_{agent} - (E_{swim} \cdot D_{travel})  \hspace{2cm} \text{(9.6)} 
 $$
 
 Where:
@@ -275,7 +275,7 @@ Where:
 Assimilated biomass:
 
 $$
- M_{intake} = min(M_{prey},\ stomach_{max} - M_{stomach})  \hspace{2cm} \text{(C.52)} 
+ M_{intake} = min(M_{prey},\ stomach_{max} - M_{stomach})  \hspace{2cm} \text{(9.7)} 
 $$
 
 Where:
@@ -290,7 +290,7 @@ Where:
 Biomagnification factors follow @lavoie_biomagnification_2013:
 
 $$
- BMF_{MeHg} = 10^{(0.24 \cdot \Delta TP)}  \hspace{2cm} \text{(C.53)} 
+ BMF_{MeHg} = 10^{(0.24 \cdot \Delta TP)}  \hspace{2cm} \text{(9.8)} 
 $$ Where:
 
 -   $\Delta TP = 1$ is the trophic position difference for
@@ -299,7 +299,7 @@ $$ Where:
     (dimensionless).
 
 $$
- BMF_{MeHg} = 10^{0.24} \approx 1.74  \hspace{2cm} \text{(C.54)} 
+ BMF_{MeHg} = 10^{0.24} \approx 1.74  \hspace{2cm} \text{(9.9)} 
 $$
 
 Where:
@@ -310,7 +310,7 @@ Where:
 Assimilation equations:
 
 $$
- MeHg_{intake} = SPM \cdot MeHg_{patch} \cdot BMF_{MeHg} \cdot M_{intake}  \hspace{2cm} \text{(C.55)} 
+ MeHg_{intake} = SPM \cdot MeHg_{patch} \cdot BMF_{MeHg} \cdot M_{intake}  \hspace{2cm} \text{(9.10)} 
 $$
 
 Where:
@@ -327,7 +327,7 @@ Where:
 Stomach contaminant update:
 
 $$
- MeHg_{stomach} = MeHg_{stomach} + MeHg_{intake}  \hspace{2cm} \text{(C.56)} 
+ MeHg_{stomach} = MeHg_{stomach} + MeHg_{intake}  \hspace{2cm} \text{(9.11)} 
 $$
 
 Where:

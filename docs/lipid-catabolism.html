@@ -23,7 +23,7 @@
 <meta name="author" content="Vanessa Quintana, Gayle Zydlewski, Joeseph Dello-Russo, Kaylyn Zipp, Todd Swannack" />
 
 
-<meta name="date" content="2026-05-22" />
+<meta name="date" content="2026-07-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -480,6 +480,14 @@ div.csl-indent {
 <li class="chapter" data-level="15.7.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predation-and-consumption"><i class="fa fa-check"></i><b>15.7.5</b> Predation and Consumption</a></li>
 <li class="chapter" data-level="15.7.6" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#interaction-with-migration-movement-and-swimming-energy"><i class="fa fa-check"></i><b>15.7.6</b> Interaction With Migration Movement and Swimming Energy</a></li>
 </ul></li>
+<li class="chapter" data-level="15.8" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#netlogo-implementation-11"><i class="fa fa-check"></i><b>15.8</b> Netlogo Implementation</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#flee-predators"><i class="fa fa-check"></i><b>15.8.1</b> Flee Predators</a></li>
+<li class="chapter" data-level="15.8.2" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#scare-prey"><i class="fa fa-check"></i><b>15.8.2</b> Scare Prey</a></li>
+<li class="chapter" data-level="15.8.3" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#chase-nearest-prey"><i class="fa fa-check"></i><b>15.8.3</b> Chase Nearest Prey</a></li>
+<li class="chapter" data-level="15.8.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-speed"><i class="fa fa-check"></i><b>15.8.4</b> Predator Speed</a></li>
+<li class="chapter" data-level="15.8.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#consume-prey"><i class="fa fa-check"></i><b>15.8.5</b> Consume Prey</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="simple-model-building-tutorial-schooling-landward-movement.html"><a href="simple-model-building-tutorial-schooling-landward-movement.html"><i class="fa fa-check"></i><b>16</b> Simple Model Building Tutorial: Schooling &amp; Landward Movement</a>
 <ul>
@@ -922,7 +930,7 @@ catabolism, lipid used, and body mass loss over time.</p>
 <h3><span class="header-section-number">10.7.1</span> Lipid Mobilization<a href="lipid-catabolism.html#lipid-mobilization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Maximum lipid available for mobilization depends on relative body mass:</p>
 <p><span class="math display">\[
-Lipid_{refill} = 0.5 \times \left(\frac{A_{mass}}{A_{mass_{i}}}\right)  \hspace{2cm} \text{(C.57)}
+Lipid_{refill} = 0.5 \times \left(\frac{A_{mass}}{A_{mass_{i}}}\right)  \hspace{2cm} \text{(10.1)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -933,7 +941,7 @@ energetic scaling (g).</li>
 </ul>
 <p>Energy deficit relative to full energy:</p>
 <p><span class="math display">\[
-E_{deficit} = 100 - E_{agent}  \hspace{2cm} \text{(C.58)}
+E_{deficit} = 100 - E_{agent}  \hspace{2cm} \text{(10.2)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -944,7 +952,7 @@ E_{deficit} = 100 - E_{agent}  \hspace{2cm} \text{(C.58)}
 </ul>
 <p>Lipid required to refill the deficit:</p>
 <p><span class="math display">\[
-Lipid_{needed} = \frac{Energy_{deficit}}{100}  \hspace{2cm} \text{(C.59)}
+Lipid_{needed} = \frac{Energy_{deficit}}{100}  \hspace{2cm} \text{(10.3)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -955,7 +963,7 @@ relative energy).</li>
 </ul>
 <p>Actual lipid mobilized:</p>
 <p><span class="math display">\[
-Lipid_{used} = \min(Lipid_{needed},\ Lipid_{refill}) \times Lipid_{Eff}  \hspace{2cm} \text{(C.60)}
+Lipid_{used} = \min(Lipid_{needed},\ Lipid_{refill}) \times Lipid_{Eff}  \hspace{2cm} \text{(10.4)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -972,7 +980,7 @@ catabolism (%).</li>
 <h3><span class="header-section-number">10.7.2</span> Energy Conversion<a href="lipid-catabolism.html#energy-conversion-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Mobilized lipid is converted into energy:</p>
 <p><span class="math display">\[
-E_{added} = Lipid_{used} \times 100  \hspace{2cm} \text{(C.61)}
+E_{added} = Lipid_{used} \times 100  \hspace{2cm} \text{(10.5)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -982,7 +990,7 @@ units).</li>
 </ul>
 <p>Energy is capped at one hundred:</p>
 <p><span class="math display">\[
-E_{agent} = \min(100,\ E_{agent} + E_{added})  \hspace{2cm} \text{(C.62)}
+E_{agent} = \min(100,\ E_{agent} + E_{added})  \hspace{2cm} \text{(10.6)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -996,7 +1004,7 @@ units).</li>
 <h3><span class="header-section-number">10.7.3</span> Weight Loss<a href="lipid-catabolism.html#weight-loss" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Weight decreases proportionally to lipid used:</p>
 <p><span class="math display">\[
-A_{mass} = A_{mass} - Lipid_{used}  \hspace{2cm} \text{(C.63)}
+A_{mass} = A_{mass} - Lipid_{used}  \hspace{2cm} \text{(10.7)}
 \]</span> Where:</p>
 <ul>
 <li><span class="math inline">\(A_{mass}\)</span> is an agent’s body mass used for allometric and energetic

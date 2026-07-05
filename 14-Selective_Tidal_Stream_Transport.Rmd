@@ -103,7 +103,7 @@ flow exceeds their capability and their effort is below a defined
 threshold, they enter STST:
 
 $$
- |V_{patch}| > A_{speed} \quad \text{and} \quad A_{speed} \leq Speed_{min}  \hspace{2cm} \text{(C.94)} 
+ |V_{patch}| > A_{speed} \quad \text{and} \quad A_{speed} \leq Speed_{min}  \hspace{2cm} \text{(14.1)} 
 $$
 
 Where:
@@ -119,7 +119,7 @@ Heading aligns with the current (drift vector) & swimming speed is set
 to:
 
 $$
- A_{speed} = |V_{patch}|  \hspace{2cm} \text{(C.95)} 
+ A_{speed} = |V_{patch}|  \hspace{2cm} \text{(14.2)} 
 $$
 
 Where:
@@ -131,7 +131,7 @@ Where:
 Energy is set as:
 
 $$
- E_{swim} = swim_{base}  \hspace{2cm} \text{(C.96)} 
+ E_{swim} = swim_{base}  \hspace{2cm} \text{(14.3)} 
 $$
 
 Where:
@@ -147,7 +147,7 @@ While in STST, agents align with the current (either landward or
 seaward) and are passively transported:
 
 $$
- \vec{Y}_{t+1} = \vec{Y}_t + |V_{patch}| \cdot \hat{u}  \hspace{2cm} \text{(C.97)} 
+ \vec{Y}_{t+1} = \vec{Y}_t + |V_{patch}| \cdot \hat{u}  \hspace{2cm} \text{(14.4)} 
 $$
 
 Where:
@@ -162,7 +162,7 @@ Where:
 Swimming speed is overwritten:
 
 $$
- A_{speed} = |V_{patch}|  \hspace{2cm} \text{(C.98)} 
+ A_{speed} = |V_{patch}|  \hspace{2cm} \text{(14.5)} 
 $$
 
 Where:
@@ -174,7 +174,7 @@ Where:
 Energy cost is minimized:
 
 $$
- E_{swim} = swim_{base}  \hspace{2cm} \text{(C.99)} 
+ E_{swim} = swim_{base}  \hspace{2cm} \text{(14.6)} 
 $$
 
 Where:
@@ -190,7 +190,7 @@ Agents exit STST when they regain sufficient swimming capacity to exceed
 threshold:
 
 $$
- A_{speed} > speed_{min}  \hspace{2cm} \text{(C.100)} 
+ A_{speed} > speed_{min}  \hspace{2cm} \text{(14.7)} 
 $$
 
 Where:

@@ -23,7 +23,7 @@
 <meta name="author" content="Vanessa Quintana, Gayle Zydlewski, Joeseph Dello-Russo, Kaylyn Zipp, Todd Swannack" />
 
 
-<meta name="date" content="2026-05-22" />
+<meta name="date" content="2026-07-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -479,6 +479,14 @@ div.csl-indent {
 <li class="chapter" data-level="15.7.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-burst-speed-adjustment"><i class="fa fa-check"></i><b>15.7.4</b> Predator Burst Speed Adjustment</a></li>
 <li class="chapter" data-level="15.7.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predation-and-consumption"><i class="fa fa-check"></i><b>15.7.5</b> Predation and Consumption</a></li>
 <li class="chapter" data-level="15.7.6" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#interaction-with-migration-movement-and-swimming-energy"><i class="fa fa-check"></i><b>15.7.6</b> Interaction With Migration Movement and Swimming Energy</a></li>
+</ul></li>
+<li class="chapter" data-level="15.8" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#netlogo-implementation-11"><i class="fa fa-check"></i><b>15.8</b> Netlogo Implementation</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#flee-predators"><i class="fa fa-check"></i><b>15.8.1</b> Flee Predators</a></li>
+<li class="chapter" data-level="15.8.2" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#scare-prey"><i class="fa fa-check"></i><b>15.8.2</b> Scare Prey</a></li>
+<li class="chapter" data-level="15.8.3" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#chase-nearest-prey"><i class="fa fa-check"></i><b>15.8.3</b> Chase Nearest Prey</a></li>
+<li class="chapter" data-level="15.8.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-speed"><i class="fa fa-check"></i><b>15.8.4</b> Predator Speed</a></li>
+<li class="chapter" data-level="15.8.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#consume-prey"><i class="fa fa-check"></i><b>15.8.5</b> Consume Prey</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="simple-model-building-tutorial-schooling-landward-movement.html"><a href="simple-model-building-tutorial-schooling-landward-movement.html"><i class="fa fa-check"></i><b>16</b> Simple Model Building Tutorial: Schooling &amp; Landward Movement</a>
@@ -944,7 +952,7 @@ dynamically toward a stress-dependent target over time.</p>
 <tr>
 <td align="center"><span class="math inline">\(\alpha\)</span></td>
 <td align="center">0.0017 - 0.002</td>
-<td align="center">Osmolarity stabilization from Figure 3. in (Allen et al., 2009).</td>
+<td align="center">Osmolarity stabilization (Allen et al., 2009).</td>
 </tr>
 <tr>
 <td align="center"><span class="math inline">\(C_{mid}\)</span></td>
@@ -986,7 +994,7 @@ represents a relative index of osmotic stress derived from salinity
 mismatch and buffering capacity, rather than a direct physiological
 measure (e.g., cortisol concentration):</p>
 <p><span class="math display">\[
-S_{stress} = \frac{\log_{10}(1 + |S_{agent} - S_{patch}|) \cdot 10}{1 + e^{-2 \cdot (C_{current} / C_{mid})}}   \hspace{2cm} \text{(C.19)}
+S_{stress} = \frac{\log_{10}(1 + |S_{agent} - S_{patch}|) \cdot 10}{1 + e^{-2 \cdot (C_{current} / C_{mid})}}   \hspace{2cm} \text{(6.1)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1002,7 +1010,7 @@ relative density).</p></li>
 <p>Stress is capped within the range [1, 10], and may be reduced slightly
 over time if salinity remains stable and chloride density is sufficient:</p>
 <p><span class="math display">\[
-S_{stress} = S_{stress} \cdot 0.98 \quad \text{if conditions are stable and } C &gt; C_{min}   \hspace{2cm} \text{(C.20)}
+S_{stress} = S_{stress} \cdot 0.98 \quad \text{if conditions are stable and } C &gt; C_{min}   \hspace{2cm} \text{(6.2)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1014,7 +1022,7 @@ salinity when conditions have been stable for several time steps (e.g.,
 hours to days), consistent with documented time-dependent salinity
 acclimation in fishes <span class="citation">(<a href="#ref-evans_osmotic_2008">Evans and Claiborne 2008</a>)</span>.</p>
 <p><span class="math display">\[
-S_{agent} = S_{agent} + (S_{patch} - S_{agent}) \cdot 0.02   \hspace{2cm} \text{(C.21)}
+S_{agent} = S_{agent} + (S_{patch} - S_{agent}) \cdot 0.02   \hspace{2cm} \text{(6.3)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1042,7 +1050,7 @@ and the acclimation interval (<span class="math inline">\(t_{osmo}\)</span>). Ch
 adjusted unless the agent’s energy exceeds 25%.</p>
 <p>The chloride cell density is based on stress:</p>
 <p><span class="math display">\[
-C_{target} = C_{min} + (C_{max} - C_{min}) \cdot \left(\frac{S_{stress}}{10}\right)   \hspace{2cm} \text{(C.22)}
+C_{target} = C_{min} + (C_{max} - C_{min}) \cdot \left(\frac{S_{stress}}{10}\right)   \hspace{2cm} \text{(6.4)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1059,7 +1067,7 @@ density).</li>
 (e.g., 288 ticks), (<span class="math inline">\(C_{target}\)</span>) is slightly reduced to reflect partial
 down regulation of chloride cells due to long-term acclimation:</p>
 <p><span class="math display">\[
-C_{target} = C_{target} \cdot 0.99 \quad \text{if stable}   \hspace{2cm} \text{(C.23)}
+C_{target} = C_{target} \cdot 0.99 \quad \text{if stable}   \hspace{2cm} \text{(6.5)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1069,7 +1077,7 @@ relative density).</li>
 <p>Chloride cell density then approaches the target using a double-rate
 adjustment and capped maximum rate of change:</p>
 <p><span class="math display">\[
-\Delta C = \left(C_{target} - C_{current}\right) \cdot \left(2 \cdot R_{proliferation}\right)   \hspace{2cm} \text{(C.24)}
+\Delta C = \left(C_{target} - C_{current}\right) \cdot \left(2 \cdot R_{proliferation}\right)   \hspace{2cm} \text{(6.6)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1083,7 +1091,7 @@ density).</li>
 tick⁻¹, relative density per tick).</li>
 </ul>
 <p><span class="math display">\[
-\Delta C = \max\left(-R_{max}, \min(R_{max}, \Delta C)\right)  \hspace{2cm} \text{(C.25)}
+\Delta C = \max\left(-R_{max}, \min(R_{max}, \Delta C)\right)  \hspace{2cm} \text{(6.7)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1095,7 +1103,7 @@ tick⁻¹, relative density per tick).</li>
 <p>If the agent has low energy (<span class="math inline">\(\leq 50\%\)</span>), the adjustment rate is
 halved:</p>
 <p><span class="math display">\[
-\Delta C = \Delta C \cdot 0.5 \quad \text{if energy is low}  \hspace{2cm} \text{(C.26)}
+\Delta C = \Delta C \cdot 0.5 \quad \text{if energy is low}  \hspace{2cm} \text{(6.8)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1105,7 +1113,7 @@ relative density).</li>
 <p>Finally, the chloride cell density is updated and constrained between
 <span class="math inline">\(C_{min}\)</span> and <span class="math inline">\(C_{max}\)</span>:</p>
 <p><span class="math display">\[
-C_{new} = \max(C_{min}, \min(C_{max}, C_{current} + \Delta C))  \hspace{2cm} \text{(C.27)}
+C_{new} = \max(C_{min}, \min(C_{max}, C_{current} + \Delta C))  \hspace{2cm} \text{(6.9)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1126,7 +1134,7 @@ salinity stress.</p>
 <p>Chloride density is only recalculated after a given acclimation
 interval:</p>
 <p><span class="math display">\[
-t_{osmo} \geq \alpha^{-1}  \hspace{2cm} \text{(C.28)}
+t_{osmo} \geq \alpha^{-1}  \hspace{2cm} \text{(6.10)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1135,7 +1143,7 @@ t_{osmo} \geq \alpha^{-1}  \hspace{2cm} \text{(C.28)}
 </ul>
 <p>After updating, the acclimation timer is reset:</p>
 <p><span class="math display">\[
-t_{osmo} = 0  \hspace{2cm} \text{(C.29)}
+t_{osmo} = 0  \hspace{2cm} \text{(6.11)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1154,7 +1162,7 @@ with body mass (g) according to a power-law relationship (e.g.,
 <span class="citation">Schmidt-Nielsen (<a href="#ref-schmidt_nielsen_animal_1997">1997</a>)</span>).</p>
 <p>Metabolic cost related to mass (g):</p>
 <p><span class="math display">\[
-E_{creation} = Met_{max} * (\frac{A_{mass}}{M_{max}})^k  \hspace{2cm} \text{(C.30)}
+E_{creation} = Met_{max} * (\frac{A_{mass}}{M_{max}})^k  \hspace{2cm} \text{(6.12)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1169,7 +1177,7 @@ energetic scaling (g).</p></li>
 </ul>
 <p>Energy required for ion regulation:</p>
 <p><span class="math display">\[
-E_{osmo} = (E_{base} \cdot C) + (E_{creation} \cdot C_{tick})  \hspace{2cm} \text{(C.31)}
+E_{osmo} = (E_{base} \cdot C) + (E_{creation} \cdot C_{tick})  \hspace{2cm} \text{(6.13)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1187,7 +1195,7 @@ a tick (%, relative density).</p></li>
 <h3><span class="header-section-number">6.7.3</span> Energy Balance<a href="salinity-exposure.html#energy-balance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Agents balance energy to osmoregulate with total energy allowance:</p>
 <p><span class="math display">\[
-E_{agent} = E_{agent} - E_{osmo}  \hspace{2cm} \text{(C.32)}
+E_{agent} = E_{agent} - E_{osmo}  \hspace{2cm} \text{(6.14)}
 \]</span></p>
 <p>Where:</p>
 <ul>

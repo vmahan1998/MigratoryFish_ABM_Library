@@ -23,7 +23,7 @@
 <meta name="author" content="Vanessa Quintana, Gayle Zydlewski, Joeseph Dello-Russo, Kaylyn Zipp, Todd Swannack" />
 
 
-<meta name="date" content="2026-05-22" />
+<meta name="date" content="2026-07-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -479,6 +479,14 @@ div.csl-indent {
 <li class="chapter" data-level="15.7.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-burst-speed-adjustment"><i class="fa fa-check"></i><b>15.7.4</b> Predator Burst Speed Adjustment</a></li>
 <li class="chapter" data-level="15.7.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predation-and-consumption"><i class="fa fa-check"></i><b>15.7.5</b> Predation and Consumption</a></li>
 <li class="chapter" data-level="15.7.6" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#interaction-with-migration-movement-and-swimming-energy"><i class="fa fa-check"></i><b>15.7.6</b> Interaction With Migration Movement and Swimming Energy</a></li>
+</ul></li>
+<li class="chapter" data-level="15.8" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#netlogo-implementation-11"><i class="fa fa-check"></i><b>15.8</b> Netlogo Implementation</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#flee-predators"><i class="fa fa-check"></i><b>15.8.1</b> Flee Predators</a></li>
+<li class="chapter" data-level="15.8.2" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#scare-prey"><i class="fa fa-check"></i><b>15.8.2</b> Scare Prey</a></li>
+<li class="chapter" data-level="15.8.3" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#chase-nearest-prey"><i class="fa fa-check"></i><b>15.8.3</b> Chase Nearest Prey</a></li>
+<li class="chapter" data-level="15.8.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-speed"><i class="fa fa-check"></i><b>15.8.4</b> Predator Speed</a></li>
+<li class="chapter" data-level="15.8.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#consume-prey"><i class="fa fa-check"></i><b>15.8.5</b> Consume Prey</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="simple-model-building-tutorial-schooling-landward-movement.html"><a href="simple-model-building-tutorial-schooling-landward-movement.html"><i class="fa fa-check"></i><b>16</b> Simple Model Building Tutorial: Schooling &amp; Landward Movement</a>
@@ -953,7 +961,7 @@ specific contributions.</p>
 <div id="normalization" class="section level3 hasAnchor" number="8.7.1">
 <h3><span class="header-section-number">8.7.1</span> Normalization<a href="contaminant-exposure.html#normalization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="math display">\[
-MeHg_{normalized} = \frac{MeHg_{patch} - MeHg_{min}}{MeHg_{max} - MeHg_{min}}  \hspace{2cm} \text{(C.40)}
+MeHg_{normalized} = \frac{MeHg_{patch} - MeHg_{min}}{MeHg_{max} - MeHg_{min}}  \hspace{2cm} \text{(8.1)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -973,7 +981,7 @@ g⁻¹).</p></li>
 <div id="exposure-duration" class="section level3 hasAnchor" number="8.7.2">
 <h3><span class="header-section-number">8.7.2</span> Exposure Duration<a href="contaminant-exposure.html#exposure-duration" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="math display">\[
-MeHg_{exp} = MeHg_{exp} + 1 \quad \text{if } MeHg_{patch} &gt; MeHg_{threshold}  \hspace{2cm} \text{(C.41)}
+MeHg_{exp} = MeHg_{exp} + 1 \quad \text{if } MeHg_{patch} &gt; MeHg_{threshold}  \hspace{2cm} \text{(8.2)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -992,7 +1000,7 @@ duration tracking, initalized at the Effects Range–Low for MeHg
 availability of dissolved MeHg associated with elevated SPM
 concentrations.</p>
 <p><span class="math display">\[
-MeHg_{risk} = Met_{tick} \cdot MeHg_{normalized} \cdot (1 + S_{stress}) \cdot (1 + SPM)  \hspace{2cm} \text{(C.42)}
+MeHg_{risk} = Met_{tick} \cdot MeHg_{normalized} \cdot (1 + S_{stress}) \cdot (1 + SPM)  \hspace{2cm} \text{(8.3)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1011,7 +1019,7 @@ patch (<span class="math inline">\(\frac{kg}{m^3}\)</span>).</li>
 <div id="cumulative-uptake" class="section level3 hasAnchor" number="8.7.4">
 <h3><span class="header-section-number">8.7.4</span> Cumulative Uptake<a href="contaminant-exposure.html#cumulative-uptake" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="math display">\[
-MeHg_{total} = MeHg_{total} + MeHg_{risk}  \hspace{2cm} \text{(C.43)}
+MeHg_{total} = MeHg_{total} + MeHg_{risk}  \hspace{2cm} \text{(8.4)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1023,10 +1031,10 @@ risk (dimensionless).</li>
 <p>Patch-level and individual-level storage based on species for cumulative
 duration risk experienced:</p>
 <p><span class="math display">\[
-MeHg_{exp-risk} = MeHg_{exp-risk} + MeHg_{risk} \hspace{2cm} \text{(C.44)}
+MeHg_{exp-risk} = MeHg_{exp-risk} + MeHg_{risk} \hspace{2cm} \text{(8.5)}
 \]</span></p>
 <p><span class="math display">\[
-MeHg_{exp-patch} = MeHg_{exp-patch} + MeHg_{risk} \hspace{2cm} \text{(C.45)}
+MeHg_{exp-patch} = MeHg_{exp-patch} + MeHg_{risk} \hspace{2cm} \text{(8.6)}
 \]</span></p>
 <p>Where:</p>
 <ul>

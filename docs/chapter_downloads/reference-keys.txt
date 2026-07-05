@@ -228,6 +228,12 @@ predator-prey-detection-and-chase
 predator-burst-speed-adjustment
 predation-and-consumption
 interaction-with-migration-movement-and-swimming-energy
+netlogo-implementation-11
+flee-predators
+scare-prey
+chase-nearest-prey
+predator-speed
+consume-prey
 simple-model-building-tutorial-schooling-landward-movement
 module-integration
 function-dependencies

@@ -171,7 +171,7 @@ Prey enter a fleeing state when a striped bass is detected within a
 cone-based encounter neighborhood and prey energy is positive:
 
 $$
- \exists \; predator \in \mathcal{C}_{prey}(r,\theta)\;\; \land \;\; E_{agent} > 0 \;\;\Rightarrow\;\; fleeing? = \text{true}  \hspace{2cm} \text{(C.101)} 
+ \exists \; predator \in \mathcal{C}_{prey}(r,\theta)\;\; \land \;\; E_{agent} > 0 \;\;\Rightarrow\;\; fleeing? = \text{true}  \hspace{2cm} \text{(15.1)} 
 $$ Where:
 
 -   $\mathcal{C}_{prey}(r,\theta)$ is the prey encounter cone with
@@ -184,7 +184,7 @@ Prey exit fleeing when no striped bass are detected within the encounter
 neighborhood or when energy is depleted:
 
 $$
- \neg \exists \; predator \in \mathcal{C}_{prey}(r,\theta)\;\; \lor \;\; E_{agent} \le 0 \;\;\Rightarrow\;\; fleeing? = \text{false}  \hspace{2cm} \text{(C.102)} 
+ \neg \exists \; predator \in \mathcal{C}_{prey}(r,\theta)\;\; \lor \;\; E_{agent} \le 0 \;\;\Rightarrow\;\; fleeing? = \text{false}  \hspace{2cm} \text{(15.2)} 
 $$
 
 Where:
@@ -205,7 +205,7 @@ $$
 \psi_t - 90^\circ  & \text{(scare-left)}\\
 \psi_t + 180^\circ & \text{(scare-down)}\\
 \psi_t + 0^\circ   & \text{(scare-up)}
-\end{cases}  \hspace{2cm} \text{(C.103)} 
+\end{cases}  \hspace{2cm} \text{(15.3)} 
 $$
 
 Where:
@@ -220,7 +220,7 @@ Where:
 When fleeing, prey move at maximum speed:
 
 $$
- A_{speed} = speed_{max}  \hspace{2cm} \text{(C.104)} 
+ A_{speed} = speed_{max}  \hspace{2cm} \text{(15.4)} 
 $$
 
 Where:
@@ -232,7 +232,7 @@ Travel distance per tick is computed from current speed (with the
 model’s internal conversion):
 
 $$
- D_{travel} = \frac{A_{speed}}{3}  \hspace{2cm} \text{(C.105)} 
+ D_{travel} = \frac{A_{speed}}{3}  \hspace{2cm} \text{(15.5)} 
 $$
 
 Where:
@@ -245,7 +245,7 @@ Where:
 A small random turn is applied:
 
 $$
- \psi_{t+1} = \psi_t + \varepsilon,\;\;\; \varepsilon \sim U(-15^\circ, 15^\circ)  \hspace{2cm} \text{(C.106)} 
+ \psi_{t+1} = \psi_t + \varepsilon,\;\;\; \varepsilon \sim U(-15^\circ, 15^\circ)  \hspace{2cm} \text{(15.6)} 
 $$
 
 Where:
@@ -257,7 +257,7 @@ A target patch is selected from reachable water patches within distance
 $D_{travel}$:
 
 $$
- p^* \sim \text{Uniform}\left(\{p \in \mathcal{N}(d_t) : patch\text{-}terrain(p)=\text{"water"}\}\right)  \hspace{2cm} \text{(C.107)} 
+ p^* \sim \text{Uniform}\left(\{p \in \mathcal{N}(d_t) : patch\text{-}terrain(p)=\text{"water"}\}\right)  \hspace{2cm} \text{(15.7)} 
 $$
 
 Where:
@@ -273,7 +273,7 @@ Prey traverse a path from the current patch $p$ to $p^*$ (implementation
 uses `build-path-to-prey`) and move along up to
 
 $$
- n_t = \lceil D_{trave} \rceil  \hspace{2cm} \text{(C.108)} 
+ n_t = \lceil D_{trave} \rceil  \hspace{2cm} \text{(15.8)} 
 $$
 
 Where:
@@ -285,11 +285,11 @@ patch steps within the tick. Patch visitation and time spent are
 accumulated:
 
 $$
- visits\text{-}by\text{-}alewife(p) \leftarrow visits\text{-}by\text{-}alewife(p) + 1  \hspace{2cm} \text{(C.109)} 
+ visits\text{-}by\text{-}alewife(p) \leftarrow visits\text{-}by\text{-}alewife(p) + 1  \hspace{2cm} \text{(15.9)} 
 $$
 
 $$
- ticks\text{-}spent\text{-}alewife(p) \leftarrow ticks\text{-}spent\text{-}alewife(p) + 1  \hspace{2cm} \text{(C.110)} 
+ ticks\text{-}spent\text{-}alewife(p) \leftarrow ticks\text{-}spent\text{-}alewife(p) + 1  \hspace{2cm} \text{(15.10)} 
 $$
 
 Where:
@@ -305,7 +305,7 @@ routine. First compute an energy multiplier from hydrodynamic difficulty
 and swimming efficiency:
 
 $$
- M_{swim} = D_f \cdot \left(\frac{1}{swim_{Eff}}\right)  \hspace{2cm} \text{(C.111)} 
+ M_{swim} = D_f \cdot \left(\frac{1}{swim_{Eff}}\right)  \hspace{2cm} \text{(15.11)} 
 $$
 
 Where:
@@ -318,7 +318,7 @@ Where:
 Then compute swimming energy cost (exponential scaling):
 
 $$
- E_{swim} = swim_{base} \cdot m_{swim}^{\beta}  \hspace{2cm} \text{(C.112)} 
+ E_{swim} = swim_{base} \cdot m_{swim}^{\beta}  \hspace{2cm} \text{(15.12)} 
 $$
 
 Where:
@@ -335,7 +335,7 @@ with $\beta = 0.75$. Energy is updated and constrained to remain
 non-negative:
 
 $$
- energy_{t+1} = \max(0,\; energy_t - E_{swim,t})  \hspace{2cm} \text{(C.113)} 
+ energy_{t+1} = \max(0,\; energy_t - E_{swim,t})  \hspace{2cm} \text{(15.13)} 
 $$
 
 Where:
@@ -357,7 +357,7 @@ Predators define visible prey as prey within a radius equal to
 $A_{vision}$:
 
 $$
- \mathcal{P}_{vision} = \{i \in \text{prey} : \|x_i - x_{pred}\| \le A_{vision} \;\land\; patchtype(i) \ne \text{"sea"}\}  \hspace{2cm} \text{(C.114)} 
+ \mathcal{P}_{vision} = \{i \in \text{prey} : \|x_i - x_{pred}\| \le A_{vision} \;\land\; patchtype(i) \ne \text{"sea"}\}  \hspace{2cm} \text{(15.14)} 
 $$
 
 Where:
@@ -376,7 +376,7 @@ Where:
 Predators enter hunting mode when any prey are visible:
 
 $$
- |\mathcal{P}_{vision}| > 0 \Rightarrow hunting? = \text{true}  \hspace{2cm} \text{(C.115)} 
+ |\mathcal{P}_{vision}| > 0 \Rightarrow hunting? = \text{true}  \hspace{2cm} \text{(15.15)} 
 $$
 
 Where:
@@ -387,7 +387,7 @@ Where:
 If hunting, the predator targets the nearest visible prey:
 
 $$
- i^* = \arg\min_{i \in \mathcal{P}_{vision}} \; \|x_i - x_{pred}\|  \hspace{2cm} \text{(C.116)} 
+ i^* = \arg\min_{i \in \mathcal{P}_{vision}} \; \|x_i - x_{pred}\|  \hspace{2cm} \text{(15.16)} 
 $$
 
 Where:
@@ -404,7 +404,7 @@ Predator movement toward prey is computed using a step length limited by
 travel distance per tick and prey distance:
 
 $$
- D_{travel} = \frac{A_{speed}}{3}  \hspace{2cm} \text{(C.117)} 
+ D_{travel} = \frac{A_{speed}}{3}  \hspace{2cm} \text{(15.17)} 
 $$ Where:
 
 -   $D_{travel}$ is the distance traveled in the current tick (patch
@@ -413,7 +413,7 @@ $$ Where:
     tick⁻¹).
 
 $$
- step_t = \min(D_{travel},\; \|x_{i^*} - x_{pred}\|)  \hspace{2cm} \text{(C.118)} 
+ step_t = \min(D_{travel},\; \|x_{i^*} - x_{pred}\|)  \hspace{2cm} \text{(15.18)} 
 $$
 
 Where:
@@ -428,7 +428,7 @@ Where:
     coordinates).
 
 $$
- x_{pred+1} = x_{pred} + step_t \cdot \hat{u}(x_{i^*} - x_{pred})  \hspace{2cm} \text{(C.119)} 
+ x_{pred+1} = x_{pred} + step_t \cdot \hat{u}(x_{i^*} - x_{pred})  \hspace{2cm} \text{(15.19)} 
 $$
 
 Where:
@@ -446,7 +446,7 @@ Swimming energetic cost during chase is applied using the same shared
 routine:
 
 $$
- E_{swim,t} = swim_{base} \cdot \left(D_f \cdot \frac{1}{swim_{Eff}}\right)^{\beta}  \hspace{2cm} \text{(C.120)} 
+ E_{swim,t} = swim_{base} \cdot \left(D_f \cdot \frac{1}{swim_{Eff}}\right)^{\beta}  \hspace{2cm} \text{(15.20)} 
 $$
 
 Where
@@ -462,7 +462,7 @@ Where
     (dimensionless).
 
 $$
- E_{agent+1} = \max(0,\; E_{agent} - E_{swim,t})  \hspace{2cm} \text{(C.121)} 
+ E_{agent+1} = \max(0,\; E_{agent} - E_{swim,t})  \hspace{2cm} \text{(15.21)} 
 $$
 
 Where:
@@ -485,7 +485,7 @@ Predators define visible prey as prey within a radius equal to
 $A_{vision}$:
 
 $$
- \mathcal{P}_{vision} = \{i \in \text{prey} : \|x_{i^*} - x_{pred}\| \le A_{vision} \;\land\; patchtype(i) \ne \text{"sea"}\}  \hspace{2cm} \text{(C.122)} 
+ \mathcal{P}_{vision} = \{i \in \text{prey} : \|x_{i^*} - x_{pred}\| \le A_{vision} \;\land\; patchtype(i) \ne \text{"sea"}\}  \hspace{2cm} \text{(15.22)} 
 $$
 
 Where:
@@ -501,7 +501,7 @@ Where:
 Predators enter hunting mode when any prey are visible:
 
 $$
- |\mathcal{P}_{vision}| > 0 \Rightarrow hunting? = \text{true}  \hspace{2cm} \text{(C.123)} 
+ |\mathcal{P}_{vision}| > 0 \Rightarrow hunting? = \text{true}  \hspace{2cm} \text{(15.23)} 
 $$
 
 Where:
@@ -512,7 +512,7 @@ Where:
 If hunting, the predator targets the nearest visible prey:
 
 $$
- i^* = \arg\min_{i \in \mathcal{P}_{vision}} \; \|x_{i^*} - x_{pred}\|  \hspace{2cm} \text{(C.124)} 
+ i^* = \arg\min_{i \in \mathcal{P}_{vision}} \; \|x_{i^*} - x_{pred}\|  \hspace{2cm} \text{(15.24)} 
 $$
 
 Where:
@@ -528,7 +528,7 @@ Predator movement toward prey is computed using a step length limited by
 travel distance per tick and prey distance:
 
 $$
- D_{travel} = \frac{A_{speed}}{3}  \hspace{2cm} \text{(C.125)} 
+ D_{travel} = \frac{A_{speed}}{3}  \hspace{2cm} \text{(15.25)} 
 $$
 
 Where:
@@ -539,7 +539,7 @@ Where:
     tick⁻¹).
 
 $$
- step_t = \min(D_{travel},\; \|x_{i^*} - x_{pred}\|)  \hspace{2cm} \text{(C.126)} 
+ step_t = \min(D_{travel},\; \|x_{i^*} - x_{pred}\|)  \hspace{2cm} \text{(15.26)} 
 $$
 
 Where:
@@ -554,7 +554,7 @@ Where:
     coordinates).
 
 $$
- x_{pred+1} = x_{pred} + step_t \cdot \hat{u}(x_{i^*} - x_{pred})  \hspace{2cm} \text{(C.127)} 
+ x_{pred+1} = x_{pred} + step_t \cdot \hat{u}(x_{i^*} - x_{pred})  \hspace{2cm} \text{(15.27)} 
 $$
 
 Where:
@@ -571,7 +571,7 @@ Swimming energetic cost during chase is applied using the same shared
 routine:
 
 $$
- E_{swim} = swim_{base} \cdot \left(D_f \cdot \frac{1}{swim_{Eff}}\right)^{\beta}  \hspace{2cm} \text{(C.128)} 
+ E_{swim} = swim_{base} \cdot \left(D_f \cdot \frac{1}{swim_{Eff}}\right)^{\beta}  \hspace{2cm} \text{(15.28)} 
 $$
 
 Where:
@@ -586,7 +586,7 @@ Where:
 -   $\beta$ is the exponent controlling swimming cost scaling.
 
 $$
- E_{agent+1} = \max(0,\; E_{agent} - E_{swim})  \hspace{2cm} \text{(C.129)} 
+ E_{agent+1} = \max(0,\; E_{agent} - E_{swim})  \hspace{2cm} \text{(15.29)} 
 $$
 
 Where:
@@ -602,7 +602,7 @@ Predators attempt capture only if stomach contents are below Predators can succe
 capacity:
 
 $$
- M_{stomach} < stomach_{max}  \hspace{2cm} \text{(C.130)} 
+ M_{stomach} < stomach_{max}  \hspace{2cm} \text{(15.30)} 
 $$
 
 Where:
@@ -614,7 +614,7 @@ Candidate prey include prey on the same patch and neighboring patches
 (local capture neighborhood):
 
 $$
- \mathcal{P}_{near} = \{i \in \text{prey} : i \in \{here\} \cup \{neighbors\}\}  \hspace{2cm} \text{(C.131)} 
+ \mathcal{P}_{near} = \{i \in \text{prey} : i \in \{here\} \cup \{neighbors\}\}  \hspace{2cm} \text{(15.31)} 
 $$
 
 Where:
@@ -626,7 +626,7 @@ Where:
 Edible prey satisfy the gape constraint:
 
 $$
- \mathcal{P}_{edible} = \{i \in \mathcal{P}_{near} : body\text{-}depth_i \le gape\text{-}size_{pred}\}  \hspace{2cm} \text{(C.132)} 
+ \mathcal{P}_{edible} = \{i \in \mathcal{P}_{near} : body\text{-}depth_i \le gape\text{-}size_{pred}\}  \hspace{2cm} \text{(15.32)} 
 $$
 
 Where:
@@ -644,7 +644,7 @@ Where:
 If any edible prey exist, one prey is selected:
 
 $$
- i^* \sim \text{Uniform}(\mathcal{P}_{edible})  \hspace{2cm} \text{(C.133)} 
+ i^* \sim \text{Uniform}(\mathcal{P}_{edible})  \hspace{2cm} \text{(15.33)} 
 $$
 
 Where:
@@ -656,7 +656,7 @@ Where:
 Digestible meal mass is assumed to be 75% of prey wet weight:
 
 $$
- M_{meal} = 0.75 \cdot A_{mass,i^*}  \hspace{2cm} \text{(C.134)} 
+ M_{meal} = 0.75 \cdot A_{mass,i^*}  \hspace{2cm} \text{(15.34)} 
 $$
 
 Where:
@@ -668,7 +668,7 @@ Where:
 Available stomach space is:
 
 $$
- S_{stomach} = stomach_{max} - M_{stomach}  \hspace{2cm} \text{(C.135)} 
+ S_{stomach} = stomach_{max} - M_{stomach}  \hspace{2cm} \text{(15.35)} 
 $$
 
 Where:
@@ -680,7 +680,7 @@ Where:
 Intake is limited by available space:
 
 $$
- M_{intake} = \min(M_{meal},\; S_{stomach})  \hspace{2cm} \text{(C.136)} 
+ M_{intake} = \min(M_{meal},\; S_{stomach})  \hspace{2cm} \text{(15.36)} 
 $$
 
 Where:
@@ -692,7 +692,7 @@ Where:
 Stomach contents are updated:
 
 $$
- M_{stomach+1} = M_{stomach} + M_{intake}  \hspace{2cm} \text{(C.137)} 
+ M_{stomach+1} = M_{stomach} + M_{intake}  \hspace{2cm} \text{(15.37)} 
 $$
 
 Where:
@@ -703,7 +703,7 @@ Where:
 Prey-derived contaminant loads are added to stomach contaminant pools:
 
 $$
- stomach\text{-}contents\text{-}MeHg_{t+1} = stomach\text{-}contents\text{-}MeHg_t + MeHg_{i^*}  \hspace{2cm} \text{(C.138)} 
+ stomach\text{-}contents\text{-}MeHg_{t+1} = stomach\text{-}contents\text{-}MeHg_t + MeHg_{i^*}  \hspace{2cm} \text{(15.38)} 
 $$
 
 Where:
@@ -714,7 +714,7 @@ Where:
 Consumption counters are incremented:
 
 $$
- \mathcal{P}_{eaten+1} = \mathcal{P}_{eaten} + 1  \hspace{2cm} \text{(C.139)} 
+ \mathcal{P}_{eaten+1} = \mathcal{P}_{eaten} + 1  \hspace{2cm} \text{(15.39)} 
 $$
 
 Where:
@@ -722,7 +722,7 @@ Where:
 -   $\mathcal{P}_{eaten}$ is the total prey consumed by a predator.
 
 $$
- \mathcal{P}_{eaten, patch+1} = \mathcal{P}_{eaten, patch} + 1  \hspace{2cm} \text{(C.140)} 
+ \mathcal{P}_{eaten, patch+1} = \mathcal{P}_{eaten, patch} + 1  \hspace{2cm} \text{(15.40)} 
 $$
 
 Where:
@@ -733,7 +733,7 @@ Where:
 Selected prey is removed from the simulation:
 
 $$
- alive(i^*) \leftarrow 0  \hspace{2cm} \text{(C.141)} 
+ alive(i^*) \leftarrow 0  \hspace{2cm} \text{(15.41)} 
 $$
 
 Where:
@@ -751,7 +751,7 @@ charged. Therefore, no additional movement energy term is added within
 predation or fleeing procedures:
 
 $$
- E_{move} = E_{swim} \quad \text{applied once per tick via } calculate\text{-}swim\text{-}energy  \hspace{2cm} \text{(C.142)} 
+ E_{move} = E_{swim} \quad \text{applied once per tick via } calculate\text{-}swim\text{-}energy  \hspace{2cm} \text{(15.42)} 
 $$
 
 Where:
@@ -760,3 +760,462 @@ Where:
 
 -   $E_{swim}$ is the energy cost of swimming for the tick (energy
     units).
+    
+## Netlogo Implementation
+
+### Flee Predators
+
+```{netlogo}
+to flee-stripedbass
+      if speed <= max-speed [
+        set speed max-speed
+          ;; how far can the fish travel this tick
+      let travel-distance (speed / 3)
+      let cur-loc patch-here
+      
+      ;; random small turn
+      rt (random 30) - 15
+      
+      ;; patches in a cone in front, out to vision-distance
+      let forward-patches patches in-radius travel-distance
+      
+      ;; keep only water patches that are within travel-distance
+      let patch-options forward-patches with [
+        patch-terrain = "water"
+      ]
+      
+      ;; if no patch available → don't move
+      if not any? patch-options [
+        set planned-path [] 
+        set patch-options neighbors with [patch-terrain = "water"]
+      ]
+      
+      ;; pick a random forward patch
+      let target-patch one-of patch-options
+      
+      ;; Determine shortest direct path (1-step or multi-step)
+      let path build-path-to-prey cur-loc target-patch
+      
+      ;; remove the starting patch if it equals current position
+      if first path = cur-loc [
+        set path but-first path
+      ]
+      
+      set planned-path path
+      
+      ;; If path exists
+      if not empty? path [
+        
+        ;; How many patches to move this tick
+        let steps-to-move ceiling travel-distance
+        
+        ;; Extract only the patches we will actually traverse
+        let move-patches sublist path 0 (min list steps-to-move length path)
+        ;; 6. If we moved, compute difficulty of the final patch
+        let next-step last move-patches
+        calculate-chase-difficulty next-step
+        
+        ;; Store starting patch
+        let old-patch patch-here
+        
+        ;; Move along path step-by-step
+        foreach move-patches [ p ->
+          
+          ;; -------- VISIT COUNTING --------
+          if p != old-patch [
+            ask p [
+              set visits-by-alewife (visits-by-alewife + 1)
+            ]
+            set old-patch p
+          ]
+          
+          ;; -------- MOVE --------
+          face p
+          move-to p
+          
+          ;; -------- TIME SPENT --------
+          ask p [
+            set ticks-spent-alewife (ticks-spent-alewife + 1)
+          ]
+        ]
+        
+        if not member? patch-here trail [
+          set trail lput patch-here trail
+        ]
+      ]
+      ]
+      ;set rest-time alewife-rest-time
+      ; set color green
+end
+```
+
+### Scare Prey
+
+```{netlogo}
+to scare-prey ;; predator procedure
+if any? alewives in-radius vision-distance [
+  scare-right  ;; prey on right side will flee right
+  rt 90
+  scare-left  ;; prey on left side will flee left
+  left 90
+  scare-down ;; prey underneath will flee down
+  right 180
+  scare-up ;; prey underneath will flee down
+  right 0
+  ]
+end
+
+to scare-right  ;; prey on right side will flee right
+ ask alewives in-cone vision-distance 180 [
+    if any? stripedbass in-cone vision-distance 270 and energy > 0 [
+      set fleeing? true
+      right 90
+    ]
+    if not any? stripedbass in-cone vision-distance 270 or energy <= 0 [
+      set fleeing? false
+    ]
+
+  ]
+end
+
+to scare-left ;; prey on the left side will flee left
+  ask alewives in-cone vision-distance 180 [
+    if any? stripedbass in-cone vision-distance 270 and energy > 0 [
+      set fleeing? true
+      left 90
+    ]
+    if not any? stripedbass in-cone vision-distance 270 or energy <= 0 [
+      set fleeing? false
+    ]
+  ]
+end
+
+to scare-up ;; prey on left side will flee left
+   ask alewives in-cone vision-distance 180 [
+    if any? stripedbass in-cone vision-distance 270 and energy > 0 [
+      set fleeing? true
+      right 0
+    ]
+    if not any? stripedbass in-cone vision-distance 270 or energy <= 0 [
+      set fleeing? false
+    ]
+  ]
+end
+
+to scare-down ;; prey on left side will flee left
+   ask alewives in-cone vision-distance 180 [
+    if any? stripedbass in-cone vision-distance 270 and energy > 0 [
+      set fleeing? true
+      right 180
+    ]
+    if not any? stripedbass in-cone vision-distance 270 or energy <= 0 [
+      set fleeing? false
+    ]
+  ]
+end
+```
+
+### Chase Nearest Prey
+
+```{netlogo}
+to chase-nearest-alewife ;; predator procedure
+    let travel-distance (speed / 3)
+    let nearest-alewife-prey min-one-of prey-in-vision [distance myself]
+    if nearest-alewife-prey != nobody [
+      face nearest-alewife-prey
+      let d distance nearest-alewife-prey
+      let step min list travel-distance d  ;; clamp
+      fd step
+    ]
+  decide-chase-direction ; dynamic swimming difficulty
+  calculate-swim-energy ; based on travel direction
+end
+
+to chase-nearest-alewife_old  ;; predator procedure
+  ;; 1. Find prey and decide direction
+  find-target-prey
+  decide-chase-direction
+  
+  ;; 2. Calculate travel distance in patch units
+  let travel-distance (speed / 3)
+
+  ;; Default to no path
+  set planned-path []
+  
+  if target-prey != nobody and patch-here = [patch-here] of target-prey [
+  stop ;; no futher action needed
+]
+  ;; 3. Build a path only if prey exists
+  if target-prey != nobody [
+    
+    let prey-loc [patch-here] of target-prey
+    let cur-loc patch-here
+    
+    ;; Build cost map toward prey
+    calculate-cost-to-prey prey-loc
+    
+    ;; Raw path from current patch to prey patch
+    let raw-path build-path-to-prey cur-loc prey-loc
+
+    ;; If path is non empty, drop the starting patch if it is the same as current location
+    if not empty? raw-path [
+      let first-step first raw-path
+      let clean-path raw-path
+      
+      ;; If first element is current patch, skip it
+      if first-step = patch-here [
+        set clean-path but-first raw-path
+      ]
+      
+      set planned-path clean-path
+    ]
+  ]
+
+  ;; If there is no usable path, bail out for this tick
+  if empty? planned-path [
+    ;; You can still call difficulty and swim energy with current patch if you want
+    ;; or just stop chasing this tick
+    stop
+  ]
+
+  ;; 4. Determine how many patches to move this tick
+  let steps-to-move ceiling travel-distance
+  let move-patches sublist planned-path 0 (min list steps-to-move length planned-path)
+
+  ;; Extra guard in case sublist yields empty list
+  if empty? move-patches [
+    stop
+  ]
+
+  ;; Store where the bass started this tick
+  let old-patch patch-here
+  
+  ;; 5. Move along the planned patches in order
+  foreach move-patches [ p ->
+    
+    ;; Safeguard: never face the same patch we are already on
+    if p != patch-here [
+      
+      ;; Count patch visits
+      if p != old-patch [
+        ask p [
+          set visits-by-stripedbass visits-by-stripedbass + 1
+        ]
+        set old-patch p
+      ]
+      
+      ;; Move to the patch
+      face p
+      move-to p
+      
+      ;; Count time spent
+      ask p [
+        set ticks-spent-stripedbass ticks-spent-stripedbass + 1
+      ]
+    ]
+  ]
+
+  ;; 6. If we moved, compute difficulty of the final patch
+  let next-step last move-patches
+  ;calculate-chase-difficulty next-step
+  
+  ;; 7. Deduct hydrodynamic swimming energy
+  calculate-swim-energy
+  
+  if not member? patch-here trail [
+  set trail lput patch-here trail
+]
+end
+
+;to chase-nearest-alewife ;; predator procedure
+;    let alewife-prey prey-in-vision with [breed = alewives and (patchtype != "sea")] ; only chase alewives in outside of sea
+;  if any? alewife-prey [
+;    let nearest-alewife-prey min-one-of alewife-prey [distance myself]
+;    if nearest-alewife-prey != nobody [
+;      face nearest-alewife-prey
+;    ]
+;    
+;    let travel-distance (speed / 3)
+;;; 4. Determine how many patches to move this tick
+;   fd travel-distance
+;  ]
+;end
+
+to decide-chase-direction
+  if [velocity] of patch-here > 0 [
+    set chase-direction "seaward"
+    calculate-difficulty-seaward   ;; uses vel inside logic
+    calculate-swimming-speed-seaward
+  ]
+  if [velocity] of patch-here <= 0 [
+    set chase-direction "landward"
+    calculate-difficulty-landward
+    calculate-swimming-speed-landward
+  ]
+end
+
+to find-target-prey
+
+  let candidates alewives with [
+    [patchtype] of patch-here != "sea"
+  ]
+
+  ifelse any? candidates [
+    ;; Filter for only edible prey (based on gape size)
+    let edible-prey candidates with [
+      body-depth <= [gape-size] of myself
+    ]
+    set target-prey min-one-of candidates [distance myself]
+  ] [
+    set target-prey nobody
+  ]
+end
+
+to calculate-chase-difficulty [next-patch]
+
+  let vel [velocity] of next-patch
+
+  if chase-direction = "landward" [
+    calculate-difficulty-landward   ;; uses vel inside logic
+    calculate-swimming-speed-landward
+  ]
+
+  if chase-direction = "seaward" [
+    calculate-difficulty-seaward
+    calculate-swimming-speed-seaward
+  ]
+end
+
+to calculate-cost-to-prey [prey-patch]
+
+  ;; set initial conditions
+  ask patch-here [ set cost-to-prey 1e9 ]
+  ask prey-patch [ set cost-to-prey 0 ]
+
+  ;; Start with a list containing the home patch
+  let frontier (list prey-patch)
+  let df difficulty-factor           ;; capture it locally
+
+  while [not empty? frontier] [
+    let current first frontier
+    set frontier but-first frontier
+
+    ask current [
+      let current-cost cost-to-prey
+      
+      ask neighbors4 with [patch-terrain = "water"] [
+        let travel-cost compute-travel-cost current self df
+        let new-cost current-cost + travel-cost
+
+        if new-cost < cost-to-prey [
+          set cost-to-prey new-cost
+          set frontier lput self frontier
+        ]
+      ]
+    ]
+  ]
+  
+end
+
+to-report build-path-to-prey [start-patch prey-patch]
+  let path (list start-patch)
+  let cur start-patch
+  let max-steps 500
+
+  while [cur != prey-patch and max-steps > 0] [
+    set max-steps max-steps - 1
+
+    let candidates neighbors4 with [
+      patch-terrain = "water" and
+      cost-to-prey < [cost-to-prey] of cur
+    ]
+
+    if not any? candidates [ report path ]
+
+    let next-p min-one-of candidates [cost-to-prey]
+    set path lput next-p path
+    set cur next-p
+  ]
+
+  report path
+end
+```
+
+### Predator Speed
+
+```{netlogo}
+to adjust-stripedbass-speed ;; predator procedure
+  let travel-distance (speed / 3)
+  set prey-in-front alewives in-radius vision-distance 
+
+  ifelse any? prey-in-front and energy > 0 ;; burst if there is a target and have energy
+  [ set bursting? true ]
+  [ set bursting? false ]
+
+  ifelse bursting?
+  [ if speed <= max-speed
+    [ set speed (speed + (speed * 0.3))
+      let burst-energy (E-swim * 0.3)
+      set energy (energy - burst-energy) ]
+  ]
+  
+  [ set speed (max-speed / 4) ]
+end
+
+```
+
+### Consume Prey
+
+```{netlogo}
+to eat  ;; predator procedure
+   if stomach-contents < stomach-capacity [
+    ;; Find prey on the same patch
+   let nearby (turtle-set alewives-here alewives-on neighbors)
+
+    ;; Filter for only edible prey (based on gape size)
+    let edible-prey nearby with [
+      body-depth <= [gape-size] of myself
+    ]
+
+    if any? edible-prey [
+      let meal one-of edible-prey
+      ;; Digestible mass (75% of whole prey weight)
+      let meal-weight ([weight] of meal) * 0.75
+
+      ;; Remaining capacity
+      let space-available (stomach-capacity - stomach-contents)
+
+      ;; You can only eat as much as fits
+      let intake (min (list meal-weight space-available))
+
+      ;; Add biomass to stomach
+      set stomach-contents (stomach-contents + intake)
+      
+      ;; add mercury
+      ;; accumulates from prey eaten
+      let mehg-prey-risk [mehg-total] of meal
+      let hg-prey-risk [hg-total] of meal
+      set mehg-foraging-undigested mehg-prey-risk
+      set hg-foraging-undigested hg-prey-risk
+      set stomach-contents-Hg (stomach-contents-Hg + hg-prey-risk);; mercury stomach amount
+      set stomach-contents-MeHg (stomach-contents-MeHg + mehg-prey-risk);; methylmercury stomach amount
+      
+      ask meal [
+        die
+      ]
+            ;; Update counters
+      set completed-action? true
+      set numAlewivesEaten numAlewivesEaten + 1
+      set daytime-prey-eaten daytime-prey-eaten + 1
+      mark-foraging-event
+      
+      ask patch-here [
+      set prey-eaten-in-patch prey-eaten-in-patch + 1
+      ]
+    ]
+
+  ]
+ 
+end
+```
+

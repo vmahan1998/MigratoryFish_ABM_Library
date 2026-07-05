@@ -23,7 +23,7 @@
 <meta name="author" content="Vanessa Quintana, Gayle Zydlewski, Joeseph Dello-Russo, Kaylyn Zipp, Todd Swannack" />
 
 
-<meta name="date" content="2026-05-22" />
+<meta name="date" content="2026-07-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -480,6 +480,14 @@ div.csl-indent {
 <li class="chapter" data-level="15.7.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predation-and-consumption"><i class="fa fa-check"></i><b>15.7.5</b> Predation and Consumption</a></li>
 <li class="chapter" data-level="15.7.6" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#interaction-with-migration-movement-and-swimming-energy"><i class="fa fa-check"></i><b>15.7.6</b> Interaction With Migration Movement and Swimming Energy</a></li>
 </ul></li>
+<li class="chapter" data-level="15.8" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#netlogo-implementation-11"><i class="fa fa-check"></i><b>15.8</b> Netlogo Implementation</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#flee-predators"><i class="fa fa-check"></i><b>15.8.1</b> Flee Predators</a></li>
+<li class="chapter" data-level="15.8.2" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#scare-prey"><i class="fa fa-check"></i><b>15.8.2</b> Scare Prey</a></li>
+<li class="chapter" data-level="15.8.3" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#chase-nearest-prey"><i class="fa fa-check"></i><b>15.8.3</b> Chase Nearest Prey</a></li>
+<li class="chapter" data-level="15.8.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-speed"><i class="fa fa-check"></i><b>15.8.4</b> Predator Speed</a></li>
+<li class="chapter" data-level="15.8.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#consume-prey"><i class="fa fa-check"></i><b>15.8.5</b> Consume Prey</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="simple-model-building-tutorial-schooling-landward-movement.html"><a href="simple-model-building-tutorial-schooling-landward-movement.html"><i class="fa fa-check"></i><b>16</b> Simple Model Building Tutorial: Schooling &amp; Landward Movement</a>
 <ul>
@@ -902,7 +910,7 @@ initiating migration through time.</p>
 <div id="identifying-cue-days-preprocessed-in-r" class="section level3 hasAnchor" number="7.7.1">
 <h3><span class="header-section-number">7.7.1</span> Identifying Cue Days (Preprocessed in R)<a href="migration-cues.html#identifying-cue-days-preprocessed-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="math display">\[
-\Delta T &lt; 0, \;\; \Delta L &lt; 0  \hspace{2cm} \text{(C.33)}
+\Delta T &lt; 0, \;\; \Delta L &lt; 0  \hspace{2cm} \text{(7.1)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -922,7 +930,7 @@ initiating migration through time.</p>
 corresponds to a predefined cue day. If true, the migration cue is
 activated:</p>
 <p><span class="math display">\[
-cue\text{-}active? = \text{true}  \hspace{2cm} \text{(C.34)}
+cue\text{-}active? = \text{true}  \hspace{2cm} \text{(7.2)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -932,7 +940,7 @@ cue\text{-}active? = \text{true}  \hspace{2cm} \text{(C.34)}
 occurred, after which agents respond by transitioning to an internal
 readiness state:</p>
 <p><span class="math display">\[
-migration\text{-}trigger? = \text{true}  \hspace{2cm} \text{(C.35)}
+migration\text{-}trigger? = \text{true}  \hspace{2cm} \text{(7.3)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -952,7 +960,7 @@ increases stochastically each tick:</p>
 <p><span class="math display">\[
 P_{t+1}
 = P_{t} +
-\left(0.00001 + U(0, 0.00004)\right)  \hspace{2cm} \text{(C.36)}
+\left(0.00001 + U(0, 0.00004)\right)  \hspace{2cm} \text{(7.4)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -960,7 +968,7 @@ P_{t+1}
 </ul>
 <p>Migration probability is capped at:</p>
 <p><span class="math display">\[
-P_{t} \le 1  \hspace{2cm} \text{(C.37)}
+P_{t} \le 1  \hspace{2cm} \text{(7.5)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -974,7 +982,7 @@ variation in migration timing.</p>
 <p>An agent initiates migration when its migration probability exceeds a
 stochastic threshold:</p>
 <p><span class="math display">\[
-random\text{-}float(1) &lt; P_{t}  \hspace{2cm} \text{(C.38)}
+random\text{-}float(1) &lt; P_{t}  \hspace{2cm} \text{(7.6)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -982,7 +990,7 @@ random\text{-}float(1) &lt; P_{t}  \hspace{2cm} \text{(C.38)}
 </ul>
 <p>When this condition is met:</p>
 <p><span class="math display">\[
-start\text{-}migration? = \text{true}  \hspace{2cm} \text{(C.39)}
+start\text{-}migration? = \text{true}  \hspace{2cm} \text{(7.7)}
 \]</span></p>
 <p>Where:</p>
 <ul>

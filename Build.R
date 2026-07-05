@@ -2,14 +2,6 @@
 #  build.R
 #  Run this script to:
 #    1. Install any missing packages
-#    2. Render each chapter as a .docx download
-#    3. Build the full bookdown site
-# ============================================================
-
-# ============================================================
-#  build.R
-#  Run this script to:
-#    1. Install any missing packages
 #    2. Register custom knitr engines
 #    3. Render each chapter as a .docx download
 #    4. Build the full bookdown site
@@ -55,6 +47,18 @@ download_dir <- "docs/chapter_downloads"
 if (!dir.exists(download_dir)) {
   dir.create(download_dir, recursive = TRUE)
   message("Created directory: ", download_dir)
+}
+
+# ------------------------------------------------------------
+#  Locate Word template (moved up: needed by section 5)
+# ------------------------------------------------------------
+
+word_template <- if (file.exists("word_template.docx")) "word_template.docx" else NULL
+
+if (!is.null(word_template)) {
+  message("Using Word template: ", word_template)
+} else {
+  message("No word_template.docx found, using default styling")
 }
 
 # ------------------------------------------------------------
@@ -107,6 +111,25 @@ if (!is.null(csl_file)) {
   pandoc_args <- c(pandoc_args, "--csl", csl_file)
 }
 
+# Tell pandoc every folder where images might live (root + docs copies).
+# Without this, per-chapter renders run from the project root and cannot
+# resolve relative image paths, so pandoc silently drops the images in the
+# Word output (the gitbook build works because its HTML sits inside docs/).
+image_dirs <- c(
+  getwd(),
+  file.path(getwd(), "images"),
+  file.path(getwd(), "demos"),
+  file.path(getwd(), "materials"),
+  file.path(getwd(), "docs"),
+  file.path(getwd(), "docs", "images"),
+  file.path(getwd(), "docs", "demos"),
+  file.path(getwd(), "docs", "materials")
+)
+image_dirs <- image_dirs[dir.exists(image_dirs)]
+resource_args <- unlist(lapply(image_dirs, function(d) c("--resource-path", d)))
+pandoc_args <- c(pandoc_args, resource_args)
+
+message("Image resource paths: ", length(image_dirs), " folder(s)")
 message("Pandoc citation args ready\n")
 
 # ------------------------------------------------------------
@@ -158,14 +181,6 @@ if (length(chapter_files) == 0) {
   warning("No chapter Rmd files found. Check your working directory.")
 } else {
   message("\nFound ", length(chapter_files), " chapter(s) to render as .docx\n")
-}
-
-word_template <- if (file.exists("word_template.docx")) "word_template.docx" else NULL
-
-if (!is.null(word_template)) {
-  message("Using Word template: ", word_template)
-} else {
-  message("No word_template.docx found, using default styling")
 }
 
 render_results <- data.frame(

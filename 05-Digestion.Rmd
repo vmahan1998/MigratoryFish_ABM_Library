@@ -125,7 +125,7 @@ gained energy, contaminant uptake, and cumulative contaminant burdens.
 Digestive throughput is driven by metabolic rate:
 
 $$
-  R_{digest} = Met_{tick}  \hspace{2cm} \text{(C.11)}   
+  R_{digest} = Met_{tick}  \hspace{2cm} \text{(5.1)}   
 $$
 
 Where:
@@ -139,7 +139,7 @@ Where:
 Digested mass per tick:
 
 $$
-  M_{digested} = M_{stomach} \cdot R_{digest} \cdot Eff_{digest}  \hspace{2cm} \text{(C.12)}   
+  M_{digested} = M_{stomach} \cdot R_{digest} \cdot Eff_{digest}  \hspace{2cm} \text{(5.2)}   
 $$
 
 Where:
@@ -157,7 +157,7 @@ Where:
 Proportional mercury assimilation:
 
 $$
-  MeHg_{digested} = \left( \frac{M_{digested}}{M_{stomach}} \right) \cdot MeHg_{stomach}  \hspace{2cm} \text{(C.13)}   
+  MeHg_{digested} = \left( \frac{M_{digested}}{M_{stomach}} \right) \cdot MeHg_{stomach}  \hspace{2cm} \text{(5.3)}   
 $$
 
 Where:
@@ -175,7 +175,7 @@ Where:
 Updated stomach contents:
 
 $$
-  M_{stomach} = M_{stomach} - M_{digested}  \hspace{2cm} \text{(C.14)}   
+  M_{stomach} = M_{stomach} - M_{digested}  \hspace{2cm} \text{(5.4)}   
 $$
 
 Where:
@@ -189,7 +189,7 @@ Where:
 Energy gained from digestion:
 
 $$
-  E_{gain} = M_{digested} \cdot 100  \hspace{2cm} \text{(C.15)}   
+  E_{gain} = M_{digested} \cdot 100  \hspace{2cm} \text{(5.5)}   
 $$ Where:
 
 -   $E_{gain}$ is the energy gained from digested biomass (energy
@@ -200,7 +200,7 @@ $$ Where:
 Updated energy pool:
 
 $$
-  E_{agent} = E_{agent} + E_{gain}  \hspace{2cm} \text{(C.16)}   
+  E_{agent} = E_{agent} + E_{gain}  \hspace{2cm} \text{(5.6)}   
 $$
 
 Where:
@@ -216,7 +216,7 @@ Where:
 Contaminants absorbed during digestion:
 
 $$
-  MeHg_{forage} = MeHg_{forage} + MeHg_{digested}  \hspace{2cm} \text{(C.17)}   
+  MeHg_{forage} = MeHg_{forage} + MeHg_{digested}  \hspace{2cm} \text{(5.7)}   
 $$ Where:
 
 -   $MeHg_{forage}$ is the cumulative methylmercury uptake via feeding
@@ -228,7 +228,7 @@ $$ Where:
 Accumulated body burden:
 
 $$
-  MeHg_{total} = MeHg_{total} + MeHg_{digested}  \hspace{2cm} \text{(C.18)}  
+  MeHg_{total} = MeHg_{total} + MeHg_{digested}  \hspace{2cm} \text{(5.8)}  
 $$
 
 Where:

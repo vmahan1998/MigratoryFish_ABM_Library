@@ -152,7 +152,7 @@ dynamically toward a stress-dependent target over time.
 +--------------+-----------------------------+--------------------------------------------------------------------------------------------------+
 | $C_{max}$    | 100%                        | Agents can't express more than 100% of cells.                                                    |
 +--------------+-----------------------------+--------------------------------------------------------------------------------------------------+
-| $\alpha$     | 0.0017 - 0.002              | Osmolarity stabilization from Figure 3. in (Allen et al., 2009).                                 |
+| $\alpha$     | 0.0017 - 0.002              | Osmolarity stabilization (Allen et al., 2009).                                                   |
 +--------------+-----------------------------+--------------------------------------------------------------------------------------------------+
 | $C_{mid}$    | 50%                         | When cells are 50% density, stress buffering is 50% effective (Allen et al., 2009).              |
 +--------------+-----------------------------+--------------------------------------------------------------------------------------------------+
@@ -179,7 +179,7 @@ mismatch and buffering capacity, rather than a direct physiological
 measure (e.g., cortisol concentration):
 
 $$
- S_{stress} = \frac{\log_{10}(1 + |S_{agent} - S_{patch}|) \cdot 10}{1 + e^{-2 \cdot (C_{current} / C_{mid})}}   \hspace{2cm} \text{(C.19)} 
+ S_{stress} = \frac{\log_{10}(1 + |S_{agent} - S_{patch}|) \cdot 10}{1 + e^{-2 \cdot (C_{current} / C_{mid})}}   \hspace{2cm} \text{(6.1)} 
 $$
 
 Where:
@@ -201,7 +201,7 @@ Stress is capped within the range [1, 10], and may be reduced slightly
 over time if salinity remains stable and chloride density is sufficient:
 
 $$
- S_{stress} = S_{stress} \cdot 0.98 \quad \text{if conditions are stable and } C > C_{min}   \hspace{2cm} \text{(C.20)} 
+ S_{stress} = S_{stress} \cdot 0.98 \quad \text{if conditions are stable and } C > C_{min}   \hspace{2cm} \text{(6.2)} 
 $$
 
 Where:
@@ -215,7 +215,7 @@ hours to days), consistent with documented time-dependent salinity
 acclimation in fishes [@evans_osmotic_2008].
 
 $$
- S_{agent} = S_{agent} + (S_{patch} - S_{agent}) \cdot 0.02   \hspace{2cm} \text{(C.21)} 
+ S_{agent} = S_{agent} + (S_{patch} - S_{agent}) \cdot 0.02   \hspace{2cm} \text{(6.3)} 
 $$
 
 Where:
@@ -245,7 +245,7 @@ adjusted unless the agent’s energy exceeds 25%.
 The chloride cell density is based on stress:
 
 $$
- C_{target} = C_{min} + (C_{max} - C_{min}) \cdot \left(\frac{S_{stress}}{10}\right)   \hspace{2cm} \text{(C.22)} 
+ C_{target} = C_{min} + (C_{max} - C_{min}) \cdot \left(\frac{S_{stress}}{10}\right)   \hspace{2cm} \text{(6.4)} 
 $$
 
 Where:
@@ -264,7 +264,7 @@ If salinity conditions have remained stable for an extended period
 down regulation of chloride cells due to long-term acclimation:
 
 $$
- C_{target} = C_{target} \cdot 0.99 \quad \text{if stable}   \hspace{2cm} \text{(C.23)} 
+ C_{target} = C_{target} \cdot 0.99 \quad \text{if stable}   \hspace{2cm} \text{(6.5)} 
 $$
 
 Where:
@@ -276,7 +276,7 @@ Chloride cell density then approaches the target using a double-rate
 adjustment and capped maximum rate of change:
 
 $$
- \Delta C = \left(C_{target} - C_{current}\right) \cdot \left(2 \cdot R_{proliferation}\right)   \hspace{2cm} \text{(C.24)} 
+ \Delta C = \left(C_{target} - C_{current}\right) \cdot \left(2 \cdot R_{proliferation}\right)   \hspace{2cm} \text{(6.6)} 
 $$
 
 Where:
@@ -291,7 +291,7 @@ Where:
     tick⁻¹, relative density per tick).
 
 $$
- \Delta C = \max\left(-R_{max}, \min(R_{max}, \Delta C)\right)  \hspace{2cm} \text{(C.25)} 
+ \Delta C = \max\left(-R_{max}, \min(R_{max}, \Delta C)\right)  \hspace{2cm} \text{(6.7)} 
 $$
 
 Where:
@@ -305,7 +305,7 @@ If the agent has low energy ($\leq 50\%$), the adjustment rate is
 halved:
 
 $$
- \Delta C = \Delta C \cdot 0.5 \quad \text{if energy is low}  \hspace{2cm} \text{(C.26)} 
+ \Delta C = \Delta C \cdot 0.5 \quad \text{if energy is low}  \hspace{2cm} \text{(6.8)} 
 $$
 
 Where:
@@ -317,7 +317,7 @@ Finally, the chloride cell density is updated and constrained between
 $C_{min}$ and $C_{max}$:
 
 $$
- C_{new} = \max(C_{min}, \min(C_{max}, C_{current} + \Delta C))  \hspace{2cm} \text{(C.27)} 
+ C_{new} = \max(C_{min}, \min(C_{max}, C_{current} + \Delta C))  \hspace{2cm} \text{(6.9)} 
 $$
 
 Where:
@@ -341,7 +341,7 @@ Chloride density is only recalculated after a given acclimation
 interval:
 
 $$
- t_{osmo} \geq \alpha^{-1}  \hspace{2cm} \text{(C.28)} 
+ t_{osmo} \geq \alpha^{-1}  \hspace{2cm} \text{(6.10)} 
 $$
 
 Where:
@@ -352,7 +352,7 @@ Where:
 After updating, the acclimation timer is reset:
 
 $$
- t_{osmo} = 0  \hspace{2cm} \text{(C.29)} 
+ t_{osmo} = 0  \hspace{2cm} \text{(6.11)} 
 $$
 
 Where:
@@ -374,7 +374,7 @@ with body mass (g) according to a power-law relationship (e.g.,
 Metabolic cost related to mass (g):
 
 $$
- E_{creation} = Met_{max} * (\frac{A_{mass}}{M_{max}})^k  \hspace{2cm} \text{(C.30)} 
+ E_{creation} = Met_{max} * (\frac{A_{mass}}{M_{max}})^k  \hspace{2cm} \text{(6.12)} 
 $$
 
 Where:
@@ -395,7 +395,7 @@ Where:
 Energy required for ion regulation:
 
 $$
- E_{osmo} = (E_{base} \cdot C) + (E_{creation} \cdot C_{tick})  \hspace{2cm} \text{(C.31)} 
+ E_{osmo} = (E_{base} \cdot C) + (E_{creation} \cdot C_{tick})  \hspace{2cm} \text{(6.13)} 
 $$
 
 Where:
@@ -417,7 +417,7 @@ Where:
 Agents balance energy to osmoregulate with total energy allowance:
 
 $$
- E_{agent} = E_{agent} - E_{osmo}  \hspace{2cm} \text{(C.32)} 
+ E_{agent} = E_{agent} - E_{osmo}  \hspace{2cm} \text{(6.14)} 
 $$
 
 Where:

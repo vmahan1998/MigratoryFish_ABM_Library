@@ -52,7 +52,7 @@ Each chapter in this library corresponds to a major behavior, physiological func
 
 The final chapters provide guidance on how to integrate multiple functions into a complete agent-based model, demonstrating how these components work together to simulate fish behavior in dynamic coastal and estuarine systems.
 
-Within each chapter, each function or behavior is documented using the ODD protocol [@grimm_pattern-oriented_2005; @grimm_odd_2010; @grimm_odd_2020]. The ODD (Overview, Design concepts, Details) protocol is a standardized framework for describing agent-based models. It promotes transparency in model development and ensures consistency across implementations, especially when integrating multiple behavioral or ecological functions.
+Within each chapter, each function or behavior is documented using the ODD protocol [@grimm_standard_2006; @grimm_odd_2010; @grimm_odd_2020]. The ODD (Overview, Design concepts, Details) protocol is a standardized framework for describing agent-based models. It promotes transparency in model development and ensures consistency across implementations, especially when integrating multiple behavioral or ecological functions.
 
 -   **Overview** provides the purpose of the model component, identifies the entities involved (e.g., fish agents, environmental patches), and outlines the general processes.
 

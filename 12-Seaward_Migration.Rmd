@@ -113,7 +113,7 @@ $$
  V_{normalized}
 = 
 \frac{V_{\text{patch}} - V_{\min}}
-{V_{\max} - V_{\min}}  \hspace{2cm} \text{(C.79)} 
+{V_{\max} - V_{\min}}  \hspace{2cm} \text{(12.1)} 
 $$
 
 Where:
@@ -136,7 +136,7 @@ $$
 \left(
 \frac{V_{normalized}}
 {A_{\text{mass}} / M_{\max}}
-\right)^k  \hspace{2cm} \text{(C.80)} 
+\right)^k  \hspace{2cm} \text{(12.2)} 
 $$
 
 Where:
@@ -156,7 +156,7 @@ Where:
 Difficulty is mapped onto the one-to-ten range:
 
 $$
- D_f = 1 + 9 \cdot Df_{\text{raw}}  \hspace{2cm} \text{(C.81)} 
+ D_f = 1 + 9 \cdot Df_{\text{raw}}  \hspace{2cm} \text{(12.3)} 
 $$
 
 Where:
@@ -168,7 +168,7 @@ Where:
 and constrained:
 
 $$
- D_f \in [1, 10]  \hspace{2cm} \text{(C.82)} 
+ D_f \in [1, 10]  \hspace{2cm} \text{(12.4)} 
 $$
 
 Where:
@@ -181,7 +181,7 @@ Where:
 Energy factor:
 
 $$
- E_{\text{factor}} = \frac{E_{\text{agent}}}{100}  \hspace{2cm} \text{(C.83)} 
+ E_{\text{factor}} = \frac{E_{\text{agent}}}{100}  \hspace{2cm} \text{(12.5)} 
 $$
 
 Where:
@@ -194,7 +194,7 @@ Where:
 
 Velocity impact from hydrodynamics is:
 
-$$  V_{\text{impact}} = k \cdot V_{\text{patch}} \cdot 300  \hspace{2cm} \text{(C.69)}  $$
+$$  V_{\text{impact}} = k \cdot V_{\text{patch}} \cdot 300  \hspace{2cm} \text{(12.6)}  $$
 
 Where:
 
@@ -209,7 +209,7 @@ Where:
 
 The desired swimming speed is:
 
-$$  V_{\text{desired}} = \frac{V_{\max} \cdot E_{\text{factor}}}{D_f} + V_{\text{impact}}  \hspace{2cm} \text{(C.70)}  $$
+$$  V_{\text{desired}} = \frac{V_{\max} \cdot E_{\text{factor}}}{D_f} + V_{\text{impact}}  \hspace{2cm} \text{(12.7)}  $$
 
 Where:
 
@@ -224,7 +224,7 @@ Where:
 
 Speed is constrained between a minimum and maximum:
 
-$$  V_{\text{desired}}  = \min(V_{\max}, \max(V_{\min}, V_{\text{desired}}))  \hspace{2cm} \text{(C.71)}  $$
+$$  V_{\text{desired}}  = \min(V_{\max}, \max(V_{\min}, V_{\text{desired}}))  \hspace{2cm} \text{(12.8)}  $$
 
 Where:
 
@@ -236,7 +236,7 @@ Where:
 Acceleration smoothing:
 
 $$
- \Delta V_{\max} = 0.5 \cdot swim_{Eff}  \hspace{2cm} \text{(C.87)} 
+ \Delta V_{\max} = 0.5 \cdot swim_{Eff}  \hspace{2cm} \text{(12.9)} 
 $$
 
 Where:
@@ -257,7 +257,7 @@ Travel distance:
 $$
  D_{travel}
 =
-\frac{A_{\text{speed}}}{3}  \hspace{2cm} \text{(C.88)} 
+\frac{A_{\text{speed}}}{3}  \hspace{2cm} \text{(12.10)} 
 $$
 
 Where:
@@ -284,7 +284,7 @@ $$
 =
 |V_{\text{patch}}|
 +
-0.5 \cdot \max(0, \Delta d)  \hspace{2cm} \text{(C.89)} 
+0.5 \cdot \max(0, \Delta d)  \hspace{2cm} \text{(12.11)} 
 $$
 
 Where:
@@ -300,7 +300,7 @@ Difficulty scaling:
 $$
  \text{cost}
 =
-\text{cost}_{\text{raw}} \cdot D_f  \hspace{2cm} \text{(C.90)} 
+\text{cost}_{\text{raw}} \cdot D_f  \hspace{2cm} \text{(12.12)} 
 $$
 
 Where:
@@ -323,7 +323,7 @@ Let $\beta = 0.75$.
 Energy multiplier:
 
 $$
- M_{swim} = \frac{D_f}{swim_{Eff}}  \hspace{2cm} \text{(C.91)} 
+ M_{swim} = \frac{D_f}{swim_{Eff}}  \hspace{2cm} \text{(12.13)} 
 $$
 
 Where:
@@ -338,7 +338,7 @@ Energy cost:
 $$
  E_{\text{swim}}
 =
-swim_{base} \cdot M_{swim}^{\beta}  \hspace{2cm} \text{(C.92)} 
+swim_{base} \cdot M_{swim}^{\beta}  \hspace{2cm} \text{(12.14)} 
 $$
 
 Where:
@@ -359,7 +359,7 @@ Energy update:
 $$
  E_{\text{agent}}
 =
-\max \left(0,\, E_{\text{agent}} - E_{\text{swim}} \right)  \hspace{2cm} \text{(C.93)} 
+\max \left(0,\, E_{\text{agent}} - E_{\text{swim}} \right)  \hspace{2cm} \text{(12.15)} 
 $$
 
 Where:

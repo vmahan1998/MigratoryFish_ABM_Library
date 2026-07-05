@@ -123,7 +123,7 @@ catabolism, lipid used, and body mass loss over time.
 Maximum lipid available for mobilization depends on relative body mass:
 
 $$
- Lipid_{refill} = 0.5 \times \left(\frac{A_{mass}}{A_{mass_{i}}}\right)  \hspace{2cm} \text{(C.57)} 
+ Lipid_{refill} = 0.5 \times \left(\frac{A_{mass}}{A_{mass_{i}}}\right)  \hspace{2cm} \text{(10.1)} 
 $$
 
 Where:
@@ -136,7 +136,7 @@ Where:
 Energy deficit relative to full energy:
 
 $$
- E_{deficit} = 100 - E_{agent}  \hspace{2cm} \text{(C.58)} 
+ E_{deficit} = 100 - E_{agent}  \hspace{2cm} \text{(10.2)} 
 $$
 
 Where:
@@ -149,7 +149,7 @@ Where:
 Lipid required to refill the deficit:
 
 $$
- Lipid_{needed} = \frac{Energy_{deficit}}{100}  \hspace{2cm} \text{(C.59)} 
+ Lipid_{needed} = \frac{Energy_{deficit}}{100}  \hspace{2cm} \text{(10.3)} 
 $$
 
 Where:
@@ -162,7 +162,7 @@ Where:
 Actual lipid mobilized:
 
 $$
- Lipid_{used} = \min(Lipid_{needed},\ Lipid_{refill}) \times Lipid_{Eff}  \hspace{2cm} \text{(C.60)} 
+ Lipid_{used} = \min(Lipid_{needed},\ Lipid_{refill}) \times Lipid_{Eff}  \hspace{2cm} \text{(10.4)} 
 $$
 
 Where:
@@ -180,7 +180,7 @@ Where:
 Mobilized lipid is converted into energy:
 
 $$
- E_{added} = Lipid_{used} \times 100  \hspace{2cm} \text{(C.61)} 
+ E_{added} = Lipid_{used} \times 100  \hspace{2cm} \text{(10.5)} 
 $$
 
 Where:
@@ -192,7 +192,7 @@ Where:
 Energy is capped at one hundred:
 
 $$
- E_{agent} = \min(100,\ E_{agent} + E_{added})  \hspace{2cm} \text{(C.62)} 
+ E_{agent} = \min(100,\ E_{agent} + E_{added})  \hspace{2cm} \text{(10.6)} 
 $$
 
 Where:
@@ -207,7 +207,7 @@ Where:
 Weight decreases proportionally to lipid used:
 
 $$
- A_{mass} = A_{mass} - Lipid_{used}  \hspace{2cm} \text{(C.63)} 
+ A_{mass} = A_{mass} - Lipid_{used}  \hspace{2cm} \text{(10.7)} 
 $$ Where:
 
 -   $A_{mass}$ is an agent's body mass used for allometric and energetic

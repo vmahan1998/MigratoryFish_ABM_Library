@@ -23,7 +23,7 @@
 <meta name="author" content="Vanessa Quintana, Gayle Zydlewski, Joeseph Dello-Russo, Kaylyn Zipp, Todd Swannack" />
 
 
-<meta name="date" content="2026-05-22" />
+<meta name="date" content="2026-07-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -480,6 +480,14 @@ div.csl-indent {
 <li class="chapter" data-level="15.7.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predation-and-consumption"><i class="fa fa-check"></i><b>15.7.5</b> Predation and Consumption</a></li>
 <li class="chapter" data-level="15.7.6" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#interaction-with-migration-movement-and-swimming-energy"><i class="fa fa-check"></i><b>15.7.6</b> Interaction With Migration Movement and Swimming Energy</a></li>
 </ul></li>
+<li class="chapter" data-level="15.8" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#netlogo-implementation-11"><i class="fa fa-check"></i><b>15.8</b> Netlogo Implementation</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#flee-predators"><i class="fa fa-check"></i><b>15.8.1</b> Flee Predators</a></li>
+<li class="chapter" data-level="15.8.2" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#scare-prey"><i class="fa fa-check"></i><b>15.8.2</b> Scare Prey</a></li>
+<li class="chapter" data-level="15.8.3" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#chase-nearest-prey"><i class="fa fa-check"></i><b>15.8.3</b> Chase Nearest Prey</a></li>
+<li class="chapter" data-level="15.8.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-speed"><i class="fa fa-check"></i><b>15.8.4</b> Predator Speed</a></li>
+<li class="chapter" data-level="15.8.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#consume-prey"><i class="fa fa-check"></i><b>15.8.5</b> Consume Prey</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="simple-model-building-tutorial-schooling-landward-movement.html"><a href="simple-model-building-tutorial-schooling-landward-movement.html"><i class="fa fa-check"></i><b>16</b> Simple Model Building Tutorial: Schooling &amp; Landward Movement</a>
 <ul>
@@ -932,7 +940,7 @@ chronologically.</p>
 agent to move through its current patch. Velocity is normalized between
 the maximum observed landward and seaward velocities:</p>
 <p><span class="math display">\[
-V_{\text{normalized}} = \frac{V_{\text{patch}} - V_{\min}}{V_{\max} - V_{\min}}  \hspace{2cm} \text{(C.64)}
+V_{\text{normalized}} = \frac{V_{\text{patch}} - V_{\min}}{V_{\max} - V_{\min}}  \hspace{2cm} \text{(11.1)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -949,7 +957,7 @@ the patch (m s⁻¹).</li>
 Df_{\text{raw}} =
 \left(
 \frac{V_{\text{normalized}}}{A_{\text{mass}} / M_{\max}}
-\right)^k  \hspace{2cm} \text{(C.65)}
+\right)^k  \hspace{2cm} \text{(11.2)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -963,7 +971,7 @@ scaling (g).</li>
 </ul>
 <p>Difficulty is then mapped onto the one to ten range:</p>
 <p><span class="math display">\[
-D_f = 1 + 9 \cdot Df_{\text{raw}}  \hspace{2cm} \text{(C.66)}
+D_f = 1 + 9 \cdot Df_{\text{raw}}  \hspace{2cm} \text{(11.3)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -973,7 +981,7 @@ D_f = 1 + 9 \cdot Df_{\text{raw}}  \hspace{2cm} \text{(C.66)}
 </ul>
 <p>and constrained:</p>
 <p><span class="math display">\[
-D_f \in [1, 10]  \hspace{2cm} \text{(C.67)}
+D_f \in [1, 10]  \hspace{2cm} \text{(11.4)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -992,7 +1000,7 @@ D_f \in [1, 10]  \hspace{2cm} \text{(C.67)}
 <p>Swimming speed depends on energetic condition, hydrodynamic difficulty,
 and the effect of local flow. The agent first computes an energy factor:</p>
 <p><span class="math display">\[
-E_{\text{factor}} = \frac{E_{\text{agent}}}{100}  \hspace{2cm} \text{(C.68)}
+E_{\text{factor}} = \frac{E_{\text{agent}}}{100}  \hspace{2cm} \text{(11.5)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1003,7 +1011,7 @@ E_{\text{factor}} = \frac{E_{\text{agent}}}{100}  \hspace{2cm} \text{(C.68)}
 </ul>
 <p>Velocity impact from hydrodynamics is:</p>
 <p><span class="math display">\[
-V_{\text{impact}} = k \cdot V_{\text{patch}} \cdot 300  \hspace{2cm} \text{(C.69)}
+V_{\text{impact}} = k \cdot V_{\text{patch}} \cdot 300  \hspace{2cm} \text{(11.6)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1020,7 +1028,7 @@ e.g., 5 minutes).</li>
 <p><span class="math display">\[
 V_{\text{desired}} =
 \frac{V_{\max} \cdot E_{\text{factor}}}{D_f}
-+ V_{\text{impact}}  \hspace{2cm} \text{(C.70)}
++ V_{\text{impact}}  \hspace{2cm} \text{(11.7)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1036,7 +1044,7 @@ tick⁻¹).</li>
 <p>Speed is constrained between a minimum and maximum:</p>
 <p><span class="math display">\[
 V_{\text{desired}}
-= \min(V_{\max}, \max(V_{\min}, V_{\text{desired}}))  \hspace{2cm} \text{(C.71)}
+= \min(V_{\max}, \max(V_{\min}, V_{\text{desired}}))  \hspace{2cm} \text{(11.8)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1047,7 +1055,7 @@ tick⁻¹).</li>
 </ul>
 <p>Acceleration is smoothed using the previous speed:</p>
 <p><span class="math display">\[
-\Delta V_{max} = 0.5 \cdot swim_{Eff}  \hspace{2cm} \text{(C.72)}
+\Delta V_{max} = 0.5 \cdot swim_{Eff}  \hspace{2cm} \text{(11.9)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1066,7 +1074,7 @@ desired value. Otherwise speed is set directly.</p>
 vector movement. The number of patches traversed in a tick is based on
 swimming speed:</p>
 <p><span class="math display">\[
-D_{travel} = \frac{A_{speed}}{3}  \hspace{2cm} \text{(C.73)}
+D_{travel} = \frac{A_{speed}}{3}  \hspace{2cm} \text{(11.10)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1092,7 +1100,7 @@ slope, and difficulty:</p>
 <p><span class="math display">\[
 \text{cost}_{\text{raw}}
 = |V_{\text{patch}}|
-+ 0.5 \cdot \max(0, \Delta \text{depth})  \hspace{2cm} \text{(C.74)}
++ 0.5 \cdot \max(0, \Delta \text{depth})  \hspace{2cm} \text{(11.11)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1105,7 +1113,7 @@ the patch (m s⁻¹).</li>
 <p>Difficulty multiplies the base cost:</p>
 <p><span class="math display">\[
 \text{cost}
-= \text{cost}_{\text{raw}} \cdot D_f  \hspace{2cm} \text{(C.75)}
+= \text{cost}_{\text{raw}} \cdot D_f  \hspace{2cm} \text{(11.12)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1125,7 +1133,7 @@ difficulty, and swim efficiency.</p>
 <p>Let <span class="math inline">\(\beta = 0.75\)</span>.<br />
 Let the effective multiplier be:</p>
 <p><span class="math display">\[
-M_{swim} = \frac{D_f}{swim_{Eff}}  \hspace{2cm} \text{(C.76)}
+M_{swim} = \frac{D_f}{swim_{Eff}}  \hspace{2cm} \text{(11.13)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1137,7 +1145,7 @@ energetics (dimensionless).</li>
 <p>Where lower efficiency results in higher energetic cost.</p>
 <p>Energy expenditure is:</p>
 <p><span class="math display">\[
-E_{\text{swim}} = swim_{base} \cdot M_{swim}^\beta  \hspace{2cm} \text{(C.77)}
+E_{\text{swim}} = swim_{base} \cdot M_{swim}^\beta  \hspace{2cm} \text{(11.14)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1151,7 +1159,7 @@ units) patch⁻¹).</li>
 </ul>
 <p>Total energy is reduced accordingly:</p>
 <p><span class="math display">\[
-E_{\text{agent}} = \max(0, E_{\text{agent}} - E_{\text{swim}})  \hspace{2cm} \text{(C.78)}
+E_{\text{agent}} = \max(0, E_{\text{agent}} - E_{\text{swim}})  \hspace{2cm} \text{(11.15)}
 \]</span></p>
 <p>Where:</p>
 <ul>

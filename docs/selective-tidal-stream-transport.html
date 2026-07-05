@@ -23,7 +23,7 @@
 <meta name="author" content="Vanessa Quintana, Gayle Zydlewski, Joeseph Dello-Russo, Kaylyn Zipp, Todd Swannack" />
 
 
-<meta name="date" content="2026-05-22" />
+<meta name="date" content="2026-07-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -480,6 +480,14 @@ div.csl-indent {
 <li class="chapter" data-level="15.7.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predation-and-consumption"><i class="fa fa-check"></i><b>15.7.5</b> Predation and Consumption</a></li>
 <li class="chapter" data-level="15.7.6" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#interaction-with-migration-movement-and-swimming-energy"><i class="fa fa-check"></i><b>15.7.6</b> Interaction With Migration Movement and Swimming Energy</a></li>
 </ul></li>
+<li class="chapter" data-level="15.8" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#netlogo-implementation-11"><i class="fa fa-check"></i><b>15.8</b> Netlogo Implementation</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#flee-predators"><i class="fa fa-check"></i><b>15.8.1</b> Flee Predators</a></li>
+<li class="chapter" data-level="15.8.2" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#scare-prey"><i class="fa fa-check"></i><b>15.8.2</b> Scare Prey</a></li>
+<li class="chapter" data-level="15.8.3" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#chase-nearest-prey"><i class="fa fa-check"></i><b>15.8.3</b> Chase Nearest Prey</a></li>
+<li class="chapter" data-level="15.8.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-speed"><i class="fa fa-check"></i><b>15.8.4</b> Predator Speed</a></li>
+<li class="chapter" data-level="15.8.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#consume-prey"><i class="fa fa-check"></i><b>15.8.5</b> Consume Prey</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="simple-model-building-tutorial-schooling-landward-movement.html"><a href="simple-model-building-tutorial-schooling-landward-movement.html"><i class="fa fa-check"></i><b>16</b> Simple Model Building Tutorial: Schooling &amp; Landward Movement</a>
 <ul>
@@ -895,7 +903,7 @@ flow regimes.</p>
 flow exceeds their capability and their effort is below a defined
 threshold, they enter STST:</p>
 <p><span class="math display">\[
-|V_{patch}| &gt; A_{speed} \quad \text{and} \quad A_{speed} \leq Speed_{min}  \hspace{2cm} \text{(C.94)}
+|V_{patch}| &gt; A_{speed} \quad \text{and} \quad A_{speed} \leq Speed_{min}  \hspace{2cm} \text{(14.1)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -908,7 +916,7 @@ the patch (m s⁻¹).</li>
 <p>Heading aligns with the current (drift vector) &amp; swimming speed is set
 to:</p>
 <p><span class="math display">\[
-A_{speed} = |V_{patch}|  \hspace{2cm} \text{(C.95)}
+A_{speed} = |V_{patch}|  \hspace{2cm} \text{(14.2)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -918,7 +926,7 @@ the patch (m s⁻¹).</li>
 </ul>
 <p>Energy is set as:</p>
 <p><span class="math display">\[
-E_{swim} = swim_{base}  \hspace{2cm} \text{(C.96)}
+E_{swim} = swim_{base}  \hspace{2cm} \text{(14.3)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -933,7 +941,7 @@ units).</li>
 <p>While in STST, agents align with the current (either landward or
 seaward) and are passively transported:</p>
 <p><span class="math display">\[
-\vec{Y}_{t+1} = \vec{Y}_t + |V_{patch}| \cdot \hat{u}  \hspace{2cm} \text{(C.97)}
+\vec{Y}_{t+1} = \vec{Y}_t + |V_{patch}| \cdot \hat{u}  \hspace{2cm} \text{(14.4)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -946,7 +954,7 @@ defined as <span class="math inline">\(\hat{u}_{patch} = V_{patch} / |V_{patch}|
 </ul>
 <p>Swimming speed is overwritten:</p>
 <p><span class="math display">\[
-A_{speed} = |V_{patch}|  \hspace{2cm} \text{(C.98)}
+A_{speed} = |V_{patch}|  \hspace{2cm} \text{(14.5)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -956,7 +964,7 @@ the patch (m s⁻¹).</li>
 </ul>
 <p>Energy cost is minimized:</p>
 <p><span class="math display">\[
-E_{swim} = swim_{base}  \hspace{2cm} \text{(C.99)}
+E_{swim} = swim_{base}  \hspace{2cm} \text{(14.6)}
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -971,7 +979,7 @@ units).</li>
 <p>Agents exit STST when they regain sufficient swimming capacity to exceed
 threshold:</p>
 <p><span class="math display">\[
-A_{speed} &gt; speed_{min}  \hspace{2cm} \text{(C.100)}
+A_{speed} &gt; speed_{min}  \hspace{2cm} \text{(14.7)}
 \]</span></p>
 <p>Where:</p>
 <ul>

@@ -23,7 +23,7 @@
 <meta name="author" content="Vanessa Quintana, Gayle Zydlewski, Joeseph Dello-Russo, Kaylyn Zipp, Todd Swannack" />
 
 
-<meta name="date" content="2026-05-22" />
+<meta name="date" content="2026-07-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -480,6 +480,14 @@ div.csl-indent {
 <li class="chapter" data-level="15.7.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predation-and-consumption"><i class="fa fa-check"></i><b>15.7.5</b> Predation and Consumption</a></li>
 <li class="chapter" data-level="15.7.6" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#interaction-with-migration-movement-and-swimming-energy"><i class="fa fa-check"></i><b>15.7.6</b> Interaction With Migration Movement and Swimming Energy</a></li>
 </ul></li>
+<li class="chapter" data-level="15.8" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#netlogo-implementation-11"><i class="fa fa-check"></i><b>15.8</b> Netlogo Implementation</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#flee-predators"><i class="fa fa-check"></i><b>15.8.1</b> Flee Predators</a></li>
+<li class="chapter" data-level="15.8.2" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#scare-prey"><i class="fa fa-check"></i><b>15.8.2</b> Scare Prey</a></li>
+<li class="chapter" data-level="15.8.3" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#chase-nearest-prey"><i class="fa fa-check"></i><b>15.8.3</b> Chase Nearest Prey</a></li>
+<li class="chapter" data-level="15.8.4" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#predator-speed"><i class="fa fa-check"></i><b>15.8.4</b> Predator Speed</a></li>
+<li class="chapter" data-level="15.8.5" data-path="predation-and-fleeing-behavior.html"><a href="predation-and-fleeing-behavior.html#consume-prey"><i class="fa fa-check"></i><b>15.8.5</b> Consume Prey</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="simple-model-building-tutorial-schooling-landward-movement.html"><a href="simple-model-building-tutorial-schooling-landward-movement.html"><i class="fa fa-check"></i><b>16</b> Simple Model Building Tutorial: Schooling &amp; Landward Movement</a>
 <ul>
@@ -934,7 +942,7 @@ gained energy, contaminant uptake, and cumulative contaminant burdens.</p>
 <h3><span class="header-section-number">5.7.1</span> Digestion Rate and Breakdown<a href="digestion.html#digestion-rate-and-breakdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Digestive throughput is driven by metabolic rate:</p>
 <p><span class="math display">\[
-  R_{digest} = Met_{tick}  \hspace{2cm} \text{(C.11)}   
+  R_{digest} = Met_{tick}  \hspace{2cm} \text{(5.1)}   
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -945,7 +953,7 @@ for all energetic scaling ((energy units) tick⁻¹).</p></li>
 </ul>
 <p>Digested mass per tick:</p>
 <p><span class="math display">\[
-  M_{digested} = M_{stomach} \cdot R_{digest} \cdot Eff_{digest}  \hspace{2cm} \text{(C.12)}   
+  M_{digested} = M_{stomach} \cdot R_{digest} \cdot Eff_{digest}  \hspace{2cm} \text{(5.2)}   
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -958,7 +966,7 @@ filtration (%).</p></li>
 </ul>
 <p>Proportional mercury assimilation:</p>
 <p><span class="math display">\[
-  MeHg_{digested} = \left( \frac{M_{digested}}{M_{stomach}} \right) \cdot MeHg_{stomach}  \hspace{2cm} \text{(C.13)}   
+  MeHg_{digested} = \left( \frac{M_{digested}}{M_{stomach}} \right) \cdot MeHg_{stomach}  \hspace{2cm} \text{(5.3)}   
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -971,7 +979,7 @@ stomach (ng).</p></li>
 </ul>
 <p>Updated stomach contents:</p>
 <p><span class="math display">\[
-  M_{stomach} = M_{stomach} - M_{digested}  \hspace{2cm} \text{(C.14)}   
+  M_{stomach} = M_{stomach} - M_{digested}  \hspace{2cm} \text{(5.4)}   
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -983,7 +991,7 @@ stomach (ng).</p></li>
 <h3><span class="header-section-number">5.7.2</span> Energy Conversion<a href="digestion.html#energy-conversion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Energy gained from digestion:</p>
 <p><span class="math display">\[
-  E_{gain} = M_{digested} \cdot 100  \hspace{2cm} \text{(C.15)}   
+  E_{gain} = M_{digested} \cdot 100  \hspace{2cm} \text{(5.5)}   
 \]</span> Where:</p>
 <ul>
 <li><p><span class="math inline">\(E_{gain}\)</span> is the energy gained from digested biomass (energy
@@ -992,7 +1000,7 @@ units).</p></li>
 </ul>
 <p>Updated energy pool:</p>
 <p><span class="math display">\[
-  E_{agent} = E_{agent} + E_{gain}  \hspace{2cm} \text{(C.16)}   
+  E_{agent} = E_{agent} + E_{gain}  \hspace{2cm} \text{(5.6)}   
 \]</span></p>
 <p>Where:</p>
 <ul>
@@ -1006,7 +1014,7 @@ units).</p></li>
 <h3><span class="header-section-number">5.7.3</span> Contaminant Assimilation<a href="digestion.html#contaminant-assimilation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Contaminants absorbed during digestion:</p>
 <p><span class="math display">\[
-  MeHg_{forage} = MeHg_{forage} + MeHg_{digested}  \hspace{2cm} \text{(C.17)}   
+  MeHg_{forage} = MeHg_{forage} + MeHg_{digested}  \hspace{2cm} \text{(5.7)}   
 \]</span> Where:</p>
 <ul>
 <li><p><span class="math inline">\(MeHg_{forage}\)</span> is the cumulative methylmercury uptake via feeding
@@ -1016,7 +1024,7 @@ units).</p></li>
 </ul>
 <p>Accumulated body burden:</p>
 <p><span class="math display">\[
-  MeHg_{total} = MeHg_{total} + MeHg_{digested}  \hspace{2cm} \text{(C.18)}  
+  MeHg_{total} = MeHg_{total} + MeHg_{digested}  \hspace{2cm} \text{(5.8)}  
 \]</span></p>
 <p>Where:</p>
 <ul>
