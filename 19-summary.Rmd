@@ -172,6 +172,8 @@ The following texts provide the conceptual and methodological foundations for th
 
 - **Grimm, V., & Railsback, S. F. (2005).** *Individual-Based Modeling and Ecology*. Princeton University Press. — The theoretical companion, covering the ecological motivation for individual-based models and their relationship to population and community ecology.
 
+- **Grimm, V., Berger, U., Bastiansen, F., Eliassen, S., Ginot, V., Giske, J., Goss-Custard, J., Grand, T., Heinz, S. K., Huse, G., Huth, A., Jepsen, J. U., Jørgensen, C., Mooij, W. M., Müller, B., Pe’er, G., Piou, C., Railsback, S. F., Robbins, A. M., … DeAngelis, D. L. (2006).** A standard protocol for describing individual-based and agent-based models. *Ecological Modelling*, 198(1–2), 115–126. https://doi.org/10.1016/j.ecolmodel.2006.04.023
+
 - **Grimm, V., et al. (2010).** The ODD protocol: A review and first update. *Ecological Modelling*, 221(23), 2760–2768. — The peer-reviewed specification of the ODD protocol used to document P-MEM in Appendix C of Mahan (2025).
 
 - **Grimm, V., et al. (2020).** The ODD protocol for describing agent-based and other simulation models: A second update to improve clarity, replication, and structural realism. *Journal of Artificial Societies and Social Simulation*, 23(2), 7. — The most recent ODD update; includes the TRACE documentation framework for transparent and comprehensive model evaluation.

@@ -30,13 +30,13 @@ Each chapter in this library corresponds to a major behavior, physiological func
 
 -   **Salinity Exposure**
 
--   **Temperature Exposure**
+-   **Migration Cue**
 
 -   **Contaminant Exposure**
 
 -   **Digestion**
 
--   **Filter Feeding**
+-   **Small Particulate Feeding**
 
 -   **Lipid Catabolism**
 
@@ -48,7 +48,7 @@ Each chapter in this library corresponds to a major behavior, physiological func
 
 -   **Selective Tidal Stream Transport**
 
--   **Predator-prey interactions**
+-   **Predator-Prey Interactions**
 
 The final chapters provide guidance on how to integrate multiple functions into a complete agent-based model, demonstrating how these components work together to simulate fish behavior in dynamic coastal and estuarine systems.
 

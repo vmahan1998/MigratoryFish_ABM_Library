@@ -1,11 +1,46 @@
 ---
-title: "GoFish: A Next-Generation ToolKit for Modeling Migratory Fish and Quantifying Sediment-Bound Contaminant Risk in Estuaries"
-author: "Vanessa Quintana, Kim Huguenard, Gayle Zydlewski, Joseph Dello-Russo, Kaylyn Zipp, Todd Swannack"
+title: "GoFish: A Modular Agent-Based Modeling Toolkit for Migratory Fish"
+author: "Vanessa Quintana, Kimberly Huguenard, Gayle Zydlewski, Joseph Dello Russo, Kaylyn Zipp, and Todd Swannack"
 date: "`r Sys.Date()`"
-keywords: ["ecological modeling", "coding library", "netlogo", "agent-based", "pattern-oriented", "individual-based", "bioaccumulation", "estuary contamination", "hydrodynamics", "mercury", "anadromous fish", "GoFish", "SPM transport", "methylmercury", "GoFish Toolkit", "osmoregulation", "estuarine dynamics", "coupled models", "co-development", "fish behavior", "migratory fish"]
+description: |
+  An open-source library of reusable behavioral and ecological modules for
+  developing agent-based models of migratory fish, including applications
+  to estuarine dynamics and sediment-bound contaminant exposure.
+keywords:
+  - GoFish
+  - agent-based modeling
+  - individual-based modeling
+  - ecological modeling
+  - modular modeling
+  - migratory fish
+  - Reusable building blocks
+  - RBBs
+  - ODD
+  - diadromous fish
+  - anadromous fish
+  - fish behavior
+  - osmoregulation
+  - metabolism
+  - migration
+  - swimming
+  - predator
+  - prey
+  - digestion
+  - lipid loss
+  - filter feeding
+  - small particulate feeding
+  - emerging contaminants
+  - fish toxicity
+  - exposure dynamics
+  - modules
+  - software module
+  - fisheries management
+  - estuarine dynamics
+  - contaminant exposure
+  - NetLogo
 site: bookdown::bookdown_site
 documentclass: book
-bibliography: 
+bibliography:
   - "Penobscot.bib"
   - "Thesis_References.bib"
   - "Chapter_2_References_Formatted.bib"
@@ -14,14 +49,12 @@ bibliography:
   - "Chapter_5_References_Formatted.bib"
   - "Appendix_C_References_Formatted.bib"
 cover-image: "images/vmq.png"
-description: |
-  This document contains a library of agent-based model functions for migratory fish.
 link-citations: yes
 github-repo: vmahan1998/GoFish
-url: https://vmahan1998.github.io/GoFish/
+url: "https://vmahan1998.github.io/GoFish/"
 ---
 
-# Preface {.unnumbered}
+# About GoFish {.unnumbered}
 ```{r, child="_download_library_button.Rmd"}
 ```
 
@@ -38,5 +71,11 @@ This library was originally developed in support of research on the influence of
 ## How to Use This Library {.unnumbered}
 
 Each function or behavior in this library can be combined with others to build a complete agent-based model for migratory fish. These functions are designed to be adaptable, and easily configured for different species, life stages, or site-specific conditions.
+
+> **How to cite GoFish**
+>
+> **Software:** Quintana, V., Huguenard, K., Zydlewski, G., Dello Russo, J., Zipp, K., & Swannack, T. (2026). *GoFish: A next-generation toolkit for modeling migratory fish and quantifying sediment-bound contaminant risk in estuaries* (Version 1.0) [Computer software]. Zenodo. [https://doi.org/10.5281/zenodo.21209898](https://doi.org/10.5281/zenodo.21209898)
+>
+> **Documentation:** Quintana, V., Huguenard, K., Zydlewski, G., Dello Russo, J., Zipp, K., & Swannack, T. (2026). *GoFish: A Modular Agent-Based Modeling Toolkit for Migratory Fish*. [https://vmahan1998.github.io/GoFish/](https://vmahan1998.github.io/GoFish/)
 
 *For questions, feedback, guidance on implementation, or **interest in adding to the library**, please contact **Vanessa Quintana** at [**mahan.vanessa98\@gmail.com**](mailto:mahan.vanessa98@gmail.com){.email}**.**

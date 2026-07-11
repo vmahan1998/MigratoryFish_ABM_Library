@@ -213,11 +213,11 @@ If you use GoFish in your research, please cite:
 
 Files and Metadata:
 
-Quintana, V., Huguenard, K., Zydlewski, G., Dello-Russo, J., Zipp, K., & Swannack, T. (2026). GoFish: A next-generation toolkit for modeling migratory fish and quantifying sediment-bound contaminant risk in estuaries (Version 1.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.21209898
+Quintana, V., Huguenard, K., Zydlewski, G., Dello Russo, J., Zipp, K., & Swannack, T. (2026). GoFish: A next-generation toolkit for modeling migratory fish and quantifying sediment-bound contaminant risk in estuaries (Version 1.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.21209898
 
 Website:
 
-Quintana, V., Huguenard, K., Zydlewski, G., Dello-Russo, J., Zipp, K., & Swannack, T. (2026). GoFish documentation. https://vmahan1998.github.io/GoFish/
+Quintana, V., Huguenard, K., Zydlewski, G., Dello Russo, J., Zipp, K., & Swannack, T. (2026). GoFish: A Modular Agent-Based Modeling Toolkit for Migratory Fish. https://vmahan1998.github.io/GoFish/
 
 ---
 
